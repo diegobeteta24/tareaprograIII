@@ -2,7 +2,7 @@
 Tarea de Progra III
 Estudiantes:
 Diego Antonio Beteta García 940-22-12878 100%
-ALAN BILLY BATEN GUIGUI 9490-22-17906
+ALAN BILLY BATEN GUIGUI 9490-22-17906 100%
 
 Documentación:
 En este programa se uso la libería graphiz para que cada vez que se agregue un registro a ella se genere un grafo, ya sea al principio o al final.
