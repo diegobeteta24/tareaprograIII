@@ -1,6 +1,9 @@
 Recursividad 
 
-Este programa proporciona varias funciones implementadas utilizando recursión. Puedes utilizar estas funciones para realizar diversas operaciones matemáticas, como convertir números a binario, contar dígitos, calcular la raíz cuadrada entera, convertir números romanos a decimales y sumar números enteros hasta un valor dado.
+Este programa proporciona varias funciones implementadas utilizando recursión. 
+Puedes utilizar estas funciones para realizar diversas operaciones matemáticas, 
+como convertir números a binario, contar dígitos, calcular la raíz cuadrada entera, 
+convertir números romanos a decimales y sumar números enteros hasta un valor dado.
 
 Funcionalidades Implementadas
 
