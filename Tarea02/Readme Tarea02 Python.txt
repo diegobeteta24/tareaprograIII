@@ -1,3 +1,7 @@
+# Participantes
+ALAN BILLY BATEN GUIGUI 	9490-22-17906 ponderacion 100%
+Diego Antonio Beteta García 	9490-22-12878 ponderacion 100%
+
 Recursividad 
 
 Este programa proporciona varias funciones implementadas utilizando recursión. 
