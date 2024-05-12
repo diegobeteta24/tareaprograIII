@@ -1,3 +1,7 @@
+# Participantes
+ALAN BILLY BATEN GUIGUI 	9490-22-17906 ponderacion 100%
+Diego Antonio Beteta García 	9490-22-12878 ponderacion 100%
+
 Árbol Binario de Búsqueda (ABB) - Documentación de Ejecución y Prueba
 
 	Este programa implementa un Árbol Binario de Búsqueda (ABB) en Python, 
