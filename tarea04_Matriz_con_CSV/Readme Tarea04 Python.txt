@@ -1,6 +1,6 @@
 # Participantes
 ALAN BILLY BATEN GUIGUI 	9490-22-17906 ponderacion 100%
-Diego Antonio Beteta García 	940-22-12878  ponderacion 100%
+Diego Antonio Beteta García 	9490-22-12878 ponderacion 100%
 
 # Creador de Matriz Dispersa con CSV
 
