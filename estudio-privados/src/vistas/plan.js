@@ -2,7 +2,8 @@
 import { cargarPlan, cargarPersonal } from '../datos.js';
 import * as P from '../plan.js';
 import { hoy, corto, conAnio, relativo, rango, diaMes } from '../fechas.js';
-import { esc, barra, barraHTML, hm, pct, aviso } from '../ui.js';
+import { esc, barra, barraHTML, hm, pct, aviso, descargar } from '../ui.js';
+import { planAICS } from '../calendario.js';
 import { htmlTramites, enfocarDeNuevo } from '../componentes.js';
 
 const DIAS = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -110,6 +111,9 @@ export default async function vistaPlan(app) {
       ${notas}${contactos}
 
       <section class="bloque"><h2>Últimas sesiones registradas</h2>${registro}</section>
+      <section class="bloque"><h2>Llevarlo al calendario del teléfono</h2>
+        <p class="sem ui">Descarga las fechas del plan (trámites, puntos de control, sesiones de fundamentos, inicio de cada semana e hitos de 2027–2028, con la fecha de arranque que tengas guardada) e impórtalas en Google Calendar desde la computadora: Configuración → Importar y exportar. Los trámites y puntos de control avisan a las 9:00 del día anterior. Si después cambias la fecha de arranque, vuelve a descargar e importar: los eventos se actualizan.</p>
+        <p class="acciones"><button class="btn btn-primario" type="button" data-accion="ics">Descargar calendario (.ics)</button></p></section>
       <footer><p><a href="#/datos">Copia de seguridad del avance</a> · <a href="#/">Volver a Hoy</a></p>
       <p>El plan se edita en <code>contenido/plan/plan.json</code>; después de cambiarlo, vuelve a ejecutar <code>npm run dev</code>.</p></footer>
     </main>`;
@@ -122,6 +126,7 @@ export default async function vistaPlan(app) {
     if (d.accion === 'pc') P.responderPunto(d.id, d.valor || null);
     else if (d.accion === 'borrar') { P.borrarSesion(+d.t); aviso('Registro eliminado.'); }
     else if (d.accion === 'restaurar') { P.fijarArranque(plan, null); aviso('Se restauró la fecha del plan.'); }
+    else if (d.accion === 'ics') { descargar('inge2028-plan.ics', planAICS(plan, personal), 'text/calendar'); aviso('Calendario descargado.'); return; }
     enfocarDeNuevo(app, pintar);
   }, { signal: ac.signal });
 
