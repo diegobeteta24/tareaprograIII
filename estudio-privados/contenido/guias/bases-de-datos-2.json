@@ -1,0 +1,1066 @@
+{
+ "slug": "bases-de-datos-2",
+ "titulo": "Bases de Datos II",
+ "area": "Análisis, Diseño y Desarrollo",
+ "meta": "Ciclo 7, bloque Bases de datos del seminario",
+ "firma": "\\text{ACID}:\\ \\text{Atomicidad},\\ \\text{Consistencia},\\ \\text{Aislamiento},\\ \\text{Durabilidad}",
+ "firma_nota": "Las cuatro garantías de toda transacción: todo o nada, de un estado válido a otro, sin interferencias entre usuarios y sin pérdidas después del COMMIT.",
+ "lead": "La segunda parte de bases de datos: SQL avanzado, programación dentro del motor, transacciones y concurrencia, recuperación y seguridad, índices y optimización, y bases distribuidas, NoSQL y analíticas. Parte de donde termina Bases de Datos I (modelo relacional, normalización y SQL básico) y se enfoca en lo que pasa cuando llegan a la vez muchos usuarios, muchos datos y muchas fallas.",
+ "fuente": "http://umgcontenidos.50webs.com/Contenidos/Ciclos/Septimo%20Ciclo/2014-7BasesII.pdf",
+ "como": "Cada tema trae conceptos con su uso real y 12 ejercicios: resueltos paso a paso, para resolver con la respuesta oculta y preguntas de opción múltiple que te dicen al instante si acertaste.",
+ "origen": "local",
+ "aviso": "Guía local: cubre el temario habitual del curso. El programa oficial no se pudo abrir al escribirla, así que confirma los temas con el programa o con quien imparta el bloque.",
+ "temas": [
+  {
+   "titulo": "SQL avanzado",
+   "intro": "Consultas que ya no caben en un SELECT sencillo: subconsultas correlacionadas, EXISTS, IN, ANY y ALL, operaciones de conjuntos, reuniones externas, vistas, CASE, expresiones de tabla comunes (WITH) y funciones de ventana básicas.",
+   "conceptos": [
+    {
+     "n": "Subconsultas: correlacionadas, EXISTS, IN, ANY y ALL",
+     "e": [
+      "Una <b>subconsulta</b> es un <code>SELECT</code> escrito dentro de otra sentencia. Es <b>no correlacionada</b> cuando puede ejecutarse sola: se evalúa una vez y su resultado se reutiliza. Es <b>correlacionada</b> cuando usa columnas de la consulta externa: conceptualmente se evalúa una vez por cada fila externa. Según lo que devuelve es <b>escalar</b> (un solo valor), de <b>columna</b> (una lista, para <code>IN</code>, <code>ANY</code> y <code>ALL</code>) o de <b>tabla</b> (va en el <code>FROM</code> y se llama tabla derivada).",
+      "<code>EXISTS (S)</code> es verdadero si la subconsulta devuelve al menos una fila, sin importar qué columnas trae. <code>x IN (S)</code> equivale a <code>x = ANY (S)</code>. Con <code>ALL</code> la comparación debe cumplirse con todos los valores; con <code>ANY</code> (o <code>SOME</code>), con al menos uno. SQL usa <b>lógica de tres valores</b> (verdadero, falso y desconocido) y el <code>WHERE</code> solo deja pasar lo verdadero: por eso <code>NOT IN</code> no devuelve ninguna fila si la subconsulta contiene un <code>NULL</code>, mientras que <code>NOT EXISTS</code> no tiene ese problema."
+     ],
+     "u": [
+      "Reportes como «clientes sin compras este mes» o «productos más caros que el promedio de su categoría»; en Laravel, <code>whereExists</code>, <code>whereIn</code> y <code>whereDoesntHave</code> generan estas subconsultas.",
+      "Expresan preguntas con «ninguno», «alguno», «todos» o «más que el promedio de su grupo», que una reunión simple no responde o responde duplicando filas.",
+      "Cuando la condición de una fila depende de otro conjunto de filas: existencia, pertenencia o comparación contra un agregado.",
+      "Escribe y prueba primero la subconsulta sola para un caso; luego conéctala con la columna externa y revisa qué pasa con los <code>NULL</code> y con el conjunto vacío."
+     ],
+     "tabla": "<table><tr><th>Operador</th><th>Es verdadero cuando</th><th>Si la subconsulta no devuelve filas</th></tr><tr><td><code>EXISTS (S)</code></td><td>S devuelve al menos una fila</td><td>falso</td></tr><tr><td><code>x IN (S)</code></td><td>x es igual a algún valor de S</td><td>falso</td></tr><tr><td><code>x &gt; ANY (S)</code></td><td>x supera al menos a un valor de S (basta superar al menor)</td><td>falso</td></tr><tr><td><code>x &gt; ALL (S)</code></td><td>x supera a todos los valores de S (debe superar al mayor)</td><td>verdadero</td></tr><tr><td><code>NOT EXISTS (S)</code></td><td>S no devuelve ninguna fila</td><td>verdadero</td></tr></table>"
+    },
+    {
+     "n": "Operaciones de conjuntos, reuniones externas y vistas",
+     "e": [
+      "<code>UNION</code> junta los resultados de dos consultas y elimina las filas duplicadas; <code>UNION ALL</code> las conserva y es más rápido porque no compara. <code>INTERSECT</code> deja las filas que están en ambos resultados y <code>EXCEPT</code> (<code>MINUS</code> en Oracle) las del primero que no están en el segundo. Las consultas deben ser <b>compatibles para la unión</b>: mismo número de columnas y tipos compatibles en el mismo orden; los nombres de columna salen de la primera consulta y el <code>ORDER BY</code> va una sola vez, al final. MySQL tiene <code>INTERSECT</code> y <code>EXCEPT</code> desde la versión 8.0.31.",
+      "Una <b>reunión externa</b> conserva las filas que no encuentran pareja: <code>LEFT JOIN</code> conserva todas las de la tabla izquierda y rellena con <code>NULL</code> las columnas de la derecha, <code>RIGHT JOIN</code> hace lo contrario y <code>FULL OUTER JOIN</code> conserva las de ambos lados (MySQL no lo tiene: se arma uniendo con <code>UNION</code> un <code>LEFT JOIN</code> y un <code>RIGHT JOIN</code>). Una <b>vista</b> es una consulta guardada con nombre: no almacena datos, se ejecuta sobre las tablas base cada vez que se usa; la <b>vista materializada</b> (Oracle y PostgreSQL, no MySQL) sí guarda el resultado y hay que refrescarla. Una vista es <b>actualizable</b> solo si cada fila suya corresponde a una fila de una tabla base: sin <code>DISTINCT</code>, <code>GROUP BY</code>, agregados ni <code>UNION</code>. <code>WITH CHECK OPTION</code> rechaza los cambios que dejarían la fila fuera de la vista."
+     ],
+     "u": [
+      "Reportes que deben listar todo aunque no haya movimiento (cursos sin alumnos, productos sin ventas), consolidar tablas de varias sucursales y vistas que muestran a cada área solo sus columnas.",
+      "Un <code>INNER JOIN</code> esconde justo lo que el reporte quiere mostrar: lo que no tiene pareja. Las vistas dan seguridad e independencia lógica: la aplicación no cambia si cambia la tabla.",
+      "Reunión externa cuando piden «todos, tengan o no»; operación de conjuntos cuando combinas listas con las mismas columnas; vista cuando la misma consulta se repite o hay que ocultar columnas.",
+      "Decide qué tabla debe salir completa y ponla a la izquierda del <code>LEFT JOIN</code>; las condiciones sobre la tabla derecha van en el <code>ON</code>, no en el <code>WHERE</code>."
+     ]
+    },
+    {
+     "n": "CASE, expresiones de tabla comunes y funciones de ventana",
+     "e": [
+      "<code>CASE</code> es la expresión condicional de SQL: evalúa los <code>WHEN</code> en orden y devuelve el resultado del primero que se cumple; sin <code>ELSE</code> devuelve <code>NULL</code>. Dentro de un agregado permite contar o sumar por condición: <code>SUM(CASE WHEN punteo &gt;= 61 THEN 1 ELSE 0 END)</code>. Una <b>expresión de tabla común</b> (CTE) es una consulta con nombre que se define con <code>WITH</code> y existe solo mientras dura la sentencia; ordena las consultas largas y, con <code>WITH RECURSIVE</code>, recorre jerarquías como jefe y subordinado o categoría y subcategoría.",
+      "Una <b>función de ventana</b> calcula un valor para cada fila mirando un conjunto de filas relacionadas (su ventana), sin agruparlas en una sola como hace <code>GROUP BY</code>. Se escribe <code>función() OVER (PARTITION BY … ORDER BY …)</code>: <code>PARTITION BY</code> forma los grupos y <code>ORDER BY</code> el orden dentro de cada uno. <code>ROW_NUMBER</code> numera 1, 2, 3; <code>RANK</code> repite el puesto en los empates y deja huecos; <code>DENSE_RANK</code> no deja huecos. <code>SUM(x) OVER (ORDER BY …)</code> da el acumulado, y <code>LAG</code> y <code>LEAD</code> traen el valor de la fila anterior o de la siguiente. Las ventanas se calculan después de <code>WHERE</code>, <code>GROUP BY</code> y <code>HAVING</code>; por eso no se pueden usar en el <code>WHERE</code>: se calculan en una CTE y se filtra afuera."
+     ],
+     "u": [
+      "Los «3 más vendidos por categoría», el saldo acumulado de un estado de cuenta, el puesto de cada vendedor y la variación de un mes contra el anterior.",
+      "Sin ventanas esos reportes piden autouniones o subconsultas correlacionadas, más lentas y difíciles de leer; <code>CASE</code> y <code>WITH</code> evitan traer los datos a la aplicación para procesarlos allí.",
+      "Cuando necesitas el detalle de cada fila y, al mismo tiempo, un cálculo sobre su grupo: puesto, acumulado, total o diferencia con la fila anterior.",
+      "Define la partición, define el orden y elige la función; si vas a filtrar por el resultado, envuelve la consulta en un <code>WITH</code> y filtra en la consulta externa."
+     ],
+     "f": "\\text{FROM}\\rightarrow\\text{WHERE}\\rightarrow\\text{GROUP BY}\\rightarrow\\text{HAVING}\\rightarrow\\text{ventanas}\\rightarrow\\text{SELECT}\\rightarrow\\text{ORDER BY}\\rightarrow\\text{LIMIT}",
+     "tabla": "<table><tr><th>punteo (orden descendente)</th><th><code>ROW_NUMBER()</code></th><th><code>RANK()</code></th><th><code>DENSE_RANK()</code></th></tr><tr><td>90</td><td>1</td><td>1</td><td>1</td></tr><tr><td>85</td><td>2</td><td>2</td><td>2</td></tr><tr><td>85</td><td>3</td><td>2</td><td>2</td></tr><tr><td>70</td><td>4</td><td>4</td><td>3</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Predice el resultado de la consulta. Tabla <code>curso</code>:<table><tr><th>id</th><th>nombre</th></tr><tr><td>1</td><td>Bases de Datos II</td></tr><tr><td>2</td><td>Compiladores</td></tr><tr><td>3</td><td>Redes II</td></tr></table>Tabla <code>asignacion</code>:<table><tr><th>carne</th><th>curso_id</th></tr><tr><td>101</td><td>1</td></tr><tr><td>102</td><td>1</td></tr><tr><td>103</td><td>1</td></tr><tr><td>101</td><td>2</td></tr></table><pre><code>SELECT c.nombre, COUNT(a.carne) AS alumnos\nFROM curso c\nLEFT JOIN asignacion a ON a.curso_id = c.id\nGROUP BY c.id, c.nombre\nORDER BY c.id;</code></pre>¿Qué cambia si se escribe <code>COUNT(*)</code> en lugar de <code>COUNT(a.carne)</code>?",
+     "pasos": [
+      "<b>Reunión externa.</b> <code>LEFT JOIN</code> conserva los tres cursos. Bases de Datos II encuentra 3 asignaciones, Compiladores 1 y Redes II ninguna: de Redes II queda una sola fila, con <code>a.carne</code> en <code>NULL</code>.",
+      "<b>Conteo.</b> <code>COUNT(columna)</code> cuenta solo los valores que no son <code>NULL</code>: 3, 1 y 0.",
+      "<b>Con COUNT(*).</b> Cuenta filas, y la fila rellenada de Redes II también es una fila: daría 3, 1 y 1, que es falso."
+     ],
+     "r": "<table><tr><th>nombre</th><th>alumnos</th></tr><tr><td>Bases de Datos II</td><td>3</td></tr><tr><td>Compiladores</td><td>1</td></tr><tr><td>Redes II</td><td>0</td></tr></table>Con <code>COUNT(*)</code>, Redes II aparecería con 1 alumno que no existe.",
+     "fin": "Listar «todos, tengan o no» y contar bien a los que no tienen: el error clásico de los reportes con <code>LEFT JOIN</code>."
+    },
+    {
+     "nv": "I",
+     "q": "Predice el resultado sobre la tabla <code>empleado</code> (salarios en quetzales):<table><tr><th>id</th><th>nombre</th><th>depto</th><th>salario</th></tr><tr><td>1</td><td>Ana</td><td>Ventas</td><td>5000</td></tr><tr><td>2</td><td>Luis</td><td>Ventas</td><td>7000</td></tr><tr><td>3</td><td>Marta</td><td>Ventas</td><td>6000</td></tr><tr><td>4</td><td>Pedro</td><td>Sistemas</td><td>9000</td></tr><tr><td>5</td><td>Sofía</td><td>Sistemas</td><td>12000</td></tr><tr><td>6</td><td>Diego</td><td>Bodega</td><td>4000</td></tr></table><pre><code>SELECT e.nombre, e.salario\nFROM empleado e\nWHERE e.salario &gt; (SELECT AVG(x.salario)\n                   FROM empleado x\n                   WHERE x.depto = e.depto)\nORDER BY e.id;</code></pre>",
+     "pasos": [
+      "<b>Tipo de subconsulta.</b> Usa <code>e.depto</code>, una columna de la consulta externa: es correlacionada y se evalúa para cada empleado con el promedio de su propio departamento.",
+      "<b>Promedios.</b> Ventas: (5,000 + 7,000 + 6,000) / 3 = 6,000. Sistemas: (9,000 + 12,000) / 2 = 10,500. Bodega: 4,000.",
+      "<b>Comparación.</b> Ana (5,000) no supera 6,000; Luis (7,000) sí; Marta (6,000) es igual al promedio, no mayor; Pedro (9,000) no supera 10,500; Sofía (12,000) sí; Diego (4,000) es igual a su promedio."
+     ],
+     "r": "<table><tr><th>nombre</th><th>salario</th></tr><tr><td>Luis</td><td>7000</td></tr><tr><td>Sofía</td><td>12000</td></tr></table>Diego nunca puede salir: en un departamento de una sola persona, su salario es el promedio.",
+     "fin": "Comparar cada fila contra un agregado de su propio grupo, el uso típico de la subconsulta correlacionada."
+    },
+    {
+     "nv": "I",
+     "q": "Una tienda guarda las ventas de mostrador sin cliente (consumidor final) con <code>cliente_id</code> en <code>NULL</code>. Las dos consultas buscan los clientes sin pedidos; predice qué devuelve cada una. Tabla <code>cliente</code>:<table><tr><th>id</th><th>nombre</th></tr><tr><td>1</td><td>Ana</td></tr><tr><td>2</td><td>Luis</td></tr><tr><td>3</td><td>Marta</td></tr><tr><td>4</td><td>Pedro</td></tr></table>Tabla <code>pedido</code>:<table><tr><th>id</th><th>cliente_id</th><th>total</th></tr><tr><td>10</td><td>1</td><td>250</td></tr><tr><td>11</td><td>3</td><td>80</td></tr><tr><td>12</td><td><i>NULL</i></td><td>40</td></tr></table><pre><code>-- Consulta A\nSELECT nombre FROM cliente\nWHERE id NOT IN (SELECT cliente_id FROM pedido);</code></pre><pre><code>-- Consulta B\nSELECT c.nombre FROM cliente c\nWHERE NOT EXISTS (SELECT 1 FROM pedido p\n                  WHERE p.cliente_id = c.id);</code></pre>",
+     "pasos": [
+      "<b>Subconsulta de A.</b> Devuelve la lista (1, 3, <code>NULL</code>).",
+      "<b>Consulta A con Luis (id 2).</b> <code>2 NOT IN (1, 3, NULL)</code> equivale a <code>2 &lt;&gt; 1 AND 2 &lt;&gt; 3 AND 2 &lt;&gt; NULL</code>: verdadero, verdadero y desconocido. El resultado es desconocido y el <code>WHERE</code> descarta la fila. Con Pedro pasa lo mismo; Ana y Marta dan falso.",
+      "<b>Consulta B.</b> Para cada cliente busca pedidos con su id. Luis y Pedro no tienen ninguno, así que <code>NOT EXISTS</code> es verdadero. El pedido con <code>NULL</code> nunca cumple <code>p.cliente_id = c.id</code> y no estorba."
+     ],
+     "r": "La consulta A no devuelve ninguna fila. La consulta B devuelve Luis y Pedro.",
+     "fin": "Evitar el error más conocido de <code>NOT IN</code>: basta un <code>NULL</code> en la subconsulta para que el reporte salga vacío. Usa <code>NOT EXISTS</code> o filtra los nulos con <code>WHERE cliente_id IS NOT NULL</code>."
+    },
+    {
+     "nv": "A",
+     "q": "Predice el resultado. La tabla <code>venta</code> tiene las ventas del mes por vendedor (en quetzales):<table><tr><th>id</th><th>sucursal</th><th>vendedor</th><th>monto</th></tr><tr><td>1</td><td>Mixco</td><td>Ana</td><td>900</td></tr><tr><td>2</td><td>Mixco</td><td>Luis</td><td>1500</td></tr><tr><td>3</td><td>Mixco</td><td>Marta</td><td>1500</td></tr><tr><td>4</td><td>Mixco</td><td>Pedro</td><td>400</td></tr><tr><td>5</td><td>Xela</td><td>Sofía</td><td>2000</td></tr><tr><td>6</td><td>Xela</td><td>Diego</td><td>700</td></tr><tr><td>7</td><td>Xela</td><td>Karla</td><td>650</td></tr></table><pre><code>WITH clasificada AS (\n  SELECT sucursal, vendedor, monto,\n         RANK() OVER (PARTITION BY sucursal\n                      ORDER BY monto DESC) AS puesto,\n         SUM(monto) OVER (PARTITION BY sucursal) AS total_sucursal\n  FROM venta\n)\nSELECT sucursal, vendedor, monto, puesto, total_sucursal\nFROM clasificada\nWHERE puesto &lt;= 2\nORDER BY sucursal, puesto, vendedor;</code></pre>¿Qué cambiaría con <code>DENSE_RANK()</code> en lugar de <code>RANK()</code>?",
+     "pasos": [
+      "<b>Partición.</b> <code>PARTITION BY sucursal</code> forma dos ventanas: Mixco (4 filas) y Xela (3 filas). Ninguna fila se pierde: cada una conserva su detalle.",
+      "<b>Puesto.</b> En Mixco, de mayor a menor: Luis y Marta empatan con 1,500 en el puesto 1; <code>RANK</code> salta al 3 para Ana (900) y da 4 a Pedro. En Xela: Sofía 1, Diego 2 y Karla 3.",
+      "<b>Total de la ventana.</b> <code>SUM(monto) OVER (PARTITION BY sucursal)</code>, sin <code>ORDER BY</code>, suma toda la partición y repite el total en cada fila: 4,300 en Mixco y 3,350 en Xela.",
+      "<b>Filtro externo.</b> <code>puesto &lt;= 2</code> se aplica fuera de la CTE, cuando la ventana ya está calculada: quedan Luis y Marta (puesto 1), Sofía (1) y Diego (2). Ana tiene el puesto 3 y no entra."
+     ],
+     "r": "<table><tr><th>sucursal</th><th>vendedor</th><th>monto</th><th>puesto</th><th>total_sucursal</th></tr><tr><td>Mixco</td><td>Luis</td><td>1500</td><td>1</td><td>4300</td></tr><tr><td>Mixco</td><td>Marta</td><td>1500</td><td>1</td><td>4300</td></tr><tr><td>Xela</td><td>Sofía</td><td>2000</td><td>1</td><td>3350</td></tr><tr><td>Xela</td><td>Diego</td><td>700</td><td>2</td><td>3350</td></tr></table>Con <code>DENSE_RANK()</code> no hay huecos: Ana tendría el puesto 2 y también saldría (5 filas).",
+     "fin": "Resolver los «N mejores por grupo» y entender por qué el filtro va afuera: en el <code>WHERE</code> de la misma consulta la ventana todavía no existe."
+    },
+    {
+     "nv": "B",
+     "q": "Los carnés asignados a Bases de Datos II son 101, 102, 103 y 104 (tabla <code>asignados_bd2</code>) y los asignados a Compiladores son 103, 104 y 105 (tabla <code>asignados_compi</code>). ¿Cuántas filas y cuáles devuelve <code>SELECT carne FROM asignados_bd2</code> combinado con <code>SELECT carne FROM asignados_compi</code> mediante a) <code>UNION</code>, b) <code>UNION ALL</code>, c) <code>INTERSECT</code> y d) <code>EXCEPT</code>?",
+     "r": "a) 5 filas: 101, 102, 103, 104 y 105, sin duplicados. b) 7 filas: 103 y 104 salen dos veces. c) 2 filas: 103 y 104, los que llevan ambos cursos. d) 2 filas: 101 y 102, los que llevan Bases de Datos II y no Compiladores."
+    },
+    {
+     "nv": "I",
+     "q": "Con la tabla <code>nota</code> (se aprueba con 61 puntos), predice el resultado:<table><tr><th>carne</th><th>curso</th><th>punteo</th></tr><tr><td>101</td><td>BD2</td><td>75</td></tr><tr><td>102</td><td>BD2</td><td>58</td></tr><tr><td>103</td><td>BD2</td><td>61</td></tr><tr><td>101</td><td>Redes</td><td>40</td></tr><tr><td>102</td><td>Redes</td><td>90</td></tr><tr><td>103</td><td>Redes</td><td>60</td></tr></table><pre><code>SELECT curso,\n       SUM(CASE WHEN punteo &gt;= 61 THEN 1 ELSE 0 END) AS aprobados,\n       SUM(CASE WHEN punteo &lt; 61 THEN 1 ELSE 0 END) AS reprobados\nFROM nota\nGROUP BY curso\nORDER BY curso;</code></pre>",
+     "r": "<table><tr><th>curso</th><th>aprobados</th><th>reprobados</th></tr><tr><td>BD2</td><td>2</td><td>1</td></tr><tr><td>Redes</td><td>1</td><td>2</td></tr></table>En BD2 aprueban 75 y 61 (61 sí cumple <code>&gt;= 61</code>) y reprueba 58; en Redes aprueba 90 y reprueban 40 y 60."
+    },
+    {
+     "nv": "A",
+     "q": "Tabla <code>producto</code> de una abarrotería (precios en quetzales):<table><tr><th>id</th><th>nombre</th><th>categoria</th><th>precio</th></tr><tr><td>1</td><td>Arroz</td><td>Abarrotes</td><td>8</td></tr><tr><td>2</td><td>Aceite</td><td>Abarrotes</td><td>22</td></tr><tr><td>3</td><td>Café</td><td>Abarrotes</td><td>45</td></tr><tr><td>4</td><td>Jabón</td><td>Limpieza</td><td>12</td></tr><tr><td>5</td><td>Cloro</td><td>Limpieza</td><td>18</td></tr><tr><td>6</td><td>Detergente</td><td>Limpieza</td><td>50</td></tr></table>¿Qué productos devuelve cada versión de la consulta?<pre><code>-- a)\nSELECT nombre FROM producto\nWHERE categoria = 'Limpieza'\n  AND precio &gt; ALL (SELECT precio FROM producto\n                    WHERE categoria = 'Abarrotes');\n-- b) igual que a), pero con &gt; ANY\n-- c) igual que a), pero la subconsulta pide categoria = 'Juguetes'</code></pre>",
+     "r": "a) Detergente: 50 supera a todos los precios de Abarrotes (8, 22 y 45). b) Jabón, Cloro y Detergente: los tres superan al menos al más barato (8). c) Jabón, Cloro y Detergente: no hay juguetes, la subconsulta queda vacía y <code>&gt; ALL</code> sobre un conjunto vacío es verdadero."
+    },
+    {
+     "nv": "B",
+     "q": "¿En qué se diferencian <code>UNION</code> y <code>UNION ALL</code>?",
+     "ops": [
+      "<code>UNION</code> conserva las filas duplicadas; <code>UNION ALL</code> las elimina todas",
+      "<code>UNION</code> elimina las filas duplicadas; <code>UNION ALL</code> las conserva todas",
+      "<code>UNION</code> exige tipos compatibles; <code>UNION ALL</code> acepta cualquier columna",
+      "<code>UNION</code> empareja filas por una llave; <code>UNION ALL</code> lo hace sin condición"
+     ],
+     "ok": 1,
+     "r": "<code>UNION</code> aplica un <code>DISTINCT</code> al resultado combinado y por eso cuesta más; <code>UNION ALL</code> solo concatena. Las dos exigen el mismo número de columnas con tipos compatibles, y ninguna empareja filas por llave: eso lo hace <code>JOIN</code>."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué guarda la base de datos cuando creas una vista con <code>CREATE VIEW</code>?",
+     "ops": [
+      "Solo la definición de la consulta; los datos se leen de las tablas base cada vez",
+      "Una copia de los datos, que el motor actualiza cada noche de forma automática",
+      "Una tabla temporal con el resultado, que se borra al cerrar la sesión actual",
+      "Un índice sobre las columnas del <code>SELECT</code>, que acelera esa misma consulta"
+     ],
+     "ok": 0,
+     "r": "Una vista es una consulta con nombre: no almacena filas y siempre muestra el estado actual de las tablas base. Guardar una copia del resultado corresponde a una vista materializada; una tabla temporal y un índice son objetos distintos."
+    },
+    {
+     "nv": "I",
+     "q": "Quieres listar todos los clientes y, si los tienen, sus pedidos de 2026. Escribes <code>FROM cliente c LEFT JOIN pedido p ON p.cliente_id = c.id WHERE p.anio = 2026</code>. ¿Qué obtienes?",
+     "ops": [
+      "Todos los clientes; los que no tienen pedidos de 2026 salen con <code>NULL</code> en el pedido",
+      "Un error de sintaxis, porque el <code>WHERE</code> no puede usar columnas de la tabla derecha",
+      "Todos los pedidos de 2026, incluidos los que no tienen ningún cliente asignado",
+      "Solo los clientes con pedidos de 2026: el <code>WHERE</code> descarta las filas rellenadas con <code>NULL</code>"
+     ],
+     "ok": 3,
+     "r": "En las filas sin pareja <code>p.anio</code> es <code>NULL</code>, la comparación da desconocido y el <code>WHERE</code> las elimina: la reunión externa termina comportándose como interna. Para conservar a todos los clientes la condición va en el <code>ON</code>: <code>ON p.cliente_id = c.id AND p.anio = 2026</code>."
+    },
+    {
+     "nv": "I",
+     "q": "La tabla <code>movimiento</code> tiene tres filas con <code>id</code> 1, 2 y 3 y <code>monto</code> 1000, -300 y 500. ¿Qué valor da <code>SUM(monto) OVER (ORDER BY id)</code> en la fila con <code>id = 2</code>?",
+     "ops": [
+      "700, el acumulado de las filas 1 y 2",
+      "1200, el total de las tres filas",
+      "-300, el monto de esa misma fila",
+      "1000, el monto de la fila anterior"
+     ],
+     "ok": 0,
+     "r": "Con <code>ORDER BY</code> dentro de <code>OVER</code>, la ventana va desde la primera fila hasta la actual: 1000 − 300 = 700. Sin el <code>ORDER BY</code> daría 1200 en todas las filas; −300 es el valor sin ventana y 1000 es lo que devolvería <code>LAG(monto)</code>."
+    },
+    {
+     "nv": "A",
+     "q": "Quieres las 3 ventas más altas de cada sucursal y escribes <code>SELECT * FROM venta WHERE ROW_NUMBER() OVER (PARTITION BY sucursal ORDER BY monto DESC) &lt;= 3</code>. El motor la rechaza. ¿Por qué y cómo se corrige?",
+     "ops": [
+      "<code>ROW_NUMBER</code> exige <code>GROUP BY sucursal</code>; se agrega y se filtra con <code>HAVING</code>",
+      "Falta <code>LIMIT 3</code> al final; con <code>LIMIT</code> el corte se aplica a cada partición",
+      "Las ventanas se calculan después del <code>WHERE</code>; se numera en una CTE y se filtra afuera",
+      "<code>PARTITION BY</code> no admite <code>ORDER BY</code>; se quita el orden y el filtro ya funciona"
+     ],
+     "ok": 2,
+     "r": "El orden lógico es <code>FROM</code>, <code>WHERE</code>, <code>GROUP BY</code>, <code>HAVING</code> y después las funciones de ventana: en el <code>WHERE</code> todavía no existen. Se calculan en una CTE o tabla derivada y se filtra en la consulta externa. <code>HAVING</code> tampoco las acepta, <code>LIMIT</code> corta el resultado completo y no cada partición, y <code>PARTITION BY</code> sí se combina con <code>ORDER BY</code>."
+    }
+   ]
+  },
+  {
+   "titulo": "Programación en la base de datos",
+   "intro": "Programas que viven y se ejecutan dentro del motor: procedimientos almacenados, funciones, disparadores y cursores con la sintaxis de MySQL 8 (y su equivalente en PL/SQL de Oracle), y el criterio para decidir qué lógica conviene en la base y cuál en la aplicación.",
+   "conceptos": [
+    {
+     "n": "Procedimientos almacenados y funciones",
+     "e": [
+      "Un <b>procedimiento almacenado</b> es un programa con nombre que se guarda en el servidor de base de datos y se ejecuta allí con <code>CALL nombre(argumentos)</code>. Combina SQL con control de flujo: variables locales (<code>DECLARE</code>, al inicio del bloque <code>BEGIN … END</code>), <code>IF … THEN … ELSEIF … ELSE … END IF</code>, <code>CASE</code>, los ciclos <code>WHILE … DO … END WHILE</code>, <code>REPEAT … UNTIL … END REPEAT</code> y <code>LOOP</code> con <code>LEAVE</code> (salir) e <code>ITERATE</code> (siguiente vuelta), y manejo de errores con <code>DECLARE … HANDLER</code> y <code>SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '…'</code>. Sus parámetros son <code>IN</code> (entrada, el modo por defecto), <code>OUT</code> (salida: el procedimiento le asigna el valor) e <code>INOUT</code> (ambas cosas). Puede devolver conjuntos de resultados, modificar tablas y hacer <code>COMMIT</code> o <code>ROLLBACK</code>. En el cliente <code>mysql</code> se cambia el delimitador con <code>DELIMITER //</code> para que los <code>;</code> del cuerpo no corten la sentencia <code>CREATE</code>.",
+      "Una <b>función almacenada</b> (<code>CREATE FUNCTION</code>) devuelve exactamente un valor con <code>RETURN</code>, declara su tipo con <code>RETURNS</code> y se usa dentro de expresiones (<code>SELECT precio_con_iva(precio)</code>, un <code>WHERE</code>), nunca con <code>CALL</code>. Sus parámetros son solo de entrada (no se escribe <code>IN</code>) y no puede devolver conjuntos de resultados ni confirmar o revertir transacciones. Con la bitácora binaria activa, lo normal en MySQL 8, debe declararse <code>DETERMINISTIC</code>, <code>NO SQL</code> o <code>READS SQL DATA</code>; si no, MySQL rechaza la creación (error 1418). En PL/SQL de Oracle se escribe <code>CREATE OR REPLACE PROCEDURE p (x IN NUMBER) IS … BEGIN … END;</code>: el modo va después del nombre del parámetro, no existe <code>DELIMITER</code> (en SQL*Plus el bloque se ejecuta con una <code>/</code> en su propia línea) y los errores propios se lanzan con <code>RAISE_APPLICATION_ERROR(-20001, '…')</code>."
+     ],
+     "u": [
+      "Operaciones de negocio que tocan varias tablas a la vez (registrar una venta con su detalle y su pago, cerrar la planilla del mes, generar el correlativo de una factura) y cálculos reutilizables como el IVA o la edad de un paciente.",
+      "La lógica queda en un solo lugar para todas las aplicaciones, viajan menos datos por la red y puedes dar <code>EXECUTE</code> sobre el procedimiento sin dar permisos directos sobre las tablas.",
+      "Procedimiento cuando hay un proceso con varios pasos, una transacción o varios resultados; función cuando necesitas un valor calculado dentro de una consulta.",
+      "Define los parámetros y su modo, declara las variables al inicio, escribe el cuerpo entre <code>BEGIN</code> y <code>END</code> con <code>DELIMITER //</code> y pruébalo con variables de sesión: <code>CALL p(1, @x); SELECT @x;</code>."
+     ],
+     "tabla": "<table><tr><th></th><th>Procedimiento</th><th>Función</th></tr><tr><td>Se invoca</td><td><code>CALL sp_x(…)</code></td><td>dentro de una expresión: <code>SELECT f(x)</code></td></tr><tr><td>Devuelve</td><td>parámetros <code>OUT</code> e <code>INOUT</code> y conjuntos de resultados</td><td>un solo valor con <code>RETURN</code></td></tr><tr><td>Parámetros</td><td><code>IN</code>, <code>OUT</code> e <code>INOUT</code></td><td>solo de entrada</td></tr><tr><td>Transacciones</td><td>puede hacer <code>COMMIT</code> y <code>ROLLBACK</code></td><td>no puede</td></tr><tr><td>Uso típico</td><td>registrar una venta, cerrar la planilla</td><td>calcular el IVA, una edad o un descuento</td></tr></table>"
+    },
+    {
+     "n": "Disparadores (triggers)",
+     "e": [
+      "Un <b>disparador</b> es un bloque con nombre asociado a una tabla que el motor ejecuta solo, sin que nadie lo llame, cuando ocurre un evento: <code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code>. Se define el <b>momento</b> (<code>BEFORE</code>, antes de aplicar el cambio, o <code>AFTER</code>, después) y la <b>granularidad</b>: en MySQL siempre es <code>FOR EACH ROW</code>, es decir, se ejecuta una vez por cada fila afectada; un <code>UPDATE</code> que cambia 500 filas lo ejecuta 500 veces. Dentro del cuerpo, <code>NEW.columna</code> es el valor nuevo y <code>OLD.columna</code> el anterior; en un <code>BEFORE</code> se puede corregir la fila con <code>SET NEW.columna = …</code>, y con <code>SIGNAL</code> se rechaza la sentencia completa. Oracle escribe <code>:NEW</code> y <code>:OLD</code>, y tiene además disparadores por sentencia (sin <code>FOR EACH ROW</code>, una sola ejecución por sentencia) e <code>INSTEAD OF</code> sobre vistas.",
+      "Se usan para auditoría (quién cambió qué y cuándo), reglas de integridad que una llave foránea o un <code>CHECK</code> no expresan (no vender sin existencias), valores derivados (existencias, totales) y validaciones. En MySQL tienen límites: no pueden modificar la misma tabla que los activó (error 1442), no admiten <code>COMMIT</code> ni <code>ROLLBACK</code> y no se activan con las acciones en cascada de las llaves foráneas. Desde MySQL 5.7 una tabla admite varios disparadores para el mismo evento y momento, ordenados con <code>FOLLOWS</code> o <code>PRECEDES</code>. Su gran riesgo es que la lógica queda escondida: quien lee el código de la aplicación no ve que un <code>INSERT</code> también descuenta existencias."
+     ],
+     "u": [
+      "Bitácoras de auditoría en bancos y cooperativas, control de existencias en tiendas y bodegas, historial de precios y validaciones que deben cumplirse aunque los datos entren por otra aplicación o por la consola.",
+      "Se cumplen siempre: ningún programa puede saltárselos, porque los ejecuta el motor dentro de la misma sentencia que hizo el cambio.",
+      "<code>BEFORE</code> para validar o corregir la fila antes de guardarla; <code>AFTER</code> para registrar o propagar un cambio que ya ocurrió (bitácora, existencias en otra tabla).",
+      "Elige evento, momento y tabla; usa <code>NEW</code> y <code>OLD</code> según el evento; rechaza con <code>SIGNAL SQLSTATE '45000'</code>; y documenta el disparador para que el equipo sepa que existe."
+     ],
+     "tabla": "<table><tr><th>Evento</th><th><code>OLD</code></th><th><code>NEW</code></th></tr><tr><td><code>INSERT</code></td><td>no existe</td><td>la fila que se inserta (se puede modificar en <code>BEFORE</code>)</td></tr><tr><td><code>UPDATE</code></td><td>la fila antes del cambio</td><td>la fila después del cambio (se puede modificar en <code>BEFORE</code>)</td></tr><tr><td><code>DELETE</code></td><td>la fila que se borra</td><td>no existe</td></tr></table>"
+    },
+    {
+     "n": "Cursores y cuándo poner lógica en la base",
+     "e": [
+      "Un <b>cursor</b> recorre fila por fila el resultado de una consulta dentro de un procedimiento. En MySQL es de solo lectura, avanza solo hacia adelante y se usa en cuatro pasos: <code>DECLARE c CURSOR FOR SELECT …</code>, <code>OPEN c</code>, <code>FETCH c INTO variables</code> dentro de un ciclo y <code>CLOSE c</code>. El fin del recorrido se detecta con un manejador, <code>DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;</code>, que se activa cuando un <code>FETCH</code> ya no encuentra fila; en ese caso las variables conservan los valores de la fila anterior. El orden de las declaraciones es obligatorio: primero variables, luego cursores y al final manejadores. En Oracle se declara <code>CURSOR c IS SELECT …;</code> y el ciclo <code>FOR r IN c LOOP … END LOOP;</code> abre, lee y cierra solo; los atributos <code>%FOUND</code>, <code>%NOTFOUND</code> y <code>%ROWCOUNT</code> informan el estado.",
+      "SQL trabaja por <b>conjuntos</b>: un solo <code>UPDATE … WHERE</code> sobre 100,000 filas es mucho más rápido que un cursor que las actualiza una por una, así que el cursor se reserva para lo que de verdad exige ir fila por fila (llamar a otro procedimiento por cada fila, cálculos que dependen de la fila anterior). Poner lógica en la base da integridad garantizada para todas las aplicaciones, menos viajes por la red, permisos más finos y operaciones atómicas cerca de los datos. Cuesta en otras cosas: es más difícil de versionar, probar y depurar, ata el sistema a un motor (PL/SQL, T-SQL y MySQL no son compatibles entre sí) y carga al servidor de base de datos, el más difícil de escalar. Regla práctica: en la base, lo que protege los datos; en la aplicación, las reglas de negocio que cambian seguido y lo que habla con servicios externos."
+     ],
+     "u": [
+      "Procesos por lotes que deben tratar cada fila por separado (un estado de cuenta por cliente, migraciones con reglas fila por fila) y las decisiones de arquitectura de cualquier sistema con base de datos.",
+      "Un cursor mal usado convierte una operación de segundos en una de horas, y la lógica repartida sin criterio entre la base y la aplicación es difícil de mantener.",
+      "Cursor solo cuando no exista una sentencia por conjuntos equivalente; lógica en la base cuando la regla debe cumplirse sin importar qué aplicación escriba los datos.",
+      "Intenta primero un <code>UPDATE</code>, un <code>INSERT … SELECT</code> o una consulta con <code>CASE</code>; si de verdad necesitas el cursor, declara variables, cursor y manejador en ese orden y revisa la bandera justo después de cada <code>FETCH</code>."
+     ],
+     "tabla": "<table><tr><th>Conviene en la base</th><th>Conviene en la aplicación</th></tr><tr><td>Restricciones y validaciones que nadie debe saltarse</td><td>Reglas de negocio que cambian seguido (promociones, comisiones)</td></tr><tr><td>Auditoría de cambios en datos sensibles</td><td>Presentación, formatos e idioma</td></tr><tr><td>Operaciones atómicas sobre muchas filas</td><td>Llamadas a servicios externos: correo, pagos, facturación electrónica</td></tr><tr><td>Permisos finos con <code>EXECUTE</code> sobre procedimientos</td><td>Lógica que necesita pruebas unitarias y despliegues frecuentes</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "La tabla <code>producto</code> de una distribuidora guarda precios sin IVA:<table><tr><th>id</th><th>nombre</th><th>precio</th></tr><tr><td>1</td><td>Café molido 1 lb</td><td>45.50</td></tr><tr><td>2</td><td>Frijol negro 2 lb</td><td>18.75</td></tr><tr><td>3</td><td>Aceite 900 ml</td><td>31.99</td></tr></table>Escribe en MySQL 8 una función <code>precio_con_iva</code> que reciba un precio y devuelva el precio con el IVA del 12 % redondeado a dos decimales, y predice qué devuelve usarla en un <code>SELECT</code> sobre la tabla.",
+     "pasos": [
+      "<b>Encabezado.</b> <code>CREATE FUNCTION precio_con_iva(p_precio DECIMAL(10,2)) RETURNS DECIMAL(10,2)</code>: el parámetro no lleva <code>IN</code> porque en una función todos son de entrada, y <code>RETURNS</code> declara el tipo del valor devuelto.",
+      "<b>Característica.</b> <code>DETERMINISTIC</code> indica que el mismo precio siempre da el mismo resultado. MySQL 8 trae activa la bitácora binaria y sin esa marca (o <code>NO SQL</code>, o <code>READS SQL DATA</code>) rechaza la función.",
+      "<b>Cuerpo y delimitador.</b> <code>RETURN ROUND(p_precio * 1.12, 2);</code> va entre <code>BEGIN</code> y <code>END</code>. Antes se escribe <code>DELIMITER //</code> para que el <code>;</code> del <code>RETURN</code> no termine el <code>CREATE</code>, y al final se regresa a <code>DELIMITER ;</code>.",
+      "<b>Uso.</b> Se llama como cualquier función del motor: 45.50 × 1.12 = 50.96; 18.75 × 1.12 = 21.00; 31.99 × 1.12 = 35.8288, que se redondea a 35.83."
+     ],
+     "r": "<pre><code>DELIMITER //\nCREATE FUNCTION precio_con_iva(p_precio DECIMAL(10,2))\nRETURNS DECIMAL(10,2)\nDETERMINISTIC\nBEGIN\n  RETURN ROUND(p_precio * 1.12, 2);\nEND //\nDELIMITER ;\n\nSELECT nombre, precio, precio_con_iva(precio) AS con_iva\nFROM producto;</code></pre><table><tr><th>nombre</th><th>precio</th><th>con_iva</th></tr><tr><td>Café molido 1 lb</td><td>45.50</td><td>50.96</td></tr><tr><td>Frijol negro 2 lb</td><td>18.75</td><td>21.00</td></tr><tr><td>Aceite 900 ml</td><td>31.99</td><td>35.83</td></tr></table>",
+     "fin": "Escribir una función completa con su encabezado, su característica y el cambio de delimitador, que es justo lo que se pide a mano en un parcial."
+    },
+    {
+     "nv": "I",
+     "q": "En una tienda cada línea de venta debe descontar existencias y no se puede vender lo que no hay. Se crean estos disparadores sobre <code>detalle_venta(venta_id, producto_id, cantidad)</code>:<pre><code>DELIMITER //\nCREATE TRIGGER trg_detalle_bi\nBEFORE INSERT ON detalle_venta\nFOR EACH ROW\nBEGIN\n  DECLARE v_stock INT;\n  SELECT stock INTO v_stock\n  FROM producto\n  WHERE id = NEW.producto_id;\n  IF v_stock &lt; NEW.cantidad THEN\n    SIGNAL SQLSTATE '45000'\n      SET MESSAGE_TEXT = 'Stock insuficiente';\n  END IF;\nEND //\n\nCREATE TRIGGER trg_detalle_ai\nAFTER INSERT ON detalle_venta\nFOR EACH ROW\nBEGIN\n  UPDATE producto\n  SET stock = stock - NEW.cantidad\n  WHERE id = NEW.producto_id;\nEND //\nDELIMITER ;</code></pre>Existencias iniciales:<table><tr><th>id</th><th>nombre</th><th>stock</th></tr><tr><td>1</td><td>Café molido 1 lb</td><td>10</td></tr><tr><td>2</td><td>Azúcar 5 lb</td><td>8</td></tr></table>Se ejecutan en orden, en modo autocommit:<pre><code>INSERT INTO detalle_venta VALUES (1, 1, 4);\nINSERT INTO detalle_venta VALUES (1, 2, 9);\nINSERT INTO detalle_venta VALUES (2, 1, 6);\nINSERT INTO detalle_venta VALUES (2, 2, 3);</code></pre>¿Cuáles se guardan y con qué existencias termina cada producto?",
+     "pasos": [
+      "<b>Primer INSERT.</b> El café tiene 10 y se piden 4: <code>10 &lt; 4</code> es falso, el <code>BEFORE</code> no lanza error, la línea se guarda y el <code>AFTER</code> deja el café en 6.",
+      "<b>Segundo INSERT.</b> El azúcar tiene 8 y se piden 9: <code>8 &lt; 9</code> es verdadero y el <code>SIGNAL</code> aborta la sentencia con «Stock insuficiente». La línea no se inserta y el <code>AFTER</code> nunca se ejecuta: el azúcar sigue en 8.",
+      "<b>Tercero y cuarto.</b> El café tiene 6 y se piden 6: <code>6 &lt; 6</code> es falso, pasa y queda en 0. El azúcar tiene 8 y se piden 3: pasa y queda en 5.",
+      "<b>Por qué dos disparadores.</b> El <code>BEFORE</code> valida antes de escribir y el <code>AFTER</code> descuenta solo cuando la línea ya se guardó. Los dos tocan otra tabla (<code>producto</code>), lo que MySQL sí permite; lo prohibido es modificar <code>detalle_venta</code> desde sus propios disparadores."
+     ],
+     "r": "Se guardan el primero, el tercero y el cuarto; el segundo falla con «Stock insuficiente». Existencias finales:<table><tr><th>id</th><th>nombre</th><th>stock</th></tr><tr><td>1</td><td>Café molido 1 lb</td><td>0</td></tr><tr><td>2</td><td>Azúcar 5 lb</td><td>5</td></tr></table>",
+     "fin": "Mantener existencias e impedir ventas sin producto aunque la venta entre por cualquier aplicación. En producción agrega <code>FOR UPDATE</code> al <code>SELECT</code> del <code>BEFORE</code>, para que dos cajas al mismo tiempo no validen contra la misma existencia."
+    },
+    {
+     "nv": "I",
+     "q": "Una cooperativa tiene la tabla <code>cuenta</code>:<table><tr><th>id</th><th>titular</th><th>saldo</th></tr><tr><td>1</td><td>Ana</td><td>1500.00</td></tr><tr><td>2</td><td>Luis</td><td>800.00</td></tr><tr><td>3</td><td>Marta</td><td>2500.00</td></tr><tr><td>4</td><td>Pedro</td><td>1000.00</td></tr></table>Sigue la ejecución del procedimiento y di qué muestran <code>@total</code> y <code>@n</code>. Luego escribe una sola consulta que dé lo mismo sin cursor.<pre><code>DELIMITER //\nCREATE PROCEDURE sp_saldos(IN minimo DECIMAL(10,2),\n                           OUT total DECIMAL(10,2),\n                           OUT n INT)\nBEGIN\n  DECLARE v_saldo DECIMAL(10,2);\n  DECLARE fin INT DEFAULT 0;\n  DECLARE c CURSOR FOR\n    SELECT saldo FROM cuenta ORDER BY id;\n  DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;\n\n  SET total = 0, n = 0;\n  OPEN c;\n  ciclo: LOOP\n    FETCH c INTO v_saldo;\n    IF fin = 1 THEN\n      LEAVE ciclo;\n    END IF;\n    IF v_saldo &gt;= minimo THEN\n      SET total = total + v_saldo;\n      SET n = n + 1;\n    END IF;\n  END LOOP;\n  CLOSE c;\nEND //\nDELIMITER ;\n\nCALL sp_saldos(1000, @total, @n);\nSELECT @total, @n;</code></pre>",
+     "pasos": [
+      "<b>Declaraciones.</b> Primero las variables (<code>v_saldo</code>, <code>fin</code>), luego el cursor y al final el manejador: es el orden que exige MySQL. <code>SET total = 0, n = 0</code> inicializa los parámetros <code>OUT</code>, que entran valiendo <code>NULL</code>.",
+      "<b>Recorrido.</b> Los <code>FETCH</code> traen 1,500 (cumple <code>&gt;= 1000</code>: total 1,500 y n = 1), 800 (no cumple), 2,500 (total 4,000 y n = 2) y 1,000 (cumple por el igual: total 5,000 y n = 3).",
+      "<b>Fin del cursor.</b> El quinto <code>FETCH</code> no encuentra fila: el manejador pone <code>fin = 1</code> y, por ser <code>CONTINUE</code>, la ejecución sigue en la instrucción siguiente. El <code>IF</code> sale con <code>LEAVE</code> antes de sumar nada.",
+      "<b>Por conjuntos.</b> La misma respuesta sale en una sola sentencia, sin ciclo: el motor filtra y suma por dentro."
+     ],
+     "r": "<code>@total</code> = 5000.00 y <code>@n</code> = 3. Sin cursor:<pre><code>SELECT SUM(saldo), COUNT(*) FROM cuenta WHERE saldo &gt;= 1000;</code></pre>",
+     "fin": "Leer un cursor como en el parcial: orden de declaraciones, manejador <code>NOT FOUND</code> y salida del ciclo, y reconocer cuándo el cursor sobra."
+    },
+    {
+     "nv": "A",
+     "q": "Un banco audita los cambios de saldo con este disparador:<pre><code>CREATE TABLE bitacora_saldo (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  cuenta_id INT,\n  saldo_anterior DECIMAL(10,2),\n  saldo_nuevo DECIMAL(10,2),\n  usuario VARCHAR(100),\n  fecha DATETIME\n);\n\nDELIMITER //\nCREATE TRIGGER trg_cuenta_au\nAFTER UPDATE ON cuenta\nFOR EACH ROW\nBEGIN\n  IF OLD.saldo &lt;&gt; NEW.saldo THEN\n    INSERT INTO bitacora_saldo\n      (cuenta_id, saldo_anterior, saldo_nuevo, usuario, fecha)\n    VALUES (OLD.id, OLD.saldo, NEW.saldo, USER(), NOW());\n  END IF;\nEND //\nDELIMITER ;</code></pre>La tabla <code>cuenta</code> tiene:<table><tr><th>id</th><th>titular</th><th>tipo</th><th>saldo</th></tr><tr><td>1</td><td>Ana</td><td>ahorro</td><td>1000.00</td></tr><tr><td>2</td><td>Luis</td><td>monetaria</td><td>2500.00</td></tr><tr><td>3</td><td>Marta</td><td>ahorro</td><td>400.00</td></tr><tr><td>4</td><td>Pedro</td><td>ahorro</td><td>3000.00</td></tr></table>Se ejecutan estas sentencias:<pre><code>UPDATE cuenta SET saldo = saldo * 1.05 WHERE tipo = 'ahorro';\nUPDATE cuenta SET titular = 'Luis Pérez' WHERE id = 2;\nUPDATE cuenta SET saldo = saldo - 500 WHERE id = 2;\nUPDATE cuenta SET saldo = 0 WHERE saldo &lt; 0;</code></pre>¿Cuántas veces se ejecuta el disparador, qué filas quedan en <code>bitacora_saldo</code> y por qué se usa <code>USER()</code> y no <code>CURRENT_USER()</code>? ¿Qué cambiaría en Oracle con un disparador por sentencia?",
+     "pasos": [
+      "<b>Granularidad.</b> <code>FOR EACH ROW</code>: el disparador corre una vez por cada fila que modifica cada <code>UPDATE</code>, y el <code>IF</code> decide si escribe en la bitácora.",
+      "<b>Primera sentencia.</b> Hay tres cuentas de ahorro (1, 3 y 4): tres ejecuciones y tres filas: 1,000 → 1,050; 400 → 420; 3,000 → 3,150.",
+      "<b>Segunda y tercera.</b> Cambiar el titular de Luis ejecuta el disparador, pero <code>OLD.saldo &lt;&gt; NEW.saldo</code> es falso: no escribe. Restarle 500 sí: 2,500 → 2,000.",
+      "<b>Cuarta.</b> Ninguna fila cumple <code>saldo &lt; 0</code>: el disparador no se ejecuta. Total: 3 + 1 + 1 + 0 = 5 ejecuciones y 4 filas en la bitácora.",
+      "<b>Usuario.</b> Dentro de un disparador, <code>CURRENT_USER()</code> devuelve la cuenta que lo definió (su <code>DEFINER</code>), que es siempre la misma; <code>USER()</code> devuelve el usuario que está conectado y hizo el cambio, que es lo que interesa auditar.",
+      "<b>Oracle por sentencia.</b> Sin <code>FOR EACH ROW</code> se ejecuta una vez por cada <code>UPDATE</code>, aunque no afecte filas: 4 veces. Además no puede leer <code>:OLD</code> ni <code>:NEW</code>, así que no podría guardar el saldo de cada cuenta."
+     ],
+     "r": "5 ejecuciones y 4 filas en la bitácora:<table><tr><th>cuenta_id</th><th>saldo_anterior</th><th>saldo_nuevo</th></tr><tr><td>1</td><td>1000.00</td><td>1050.00</td></tr><tr><td>3</td><td>400.00</td><td>420.00</td></tr><tr><td>4</td><td>3000.00</td><td>3150.00</td></tr><tr><td>2</td><td>2500.00</td><td>2000.00</td></tr></table>Con un disparador por sentencia de Oracle serían 4 ejecuciones, sin acceso a los valores de cada fila.",
+     "fin": "Auditar con disparadores: saber que corren por fila, filtrar los cambios que importan y registrar al usuario correcto."
+    },
+    {
+     "nv": "B",
+     "q": "Con la tabla <code>pedido</code>:<table><tr><th>id</th><th>cliente_id</th><th>total</th></tr><tr><td>1</td><td>1</td><td>150.00</td></tr><tr><td>2</td><td>2</td><td>275.50</td></tr><tr><td>3</td><td>2</td><td>75.00</td></tr><tr><td>4</td><td>3</td><td>300.00</td></tr></table><pre><code>DELIMITER //\nCREATE PROCEDURE sp_total_cliente(IN p_cliente INT,\n                                  OUT p_total DECIMAL(10,2))\nBEGIN\n  SELECT SUM(total) INTO p_total\n  FROM pedido\n  WHERE cliente_id = p_cliente;\nEND //\nDELIMITER ;\n\nCALL sp_total_cliente(2, @t);\nSELECT @t;</code></pre>a) ¿Qué muestra <code>SELECT @t</code>? b) ¿Y después de <code>CALL sp_total_cliente(4, @t)</code>? c) ¿Qué cambias para que en ese caso devuelva 0?",
+     "r": "a) 350.50 (275.50 + 75.00). b) <code>NULL</code>: el cliente 4 no tiene pedidos y <code>SUM</code> sobre cero filas da <code>NULL</code>; como un agregado sin <code>GROUP BY</code> siempre devuelve una fila, <code>p_total</code> recibe ese <code>NULL</code>. c) <code>SELECT COALESCE(SUM(total), 0) INTO p_total …</code> (o <code>IFNULL</code>)."
+    },
+    {
+     "nv": "I",
+     "q": "Para cada requisito de una clínica, di qué disparador usarías (evento y momento) y si trabajas con <code>NEW</code> u <code>OLD</code>: a) guardar el correo del paciente siempre en minúsculas; b) impedir que se borre un paciente con citas pendientes; c) guardar en una bitácora cada medicamento que se elimina del catálogo; d) rechazar un cambio de precio de una consulta si baja más del 50 %.",
+     "r": "a) <code>BEFORE INSERT</code> (y otro <code>BEFORE UPDATE</code>) con <code>SET NEW.correo = LOWER(NEW.correo)</code>. b) <code>BEFORE DELETE</code> en paciente: busca citas pendientes de <code>OLD.id</code> y, si hay, <code>SIGNAL SQLSTATE '45000'</code>. c) <code>AFTER DELETE</code> en medicamento: inserta en la bitácora los valores de <code>OLD</code>. d) <code>BEFORE UPDATE</code>: si <code>NEW.precio &lt; OLD.precio * 0.5</code>, <code>SIGNAL</code>."
+    },
+    {
+     "nv": "A",
+     "q": "Este procedimiento debe sumar las ventas de un día. Con la tabla <code>venta</code>:<table><tr><th>id</th><th>fecha</th><th>monto</th></tr><tr><td>1</td><td>2026-11-26</td><td>50.00</td></tr><tr><td>2</td><td>2026-11-27</td><td>120.00</td></tr><tr><td>3</td><td>2026-11-27</td><td>85.50</td></tr><tr><td>4</td><td>2026-11-27</td><td>300.00</td></tr></table><pre><code>DELIMITER //\nCREATE PROCEDURE sp_total_dia(IN p_fecha DATE,\n                              OUT p_total DECIMAL(10,2))\nBEGIN\n  DECLARE v_monto DECIMAL(10,2);\n  DECLARE fin INT DEFAULT 0;\n  DECLARE c CURSOR FOR\n    SELECT monto FROM venta WHERE fecha = p_fecha ORDER BY id;\n  DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin = 1;\n\n  SET p_total = 0;\n  OPEN c;\n  REPEAT\n    FETCH c INTO v_monto;\n    SET p_total = p_total + v_monto;\n  UNTIL fin END REPEAT;\n  CLOSE c;\nEND //\nDELIMITER ;</code></pre>¿Qué devuelve <code>CALL sp_total_dia('2026-11-27', @t)</code>? ¿Y para un día sin ventas? Corrige el procedimiento.",
+     "r": "Devuelve 805.50 en lugar de 505.50: el último <code>FETCH</code> falla, <code>v_monto</code> conserva 300.00 y <code>REPEAT</code> lo suma otra vez antes de revisar el <code>UNTIL</code>. Para un día sin ventas devuelve <code>NULL</code>: <code>v_monto</code> nunca recibe valor y <code>0 + NULL</code> es <code>NULL</code>. Corrección: sumar solo si <code>fin = 0</code> (<code>IF fin = 0 THEN SET p_total = p_total + v_monto; END IF;</code>) o, mejor, sin cursor: <code>SELECT COALESCE(SUM(monto), 0) INTO p_total FROM venta WHERE fecha = p_fecha;</code>."
+    },
+    {
+     "nv": "B",
+     "q": "¿Cuál es la diferencia principal entre un procedimiento almacenado y una función almacenada en MySQL?",
+     "ops": [
+      "La función devuelve un valor con <code>RETURN</code> y va en expresiones; el procedimiento se invoca con <code>CALL</code>",
+      "El procedimiento se ejecuta en el cliente y la función se ejecuta en el servidor de base de datos",
+      "La función admite parámetros <code>OUT</code> e <code>INOUT</code>; el procedimiento solo acepta parámetros <code>IN</code>",
+      "El procedimiento queda guardado en el servidor; la función existe solo durante la sesión actual"
+     ],
+     "ok": 0,
+     "r": "Por eso una función puede ir dentro de un <code>SELECT</code> o un <code>WHERE</code> y un procedimiento no. Los dos se guardan y se ejecutan en el servidor, y los parámetros <code>OUT</code> e <code>INOUT</code> son de los procedimientos, no de las funciones."
+    },
+    {
+     "nv": "B",
+     "q": "En un disparador <code>BEFORE UPDATE</code>, ¿qué contienen <code>OLD</code> y <code>NEW</code>?",
+     "ops": [
+      "<code>OLD</code> tiene los valores nuevos y <code>NEW</code> los anteriores, y los dos son de solo lectura",
+      "<code>OLD</code> tiene los valores antes del cambio y <code>NEW</code> los nuevos, que aún se pueden modificar",
+      "Solo existe <code>NEW</code>, porque <code>OLD</code> aparece únicamente en los disparadores de <code>DELETE</code>",
+      "Los dos tienen los valores anteriores hasta que se confirma la transacción completa"
+     ],
+     "ok": 1,
+     "r": "En un <code>UPDATE</code> existen ambos: <code>OLD</code> con la fila como estaba y <code>NEW</code> con la fila como quedará. Por ser <code>BEFORE</code>, <code>SET NEW.columna = …</code> todavía cambia lo que se guarda. <code>OLD</code> solo falta en <code>INSERT</code> y <code>NEW</code> solo falta en <code>DELETE</code>."
+    },
+    {
+     "nv": "I",
+     "q": "¿Para qué se escribe <code>DELIMITER //</code> en el cliente <code>mysql</code> antes de un <code>CREATE PROCEDURE</code>?",
+     "ops": [
+      "Porque el servidor exige <code>//</code> como separador dentro de los bloques <code>BEGIN … END</code>",
+      "Para que el procedimiento se compile en modo estricto y detecte errores de tipo",
+      "Para que el procedimiento quede guardado en el servidor y no solo en la sesión",
+      "Para que los <code>;</code> del cuerpo no terminen la sentencia antes de llegar al <code>END</code>"
+     ],
+     "ok": 3,
+     "r": "<code>DELIMITER</code> es una orden del cliente, no del servidor: cambia el texto que marca el fin de una sentencia para que el cliente envíe el <code>CREATE</code> completo, con todos sus <code>;</code> internos. El servidor nunca ve <code>//</code>, no hay ningún modo estricto asociado y el procedimiento se guarda igual con cualquier delimitador."
+    },
+    {
+     "nv": "I",
+     "q": "Un disparador <code>AFTER INSERT ON pedido</code> ejecuta <code>UPDATE pedido SET total = … WHERE id = NEW.id</code>. ¿Qué pasa en MySQL al insertar un pedido?",
+     "ops": [
+      "Se repite sin fin, porque cada <code>UPDATE</code> vuelve a activar el mismo disparador",
+      "Funciona, pero el <code>UPDATE</code> se aplica después del <code>COMMIT</code> de la transacción",
+      "El <code>INSERT</code> falla: un disparador no puede modificar la tabla que lo activó",
+      "Funciona solo si el disparador se declara con <code>FOR EACH STATEMENT</code>"
+     ],
+     "ok": 2,
+     "r": "MySQL lanza el error 1442 y revierte el <code>INSERT</code>. Para calcular un valor de la misma fila se usa un <code>BEFORE INSERT</code> con <code>SET NEW.total = …</code>. No hay ciclo infinito (un <code>UPDATE</code> no activa un <code>AFTER INSERT</code>), el disparador corre dentro de la misma sentencia y no después del <code>COMMIT</code>, y MySQL no tiene disparadores por sentencia."
+    },
+    {
+     "nv": "A",
+     "q": "Hay que subir 5 % el precio de los 200,000 productos de una categoría. Un compañero propone un procedimiento con un cursor que actualiza producto por producto. ¿Qué le respondes?",
+     "ops": [
+      "Que el cursor es mejor porque el motor optimiza más los ciclos que los conjuntos",
+      "Que el cursor es obligatorio porque <code>UPDATE</code> no acepta expresiones aritméticas",
+      "Que un solo <code>UPDATE … WHERE categoria = …</code> lo hace por conjuntos y mucho más rápido",
+      "Que conviene traer los productos a la aplicación y actualizarlos uno por uno"
+     ],
+     "ok": 2,
+     "r": "<code>UPDATE producto SET precio = precio * 1.05 WHERE categoria = 'Limpieza';</code> resuelve todo en una sentencia: el motor recorre las filas por dentro con un solo plan, sin 200,000 vueltas de <code>FETCH</code> y <code>UPDATE</code>. El cursor y el ciclo en la aplicación hacen el mismo trabajo fila por fila y con mucho más costo, y <code>UPDATE</code> sí admite expresiones."
+    }
+   ]
+  },
+  {
+   "titulo": "Transacciones y control de concurrencia",
+   "intro": "Qué garantiza una transacción y cómo el motor deja trabajar a muchos usuarios a la vez sin corromper los datos: propiedades ACID, estados, planificaciones y seriabilidad por conflicto, anomalías, niveles de aislamiento, bloqueo en dos fases, interbloqueos, marcas de tiempo y MVCC.",
+   "conceptos": [
+    {
+     "n": "Transacciones, propiedades ACID y estados",
+     "e": [
+      "Una <b>transacción</b> es una unidad lógica de trabajo: una secuencia de lecturas y escrituras que debe ejecutarse completa o no ejecutarse, como transferir Q500 de una cuenta a otra (un débito y un crédito). En SQL empieza con <code>START TRANSACTION</code> (o <code>BEGIN</code>) y termina con <code>COMMIT</code>, que hace permanentes los cambios, o con <code>ROLLBACK</code>, que los deshace; <code>SAVEPOINT</code> marca puntos intermedios para <code>ROLLBACK TO SAVEPOINT</code>. MySQL trabaja con <code>autocommit = 1</code>: cada sentencia suelta es su propia transacción. Las garantías se resumen en <b>ACID</b>: <b>atomicidad</b> (todo o nada), <b>consistencia</b> (lleva la base de un estado válido a otro válido), <b>aislamiento</b> (aunque corran a la vez, cada transacción se comporta como si estuviera sola) y <b>durabilidad</b> (lo confirmado sobrevive a cualquier falla).",
+      "En su vida una transacción pasa por cinco estados: <b>activa</b> (ejecuta sus operaciones), <b>parcialmente confirmada</b> (ya ejecutó su última instrucción, pero sus cambios todavía no son permanentes), <b>confirmada</b> (su registro de <code>COMMIT</code> ya está en almacenamiento estable), <b>fallida</b> (descubrió que no puede seguir: un error, una restricción violada, un interbloqueo o una caída) y <b>abortada</b> (se deshicieron sus cambios y la base volvió al estado anterior; se puede reiniciar o cancelar). Una transacción confirmada ya no se deshace con <code>ROLLBACK</code>: solo otra transacción, llamada de compensación, puede revertir su efecto."
+     ],
+     "u": [
+      "Transferencias y pagos en bancos, ventas que descuentan existencias y registran el cobro, asignación de cursos con cupo y cualquier operación que modifique varias filas que deben cambiar juntas.",
+      "Sin transacciones, una falla a mitad de camino deja datos imposibles: dinero que sale de una cuenta y no llega a la otra, o una venta cobrada sin su detalle.",
+      "Siempre que dos o más cambios deban quedar todos o ninguno; en Laravel, <code>DB::transaction(function () { … })</code> envuelve el bloque y hace <code>ROLLBACK</code> si hay una excepción.",
+      "Abre la transacción, haz los cambios, revisa errores y termina con <code>COMMIT</code>; ante cualquier fallo, <code>ROLLBACK</code>. Mantenla corta: mientras está abierta retiene bloqueos."
+     ],
+     "f": "\\text{activa}\\rightarrow\\text{parcialmente confirmada}\\rightarrow\\text{confirmada}\\qquad\\text{activa}\\rightarrow\\text{fallida}\\rightarrow\\text{abortada}",
+     "tabla": "<table><tr><th>Propiedad</th><th>Garantiza</th><th>Quién la asegura</th><th>En una transferencia de Q500</th></tr><tr><td>Atomicidad</td><td>todo o nada</td><td>el gestor de recuperación (bitácora y deshacer)</td><td>no queda el débito sin el crédito</td></tr><tr><td>Consistencia</td><td>de un estado válido a otro válido</td><td>el programador y las restricciones de integridad</td><td>la suma de los dos saldos no cambia</td></tr><tr><td>Aislamiento</td><td>cada transacción se comporta como si estuviera sola</td><td>el control de concurrencia (bloqueos, MVCC)</td><td>nadie ve el dinero «en el aire»</td></tr><tr><td>Durabilidad</td><td>lo confirmado sobrevive a las fallas</td><td>la bitácora en almacenamiento estable</td><td>tras el <code>COMMIT</code>, un apagón no borra la transferencia</td></tr></table>"
+    },
+    {
+     "n": "Planificaciones, seriabilidad por conflicto y anomalías",
+     "e": [
+      "Una <b>planificación</b> es el orden en que se intercalan las operaciones de varias transacciones concurrentes, respetando el orden interno de cada una. Es <b>serial</b> si ejecuta una transacción completa tras otra, y <b>serializable</b> si produce el mismo efecto que alguna planificación serial. Dos operaciones están <b>en conflicto</b> si son de transacciones distintas, usan el mismo dato y al menos una es escritura: lectura-escritura, escritura-lectura o escritura-escritura (dos lecturas nunca chocan). Una planificación es <b>serializable por conflicto</b> si se puede convertir en una serial intercambiando operaciones vecinas que no estén en conflicto. Se prueba con el <b>grafo de precedencia</b>: un nodo por transacción y un arco \\(T_i \\rightarrow T_j\\) cuando una operación de \\(T_i\\) entra en conflicto con una posterior de \\(T_j\\). Es serializable por conflicto si y solo si el grafo no tiene ciclos, y cualquier orden topológico del grafo da una planificación serial equivalente.",
+      "Sin control de concurrencia aparecen cuatro anomalías. <b>Actualización perdida</b>: dos transacciones leen el mismo valor y la segunda en escribir pisa el cambio de la primera. <b>Lectura sucia</b>: una transacción lee un dato que otra escribió y aún no confirma; si la otra hace <code>ROLLBACK</code>, se leyó algo que nunca existió. <b>Lectura no repetible</b>: una transacción lee dos veces la misma fila y obtiene valores distintos porque otra la modificó y confirmó entre ambas lecturas. <b>Fantasma</b>: al repetir una consulta con la misma condición aparecen o desaparecen filas porque otra transacción insertó o borró filas que la cumplen."
+     ],
+     "u": [
+      "En el control de concurrencia de todo motor transaccional y en las preguntas de parcial que piden decidir si una planificación es correcta.",
+      "La seriabilidad es el criterio de corrección: si la ejecución intercalada equivale a alguna serial, ningún usuario puede notar que hubo concurrencia.",
+      "Al analizar una planificación dada, al explicar por qué un reporte salió con datos incoherentes y al escoger el nivel de aislamiento.",
+      "Recorre la planificación, marca cada par en conflicto con su arco, dibuja el grafo y busca ciclos; si no hay, ordénalo topológicamente."
+     ],
+     "f": "\\text{serializable por conflicto}\\iff\\text{grafo de precedencia sin ciclos}",
+     "tabla": "<table><tr><th>Par de operaciones (transacciones distintas, mismo dato)</th><th>¿Conflicto?</th><th>Arco</th></tr><tr><td>R<sub>i</sub>(X) antes de R<sub>j</sub>(X)</td><td>no</td><td>ninguno</td></tr><tr><td>R<sub>i</sub>(X) antes de W<sub>j</sub>(X)</td><td>sí</td><td>T<sub>i</sub> → T<sub>j</sub></td></tr><tr><td>W<sub>i</sub>(X) antes de R<sub>j</sub>(X)</td><td>sí</td><td>T<sub>i</sub> → T<sub>j</sub></td></tr><tr><td>W<sub>i</sub>(X) antes de W<sub>j</sub>(X)</td><td>sí</td><td>T<sub>i</sub> → T<sub>j</sub></td></tr></table>"
+    },
+    {
+     "n": "Niveles de aislamiento, bloqueos, marcas de tiempo y MVCC",
+     "e": [
+      "El estándar SQL define cuatro <b>niveles de aislamiento</b> según las anomalías que permiten: <code>READ UNCOMMITTED</code> permite lecturas sucias; <code>READ COMMITTED</code> las evita, pero permite lecturas no repetibles y fantasmas; <code>REPEATABLE READ</code> evita también las no repetibles; <code>SERIALIZABLE</code> evita todas. Se fija con <code>SET TRANSACTION ISOLATION LEVEL READ COMMITTED;</code>. El nivel por defecto de InnoDB (MySQL) es <code>REPEATABLE READ</code>, que además evita casi todos los fantasmas con bloqueos de rango (next-key); Oracle, PostgreSQL y SQL Server usan <code>READ COMMITTED</code>. Más aislamiento da más corrección y menos concurrencia.",
+      "El <b>bloqueo en dos fases</b> (2PL) usa bloqueos compartidos (S, para leer, compatibles entre sí) y exclusivos (X, para escribir, incompatibles con todo). Cada transacción tiene una fase de crecimiento, en la que solo adquiere bloqueos, y una de decrecimiento, en la que solo los libera; así toda planificación resultante es serializable por conflicto. El <b>2PL estricto</b> retiene los X hasta el <code>COMMIT</code> o el <code>ROLLBACK</code> y evita los abortos en cascada; es lo que hace InnoDB. 2PL no evita los <b>interbloqueos</b>, ciclos en el grafo de espera que el motor detecta y rompe abortando a una víctima (InnoDB devuelve el error 1213) o que se previenen pidiendo los bloqueos siempre en el mismo orden. La <b>ordenación por marcas de tiempo</b> no bloquea: cada transacción recibe una marca TS y cada dato guarda la marca de su última lectura y de su última escritura; una operación que llega tarde, sobre un dato que ya usó una transacción más joven, se rechaza y su transacción se reinicia con marca nueva. El <b>control multiversión</b> (MVCC) conserva versiones anteriores de cada fila: cada lectura ve una instantánea de lo confirmado hasta cierto momento, así que los lectores no bloquean a los escritores ni al revés. InnoDB arma esas versiones con el registro de deshacer (undo log)."
+     ],
+     "u": [
+      "En la configuración de cada conexión a MySQL u otro motor, y en los reportes, cajas y procesos por lotes que corren al mismo tiempo sobre las mismas tablas.",
+      "Escoger mal el nivel produce saldos incorrectos o, en el otro extremo, esperas e interbloqueos que hunden el rendimiento.",
+      "<code>READ COMMITTED</code> o <code>REPEATABLE READ</code> para la mayoría de aplicaciones; <code>SERIALIZABLE</code> o <code>SELECT … FOR UPDATE</code> cuando una decisión depende de datos que nadie debe cambiar mientras tanto (cupos, existencias).",
+      "Fija el nivel por sesión o por transacción, bloquea con <code>FOR UPDATE</code> lo que vas a modificar, accede a las filas siempre en el mismo orden y reintenta la transacción cuando recibas el error 1213."
+     ],
+     "tabla": "<table><tr><th>Nivel</th><th>Lectura sucia</th><th>No repetible</th><th>Fantasma</th></tr><tr><td><code>READ UNCOMMITTED</code></td><td>posible</td><td>posible</td><td>posible</td></tr><tr><td><code>READ COMMITTED</code></td><td>evitada</td><td>posible</td><td>posible</td></tr><tr><td><code>REPEATABLE READ</code></td><td>evitada</td><td>evitada</td><td>posible en el estándar; InnoDB casi siempre la evita</td></tr><tr><td><code>SERIALIZABLE</code></td><td>evitada</td><td>evitada</td><td>evitada</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Dos cajeros de un banco atienden la misma cuenta, con saldo de Q1,000. La aplicación lee el saldo, calcula el nuevo en PHP y lo escribe como valor fijo:<table><tr><th>Momento</th><th>T<sub>1</sub>: retiro de Q300</th><th>T<sub>2</sub>: depósito de Q500</th></tr><tr><td>1</td><td><code>SELECT saldo</code> → 1000</td><td></td></tr><tr><td>2</td><td></td><td><code>SELECT saldo</code> → 1000</td></tr><tr><td>3</td><td><code>UPDATE … SET saldo = 700</code></td><td></td></tr><tr><td>4</td><td><code>COMMIT</code></td><td></td></tr><tr><td>5</td><td></td><td><code>UPDATE … SET saldo = 1500</code></td></tr><tr><td>6</td><td></td><td><code>COMMIT</code></td></tr></table>¿Con qué saldo queda la cuenta, qué anomalía ocurrió y cómo se evita?",
+     "pasos": [
+      "<b>Traza.</b> T<sub>1</sub> calcula 1,000 − 300 = 700 y lo escribe. T<sub>2</sub> había leído 1,000 antes de que T<sub>1</sub> escribiera, calcula 1,000 + 500 = 1,500 y escribe encima.",
+      "<b>Resultado.</b> La cuenta queda en Q1,500, pero lo correcto es 1,000 − 300 + 500 = Q1,200: el retiro de T<sub>1</sub> desapareció.",
+      "<b>Anomalía.</b> Es una actualización perdida: las dos transacciones leyeron el mismo valor y la segunda escritura pisó a la primera.",
+      "<b>Solución.</b> Que el motor lea y escriba en un solo paso: <code>UPDATE cuenta SET saldo = saldo - 300 WHERE id = 1</code>. Ese <code>UPDATE</code> toma un bloqueo exclusivo sobre la fila, así que el de T<sub>2</sub> espera y suma sobre 700. Si el cálculo debe hacerse en la aplicación, se lee con <code>SELECT saldo … FOR UPDATE</code> dentro de la transacción."
+     ],
+     "r": "Queda en Q1,500 en lugar de Q1,200: actualización perdida. Se evita con <code>UPDATE … SET saldo = saldo - 300</code> o leyendo con <code>SELECT … FOR UPDATE</code>.",
+     "fin": "Reconocer la anomalía más común en aplicaciones web, que el <code>REPEATABLE READ</code> de MySQL no evita por sí solo cuando la aplicación escribe valores ya calculados."
+    },
+    {
+     "nv": "I",
+     "q": "R<sub>1</sub>(X) significa que T<sub>1</sub> lee X y W<sub>1</sub>(X) que lo escribe. Decide si la planificación es serializable por conflicto y, si lo es, da una planificación serial equivalente:<br>S = R<sub>2</sub>(A), R<sub>1</sub>(B), W<sub>2</sub>(A), R<sub>1</sub>(A), W<sub>1</sub>(B), R<sub>3</sub>(B), W<sub>3</sub>(A)",
+     "pasos": [
+      "<b>Conflictos sobre A.</b> W<sub>2</sub>(A) antes de R<sub>1</sub>(A) da T<sub>2</sub> → T<sub>1</sub>. R<sub>2</sub>(A) y W<sub>2</sub>(A) antes de W<sub>3</sub>(A) dan T<sub>2</sub> → T<sub>3</sub>. R<sub>1</sub>(A) antes de W<sub>3</sub>(A) da T<sub>1</sub> → T<sub>3</sub>.",
+      "<b>Conflictos sobre B.</b> W<sub>1</sub>(B) antes de R<sub>3</sub>(B) da T<sub>1</sub> → T<sub>3</sub>. R<sub>1</sub>(B) y R<sub>3</sub>(B) son dos lecturas: no hay conflicto.",
+      "<b>Grafo.</b> Arcos T<sub>2</sub> → T<sub>1</sub>, T<sub>2</sub> → T<sub>3</sub> y T<sub>1</sub> → T<sub>3</sub>. No hay ciclos: a T<sub>2</sub> no le llega ningún arco y de T<sub>3</sub> no sale ninguno.",
+      "<b>Orden serial.</b> El único orden topológico es T<sub>2</sub>, T<sub>1</sub>, T<sub>3</sub>."
+     ],
+     "r": "Sí es serializable por conflicto y equivale a la planificación serial T<sub>2</sub> → T<sub>1</sub> → T<sub>3</sub>.",
+     "fin": "El problema de concurrencia más típico del parcial: listar los conflictos, dibujar el grafo de precedencia y leer de él la respuesta."
+    },
+    {
+     "nv": "I",
+     "q": "Con 2PL estricto (como InnoDB), T<sub>1</sub> transfiere Q200 de la cuenta A a la B y T<sub>2</sub> transfiere Q100 de la B a la A. Saldos iniciales: A = 1,000 y B = 500. Las sentencias llegan en este orden:<table><tr><th>Momento</th><th>T<sub>1</sub></th><th>T<sub>2</sub></th></tr><tr><td>1</td><td><code>UPDATE cuenta SET saldo = saldo - 200 WHERE id = 'A'</code></td><td></td></tr><tr><td>2</td><td></td><td><code>UPDATE cuenta SET saldo = saldo - 100 WHERE id = 'B'</code></td></tr><tr><td>3</td><td><code>UPDATE cuenta SET saldo = saldo + 200 WHERE id = 'B'</code></td><td></td></tr><tr><td>4</td><td></td><td><code>UPDATE cuenta SET saldo = saldo + 100 WHERE id = 'A'</code></td></tr></table>¿Qué pasa y cómo termina? ¿Cómo se evita?",
+     "pasos": [
+      "<b>Bloqueos concedidos.</b> En el momento 1, T<sub>1</sub> obtiene un bloqueo X sobre A; en el 2, T<sub>2</sub> obtiene X sobre B. Nadie espera todavía.",
+      "<b>Primera espera.</b> En el 3, T<sub>1</sub> pide X sobre B, que tiene T<sub>2</sub>: T<sub>1</sub> espera. En el grafo de espera aparece T<sub>1</sub> → T<sub>2</sub>.",
+      "<b>Ciclo.</b> En el 4, T<sub>2</sub> pide X sobre A, que tiene T<sub>1</sub>: aparece T<sub>2</sub> → T<sub>1</sub>. El ciclo T<sub>1</sub> → T<sub>2</sub> → T<sub>1</sub> es un interbloqueo: ninguna puede avanzar.",
+      "<b>Resolución.</b> InnoDB lo detecta de inmediato y aborta como víctima a la transacción más pequeña (aquí empatan; supón que es T<sub>2</sub>): deshace su débito y le devuelve el error 1213. T<sub>1</sub> obtiene B y confirma: A = 800 y B = 700. Cuando la aplicación reintenta T<sub>2</sub>, quedan A = 900 y B = 600.",
+      "<b>Prevención.</b> Que toda transferencia bloquee las cuentas en el mismo orden, por ejemplo la de id menor primero: T<sub>2</sub> habría pedido A antes que B, habría esperado a T<sub>1</sub> sin tener nada bloqueado y no habría ciclo."
+     ],
+     "r": "Interbloqueo en el momento 4. El motor aborta a una víctima (error 1213); con T<sub>2</sub> como víctima y reintentada, los saldos finales son A = Q900 y B = Q600. Se evita pidiendo los bloqueos siempre en el mismo orden.",
+     "fin": "Entender que 2PL garantiza seriabilidad pero no evita interbloqueos, y por qué toda aplicación debe reintentar ante el error 1213."
+    },
+    {
+     "nv": "A",
+     "q": "La tabla <code>producto</code> tiene la fila con <code>id = 1</code> y <code>precio = 100</code>. T<sub>2</sub> es un reporte y T<sub>1</sub> cambia el precio. Con las sentencias en este orden, ¿qué leen las consultas a, b y c de T<sub>2</sub> en cada nivel de aislamiento de T<sub>2</sub>, en InnoDB?<table><tr><th>Momento</th><th>T<sub>1</sub></th><th>T<sub>2</sub></th></tr><tr><td>1</td><td></td><td><code>START TRANSACTION;</code> <code>SELECT precio FROM producto WHERE id = 1;</code> (a)</td></tr><tr><td>2</td><td><code>START TRANSACTION;</code> <code>UPDATE producto SET precio = 120 WHERE id = 1;</code></td><td></td></tr><tr><td>3</td><td></td><td><code>SELECT precio …</code> (b)</td></tr><tr><td>4</td><td><code>COMMIT;</code></td><td></td></tr><tr><td>5</td><td></td><td><code>SELECT precio …</code> (c)</td></tr><tr><td>6</td><td></td><td><code>COMMIT;</code></td></tr></table>",
+     "pasos": [
+      "<b>READ UNCOMMITTED.</b> Lee la versión más reciente aunque no esté confirmada: a = 100, b = 120 (lectura sucia: si T<sub>1</sub> hiciera <code>ROLLBACK</code>, ese 120 nunca habría existido) y c = 120.",
+      "<b>READ COMMITTED.</b> Cada lectura toma una instantánea nueva de lo confirmado: a = 100, b = 100 (el 120 aún no se confirma) y c = 120. Leer dos veces la misma fila dio valores distintos: lectura no repetible.",
+      "<b>REPEATABLE READ.</b> La instantánea se fija en la primera lectura de la transacción y se reutiliza: a = b = c = 100, aunque T<sub>1</sub> ya confirmó. Con MVCC, InnoDB reconstruye el 100 desde el registro de deshacer, sin bloquear a T<sub>1</sub>.",
+      "<b>SERIALIZABLE.</b> InnoDB convierte los <code>SELECT</code> de T<sub>2</sub> en lecturas con bloqueo compartido: en el momento 2 el <code>UPDATE</code> de T<sub>1</sub> espera a que T<sub>2</sub> termine. T<sub>2</sub> lee 100 las tres veces y T<sub>1</sub> cambia el precio después del <code>COMMIT</code> de T<sub>2</sub>.",
+      "<b>Después.</b> En cualquier nivel, una transacción nueva que empiece después de que T<sub>1</sub> confirme lee 120."
+     ],
+     "r": "<table><tr><th>Nivel de T<sub>2</sub></th><th>a</th><th>b</th><th>c</th></tr><tr><td><code>READ UNCOMMITTED</code></td><td>100</td><td>120</td><td>120</td></tr><tr><td><code>READ COMMITTED</code></td><td>100</td><td>100</td><td>120</td></tr><tr><td><code>REPEATABLE READ</code></td><td>100</td><td>100</td><td>100</td></tr><tr><td><code>SERIALIZABLE</code></td><td>100</td><td>100</td><td>100 (T<sub>1</sub> espera)</td></tr></table>",
+     "fin": "Ver en una sola traza qué permite cada nivel y cómo MVCC deja leer sin bloquear, que es como trabaja MySQL por defecto."
+    },
+    {
+     "nv": "B",
+     "q": "Di qué propiedad ACID se viola en cada caso: a) el servidor se apaga justo después del <code>COMMIT</code> de un depósito y, al reiniciar, el depósito no aparece; b) una transferencia descuenta de la cuenta origen, falla a mitad y la cuenta destino nunca recibe el dinero; c) un reporte de saldos muestra el estado de una transferencia que otra sesión aún no confirma; d) una transacción guarda una nota de 120 en un curso que solo admite de 0 a 100.",
+     "r": "a) Durabilidad: lo confirmado debía sobrevivir a la caída. b) Atomicidad: quedó la mitad de la operación. c) Aislamiento: se vio el trabajo no confirmado de otra transacción (lectura sucia). d) Consistencia: la base quedó en un estado que viola una regla de integridad."
+    },
+    {
+     "nv": "I",
+     "q": "Dibuja el grafo de precedencia de S = R<sub>1</sub>(A), W<sub>2</sub>(A), R<sub>2</sub>(B), W<sub>3</sub>(B), R<sub>3</sub>(C), W<sub>1</sub>(C) y decide si es serializable por conflicto. ¿Y si W<sub>1</sub>(C) fuera la primera operación de la planificación?",
+     "r": "Arcos T<sub>1</sub> → T<sub>2</sub> (R<sub>1</sub>(A) antes de W<sub>2</sub>(A)), T<sub>2</sub> → T<sub>3</sub> (R<sub>2</sub>(B) antes de W<sub>3</sub>(B)) y T<sub>3</sub> → T<sub>1</sub> (R<sub>3</sub>(C) antes de W<sub>1</sub>(C)): hay un ciclo T<sub>1</sub> → T<sub>2</sub> → T<sub>3</sub> → T<sub>1</sub> y no es serializable por conflicto. Con W<sub>1</sub>(C) al inicio, el arco sobre C se invierte (W<sub>1</sub>(C) antes de R<sub>3</sub>(C) da T<sub>1</sub> → T<sub>3</sub>): arcos T<sub>1</sub> → T<sub>2</sub>, T<sub>2</sub> → T<sub>3</sub> y T<sub>1</sub> → T<sub>3</sub>, sin ciclo; equivale a la serial T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub>."
+    },
+    {
+     "nv": "A",
+     "q": "Ordenación por marcas de tiempo básica: TS(T<sub>1</sub>) = 10 y TS(T<sub>2</sub>) = 20; los datos A y B empiezan con marcas de lectura y escritura en 0. Llega la secuencia R<sub>1</sub>(A), W<sub>2</sub>(B), W<sub>1</sub>(B), R<sub>2</sub>(A), W<sub>2</sub>(A). ¿Qué operación se rechaza, qué le pasa a su transacción y con qué marcas quedan A y B? ¿Qué cambia con la regla de escritura de Thomas?",
+     "r": "R<sub>1</sub>(A) pasa (lectura de A = 10). W<sub>2</sub>(B) pasa (escritura de B = 20). W<sub>1</sub>(B) se rechaza: 10 es menor que la marca de escritura de B (20), es decir, una transacción más joven ya escribió B; T<sub>1</sub> aborta y se reinicia con una marca nueva. R<sub>2</sub>(A) pasa (lectura de A = 20) y W<sub>2</sub>(A) también (20 no es menor que 20; escritura de A = 20). Quedan A con lectura 20 y escritura 20, y B con lectura 0 y escritura 20. Con la regla de Thomas, W<sub>1</sub>(B) no aborta a T<sub>1</sub>: nadie más joven leyó B (su marca de lectura, 0, no supera 10), así que esa escritura es obsoleta y simplemente se ignora; T<sub>1</sub> continúa."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué propiedad ACID garantiza que una transferencia no quede a medias si el servidor se cae entre el débito y el crédito?",
+     "ops": [
+      "Durabilidad",
+      "Consistencia",
+      "Atomicidad",
+      "Aislamiento"
+     ],
+     "ok": 2,
+     "r": "La atomicidad exige todo o nada: al reiniciar, el motor usa la bitácora para deshacer el débito que quedó sin <code>COMMIT</code>. La durabilidad protege lo que ya se confirmó, la consistencia se refiere a las reglas de integridad y el aislamiento a la interferencia entre transacciones concurrentes."
+    },
+    {
+     "nv": "B",
+     "q": "T<sub>2</sub> lee un saldo que T<sub>1</sub> acaba de modificar y luego T<sub>1</sub> hace <code>ROLLBACK</code>. ¿Qué anomalía sufrió T<sub>2</sub>?",
+     "ops": [
+      "Lectura no repetible",
+      "Lectura sucia",
+      "Actualización perdida",
+      "Lectura fantasma"
+     ],
+     "ok": 1,
+     "r": "T<sub>2</sub> leyó un valor no confirmado que nunca llegó a existir: es una lectura sucia, la anomalía que <code>READ UNCOMMITTED</code> permite y <code>READ COMMITTED</code> ya evita. La no repetible exige que T<sub>1</sub> confirme entre dos lecturas de T<sub>2</sub>, la actualización perdida necesita dos escrituras y el fantasma, filas insertadas o borradas."
+    },
+    {
+     "nv": "I",
+     "q": "Una transacción ya ejecutó su última instrucción, pero su registro de <code>COMMIT</code> todavía no está en almacenamiento estable. ¿En qué estado está?",
+     "ops": [
+      "Parcialmente confirmada: terminó, pero sus cambios aún no son permanentes",
+      "Confirmada: terminó y sus cambios ya no se pueden perder con una falla",
+      "Activa: todavía le quedan instrucciones por ejecutar en el servidor",
+      "Fallida: encontró un error y ya no puede continuar con su trabajo"
+     ],
+     "ok": 0,
+     "r": "Ejecutar la última instrucción no basta para estar confirmada: falta que el registro de <code>COMMIT</code> llegue a almacenamiento estable, y hasta entonces una falla todavía puede llevarla a fallida y abortada. No está activa porque ya no le quedan instrucciones, y no ha fallado."
+    },
+    {
+     "nv": "I",
+     "q": "En MySQL con InnoDB, ¿cuál es el nivel de aislamiento por defecto y qué anomalías del estándar evita?",
+     "ops": [
+      "<code>READ COMMITTED</code>: evita solo las lecturas sucias",
+      "<code>REPEATABLE READ</code>: evita las lecturas sucias y las no repetibles",
+      "<code>SERIALIZABLE</code>: evita todas las anomalías del estándar",
+      "<code>READ UNCOMMITTED</code>: no evita ninguna de las anomalías"
+     ],
+     "ok": 1,
+     "r": "InnoDB usa <code>REPEATABLE READ</code>: con una instantánea fija evita las lecturas sucias y las no repetibles, y con bloqueos de rango casi todos los fantasmas. <code>READ COMMITTED</code> es el nivel por defecto de Oracle, PostgreSQL y SQL Server; <code>SERIALIZABLE</code> y <code>READ UNCOMMITTED</code> existen en MySQL, pero hay que pedirlos."
+    },
+    {
+     "nv": "A",
+     "q": "¿Qué garantiza el bloqueo en dos fases básico y qué no garantiza?",
+     "ops": [
+      "Evita los interbloqueos, pero no garantiza que la planificación sea serializable",
+      "Garantiza seriabilidad y evita los interbloqueos, porque libera todo al final",
+      "Evita solo las lecturas sucias, porque libera los bloqueos antes de confirmar",
+      "Garantiza seriabilidad por conflicto, pero no evita interbloqueos ni abortos en cascada"
+     ],
+     "ok": 3,
+     "r": "Con las fases de crecimiento y decrecimiento separadas, toda planificación es serializable por conflicto. Pero dos transacciones pueden esperarse mutuamente (interbloqueo), y si se libera un bloqueo X antes de confirmar, otra puede leer un dato que luego se deshace (aborto en cascada). Para esto último está el 2PL estricto, que retiene los X hasta el final; ni así se evitan los interbloqueos."
+    }
+   ]
+  },
+  {
+   "titulo": "Recuperación, respaldo y seguridad",
+   "intro": "Cómo sobrevive el motor a las fallas y cómo se protege de sus usuarios: bitácora con escritura anticipada, puntos de control, deshacer y rehacer, respaldos completos, diferenciales e incrementales con RPO y RTO, privilegios con GRANT y REVOKE, roles, inyección SQL y consultas parametrizadas, cifrado y auditoría.",
+   "conceptos": [
+    {
+     "n": "Bitácora, puntos de control, deshacer y rehacer",
+     "e": [
+      "Las fallas son de tres tipos: de <b>transacción</b> (un error lógico, una restricción violada, una víctima de interbloqueo), de <b>sistema</b> (una caída o un apagón: se pierden la memoria y el búfer, pero el disco sobrevive) y de <b>medio</b> (se daña el disco: solo se recupera con un respaldo). Para las dos primeras el motor lleva una <b>bitácora</b> (log), un archivo secuencial donde anota <code>&lt;T start&gt;</code>, cada cambio como <code>&lt;T, dato, valor anterior, valor nuevo&gt;</code> y al final <code>&lt;T commit&gt;</code> o <code>&lt;T abort&gt;</code>. La regla de <b>escritura anticipada</b> (WAL, write-ahead logging) exige que el registro de un cambio llegue a almacenamiento estable antes que la página modificada, y que todos los registros de una transacción, incluido su <code>commit</code>, estén en disco antes de avisar que confirmó. Así el valor anterior permite <b>deshacer</b> (undo) lo que no se confirmó y el valor nuevo permite <b>rehacer</b> (redo) lo confirmado que no alcanzó a llegar a disco.",
+      "Al reiniciar tras una caída, con actualización inmediata, se <b>deshacen</b>, recorriendo la bitácora hacia atrás, las transacciones que tienen <code>start</code> pero no <code>commit</code>, y se <b>rehacen</b>, en el orden de la bitácora, las que tienen <code>start</code> y <code>commit</code>. Para no recorrer la bitácora entera se hacen <b>puntos de control</b> (checkpoints): el motor baja a disco las páginas modificadas y escribe <code>&lt;checkpoint L&gt;</code>, con L la lista de transacciones activas. Al recuperar, lo que confirmó antes del último punto de control ya está en disco y se ignora; solo se tratan las transacciones de L y las que empezaron después. Con <b>actualización diferida</b> (los cambios llegan a la base solo después del <code>commit</code>) nunca hay que deshacer: basta rehacer. InnoDB guarda lo necesario para rehacer en su redo log y para deshacer en los undo logs; aparte, la bitácora binaria (binlog) sirve para réplicas y para recuperar hasta un punto en el tiempo."
+     ],
+     "u": [
+      "En el arranque de todo motor transaccional después de una caída (InnoDB lo hace solo, con su redo log y sus undo logs) y en las preguntas de parcial que dan una bitácora para reconstruir.",
+      "Es lo que vuelve reales la atomicidad y la durabilidad: sin bitácora, un apagón dejaría transacciones a medias y perdería otras ya confirmadas.",
+      "Cada vez que el sistema reinicia tras una falla de sistema; una falla de medio necesita, además, un respaldo.",
+      "Ubica el último punto de control, clasifica cada transacción (confirmada o no), deshaz hacia atrás las no confirmadas y rehaz hacia adelante las confirmadas después del punto de control."
+     ],
+     "tabla": "<table><tr><th>Situación de la transacción al fallar</th><th>Acción al recuperar</th></tr><tr><td>Confirmó antes del último punto de control</td><td>ninguna: sus cambios ya están en disco</td></tr><tr><td>Confirmó después del punto de control</td><td>rehacer, hacia adelante, con los valores nuevos</td></tr><tr><td>No alcanzó a confirmar</td><td>deshacer, hacia atrás, con los valores anteriores</td></tr></table>"
+    },
+    {
+     "n": "Respaldos, RPO y RTO",
+     "e": [
+      "Un <b>respaldo completo</b> copia toda la base: es el más lento de hacer y el más simple de restaurar. Un <b>diferencial</b> copia lo que cambió desde el último completo: crece cada día y para restaurar se necesitan el completo y el último diferencial. Un <b>incremental</b> copia lo que cambió desde el último respaldo de cualquier tipo: es el más pequeño y rápido de hacer, pero para restaurar se necesitan el completo y todos los incrementales posteriores, en orden. Por la forma de copiar, un respaldo es <b>lógico</b> (sentencias SQL, como <code>mysqldump</code>: portable y lento de restaurar) o <b>físico</b> (copia de los archivos de datos, como Percona XtraBackup o MySQL Enterprise Backup: rápido), y se hace <b>en caliente</b> (con la base en servicio) o <b>en frío</b> (con la base detenida). Con la bitácora binaria activa se puede <b>recuperar hasta un punto en el tiempo</b>: se restaura el último respaldo y se reaplican los cambios del binlog hasta justo antes del incidente.",
+      "El <b>RPO</b> (objetivo de punto de recuperación) es la máxima pérdida de datos aceptable, medida en tiempo: con un RPO de 1 hora, después de un desastre no puede faltar más que la última hora de trabajo; lo determina cada cuánto salen copias de los datos fuera del servidor. El <b>RTO</b> (objetivo de tiempo de recuperación) es el máximo tiempo aceptable para volver a dar servicio; lo determina cuánto tarda restaurar todas las piezas necesarias. Los fija el negocio, no el técnico: un hospital o un banco piden minutos y un sitio informativo puede aceptar días. La regla 3-2-1 recomienda tres copias, en dos medios distintos y una fuera del sitio; y un respaldo que nunca se ha probado restaurando no es un respaldo."
+     ],
+     "u": [
+      "Planes de continuidad de bancos, hospitales, municipalidades y cualquier empresa que dependa de su base de datos; también en las auditorías de sistemas.",
+      "Las fallas de disco, el ransomware y los errores humanos (un <code>DELETE</code> sin <code>WHERE</code>) no se arreglan con la bitácora: solo con un respaldo que exista, esté fuera del servidor y se pueda restaurar a tiempo.",
+      "Al diseñar la estrategia: primero se fijan el RPO y el RTO con el negocio y después se escogen el tipo, la frecuencia y el destino de los respaldos.",
+      "Combina un completo periódico con diferenciales o incrementales, copia el binlog fuera del servidor para bajar el RPO, mide cuánto tarda restaurar y prueba la restauración con regularidad."
+     ],
+     "f": "\\text{pérdida máxima}\\approx\\text{intervalo entre copias}\\le\\text{RPO}\\qquad\\text{tiempo de restauración}\\le\\text{RTO}",
+     "tabla": "<table><tr><th>Tipo</th><th>Copia</th><th>Tiempo y tamaño del respaldo</th><th>Para restaurar se necesita</th></tr><tr><td>Completo</td><td>toda la base</td><td>el mayor</td><td>solo ese respaldo</td></tr><tr><td>Diferencial</td><td>lo cambiado desde el último completo</td><td>medio; crece cada día</td><td>el completo y el último diferencial</td></tr><tr><td>Incremental</td><td>lo cambiado desde el último respaldo de cualquier tipo</td><td>el menor</td><td>el completo y todos los incrementales siguientes, en orden</td></tr></table>"
+    },
+    {
+     "n": "Seguridad: privilegios, roles, inyección SQL, cifrado y auditoría",
+     "e": [
+      "El control de acceso discrecional da <b>privilegios</b> sobre objetos: <code>GRANT SELECT, INSERT ON tienda.venta TO 'cajero'@'localhost';</code> los otorga y <code>REVOKE INSERT ON tienda.venta FROM 'cajero'@'localhost';</code> los quita. Se otorgan a nivel global (<code>*.*</code>), de base (<code>tienda.*</code>), de tabla, de columna o de rutina (<code>EXECUTE</code>), y <code>WITH GRANT OPTION</code> permite que quien los recibe los pase a otros. Un <b>rol</b> agrupa privilegios: en MySQL 8 se crea con <code>CREATE ROLE</code>, recibe privilegios con <code>GRANT</code>, se asigna con <code>GRANT rol TO usuario</code> y se activa con <code>SET DEFAULT ROLE</code> o <code>SET ROLE</code>; cambiar los privilegios del rol cambia los de todos sus usuarios. El criterio es el <b>mínimo privilegio</b>: cada cuenta, incluida la de la aplicación, solo con lo que necesita. Las vistas y los procedimientos ayudan: se da permiso sobre la vista o el procedimiento y no sobre la tabla.",
+      "La <b>inyección SQL</b> ocurre cuando la aplicación arma la consulta pegando texto del usuario: una entrada como <code>' OR '1'='1</code> cambia la estructura de la consulta, no solo su valor. Se previene con <b>consultas parametrizadas</b> (sentencias preparadas): el SQL viaja con marcadores <code>?</code> y los valores van aparte, así que el motor nunca los interpreta como código; en Laravel, Eloquent y el Query Builder ya lo hacen, y el riesgo vuelve con <code>DB::raw</code> o <code>whereRaw</code> si se concatena texto. El <b>cifrado</b> protege los datos en tránsito (TLS entre la aplicación y la base) y en reposo (cifrado de los tablespaces de InnoDB, respaldos cifrados); las contraseñas no se cifran, se guardan con un hash lento y con sal (bcrypt, Argon2). La <b>auditoría</b> registra quién hizo qué y cuándo (bitácoras de auditoría, disparadores, el complemento de auditoría del motor) para detectar abusos y responder a revisiones."
+     ],
+     "u": [
+      "Toda aplicación con usuarios: banca en línea, portales universitarios, sistemas de clínicas y municipalidades; la inyección SQL sigue entre los ataques web más comunes.",
+      "Una sola consulta concatenada puede entregar la base completa, y una cuenta con privilegios de más convierte un error pequeño en una fuga grande.",
+      "Siempre que una consulta lleve datos que vienen de afuera (formularios, URL, archivos, API) y cada vez que se crea una cuenta o un rol en el motor.",
+      "Usa parámetros en toda consulta, crea una cuenta por aplicación con lo mínimo, agrupa permisos en roles, cifra conexiones y respaldos, guarda contraseñas con bcrypt y audita las tablas sensibles."
+     ]
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Una cooperativa hace respaldo completo el domingo a las 23:00 e incrementales de lunes a sábado a las 23:00. El disco falla el jueves a las 15:00 y no hay copia de la bitácora binaria fuera del servidor. ¿Qué respaldos necesitas, en qué orden, y cuántas horas de trabajo se pierden? ¿Qué cambiaría si los respaldos diarios fueran diferenciales?",
+     "pasos": [
+      "<b>Último respaldo útil.</b> El más reciente antes de la falla es el incremental del miércoles a las 23:00.",
+      "<b>Cadena incremental.</b> Cada incremental solo trae lo cambiado desde el respaldo anterior, así que se restauran el completo del domingo y luego los incrementales del lunes, martes y miércoles, en ese orden: 4 piezas. Si falta una, la cadena se rompe.",
+      "<b>Pérdida.</b> Lo hecho entre el miércoles a las 23:00 y el jueves a las 15:00 no está en ningún respaldo: 16 horas.",
+      "<b>Con diferenciales.</b> El diferencial del miércoles trae todo lo cambiado desde el domingo: bastan el completo y ese diferencial (2 piezas). La pérdida no cambia, siguen siendo 16 horas, porque se respalda con la misma frecuencia."
+     ],
+     "r": "Con incrementales: completo del domingo + incrementales del lunes, martes y miércoles (4 piezas, en orden). Con diferenciales: completo del domingo + diferencial del miércoles (2 piezas). En los dos casos se pierden 16 horas.",
+     "fin": "Ver que el tipo de respaldo cambia cuánto tarda restaurar (RTO) y que la frecuencia decide cuánto se pierde (RPO)."
+    },
+    {
+     "nv": "I",
+     "q": "Al reiniciar después de una caída, la bitácora (actualización inmediata) contiene:<pre><code>&lt;T1 start&gt;\n&lt;T1, A, 100, 150&gt;\n&lt;T2 start&gt;\n&lt;T1 commit&gt;\n&lt;T2, B, 200, 250&gt;\n&lt;checkpoint {T2}&gt;\n&lt;T3 start&gt;\n&lt;T3, A, 150, 120&gt;\n&lt;T2, C, 50, 80&gt;\n&lt;T2 commit&gt;\n&lt;T4 start&gt;\n&lt;T4, B, 250, 300&gt;\n&lt;T3, C, 80, 60&gt;\n--- falla ---</code></pre>¿Qué transacciones se rehacen, cuáles se deshacen y con qué valores quedan A, B y C?",
+     "pasos": [
+      "<b>Punto de control.</b> El último es <code>&lt;checkpoint {T2}&gt;</code>: todo lo anterior ya está en disco. T1 confirmó antes de él, así que no se toca.",
+      "<b>Clasificación.</b> T2 estaba activa en el punto de control y confirmó después: se rehace. T3 y T4 no tienen <code>commit</code>: se deshacen.",
+      "<b>Deshacer, hacia atrás.</b> Desde el final: <code>&lt;T3, C, 80, 60&gt;</code> deja C = 80; <code>&lt;T4, B, 250, 300&gt;</code> deja B = 250; <code>&lt;T3, A, 150, 120&gt;</code> deja A = 150. Se anotan <code>&lt;T3 abort&gt;</code> y <code>&lt;T4 abort&gt;</code>.",
+      "<b>Rehacer, hacia adelante.</b> Desde el punto de control, el cambio confirmado de T2 es <code>&lt;T2, C, 50, 80&gt;</code>: C = 80. Su cambio sobre B es anterior al punto de control y ya está en disco con 250. Algunos textos rehacen primero todo y deshacen después; con esta bitácora el resultado es el mismo.",
+      "<b>Resultado.</b> A = 150 (de T1), B = 250 y C = 80 (de T2): exactamente lo que dejaron las transacciones confirmadas."
+     ],
+     "r": "T1 no requiere acción; T2 se rehace; T3 y T4 se deshacen. Quedan A = 150, B = 250 y C = 80.",
+     "fin": "Seguir una recuperación con bitácora como en el parcial: el punto de control acota el trabajo y el <code>commit</code> decide entre deshacer y rehacer."
+    },
+    {
+     "nv": "I",
+     "q": "El inicio de sesión del sistema de una clínica arma la consulta así:<pre><code>$correo = $_POST['correo'];\n$clave  = $_POST['clave'];\n$sql = \"SELECT id, nombre FROM usuario\n        WHERE correo = '\" . $correo . \"'\n          AND clave = '\" . $clave . \"'\";\n$u = $pdo-&gt;query($sql)-&gt;fetch();</code></pre>Un atacante escribe <code>admin@clinica.gt</code> como correo y <code>' OR '1'='1</code> como clave. ¿Qué consulta recibe MySQL, qué devuelve y cómo se corrige?",
+     "pasos": [
+      "<b>Consulta armada.</b> PHP pega el texto tal cual:<pre><code>SELECT id, nombre FROM usuario\n        WHERE correo = 'admin@clinica.gt'\n          AND clave = '' OR '1'='1'</code></pre>",
+      "<b>Precedencia.</b> <code>AND</code> se evalúa antes que <code>OR</code>: la condición queda <code>(correo = 'admin@clinica.gt' AND clave = '') OR '1'='1'</code>, y <code>'1'='1'</code> es verdadero en todas las filas.",
+      "<b>Efecto.</b> La consulta devuelve todos los usuarios; <code>fetch()</code> toma la primera fila (normalmente el administrador) y el atacante entra sin conocer ninguna contraseña.",
+      "<b>Corrección.</b> Consulta parametrizada: el correo viaja aparte del SQL y la contraseña ya no se compara en la consulta, sino con <code>password_verify</code> contra un hash de <code>password_hash</code> (bcrypt).<pre><code>$st = $pdo-&gt;prepare('SELECT id, nombre, clave_hash\n                     FROM usuario WHERE correo = ?');\n$st-&gt;execute([$_POST['correo']]);\n$u = $st-&gt;fetch();\nif ($u &amp;&amp; password_verify($_POST['clave'], $u['clave_hash'])) {\n    // inicia la sesión\n}</code></pre>",
+      "<b>En Laravel.</b> <code>Usuario::where('correo', $correo)-&gt;first()</code> y <code>Hash::check($clave, $u-&gt;clave_hash)</code> hacen lo mismo; el riesgo vuelve si se concatena texto en <code>whereRaw</code> o <code>DB::raw</code>."
+     ],
+     "r": "MySQL recibe <code>… WHERE correo = 'admin@clinica.gt' AND clave = '' OR '1'='1'</code>, que es verdadero para todas las filas: el atacante entra como el primer usuario. Se corrige con una consulta parametrizada y contraseñas guardadas con hash.",
+     "fin": "Reconocer la inyección en código real y corregirla con parámetros, la defensa que de verdad funciona."
+    },
+    {
+     "nv": "A",
+     "q": "La base de un hospital privado tiene 400 GB y el negocio fijó RPO = 1 hora y RTO = 4 horas. Tiempos medidos: restaurar el completo, 2 h; restaurar un diferencial, 30 min; restaurar un incremental, 15 min cada uno; reaplicar binlog, 1 h por cada 24 h de cambios. Cada respaldo sale del servidor al terminar. Evalúa en el peor caso:<table><tr><th>Estrategia</th><th>Respaldos</th></tr><tr><td>A</td><td>completo diario a la 01:00</td></tr><tr><td>B</td><td>completo el domingo a la 01:00 e incremental cada 4 horas</td></tr><tr><td>C</td><td>completo el domingo a la 01:00, diferencial diario a la 01:00 y copia del binlog a otro sitio cada 15 minutos</td></tr></table>",
+     "pasos": [
+      "<b>RPO de cada estrategia.</b> La pérdida máxima es el tiempo entre copias que salen del servidor: A, 24 horas; B, 4 horas; C, 15 minutos (el binlog). Solo C cumple 1 hora.",
+      "<b>RTO de A.</b> Basta el completo del día: 2 horas. Cumple, pero ya falló en el RPO.",
+      "<b>RTO de B.</b> El peor caso es justo antes del siguiente completo: el completo y 41 incrementales (5 el domingo y 6 diarios de lunes a sábado), 2 h + 41 × 15 min = 12.25 h. No cumple.",
+      "<b>RTO de C.</b> Peor caso, justo antes de un diferencial: completo (2 h) + diferencial anterior (30 min) + binlog de casi 24 horas (1 h) = 3.5 h. Cumple las 4 horas.",
+      "<b>Decisión.</b> Solo C cumple los dos objetivos. Esos tiempos valen solo si se midieron restaurando de verdad: la prueba periódica es parte de la estrategia."
+     ],
+     "r": "<table><tr><th>Estrategia</th><th>RPO en el peor caso</th><th>RTO en el peor caso</th><th>¿Cumple?</th></tr><tr><td>A</td><td>24 h</td><td>2 h</td><td>no (RPO)</td></tr><tr><td>B</td><td>4 h</td><td>12.25 h</td><td>no (RPO y RTO)</td></tr><tr><td>C</td><td>15 min</td><td>3.5 h</td><td>sí</td></tr></table>Se escoge C.",
+     "fin": "Elegir un respaldo con números: el RPO sale de la frecuencia de las copias y el RTO, de cuántas piezas hay que restaurar y cuánto tarda cada una."
+    },
+    {
+     "nv": "B",
+     "q": "En la base <code>tienda</code>, crea la cuenta <code>cajero</code> (que se conecta desde <code>localhost</code>) para que pueda consultar <code>producto</code> y consultar e insertar en <code>venta</code>, pero no borrar nada. Después quítale el permiso de insertar ventas y revisa qué le queda.",
+     "r": "<pre><code>CREATE USER 'cajero'@'localhost' IDENTIFIED BY 'Cambiar.2026';\nGRANT SELECT ON tienda.producto TO 'cajero'@'localhost';\nGRANT SELECT, INSERT ON tienda.venta TO 'cajero'@'localhost';\n\nREVOKE INSERT ON tienda.venta FROM 'cajero'@'localhost';\nSHOW GRANTS FOR 'cajero'@'localhost';</code></pre>Le quedan <code>SELECT</code> sobre <code>tienda.producto</code> y sobre <code>tienda.venta</code> (<code>SHOW GRANTS</code> muestra además <code>USAGE ON *.*</code>, que significa ningún privilegio global). Nunca tuvo <code>DELETE</code>, así que no puede borrar."
+    },
+    {
+     "nv": "I",
+     "q": "Con <b>actualización diferida</b> (los cambios se aplican a la base solo después del <code>commit</code>), al reiniciar tras una caída la bitácora tiene estos registros, con el valor nuevo de cada cambio:<pre><code>&lt;T1 start&gt;\n&lt;T1, A, 500&gt;\n&lt;T1, B, 300&gt;\n&lt;T1 commit&gt;\n&lt;T2 start&gt;\n&lt;T2, A, 450&gt;\n&lt;T3 start&gt;\n&lt;T3, C, 90&gt;\n&lt;T3 commit&gt;\n&lt;T2, B, 350&gt;\n--- falla ---</code></pre>Antes de T1 los valores eran A = 400, B = 200 y C = 70. ¿Qué se rehace, qué se deshace y con qué valores quedan?",
+     "r": "Se rehacen T1 y T3, en el orden de la bitácora: A = 500, B = 300 y C = 90. T2 no confirmó y no se deshace nada: con actualización diferida sus cambios nunca llegaron a la base, solo se descartan sus registros. Quedan A = 500, B = 300 y C = 90."
+    },
+    {
+     "nv": "A",
+     "q": "El buscador de una farmacia en línea arma la consulta así:<pre><code>$sql = \"SELECT nombre, precio FROM producto WHERE nombre LIKE '%\" . $q . \"%'\";</code></pre>Tabla <code>producto</code>:<table><tr><th>nombre</th><th>precio</th></tr><tr><td>Ibuprofeno 400 mg</td><td>2.50</td></tr><tr><td>Acetaminofén 500 mg</td><td>1.25</td></tr><tr><td>Vitamina C 1 g</td><td>35.00</td></tr></table>Tabla <code>usuario</code>:<table><tr><th>correo</th><th>clave_hash</th></tr><tr><td>admin@farmacia.gt</td><td>$2y$10$Tq8…</td></tr><tr><td>ventas@farmacia.gt</td><td>$2y$10$Lw3…</td></tr></table>Alguien busca <code>zzz%' UNION SELECT correo, clave_hash FROM usuario -- -</code>. a) ¿Qué consulta recibe MySQL? b) ¿Qué devuelve? c) ¿Por qué el atacante pidió exactamente dos columnas? d) Da tres defensas.",
+     "r": "a) <code>SELECT nombre, precio FROM producto WHERE nombre LIKE '%zzz%' UNION SELECT correo, clave_hash FROM usuario -- -%'</code>. b) Ningún producto contiene «zzz», así que devuelve solo las filas de <code>usuario</code>: cada correo con su hash, mostrados en la página como si fueran nombres y precios. c) <code>UNION</code> exige el mismo número de columnas en las dos consultas. d) Consulta parametrizada (<code>LIKE ?</code> con el valor <code>'%' . $q . '%'</code>), una cuenta de base para el buscador sin permiso sobre <code>usuario</code>, y contraseñas con hash lento (bcrypt) para que lo filtrado sea difícil de aprovechar."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué exige la regla de escritura anticipada (WAL)?",
+     "ops": [
+      "Que la página de datos modificada llegue a disco antes que su registro en la bitácora",
+      "Que la bitácora se escriba completa solo al terminar el respaldo de cada noche",
+      "Que cada transacción baje sus datos a disco antes de ejecutar su primera instrucción",
+      "Que el registro de un cambio llegue a disco antes que la página de datos modificada"
+     ],
+     "ok": 3,
+     "r": "Si la página llegara primero y el sistema cayera, no habría con qué deshacerla. Por eso el registro, con el valor anterior y el nuevo, va primero, y el <code>commit</code> se confirma solo cuando todos los registros de la transacción ya están en disco. La bitácora se escribe todo el tiempo, no solo con los respaldos."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué mide el RTO?",
+     "ops": [
+      "La cantidad máxima de datos que se acepta perder, medida en tiempo",
+      "El tiempo que tarda en ejecutarse el respaldo completo de cada semana",
+      "La frecuencia con la que el equipo prueba la restauración de respaldos",
+      "El tiempo máximo aceptable para volver a dar servicio después de una falla"
+     ],
+     "ok": 3,
+     "r": "El RTO es el objetivo de tiempo de recuperación: cuánto puede estar caído el servicio. La pérdida máxima de datos es el RPO. El tiempo de hacer un respaldo y la frecuencia de las pruebas influyen, pero no son el RTO."
+    },
+    {
+     "nv": "I",
+     "q": "¿Por qué una consulta parametrizada evita la inyección SQL?",
+     "ops": [
+      "Porque el valor viaja separado del texto SQL y el motor nunca lo interpreta como código",
+      "Porque elimina del valor las comillas y los guiones antes de enviarlo al servidor",
+      "Porque cifra el valor antes de enviarlo y el atacante no puede leer la consulta",
+      "Porque solo permite enviar valores numéricos en los parámetros de la consulta"
+     ],
+     "ok": 0,
+     "r": "La estructura de la consulta se fija antes de recibir los datos; después el valor solo puede ser un valor, traiga las comillas que traiga. No se borran caracteres (un apellido como O'Brien se guarda bien), no se trata de cifrado y los parámetros aceptan cualquier tipo."
+    },
+    {
+     "nv": "I",
+     "q": "¿Para qué sirve un punto de control (checkpoint) en la bitácora?",
+     "ops": [
+      "Para marcar en la bitácora el final de cada una de las transacciones confirmadas",
+      "Para acotar la recuperación: lo confirmado antes del punto de control ya está en disco",
+      "Para guardar una copia completa de la base que permita recuperar fallas de disco",
+      "Para bloquear las transacciones nuevas hasta que termine el respaldo de la noche"
+     ],
+     "ok": 1,
+     "r": "Al hacer el punto de control, el motor baja a disco las páginas modificadas y anota las transacciones activas; al recuperar ya no revisa lo anterior. El final de una transacción lo marca su <code>commit</code>, una copia completa es un respaldo y el punto de control no depende de los respaldos."
+    },
+    {
+     "nv": "A",
+     "q": "Un empleado ejecutó por error <code>DROP TABLE factura</code> a las 11:42. Hay un respaldo completo de las 02:00 y la bitácora binaria está activa. ¿Cómo recuperas sin perder las facturas de la mañana?",
+     "ops": [
+      "Restauras el completo de las 02:00 y das por perdidas las facturas de la mañana",
+      "Reaplicas todo el binlog, incluido el <code>DROP</code>, sobre la base que está en servicio",
+      "Restauras el completo y reaplicas el binlog desde las 02:00 hasta justo antes del <code>DROP</code>",
+      "Haces <code>ROLLBACK</code> del <code>DROP TABLE</code> desde otra sesión con privilegios de administrador"
+     ],
+     "ok": 2,
+     "r": "Es una recuperación hasta un punto en el tiempo: con <code>mysqlbinlog --stop-datetime</code> (o la posición del evento) se reaplican los cambios de 02:00 a 11:42 y se omite el <code>DROP</code>. Restaurar solo el completo pierde la mañana, reaplicar el <code>DROP</code> vuelve a borrar la tabla y <code>DROP TABLE</code> hace un <code>COMMIT</code> implícito: no se puede revertir con <code>ROLLBACK</code>."
+    }
+   ]
+  },
+  {
+   "titulo": "Índices y optimización de consultas",
+   "intro": "Cómo encuentra el motor las filas sin leer toda la tabla y cómo escoge el plan de ejecución: árbol B+, índices hash, agrupados y no agrupados, compuestos con la regla del prefijo izquierdo, selectividad, EXPLAIN, reglas heurísticas, desnormalización y particionamiento.",
+   "conceptos": [
+    {
+     "n": "Índices, árbol B+ e índices hash",
+     "e": [
+      "Un <b>índice</b> es una estructura auxiliar que lleva de un valor de la clave a las filas que lo tienen, como el índice alfabético de un libro. Acelera las búsquedas, pero ocupa espacio y vuelve más lentas las escrituras, porque cada <code>INSERT</code>, <code>UPDATE</code> o <code>DELETE</code> también lo actualiza. El <b>árbol B+</b> es el índice estándar de los motores relacionales: un árbol balanceado de muchas ramas en el que todas las hojas están a la misma profundidad; los nodos internos solo guían con claves y punteros, y las hojas tienen todas las claves con el puntero a su fila (o la fila misma) y están enlazadas en orden. El <b>fan-out</b> (orden) es el número máximo de hijos de un nodo interno, y todo nodo menos la raíz va al menos medio lleno. Con fan-out de cientos, la altura crece con el logaritmo del número de filas: millones de filas se encuentran leyendo 3 o 4 nodos, y como las hojas están enlazadas, el árbol sirve también para rangos (<code>BETWEEN</code>, <code>&gt;</code>, <code>LIKE 'abc%'</code>) y para <code>ORDER BY</code>.",
+      "Un <b>índice hash</b> aplica una función hash a la clave para ir directo a su cubeta: resuelve <code>=</code> en tiempo casi constante, pero no sirve para rangos, ordenamientos ni prefijos, porque valores vecinos quedan en cubetas lejanas. En MySQL, InnoDB usa árboles B+ (la documentación los llama BTREE) y por dentro arma un índice hash adaptativo; el motor MEMORY admite <code>USING HASH</code>. Para la altura de un árbol B+ lleno con bloques de B bytes, claves de k bytes y punteros de p bytes: un nodo interno con n punteros y n − 1 claves cabe si n·p + (n − 1)·k ≤ B; una hoja con m pares (clave, puntero a fila) y el puntero a la hoja siguiente cabe si m·(k + p) + p ≤ B; se necesitan ⌈N/m⌉ hojas y cada nivel de arriba divide entre n."
+     ],
+     "u": [
+      "En toda tabla con búsquedas frecuentes: llaves primarias y foráneas, el DPI o el NIT de un cliente, el número de factura, las fechas de los reportes.",
+      "Sin índice, buscar una fila entre millones obliga a leer la tabla completa; con un árbol B+ bastan 3 o 4 lecturas de nodo.",
+      "Árbol B+ para casi todo, incluidos rangos y ordenamientos; hash solo para igualdades exactas, sobre todo en estructuras en memoria.",
+      "Crea el índice sobre las columnas más frecuentes del <code>WHERE</code>, del <code>JOIN</code> y del <code>ORDER BY</code> con <code>CREATE INDEX nombre ON tabla (columnas)</code> y confirma con <code>EXPLAIN</code> que el motor lo usa."
+     ],
+     "f": "n=\\left\\lfloor\\frac{B+k}{k+p}\\right\\rfloor\\qquad m=\\left\\lfloor\\frac{B-p}{k+p}\\right\\rfloor\\qquad h=1+\\left\\lceil\\log_{n}\\left\\lceil\\frac{N}{m}\\right\\rceil\\right\\rceil"
+    },
+    {
+     "n": "Índices agrupados, secundarios, compuestos y selectividad",
+     "e": [
+      "En un índice <b>agrupado</b> (clustered) las filas de la tabla se guardan físicamente en el orden de la clave: solo puede haber uno por tabla. En InnoDB la llave primaria es el índice agrupado (las hojas del árbol B+ contienen las filas completas); sin llave primaria, InnoDB usa el primer índice <code>UNIQUE</code> con columnas <code>NOT NULL</code> o crea una clave oculta. Un índice <b>no agrupado</b> o secundario es una estructura aparte cuyas hojas guardan la clave y un puntero a la fila; en InnoDB ese puntero es el valor de la llave primaria, así que buscar por un secundario recorre dos árboles, salvo que el índice sea <b>cubriente</b>: que contenga todas las columnas que pide la consulta (<code>EXPLAIN</code> muestra <code>Using index</code>). Por eso conviene una llave primaria corta y creciente (<code>INT AUTO_INCREMENT</code>, no un UUID aleatorio).",
+      "Un índice <b>compuesto</b> sobre (a, b, c) ordena por a, luego por b dentro de cada a y luego por c. Por la <b>regla del prefijo izquierdo</b> sirve para condiciones sobre a; sobre a y b; o sobre a, b y c, pero no para b sola ni para c sola; y después de una condición de rango (<code>&gt;</code>, <code>BETWEEN</code>, <code>LIKE 'x%'</code>) las columnas siguientes ya no sirven para buscar. Por eso van primero las columnas comparadas con <code>=</code> y al final la de rango. La <b>selectividad</b> de una columna es el número de valores distintos entre el número de filas: cerca de 1 (DPI, correo) el índice es muy útil; cerca de 0 (sexo, activo o inactivo) casi no ayuda, porque cada valor trae una gran parte de la tabla y el optimizador prefiere recorrerla. Ojo: algunos textos llaman selectividad a la fracción de filas que cumple una condición (1/d para una igualdad sobre d valores distintos), y ahí lo bueno es un valor pequeño. Un índice tampoco se usa si la columna va dentro de una función (<code>WHERE YEAR(fecha) = 2026</code>) o si el <code>LIKE</code> empieza con comodín (<code>'%ez'</code>)."
+     ],
+     "u": [
+      "En el diseño físico de cualquier base: la llave primaria de InnoDB, los índices de búsqueda de un sistema de citas o de facturación y la revisión de consultas lentas.",
+      "El orden de las columnas de un índice compuesto decide si la consulta lo aprovecha completo, a medias o nada.",
+      "Cuando varias consultas filtran por la misma combinación de columnas, cuando una consulta frecuente puede quedar cubierta por un índice y al decidir si una columna merece índice.",
+      "Pon primero las columnas de igualdad y al final la de rango u orden, agrega columnas para cubrir la consulta si vale la pena y no indexes sola una columna de baja selectividad."
+     ],
+     "f": "\\text{selectividad}=\\frac{\\text{valores distintos}}{\\text{filas}}"
+    },
+    {
+     "n": "Optimización: EXPLAIN, reglas heurísticas, desnormalización y particionamiento",
+     "e": [
+      "Una consulta pasa por análisis sintáctico, traducción a un árbol de álgebra relacional, optimización y ejecución. La <b>optimización heurística</b> reescribe el árbol con reglas: aplicar las selecciones lo antes posible (bajarlas hacia las hojas), proyectar temprano solo las columnas necesarias, ejecutar primero las selecciones y reuniones más restrictivas y convertir un producto cartesiano seguido de una selección en una reunión. La <b>optimización por costo</b> compara planes con estadísticas (número de filas, valores distintos, histogramas) y elige el de menor costo estimado de E/S y CPU. En MySQL, <code>EXPLAIN</code> muestra el plan elegido: <code>type</code> (de mejor a peor: <code>const</code>, <code>eq_ref</code>, <code>ref</code>, <code>range</code>, <code>index</code>, <code>ALL</code>), <code>possible_keys</code>, <code>key</code> (el índice usado), <code>rows</code> (filas estimadas) y <code>Extra</code> (<code>Using index</code>, <code>Using filesort</code>, <code>Using temporary</code>); <code>EXPLAIN ANALYZE</code> además la ejecuta y da tiempos reales.",
+      "La <b>desnormalización</b> introduce redundancia a propósito, como guardar el nombre de la categoría en cada producto o el total en la factura, para ahorrar reuniones en lecturas muy frecuentes; a cambio hay que mantener sincronizadas las copias, desde la aplicación o con disparadores. El <b>particionamiento</b> divide una tabla grande en partes dentro del mismo servidor: <code>RANGE</code> (por año), <code>LIST</code> (por región) o <code>HASH</code> y <code>KEY</code> (para repartir). El optimizador lee solo las particiones que pueden tener filas que cumplen la condición (poda de particiones), y borrar datos viejos se reduce a <code>ALTER TABLE … DROP PARTITION</code>. En MySQL toda llave única, incluida la primaria, debe contener las columnas de particionamiento, y una tabla particionada no admite llaves foráneas."
+     ],
+     "u": [
+      "En la revisión de consultas lentas (el slow query log de MySQL), en los reportes de fin de mes y en tablas de bitácora o de ventas que crecen sin parar.",
+      "La misma consulta puede tardar milisegundos o minutos según el plan; entender el plan es la diferencia entre agregar el índice correcto y adivinar.",
+      "<code>EXPLAIN</code> antes de dar por buena una consulta importante; desnormalizar solo cuando una reunión frecuente es el cuello de botella medido; particionar tablas muy grandes con un criterio natural de corte, como la fecha.",
+      "Ejecuta <code>EXPLAIN</code>, busca <code>ALL</code> y valores altos de <code>rows</code>, revisa si la condición permite usar un índice, crea o reordena índices y vuelve a medir con <code>EXPLAIN ANALYZE</code>."
+     ],
+     "tabla": "<table><tr><th><code>type</code></th><th>Significa</th><th>Ejemplo</th></tr><tr><td><code>const</code></td><td>a lo sumo una fila, por llave primaria o única</td><td><code>WHERE id = 5</code></td></tr><tr><td><code>eq_ref</code></td><td>una fila de esta tabla por cada fila de la anterior en una reunión</td><td>reunión por llave primaria</td></tr><tr><td><code>ref</code></td><td>varias filas con el mismo valor de un índice no único</td><td><code>WHERE medico_id = 7</code></td></tr><tr><td><code>range</code></td><td>un rango del índice</td><td><code>WHERE fecha BETWEEN … AND …</code></td></tr><tr><td><code>index</code></td><td>recorre el índice completo</td><td>contar filas leyendo solo un índice</td></tr><tr><td><code>ALL</code></td><td>recorre la tabla completa</td><td>columna sin índice o dentro de una función</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "La tabla <code>cliente</code> de un banco tiene 50,000 filas. Calcula la selectividad de cada columna y decide si conviene indexarla para búsquedas por igualdad:<table><tr><th>columna</th><th>valores distintos</th></tr><tr><td><code>dpi</code></td><td>50,000</td></tr><tr><td><code>municipio</code></td><td>340</td></tr><tr><td><code>estado</code> (<code>activo</code> o <code>inactivo</code>)</td><td>2</td></tr></table>",
+     "pasos": [
+      "<b>Fórmula.</b> Selectividad = valores distintos / filas; las filas esperadas por valor son filas / valores distintos.",
+      "<b>Cálculo.</b> <code>dpi</code>: 50,000 / 50,000 = 1, una fila por valor. <code>municipio</code>: 340 / 50,000 = 0.0068, unas 147 filas por valor (0.29 % de la tabla). <code>estado</code>: 2 / 50,000 = 0.00004, 25,000 filas por valor (la mitad de la tabla).",
+      "<b>Decisión.</b> <code>dpi</code>: sí, y como índice <code>UNIQUE</code>, que además impide duplicados. <code>municipio</code>: sí, si se busca seguido, porque cada valor trae una fracción pequeña. <code>estado</code>: no, por sí sola: traer media tabla a través de un índice cuesta más que recorrerla.",
+      "<b>Matiz.</b> Una columna poco selectiva sí puede ir en un índice compuesto, detrás de otra selectiva, o servir si se busca el valor raro (por ejemplo, 50 cuentas bloqueadas entre 50,000)."
+     ],
+     "r": "<table><tr><th>columna</th><th>selectividad</th><th>filas por valor</th><th>¿índice?</th></tr><tr><td>dpi</td><td>1</td><td>1</td><td>sí, como <code>UNIQUE</code></td></tr><tr><td>municipio</td><td>0.0068</td><td>147</td><td>sí, si se busca seguido</td></tr><tr><td>estado</td><td>0.00004</td><td>25,000</td><td>no, por sí sola</td></tr></table>",
+     "fin": "Decidir con números qué columnas merecen índice, la pregunta de diseño físico más frecuente."
+    },
+    {
+     "nv": "I",
+     "q": "Un índice de árbol B+ sobre una llave de 8 bytes vive en bloques de 4,096 bytes, y los punteros a bloque y a fila miden 8 bytes. a) ¿Cuál es el fan-out de un nodo interno y cuántas entradas caben en una hoja? b) Con los nodos llenos, ¿qué altura tiene el árbol para 1,000,000 de filas y cuántas lecturas cuesta encontrar una? c) ¿Cuántas filas caben como máximo con esa altura?",
+     "pasos": [
+      "<b>Nodo interno.</b> n punteros y n − 1 claves: 8n + 8(n − 1) ≤ 4,096, es decir 16n ≤ 4,104 y n ≤ 256.5. El fan-out es n = 256.",
+      "<b>Hoja.</b> m pares (clave, puntero a fila) más el puntero a la hoja siguiente: 16m + 8 ≤ 4,096, m ≤ 255.5. Caben m = 255 entradas.",
+      "<b>Niveles.</b> Hojas: ⌈1,000,000 / 255⌉ = 3,922. Nivel de arriba: ⌈3,922 / 256⌉ = 16 nodos. Arriba de esos: ⌈16 / 256⌉ = 1, la raíz. Altura: 3 niveles.",
+      "<b>Costo.</b> Bajar de la raíz a la hoja lee 3 bloques y traer la fila, 1 más: 4 lecturas, frente a leer todos los bloques de la tabla en un recorrido completo.",
+      "<b>Capacidad.</b> Con 3 niveles llenos caben 256 × 256 × 255 = 16,711,680 filas. Con nodos a medio llenar caben menos, pero la altura crece muy despacio."
+     ],
+     "r": "a) Fan-out n = 256 y m = 255 entradas por hoja. b) 3 niveles; 4 lecturas por búsqueda. c) 16,711,680 filas.",
+     "fin": "Calcular fan-out y altura de un árbol B+ como en el parcial, y ver por qué una búsqueda con índice cuesta tan poco."
+    },
+    {
+     "nv": "I",
+     "q": "La tabla <code>cita</code> de una clínica tiene el índice <code>CREATE INDEX idx_cita ON cita (medico_id, fecha, estado);</code>. ¿Cuáles de estas consultas pueden usarlo para buscar, y con cuántas columnas?<pre><code>-- a)\nSELECT * FROM cita WHERE medico_id = 7 AND fecha = '2026-11-30';\n-- b)\nSELECT * FROM cita WHERE fecha = '2026-11-30';\n-- c)\nSELECT * FROM cita WHERE medico_id = 7 AND estado = 'pendiente';\n-- d)\nSELECT * FROM cita WHERE medico_id = 7 AND fecha &gt;= '2026-11-01'\n                     AND estado = 'pendiente';\n-- e)\nSELECT * FROM cita WHERE medico_id = 7 ORDER BY fecha;</code></pre>",
+     "pasos": [
+      "<b>a) medico_id y fecha.</b> Es el prefijo izquierdo de dos columnas, las dos con igualdad: el índice se usa con ambas.",
+      "<b>b) Solo fecha.</b> Falta <code>medico_id</code>, la primera columna: las fechas están ordenadas solo dentro de cada médico y no forman un rango continuo. No se usa para buscar: recorrido completo.",
+      "<b>c) medico_id y estado.</b> Solo se usa <code>medico_id</code>: <code>estado</code> está después de <code>fecha</code>, que no aparece en la condición. El estado se filtra después, sobre las citas del médico.",
+      "<b>d) Rango en fecha.</b> Se usan <code>medico_id</code> (igualdad) y <code>fecha</code> (rango); <code>estado</code> ya no sirve para buscar porque va después de un rango, solo para filtrar.",
+      "<b>e) Orden.</b> Se usa <code>medico_id</code> y, como dentro de cada médico el índice ya está ordenado por fecha, el <code>ORDER BY</code> no necesita ordenar aparte (sin <code>Using filesort</code>)."
+     ],
+     "r": "a) Sí, 2 columnas. b) No. c) Sí, 1 columna. d) Sí, 2 columnas (la segunda como rango). e) Sí, 1 columna, y además evita el ordenamiento.",
+     "fin": "Aplicar la regla del prefijo izquierdo, que decide si un índice compuesto se usa completo, a medias o nada."
+    },
+    {
+     "nv": "A",
+     "q": "Sistema de asignaciones de la universidad: <code>estudiante</code> tiene 10,000 filas (2,000 de la carrera Sistemas), <code>curso</code> 200 filas y <code>asignacion</code> 60,000 filas (12,000 de 2026; de esas, 300 son de Bases de Datos II, y 240 de esas 300 son de estudiantes de Sistemas). Aplica las reglas heurísticas a la consulta y compara el tamaño de los resultados intermedios con el plan ingenuo.<pre><code>SELECT e.nombre\nFROM estudiante e, asignacion a, curso c\nWHERE e.carne = a.carne\n  AND a.codigo = c.codigo\n  AND c.nombre = 'Bases de Datos II'\n  AND a.anio = 2026\n  AND e.carrera = 'Sistemas';</code></pre>",
+     "pasos": [
+      "<b>Árbol inicial.</b> La traducción directa del <code>FROM</code> con comas es el producto cartesiano de las tres tablas seguido de una selección: 10,000 × 60,000 × 200 = 120,000,000,000 tuplas antes de filtrar.",
+      "<b>Bajar las selecciones.</b> Cada condición va junto a su tabla: σ nombre = 'Bases de Datos II' (curso) da 1 fila; σ anio = 2026 (asignacion), 12,000; σ carrera = 'Sistemas' (estudiante), 2,000.",
+      "<b>Productos a reuniones, lo restrictivo primero.</b> Las igualdades entre tablas convierten los productos en reuniones. Primero el curso filtrado (1 fila) con las asignaciones de 2026: 300 filas; después, con los 2,000 estudiantes de Sistemas: 240.",
+      "<b>Bajar las proyecciones.</b> De cada tabla se conservan solo las columnas que se usan: <code>codigo</code> de curso; <code>carne</code> y <code>codigo</code> de asignacion; <code>carne</code> y <code>nombre</code> de estudiante. Las tuplas intermedias son más angostas.",
+      "<b>Comparación.</b> El resultado intermedio más grande baja de 1.2 × 10<sup>11</sup> tuplas a 12,000. Con un índice sobre <code>asignacion (codigo, anio)</code> se llega directo a las 300 filas sin pasar por las 12,000."
+     ],
+     "r": "Plan optimizado: (σ curso ⋈ σ asignacion) ⋈ σ estudiante, con resultados intermedios de 1, 12,000, 300, 2,000 y 240 filas, contra 120,000,000,000 tuplas del plan ingenuo. Resultado: 240 nombres.",
+     "fin": "Aplicar a mano las reglas heurísticas (selecciones y proyecciones abajo, lo más restrictivo primero, productos convertidos en reuniones) y medir su efecto."
+    },
+    {
+     "nv": "B",
+     "q": "Un árbol B+ tiene fan-out 100 y cada hoja guarda 100 entradas. Con los nodos llenos, ¿cuántos niveles necesita para 1,000,000 de filas? ¿Y para 50,000,000?",
+     "r": "1,000,000: 10,000 hojas → 100 nodos → 1 raíz: 3 niveles. 50,000,000: 500,000 hojas → 5,000 → 50 → 1: 4 niveles. Multiplicar las filas por 50 solo agregó un nivel."
+    },
+    {
+     "nv": "I",
+     "q": "La tabla <code>paciente</code> tiene índices sobre <code>fecha_nac</code> y sobre <code>apellido</code>. ¿Cuáles de estas condiciones pueden usar un índice para buscar? a) <code>WHERE YEAR(fecha_nac) = 1990</code>; b) <code>WHERE fecha_nac &gt;= '1990-01-01' AND fecha_nac &lt; '1991-01-01'</code>; c) <code>WHERE apellido LIKE 'Gar%'</code>; d) <code>WHERE apellido LIKE '%ez'</code>. Reescribe la que se pueda mejorar.",
+     "r": "a) No: la columna está dentro de una función y el índice guarda fechas, no años. b) Sí, como rango. c) Sí: un prefijo fijo es un rango (desde «Gar» hasta antes de «Gas»). d) No: con el comodín al inicio no hay por dónde entrar al orden del índice. La a) se reescribe como la b), que devuelve las mismas filas y sí usa el índice. Desde MySQL 8.0.13 también se puede indexar la expresión: <code>CREATE INDEX ix_anio ON paciente ((YEAR(fecha_nac)));</code>."
+    },
+    {
+     "nv": "A",
+     "q": "Una consulta frecuente del sistema de facturación es:<pre><code>SELECT fecha, total\nFROM factura\nWHERE cliente_id = 25\n  AND estado = 'pendiente'\n  AND fecha &gt;= '2026-11-01'\nORDER BY fecha;</code></pre>Propón el mejor índice y explica qué gana frente a un índice sobre <code>(fecha, cliente_id, estado)</code>.",
+     "r": "<code>CREATE INDEX ix_fact ON factura (cliente_id, estado, fecha, total);</code> Las dos igualdades primero y el rango al final permiten bajar directo a la primera factura pendiente del cliente 25 desde el 1 de noviembre y recorrer en orden de fecha, así que el <code>ORDER BY</code> no ordena aparte; agregar <code>total</code> lo vuelve cubriente y no se toca la tabla. Con <code>(fecha, cliente_id, estado)</code> el rango va primero: el índice solo acota por fecha, revisa las facturas de noviembre de todos los clientes y deja <code>cliente_id</code> y <code>estado</code> como simples filtros."
+    },
+    {
+     "nv": "B",
+     "q": "¿Por qué un árbol B+ sirve mejor que un índice hash para <code>WHERE precio BETWEEN 50 AND 100</code>?",
+     "ops": [
+      "El índice hash solo funciona con columnas de texto y no acepta números decimales",
+      "El árbol B+ guarda una copia completa de la tabla en cada uno de sus nodos internos",
+      "El índice hash ocupa siempre más espacio en disco que la tabla que está indexando",
+      "Sus hojas están ordenadas y enlazadas: baja una vez al inicio del rango y lo recorre"
+     ],
+     "ok": 3,
+     "r": "Una función hash dispersa los valores: sirve para <code>=</code>, pero no dice dónde están los precios entre 50 y 100, así que el rango obliga a revisar todo. En el árbol B+ las claves están en orden y las hojas, enlazadas. El hash acepta cualquier tipo, el B+ no copia la tabla en sus nodos internos y el espacio no es la razón."
+    },
+    {
+     "nv": "B",
+     "q": "Para evitar una reunión en un reporte muy usado se guarda el nombre de la categoría en cada fila de <code>producto</code>. ¿Cuál es el costo principal de esa desnormalización?",
+     "ops": [
+      "Hay que mantener sincronizadas las copias y aparecen anomalías de actualización",
+      "Las consultas de productos necesitan más reuniones que en el modelo normalizado",
+      "La tabla de productos deja de admitir llaves foráneas hacia la tabla de categorías",
+      "El motor ya no puede crear índices sobre la tabla de productos desnormalizada"
+     ],
+     "ok": 0,
+     "r": "Si una categoría cambia de nombre hay que actualizar todos sus productos o quedarán datos contradictorios; a cambio, el reporte se ahorra una reunión. Desnormalizar quita reuniones, no las agrega, y no impide llaves foráneas ni índices."
+    },
+    {
+     "nv": "I",
+     "q": "En el <code>EXPLAIN</code> de MySQL, la columna <code>type</code> de una tabla dice <code>ALL</code>. ¿Qué significa?",
+     "ops": [
+      "El motor combinó todos los índices de la tabla para resolver la condición",
+      "La consulta devuelve todas las filas de la tabla, sin filtrar ninguna",
+      "Recorrido completo de la tabla: el motor no usa ningún índice para buscar",
+      "El resultado completo ya estaba guardado en la caché de consultas"
+     ],
+     "ok": 2,
+     "r": "<code>ALL</code> es el peor valor de <code>type</code>: lee todas las filas y filtra después con el <code>WHERE</code>; suele indicar que falta un índice o que la condición no puede usarlo. Combinar índices aparece como <code>index_merge</code>, un recorrido completo puede terminar devolviendo pocas filas y MySQL 8 ya no tiene caché de consultas."
+    },
+    {
+     "nv": "I",
+     "q": "La tabla <code>bitacora</code> tiene 2,000 millones de filas y se particiona por <code>RANGE</code> sobre el año. ¿Qué se gana?",
+     "ops": [
+      "Las consultas por fecha leen solo sus particiones y borrar un año es un <code>DROP PARTITION</code>",
+      "Cada partición se guarda en un servidor distinto y la tabla queda distribuida",
+      "Las consultas sin filtro de fecha leen menos filas que con la tabla sin particionar",
+      "La tabla ya no necesita llave primaria, porque cada partición se identifica sola"
+     ],
+     "ok": 0,
+     "r": "Es la poda de particiones: con <code>WHERE fecha &gt;= '2026-01-01'</code> el motor descarta las de años anteriores, y quitar un año entero es casi instantáneo comparado con un <code>DELETE</code> masivo. En MySQL las particiones están en el mismo servidor (repartir entre servidores es fragmentar), una consulta sin filtro de fecha lee todas y la llave primaria debe incluir la columna de particionamiento."
+    },
+    {
+     "nv": "A",
+     "q": "En InnoDB, <code>cliente</code> tiene llave primaria <code>id</code> y un índice secundario sobre <code>correo</code>. <code>SELECT id, correo FROM cliente WHERE correo = ?</code> no lee la tabla, pero <code>SELECT * … WHERE correo = ?</code> sí. ¿Por qué?",
+     "ops": [
+      "El secundario copia todas las columnas, pero solo las usa en consultas muy cortas",
+      "Las hojas del secundario guardan el correo y la llave primaria: eso cubre la primera",
+      "La primera consulta usa la caché de consultas y la segunda tiene que ir al disco",
+      "<code>SELECT *</code> obliga al motor a ignorar los índices y a recorrer la tabla completa"
+     ],
+     "ok": 1,
+     "r": "En InnoDB la tabla es el índice agrupado por la llave primaria, y cada hoja de un secundario guarda su columna más la llave primaria. Si la consulta solo pide esas columnas, el índice la cubre (<code>EXPLAIN</code> dice <code>Using index</code>); con <code>SELECT *</code> hay que buscar cada <code>id</code> en el índice agrupado para traer el resto. El secundario no copia las demás columnas, MySQL 8 no tiene caché de consultas y <code>SELECT *</code> sí usa el índice para encontrar las filas."
+    }
+   ]
+  },
+  {
+   "titulo": "Bases distribuidas, NoSQL y analíticas",
+   "intro": "Bases que ya no caben en un servidor ni en el modelo relacional, y bases hechas para analizar: fragmentación horizontal y vertical, replicación, confirmación en dos fases, teorema CAP, familias NoSQL y BASE, OLTP contra OLAP, almacén de datos, esquemas estrella y copo de nieve, ETL y operaciones de cubo.",
+   "conceptos": [
+    {
+     "n": "Bases distribuidas: fragmentación, replicación y confirmación en dos fases",
+     "e": [
+      "Una <b>base de datos distribuida</b> guarda sus datos en varios sitios conectados por red y se presenta al usuario como una sola base, idealmente con transparencia de ubicación, de fragmentación y de replicación. La <b>fragmentación horizontal</b> reparte las filas con una selección (σ región = 'Occidente'), por ejemplo los clientes de cada sede en su servidor, y se reconstruye con <code>UNION</code>. La <b>vertical</b> reparte las columnas con una proyección (π), y cada fragmento repite la llave primaria para reconstruir con una reunión; las dos se pueden combinar (fragmentación mixta). Una fragmentación es correcta si es <b>completa</b> (cada dato está en algún fragmento), <b>reconstruible</b> y <b>disjunta</b> (en la vertical solo se repite la llave). La <b>replicación</b> guarda copias del mismo dato en varios sitios: mejora la disponibilidad y la velocidad de lectura, pero cada escritura debe propagarse. Es <b>síncrona</b> si todas las copias se actualizan antes de confirmar (consistente y más lenta) y <b>asíncrona</b> si el primario confirma y las réplicas se ponen al día después (rápida, pero una réplica puede dar datos atrasados); la replicación clásica de MySQL es asíncrona.",
+      "Una transacción que modifica datos en varios sitios necesita que todos confirmen o todos aborten. La <b>confirmación en dos fases</b> (2PC) lo logra con un coordinador. En la <b>fase 1</b> (preparación o votación) el coordinador envía <code>PREPARE</code>; cada participante deja sus cambios y un registro <code>&lt;ready T&gt;</code> en su bitácora y vota «listo», o vota «no» si no puede confirmar. En la <b>fase 2</b> (decisión), si todos votaron «listo», el coordinador escribe <code>&lt;commit T&gt;</code> y envía <code>COMMIT</code>; si alguno votó «no» o no respondió, escribe <code>&lt;abort T&gt;</code> y envía <code>ABORT</code>, y los participantes obedecen. Su debilidad es el <b>bloqueo</b>: un participante que ya votó «listo» no puede decidir solo, y si el coordinador cae antes de comunicar la decisión, espera con sus bloqueos tomados hasta que se recupere. MySQL lo ofrece con las transacciones XA (<code>XA START</code>, <code>XA PREPARE</code>, <code>XA COMMIT</code>)."
+     ],
+     "u": [
+      "Empresas con sedes en varios departamentos, bancos con centros de datos de respaldo y sistemas que reparten la carga entre réplicas de lectura.",
+      "Acercar los datos a quien los usa reduce la latencia y la carga de un solo servidor, y las réplicas permiten seguir operando si un sitio cae.",
+      "Fragmentación cuando cada sitio usa sobre todo sus propios datos; replicación cuando se lee mucho más de lo que se escribe o se necesita alta disponibilidad; 2PC cuando una transacción debe ser atómica en varios sitios.",
+      "Define los fragmentos con su condición, comprueba completitud, reconstrucción y disjunción, decide qué tablas replicar y cómo, y usa 2PC (XA) para las transacciones que cruzan sitios."
+     ],
+     "tabla": "<table><tr><th></th><th>Horizontal</th><th>Vertical</th></tr><tr><td>Reparte</td><td>filas</td><td>columnas</td></tr><tr><td>Se define con</td><td>una selección σ</td><td>una proyección π que incluye la llave</td></tr><tr><td>Se reconstruye con</td><td><code>UNION</code> de los fragmentos</td><td>una reunión por la llave primaria</td></tr><tr><td>Ejemplo</td><td>los clientes de cada sede en su servidor</td><td>los datos de crédito aparte de los de contacto</td></tr></table>"
+    },
+    {
+     "n": "Teorema CAP, NoSQL y BASE",
+     "e": [
+      "El <b>teorema CAP</b> (Brewer, 2000; demostrado por Gilbert y Lynch en 2002) dice que un sistema distribuido con datos replicados no puede garantizar a la vez <b>consistencia</b> (C: toda lectura ve la última escritura confirmada o recibe un error), <b>disponibilidad</b> (A: todo nodo que funciona responde a cada petición) y <b>tolerancia a particiones</b> (P: el sistema sigue operando aunque la red se divida). Como las particiones de red ocurren, la decisión real es qué sacrificar mientras dura una: un sistema <b>CP</b> rechaza operaciones en el lado que no puede garantizar la última versión (por ejemplo, el que no tiene mayoría); un sistema <b>AP</b> responde en ambos lados y reconcilia después. Sin partición se pueden tener C y A. Con N réplicas, si cada escritura se confirma en W y cada lectura consulta R, y \\(R + W > N\\), toda lectura toca al menos una réplica con la última escritura.",
+      "<b>NoSQL</b> agrupa motores no relacionales pensados para escalar horizontalmente y para datos sin un esquema fijo. Hay cuatro familias: <b>clave-valor</b>, <b>documentos</b>, <b>columnas anchas</b> (familias de columnas) y <b>grafos</b>. Muchos siguen el modelo <b>BASE</b> en lugar de ACID: básicamente disponible, estado blando (puede cambiar mientras se propagan las réplicas) y <b>consistencia eventual</b> (si dejan de llegar escrituras, todas las réplicas terminan iguales). No reemplazan al modelo relacional: lo complementan donde sus garantías estrictas o su esquema fijo estorban."
+     ],
+     "u": [
+      "Plataformas con millones de usuarios, aplicaciones móviles que siguen funcionando sin conexión, catálogos de comercio electrónico, sensores y redes sociales.",
+      "Un solo servidor relacional tiene un techo; repartir los datos obliga a decidir entre consistencia y disponibilidad cuando la red falla.",
+      "CP para saldos, inventarios y todo lo que no admite dos versiones; AP para carritos, contadores de visitas o perfiles, donde una versión atrasada unos segundos no hace daño.",
+      "Escoge la familia según cómo se consultan los datos (por clave, por documento, por rangos de tiempo o por relaciones) y ajusta W y R según la consistencia que necesitas."
+     ],
+     "f": "R+W>N\\ \\Rightarrow\\ \\text{toda lectura ve la última escritura}",
+     "tabla": "<table><tr><th>Familia</th><th>Modelo</th><th>Ejemplos</th><th>Uso típico</th></tr><tr><td>Clave-valor</td><td>un valor opaco por cada clave</td><td>Redis, DynamoDB</td><td>sesiones, caché, carrito de compras</td></tr><tr><td>Documentos</td><td>documentos JSON con estructuras anidadas</td><td>MongoDB, CouchDB</td><td>catálogo de productos, perfiles</td></tr><tr><td>Columnas anchas</td><td>filas con familias de columnas dinámicas</td><td>Cassandra, HBase</td><td>series de tiempo, IoT, bitácoras masivas</td></tr><tr><td>Grafos</td><td>nodos y relaciones con propiedades</td><td>Neo4j</td><td>redes sociales, recomendaciones, fraude</td></tr></table>"
+    },
+    {
+     "n": "OLTP, OLAP, almacén de datos y modelo dimensional",
+     "e": [
+      "Los sistemas <b>OLTP</b> (procesamiento de transacciones en línea) atienden la operación diaria: muchas transacciones cortas que leen y escriben pocas filas, datos actuales, esquemas normalizados y respuesta en milisegundos (la caja de un supermercado, la banca en línea). Los sistemas <b>OLAP</b> (procesamiento analítico en línea) apoyan decisiones: pocas consultas, largas, que leen y agregan millones de filas de historia, casi sin escrituras y sobre esquemas desnormalizados. Un <b>almacén de datos</b> (data warehouse), según Inmon, es una colección de datos <b>orientada a temas, integrada, variante en el tiempo y no volátil</b> para apoyar la toma de decisiones; un <b>data mart</b> es un subconjunto para un área. Se llena con <b>ETL</b>: extraer de las fuentes (ERP, cajas, hojas de cálculo), transformar (limpiar, unificar códigos y monedas, calcular) y cargar en el almacén, normalmente cada noche.",
+      "El <b>modelo dimensional</b> (Kimball) tiene una <b>tabla de hechos</b> con las medidas numéricas de un proceso a una <b>granularidad</b> declarada (por ejemplo, una fila por producto en cada ticket, con cantidad y monto) y llaves foráneas hacia <b>tablas de dimensiones</b> con el contexto descriptivo (fecha, producto, tienda, cliente), que usan llaves sustitutas enteras. En el <b>esquema estrella</b> las dimensiones están desnormalizadas y cada una se une al hecho con una sola reunión; en el <b>copo de nieve</b> las dimensiones se normalizan en subtablas (producto, categoría, departamento): menos redundancia y más reuniones. Sobre el cubo se hacen <b>roll-up</b> (subir de nivel: de día a mes, de producto a categoría), <b>drill-down</b> (bajar al detalle), <b>slice</b> (fijar una dimensión en un valor: año = 2026), <b>dice</b> (escoger un subcubo con condiciones sobre varias dimensiones) y <b>pivot</b> (rotar los ejes del reporte). MySQL 8 hace roll-up con <code>GROUP BY … WITH ROLLUP</code>."
+     ],
+     "u": [
+      "Inteligencia de negocios en cadenas de tiendas, bancos, aseguradoras y entidades públicas: tableros de ventas, análisis de cartera, reportes de recaudación.",
+      "Las consultas analíticas sobre la base operativa la vuelven lenta para los cajeros y no tienen la historia integrada; el almacén separa las dos cargas.",
+      "Cuando la gerencia necesita comparar periodos, regiones o productos con datos de varias fuentes y el sistema operativo no debe cargar con esas consultas.",
+      "Elige el proceso, declara la granularidad, identifica dimensiones y hechos, arma el esquema estrella y programa el ETL que lo llena cada noche."
+     ],
+     "tabla": "<table><tr><th></th><th>OLTP</th><th>OLAP</th></tr><tr><td>Objetivo</td><td>operar el negocio</td><td>analizar y decidir</td></tr><tr><td>Operaciones</td><td>muchas transacciones cortas de lectura y escritura</td><td>pocas consultas largas, casi solo lectura</td></tr><tr><td>Datos</td><td>actuales y detallados</td><td>históricos, integrados y agregados</td></tr><tr><td>Esquema</td><td>normalizado (3FN)</td><td>dimensional: estrella o copo de nieve</td></tr><tr><td>Usuarios</td><td>cajeros, clientes, aplicaciones</td><td>analistas y gerencia</td></tr><tr><td>Se mide en</td><td>transacciones por segundo</td><td>tiempo de respuesta de las consultas</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Una distribuidora con sedes en la capital (región Central), Quetzaltenango (Occidente) y Petén (Norte) tiene la tabla <code>cliente</code>:<table><tr><th>id</th><th>nombre</th><th>nit</th><th>region</th><th>limite_credito</th></tr><tr><td>1</td><td>Abarrotería La Bendición</td><td>1234567-8</td><td>Central</td><td>15000</td></tr><tr><td>2</td><td>Tienda El Quetzal</td><td>2345678-9</td><td>Occidente</td><td>8000</td></tr><tr><td>3</td><td>Comercial Flores</td><td>3456789-0</td><td>Norte</td><td>5000</td></tr><tr><td>4</td><td>Despensa San José</td><td>4567890-1</td><td>Central</td><td>12000</td></tr><tr><td>5</td><td>Súper Xela</td><td>5678901-2</td><td>Occidente</td><td>20000</td></tr></table>a) Fragmenta la tabla horizontalmente por región y di qué filas van a cada sede. b) El departamento de créditos solo usa el límite de crédito: propón una fragmentación vertical. c) ¿Cómo se reconstruye la tabla en cada caso y qué condiciones debe cumplir la fragmentación?",
+     "pasos": [
+      "<b>Horizontal.</b> Un fragmento por región, cada uno con una selección: F<sub>1</sub> = σ región = 'Central' (clientes 1 y 4, en la capital), F<sub>2</sub> = σ región = 'Occidente' (2 y 5, en Quetzaltenango) y F<sub>3</sub> = σ región = 'Norte' (3, en Petén).",
+      "<b>Vertical.</b> V<sub>1</sub> = π id, nombre, nit, región para ventas y V<sub>2</sub> = π id, limite_credito para créditos. Los dos llevan <code>id</code>, la llave primaria.",
+      "<b>Reconstrucción.</b> Horizontal: F<sub>1</sub> ∪ F<sub>2</sub> ∪ F<sub>3</sub>, en SQL con <code>UNION ALL</code> (los fragmentos no comparten filas). Vertical: V<sub>1</sub> ⋈ V<sub>2</sub> por <code>id</code>.",
+      "<b>Corrección.</b> Completa: toda fila tiene una de las tres regiones y toda columna está en algún fragmento vertical. Reconstruible: las operaciones anteriores devuelven la tabla original. Disjunta: ningún cliente está en dos fragmentos horizontales, y en los verticales solo se repite la llave."
+     ],
+     "r": "Central: 1 y 4; Occidente: 2 y 5; Norte: 3. Vertical: (id, nombre, nit, region) y (id, limite_credito).<pre><code>-- fragmento de Quetzaltenango (igual para Central y Norte)\nCREATE TABLE cliente_occidente AS\n  SELECT * FROM cliente WHERE region = 'Occidente';\n\n-- fragmentos verticales\nCREATE TABLE cliente_ventas AS\n  SELECT id, nombre, nit, region FROM cliente;\nCREATE TABLE cliente_credito AS\n  SELECT id, limite_credito FROM cliente;\n\n-- reconstrucción horizontal\nSELECT * FROM cliente_central\nUNION ALL SELECT * FROM cliente_occidente\nUNION ALL SELECT * FROM cliente_norte;\n\n-- reconstrucción vertical\nSELECT v.id, v.nombre, v.nit, v.region, c.limite_credito\nFROM cliente_ventas v\nJOIN cliente_credito c ON c.id = v.id;</code></pre>",
+     "fin": "Diseñar fragmentos que cada sede consulte sin salir a la red y comprobar que la tabla original se puede rearmar."
+    },
+    {
+     "nv": "I",
+     "q": "Una venta en línea descuenta existencias en la bodega de Mixco (P<sub>1</sub>), registra la factura en la sede central (P<sub>2</sub>) y suma puntos al cliente en el servidor de Xela (P<sub>3</sub>); el coordinador está en la sede central. Describe la confirmación en dos fases y di qué pasa si: a) los tres votan «listo»; b) P<sub>3</sub> vota «no»; c) los tres votan «listo» y el coordinador se cae antes de escribir su decisión; d) igual que c), pero el coordinador alcanzó a escribir <code>&lt;commit T&gt;</code>.",
+     "pasos": [
+      "<b>Fase 1, preparación.</b> El coordinador escribe <code>&lt;prepare T&gt;</code> y envía <code>PREPARE</code>. Cada participante deja sus cambios y un <code>&lt;ready T&gt;</code> en su bitácora, en disco, y responde «listo»; desde ese momento ya no puede abortar por su cuenta.",
+      "<b>a) Todos listos.</b> El coordinador escribe <code>&lt;commit T&gt;</code>, que es el instante en que T queda confirmada, y envía <code>COMMIT</code>; cada participante confirma, libera sus bloqueos y avisa; al final el coordinador anota <code>&lt;end T&gt;</code>.",
+      "<b>b) Un voto «no».</b> Basta uno: el coordinador escribe <code>&lt;abort T&gt;</code> y envía <code>ABORT</code>. P<sub>1</sub> y P<sub>2</sub> deshacen sus cambios; P<sub>3</sub> ya había abortado al votar «no».",
+      "<b>c) Caída antes de decidir.</b> Los participantes votaron «listo» y quedan inciertos: no pueden confirmar (quizá otro votó «no») ni abortar (quizá se decidió confirmar). Esperan con los bloqueos tomados: es el problema de bloqueo de 2PC. Al recuperarse, el coordinador no encuentra <code>&lt;commit T&gt;</code> en su bitácora, decide abortar y lo comunica.",
+      "<b>d) Decisión escrita.</b> Al recuperarse encuentra <code>&lt;commit T&gt;</code> y reenvía <code>COMMIT</code>: los participantes confirman. La bitácora del coordinador es la fuente de la verdad."
+     ],
+     "r": "a) Se confirma en los tres sitios. b) Se aborta en los tres. c) Los participantes quedan bloqueados hasta que vuelve el coordinador, que aborta porque no tiene <code>&lt;commit T&gt;</code>. d) Al volver reenvía <code>COMMIT</code> y todos confirman.",
+     "fin": "Explicar 2PC paso a paso y su punto débil, el bloqueo, que es lo que más se pregunta del tema."
+    },
+    {
+     "nv": "I",
+     "q": "Un servicio de perfiles guarda cada dato en N = 3 réplicas. Una escritura se confirma cuando la aceptan W réplicas y una lectura consulta R réplicas y se queda con la versión más reciente. Para (W, R) = (1, 1), (2, 2), (3, 1) y (1, 3), di si toda lectura ve la última escritura y si escrituras y lecturas siguen funcionando con una réplica caída.",
+     "pasos": [
+      "<b>Regla.</b> Si R + W > N, cualquier grupo de R réplicas comparte al menos una con cualquier grupo de W: la lectura siempre toca una réplica que tiene la última escritura.",
+      "<b>Consistencia.</b> (1, 1) suma 2, que no supera 3: no está garantizada, porque se puede leer justo la réplica que no recibió la escritura. (2, 2), (3, 1) y (1, 3) suman 4 > 3: sí.",
+      "<b>Con una réplica caída.</b> Quedan 2, así que funciona toda operación que pida 2 o menos. (1, 1) y (2, 2): escrituras y lecturas siguen. (3, 1): las escrituras fallan, porque piden las 3. (1, 3): fallan las lecturas.",
+      "<b>Elección.</b> (2, 2), mayoría en ambos lados, es la única que garantiza leer lo último y tolera una réplica caída en todo. Si una partición aísla a una réplica, esa réplica no forma mayoría y rechaza: el sistema se comporta como CP."
+     ],
+     "r": "<table><tr><th>(W, R)</th><th>¿Lee lo último?</th><th>Escribe con 1 caída</th><th>Lee con 1 caída</th></tr><tr><td>(1, 1)</td><td>no</td><td>sí</td><td>sí</td></tr><tr><td>(2, 2)</td><td>sí</td><td>sí</td><td>sí</td></tr><tr><td>(3, 1)</td><td>sí</td><td>no</td><td>sí</td></tr><tr><td>(1, 3)</td><td>sí</td><td>sí</td><td>no</td></tr></table>",
+     "fin": "Razonar con números sobre consistencia y disponibilidad usando quórums, la forma concreta del teorema CAP."
+    },
+    {
+     "nv": "A",
+     "q": "Una cadena de supermercados con tiendas en varios departamentos quiere analizar sus ventas por producto, tienda, fecha y forma de pago. Diseña un esquema estrella, escribe la consulta de ventas por categoría y mes de 2026 y explica cómo sería el copo de nieve.",
+     "pasos": [
+      "<b>Proceso y granularidad.</b> El proceso es la venta en caja y la granularidad, una fila por producto en cada ticket: lo más detallado que existe, para poder agregar después a cualquier nivel.",
+      "<b>Dimensiones.</b> Responden quién, qué, dónde, cuándo y cómo: <code>dim_fecha</code>, <code>dim_producto</code>, <code>dim_tienda</code> y <code>dim_pago</code>, cada una con llave sustituta entera y atributos para filtrar y agrupar (mes, trimestre, feriado; marca, categoría; municipio, región).",
+      "<b>Hechos.</b> Medidas numéricas y aditivas: <code>cantidad</code> y <code>monto</code>. El número de ticket queda en el hecho como dimensión degenerada, sin tabla propia.<pre><code>CREATE TABLE hecho_venta (\n  fecha_key    INT,\n  producto_key INT,\n  tienda_key   INT,\n  pago_key     INT,\n  ticket       VARCHAR(20),\n  cantidad     INT,\n  monto        DECIMAL(12,2),\n  FOREIGN KEY (fecha_key) REFERENCES dim_fecha (fecha_key),\n  FOREIGN KEY (producto_key) REFERENCES dim_producto (producto_key),\n  FOREIGN KEY (tienda_key) REFERENCES dim_tienda (tienda_key),\n  FOREIGN KEY (pago_key) REFERENCES dim_pago (pago_key)\n);</code></pre>",
+      "<b>Estrella.</b> El hecho al centro con una llave foránea a cada dimensión, y las dimensiones desnormalizadas: la categoría y el departamento van dentro de <code>dim_producto</code>, así que cada consulta hace una sola reunión por dimensión.",
+      "<b>Consulta.</b> Es un roll-up de día a mes y de producto a categoría, con un slice en el año 2026:<pre><code>SELECT p.categoria, f.mes, SUM(h.monto) AS ventas\nFROM hecho_venta h\nJOIN dim_producto p ON p.producto_key = h.producto_key\nJOIN dim_fecha f ON f.fecha_key = h.fecha_key\nWHERE f.anio = 2026\nGROUP BY p.categoria, f.mes\nORDER BY p.categoria, f.mes;</code></pre>",
+      "<b>Copo de nieve.</b> Se normalizan las dimensiones: <code>dim_producto</code> apunta a <code>dim_categoria</code> y esta a <code>dim_departamento</code>; <code>dim_tienda</code> a <code>dim_municipio</code>. Hay menos redundancia, pero la consulta anterior necesitaría una reunión más para llegar a la categoría."
+     ],
+     "r": "<table><tr><th>Tabla</th><th>Columnas</th></tr><tr><td><code>hecho_venta</code></td><td>fecha_key, producto_key, tienda_key, pago_key, ticket, cantidad, monto</td></tr><tr><td><code>dim_fecha</code></td><td>fecha_key, fecha, dia, mes, nombre_mes, trimestre, anio, dia_semana, feriado</td></tr><tr><td><code>dim_producto</code></td><td>producto_key, codigo, nombre, marca, categoria, departamento</td></tr><tr><td><code>dim_tienda</code></td><td>tienda_key, nombre, municipio, departamento, region</td></tr><tr><td><code>dim_pago</code></td><td>pago_key, forma</td></tr></table>La consulta une el hecho con <code>dim_producto</code> y <code>dim_fecha</code>, filtra 2026 y agrupa por categoría y mes.",
+     "fin": "Diseñar un esquema estrella completo, el ejercicio clásico de almacenes de datos: granularidad, dimensiones, hechos y la consulta que lo aprovecha."
+    },
+    {
+     "nv": "B",
+     "q": "Clasifica cada tarea como OLTP, OLAP o una fase de ETL (extracción, transformación o carga): a) cobrar en caja un ticket de Q245.50; b) convertir a quetzales las ventas en dólares de la tienda en línea y unificar los códigos de departamento («GUA», «Guatemala», «01»); c) comparar las ventas por trimestre de los últimos cinco años por región; d) copiar cada noche los tickets del día desde las bases de las cajas; e) insertar las filas ya limpias en la tabla de hechos del almacén; f) consultar el saldo en un cajero automático.",
+     "r": "a) OLTP. b) ETL, transformación. c) OLAP. d) ETL, extracción. e) ETL, carga. f) OLTP."
+    },
+    {
+     "nv": "I",
+     "q": "Con la tabla <code>venta</code>:<table><tr><th>region</th><th>categoria</th><th>monto</th></tr><tr><td>Central</td><td>Abarrotes</td><td>500</td></tr><tr><td>Central</td><td>Limpieza</td><td>300</td></tr><tr><td>Central</td><td>Abarrotes</td><td>200</td></tr><tr><td>Occidente</td><td>Abarrotes</td><td>400</td></tr><tr><td>Occidente</td><td>Limpieza</td><td>100</td></tr></table><pre><code>SELECT region, categoria, SUM(monto) AS total\nFROM venta\nGROUP BY region, categoria WITH ROLLUP;</code></pre>Predice el resultado. ¿Qué significan los <code>NULL</code> y cómo los distingues de un <code>NULL</code> verdadero?",
+     "r": "<table><tr><th>region</th><th>categoria</th><th>total</th></tr><tr><td>Central</td><td>Abarrotes</td><td>700</td></tr><tr><td>Central</td><td>Limpieza</td><td>300</td></tr><tr><td>Central</td><td><i>NULL</i></td><td>1000</td></tr><tr><td>Occidente</td><td>Abarrotes</td><td>400</td></tr><tr><td>Occidente</td><td>Limpieza</td><td>100</td></tr><tr><td>Occidente</td><td><i>NULL</i></td><td>500</td></tr><tr><td><i>NULL</i></td><td><i>NULL</i></td><td>1500</td></tr></table>Siete filas: los detalles (Central-Abarrotes suma 500 + 200), un subtotal por región con <code>categoria</code> en <code>NULL</code> y el total general con las dos columnas en <code>NULL</code>. Esos <code>NULL</code> marcan «todas las categorías» o «todas las regiones»; <code>GROUPING(categoria)</code> vale 1 en las filas de subtotal y 0 en las normales."
+    },
+    {
+     "nv": "A",
+     "q": "Un banco replica las cuentas en tres nodos: dos en la Ciudad de Guatemala y uno en Quetzaltenango. Se corta el enlace con Xela y, al mismo tiempo, el mismo cliente retira Q800 en un cajero de la capital y otros Q800 en uno de Xela; su saldo era Q1,000. ¿Qué pasa si el sistema es CP y qué pasa si es AP? ¿Cuál conviene para los saldos y cuál para el carrito de la tienda en línea del banco?",
+     "r": "CP: el lado de la capital tiene mayoría (2 de 3) y aprueba su retiro: saldo Q200; Xela no forma mayoría y rechaza el retiro (servicio no disponible) hasta que vuelva el enlace. AP: los dos lados aprueban, cada uno cree que quedan Q200, y al reconciliar el saldo real es 1,000 − 800 − 800 = −Q600: un sobregiro que hay que cobrar o compensar. Para saldos conviene CP; para el carrito, AP: al reconciliar se juntan los dos carritos y lo peor que pasa es un artículo de más."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué caracteriza a la fragmentación vertical?",
+     "ops": [
+      "Cada fragmento tiene un subconjunto de filas y se reconstruye con una unión",
+      "Cada sitio guarda una copia completa de la tabla y la actualiza al confirmar",
+      "Las filas se reparten entre los sitios según una función hash de la llave",
+      "Cada fragmento tiene un subconjunto de columnas y repite la llave para reunirse"
+     ],
+     "ok": 3,
+     "r": "La vertical divide por columnas (una proyección) y cada fragmento conserva la llave primaria para reconstruir la tabla con una reunión. Repartir filas, por condición o por hash, es fragmentación horizontal, y guardar copias completas es replicación."
+    },
+    {
+     "nv": "B",
+     "q": "Una red social quiere sugerir «amigos de tus amigos» y detectar comunidades. ¿Qué familia NoSQL encaja mejor?",
+     "ops": [
+      "Clave-valor, porque lee cada usuario por su llave en tiempo constante",
+      "Grafos, porque guarda nodos y relaciones y los recorre directamente",
+      "Documentos, porque guarda cada perfil como un JSON con todos sus datos",
+      "Columnas anchas, porque admite muchísimas escrituras por segundo"
+     ],
+     "ok": 1,
+     "r": "La pregunta es sobre relaciones de varios saltos: un motor de grafos las recorre siguiendo enlaces, sin reuniones costosas. Clave-valor y documentos leen bien un perfil, pero no recorren relaciones; las columnas anchas brillan en escrituras masivas y series de tiempo."
+    },
+    {
+     "nv": "I",
+     "q": "Según el teorema CAP, ¿qué debe escoger un sistema distribuido cuando ocurre una partición de red?",
+     "ops": [
+      "Entre consistencia y disponibilidad, mientras dure la partición",
+      "Entre consistencia y tolerancia a particiones; la disponibilidad se mantiene",
+      "Dos de las tres propiedades en todo momento, aunque la red funcione bien",
+      "Entre la atomicidad y la durabilidad de las transacciones en curso"
+     ],
+     "ok": 0,
+     "r": "En una red real las particiones no se pueden evitar, así que la tolerancia a particiones no es opcional: durante una partición, o se rechazan operaciones para no dar datos viejos (CP) o se responde con lo que hay y se reconcilia después (AP). Sin partición se tienen C y A a la vez, y CAP no trata de atomicidad ni de durabilidad."
+    },
+    {
+     "nv": "I",
+     "q": "¿En qué se diferencia el esquema copo de nieve del esquema estrella?",
+     "ops": [
+      "Normaliza la tabla de hechos y deja desnormalizadas todas las dimensiones",
+      "Tiene varias tablas de hechos que comparten las mismas dimensiones",
+      "Normaliza las dimensiones en subtablas: menos redundancia, pero más reuniones",
+      "Guarda los hechos sin llaves foráneas hacia las tablas de dimensiones"
+     ],
+     "ok": 2,
+     "r": "En el copo de nieve, producto se separa en producto, categoría y departamento, y una consulta necesita más reuniones para llegar a la categoría. La tabla de hechos es igual en los dos; varias tablas de hechos con dimensiones compartidas forman una constelación, y los hechos siempre llevan llaves foráneas a sus dimensiones."
+    },
+    {
+     "nv": "A",
+     "q": "En la confirmación en dos fases, un participante votó «listo» y el coordinador se cayó antes de enviarle la decisión. ¿Qué hace el participante?",
+     "ops": [
+      "Aborta por su cuenta, porque nunca recibió la orden de confirmar la transacción",
+      "Confirma por su cuenta, porque ya había votado que estaba listo para hacerlo",
+      "Deshace sus cambios y vota de nuevo cuando el coordinador vuelva a conectarse",
+      "Espera con sus bloqueos: no puede confirmar ni abortar sin conocer la decisión"
+     ],
+     "ok": 3,
+     "r": "Al votar «listo» prometió obedecer la decisión, cualquiera que sea: si abortara y el coordinador hubiera decidido confirmar (o al revés), la transacción quedaría a medias entre sitios. Por eso queda incierto y bloqueado hasta conocer la decisión, que pide al coordinador cuando vuelve (algunas variantes también preguntan a otro participante que ya la sepa). No hay segunda votación."
+    }
+   ]
+  }
+ ]
+}
