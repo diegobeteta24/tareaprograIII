@@ -45,7 +45,8 @@ function filaHoras({ sem, clave, nombre, hecho, plan, nota, extras = [45, 90] })
 }
 
 function htmlPunto(pts, fecha) {
-  const p = pts.find((x) => x.respuesta === null && x.fecha >= fecha) || pts.filter((x) => x.respuesta === null).pop();
+  // Primero uno vencido sin responder (es una decisión pendiente); si no hay, el siguiente
+  const p = pts.find((x) => x.respuesta === null && x.fecha < fecha) || pts.find((x) => x.respuesta === null && x.fecha >= fecha);
   if (!p) return '';
   const pasado = p.fecha < fecha;
   return `<section class="bloque"><h2>Punto de control ${esc(p.id.replace('PC', ''))}</h2>
@@ -148,7 +149,9 @@ export default async function vistaHoy(app) {
     const htmlTram = semana
       ? htmlTramites(P.tramitesDe(semana, personal), hechos, fecha, 'Trámites de la semana', semana.id === 'S4' || semana.id === 'S5' ? 'Semana de fiestas: sin trámites.' : '')
       : fase ? htmlTramites(fase.hitos.map((h, i) => ({ id: `${fase.id}-h${i}`, texto: h.texto, fecha: h.fecha })), hechos, fecha, 'Fechas de esta etapa') : '';
-    const htmlAtras = htmlTramites(P.atrasados(plan, personal, fecha), hechos, fecha, 'Pendientes de semanas anteriores');
+    const atras = P.atrasados(plan, personal, fecha);
+    const htmlAtras = htmlTramites(atras.slice(-6), hechos, fecha, 'Pendientes de semanas anteriores')
+      .replace('</ul></section>', `</ul>${atras.length > 6 ? `<p class="sem ui">Y ${atras.length - 6} más en el <a href="#/plan">Plan</a>.</p>` : ''}</section>`);
     const u = ultimo.leer();
     const continuar = u?.slug ? `<p class="continuar ui">Continúa donde te quedaste: <a href="#/curso/${esc(u.slug)}${u.tema ? '/' + esc(u.tema) : ''}"><b>${esc(u.titulo)}</b>${u.temaTitulo ? ', ' + esc(u.temaTitulo) : ''}</a></p>` : '';
 

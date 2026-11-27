@@ -793,7 +793,7 @@ function ruffini(nv) {
     q: `Divide con la regla de Ruffini ${m(`(${izq}) \\div (${divisor})`)}. Escribe los coeficientes del cociente (cero si falta un término) y el residuo.`,
     campos, r: `cociente ${m(poli(coc))}, residuo ${m(`${residuo}`)}`,
     prueba: { tipo: 'division-poli', dividendo: izq, divisor, cociente: poli(coc), residuo },
-    sol: [`Coeficientes del dividendo${cs.includes(0) ? ' (con un cero donde falta un término)' : ''}: ${m(cs.join(',\\; '))}. Se usa ${m(`${r}`)}, la raíz del divisor.`, `Baja el primero (${cs[0]}); después multiplica por ${r} y suma con el siguiente: ${pasos.join('; ')}.`, `Los primeros números son el cociente y el último es el residuo: ${m(poli(coc))}, residuo ${m(`${residuo}`)}.`],
+    sol: [`Coeficientes del dividendo${cs.includes(0) ? ' (con un cero donde falta un término)' : ''}: ${m(cs.join(',\\; '))}. Se usa ${m(`${r}`)}, la raíz del divisor.`, `Baja el primero (${m(`${cs[0]}`)}); después multiplica por ${m(`${r}`)} y suma con el siguiente: ${pasos.join('; ')}.`, `Los primeros números son el cociente y el último es el residuo: ${m(poli(coc))}, residuo ${m(`${residuo}`)}.`],
   };
 }
 
