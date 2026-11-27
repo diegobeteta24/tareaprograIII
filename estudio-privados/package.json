@@ -1,0 +1,31 @@
+{
+  "name": "estudio-privados",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Estudio local para el Seminario de Privados de Ingeniería en Sistemas UMG (pensum 2014) y para el examen de ubicación de inglés. Adaptación de PrivStudyPage.",
+  "type": "module",
+  "scripts": {
+    "datos": "node scripts/generar-datos.mjs",
+    "traer-guias": "node scripts/traer-guias.mjs",
+    "predatos": "node scripts/traer-guias.mjs",
+    "validar": "node scripts/validar.mjs",
+    "validar:ingles": "node scripts/validar-ingles.mjs",
+    "validar:todo": "node scripts/validar.mjs && node scripts/validar-ingles.mjs",
+    "test": "node scripts/probar-generadores.mjs",
+    "predev": "npm run datos",
+    "dev": "vite",
+    "iniciar": "npm run datos && vite --open",
+    "prebuild": "npm run datos",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prevalidar": "node scripts/traer-guias.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/literata": "^5.3.0",
+    "katex": "^0.16.22"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

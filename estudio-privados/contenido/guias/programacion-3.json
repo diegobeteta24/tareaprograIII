@@ -1,0 +1,1079 @@
+{
+ "slug": "programacion-3",
+ "titulo": "Programación III",
+ "area": "Análisis, Diseño y Desarrollo",
+ "meta": "Ciclo 5, bloque Programación avanzada del seminario",
+ "firma": "T(n)=2\\,T(n/2)+n \\;\\Rightarrow\\; O(n\\log n)",
+ "firma_nota": "Recurrencia de dividir y vencer del ordenamiento por mezcla: dos mitades ordenadas y una mezcla lineal.",
+ "lead": "Programación III es el curso de estructuras de datos y algoritmos: cómo se mide el costo de un algoritmo y cómo se organizan los datos en listas, pilas, colas, árboles, tablas hash y grafos para que cada operación sea rápida. En el parcial pesan el vocabulario exacto y las trazas a mano, así que cada tema trae problemas con datos pequeños para resolver con lápiz y papel.",
+ "fuente": "http://umgcontenidos.50webs.com/Contenidos/Ciclos/Quinto%20Ciclo/2014-5ProgramacionIII.pdf",
+ "como": "Cada tema trae conceptos con su uso real y 12 ejercicios: resueltos paso a paso, para resolver con la respuesta oculta y preguntas de opción múltiple que te dicen al instante si acertaste.",
+ "origen": "local",
+ "aviso": "Guía local: cubre el temario habitual de un curso de estructuras de datos. El programa oficial no se pudo abrir al escribirla, así que confirma los temas con el programa o con quien imparta el bloque.",
+ "temas": [
+  {
+   "titulo": "Análisis de algoritmos y recursividad",
+   "intro": "Cómo se mide el costo de un algoritmo en tiempo y en memoria, la notación O grande con sus casos, el conteo de operaciones en ciclos y la recursión con su pila de llamadas.",
+   "conceptos": [
+    {
+     "n": "Complejidad y notación O grande",
+     "e": [
+      "La <b>complejidad temporal</b> dice cuántas operaciones elementales ejecuta un algoritmo en función del tamaño de la entrada \\(n\\); la <b>complejidad espacial</b>, cuánta memoria adicional necesita. No se mide en segundos, porque eso depende de la máquina: se mide cómo crece el trabajo cuando crece \\(n\\). La notación <b>O grande</b> da una cota superior: \\(f(n)\\) es \\(O(g(n))\\) si, a partir de cierto tamaño \\(n_0\\), se cumple \\(f(n)\\le c\\cdot g(n)\\) para alguna constante \\(c\\). <b>Ω</b> (omega) es la cota inferior y <b>Θ</b> (theta) la cota ajustada, que acota por arriba y por abajo a la vez.",
+      "Para simplificar se descartan las constantes y los términos de menor orden: \\(3n^2+5n+20\\) es \\(O(n^2)\\). En instrucciones consecutivas los costos se suman y manda el mayor; en ciclos anidados se multiplican. Por convención se reporta la cota más ajustada: decir que una búsqueda secuencial es \\(O(n^2)\\) es formalmente cierto, pero no informa nada. De menor a mayor crecimiento: \\(O(1)\\), \\(O(\\log n)\\), \\(O(n)\\), \\(O(n\\log n)\\), \\(O(n^2)\\), \\(O(2^n)\\), \\(O(n!)\\)."
+     ],
+     "u": [
+      "Al elegir entre dos soluciones: buscar un NIT entre un millón de contribuyentes con un recorrido completo o con un índice.",
+      "Un algoritmo \\(O(n^2)\\) que va bien con 100 datos se vuelve inservible con un millón; la complejidad lo anticipa sin ejecutar nada.",
+      "Antes de programar, al revisar código lento y siempre que te pidan justificar una estructura de datos.",
+      "Identifica la operación básica, cuenta cuántas veces se ejecuta en función de \\(n\\) y quédate con el término dominante."
+     ],
+     "f": "f(n)=O\\bigl(g(n)\\bigr)\\iff \\exists\\,c\\gt 0,\\ n_0:\\ f(n)\\le c\\cdot g(n)\\ \\ \\forall\\,n\\ge n_0",
+     "tabla": "<table><tr><th>Orden</th><th>Nombre</th><th>Ejemplo</th></tr><tr><td>\\(O(1)\\)</td><td>Constante</td><td>Leer <code>a[i]</code>, apilar en una pila</td></tr><tr><td>\\(O(\\log n)\\)</td><td>Logarítmica</td><td>Búsqueda binaria</td></tr><tr><td>\\(O(n)\\)</td><td>Lineal</td><td>Recorrer una lista, búsqueda secuencial</td></tr><tr><td>\\(O(n\\log n)\\)</td><td>Lineal logarítmica</td><td>Ordenamiento por mezcla y por montículo</td></tr><tr><td>\\(O(n^2)\\)</td><td>Cuadrática</td><td>Burbuja, selección, inserción</td></tr><tr><td>\\(O(2^n)\\)</td><td>Exponencial</td><td>Torres de Hanói</td></tr><tr><td>\\(O(n!)\\)</td><td>Factorial</td><td>Probar todas las permutaciones de una ruta</td></tr></table>"
+    },
+    {
+     "n": "Mejor, peor y caso promedio; conteo de operaciones",
+     "e": [
+      "El mismo algoritmo puede tardar distinto según cómo venga la entrada. El <b>mejor caso</b> es la entrada más favorable; el <b>peor caso</b>, la más desfavorable, y es la garantía que se suele reportar; el <b>caso promedio</b> es el costo esperado sobre todas las entradas posibles. En la búsqueda secuencial de un valor entre \\(n\\) elementos: mejor caso, 1 comparación (está de primero); peor caso, \\(n\\) (está de último o no está); promedio, \\((n+1)/2\\) cuando sí está. No confundas caso con notación: cualquiera de los tres casos se puede acotar con O, Ω o Θ.",
+      "Para contar operaciones en ciclos: un ciclo de 1 a \\(n\\) ejecuta su cuerpo \\(n\\) veces; dos ciclos anidados independientes, \\(n\\cdot n\\); si el ciclo interno depende del externo (<code>j</code> empieza en <code>i + 1</code>), \\(n(n-1)/2\\), que sigue siendo \\(O(n^2)\\); un ciclo que duplica o parte a la mitad su variable (<code>i = i * 2</code>) da unas \\(\\log_2 n\\) vueltas. En los algoritmos recursivos el costo se escribe como una <b>recurrencia</b>: \\(T(n)=T(n-1)+1\\) da \\(O(n)\\); \\(T(n)=T(n/2)+1\\) da \\(O(\\log n)\\); \\(T(n)=2T(n/2)+n\\) da \\(O(n\\log n)\\); \\(T(n)=2T(n-1)+1\\) da \\(O(2^n)\\)."
+     ],
+     "u": [
+      "En las preguntas de parcial del tipo «¿cuántas veces se ejecuta esta línea?» y al estimar cuánto tardará un proceso por lotes.",
+      "El peor caso es lo que le puedes garantizar al usuario; el promedio, lo que verá casi siempre.",
+      "Cuando el costo depende del orden de los datos: búsquedas, ordenamientos y tablas hash.",
+      "Escribe cuántas vueltas da cada ciclo, multiplica los anidados, suma los consecutivos y simplifica con las sumatorias."
+     ],
+     "f": "\\sum_{i=1}^{n} i=\\frac{n(n+1)}{2}\\qquad 1+2+4+\\dots+2^{k}=2^{k+1}-1"
+    },
+    {
+     "n": "Recursividad y pila de llamadas",
+     "e": [
+      "Una función es <b>recursiva</b> cuando se llama a sí misma. Necesita dos partes: un <b>caso base</b>, que se resuelve sin más llamadas, y un <b>caso recursivo</b>, que reduce el problema y lo acerca al caso base. Cada llamada crea un <b>registro de activación</b> (marco) en la <b>pila de llamadas</b>, con sus parámetros, sus variables locales y la dirección de retorno; los marcos se apilan al llamar y se liberan en orden inverso al retornar. Si falta el caso base o nunca se alcanza, la pila se agota: desbordamiento de pila (<code>StackOverflowError</code> en Java).<pre><code>int factorial(int n) {\n  if (n == 0) return 1;           // caso base\n  return n * factorial(n - 1);    // caso recursivo\n}</code></pre>",
+      "Toda recursión se puede escribir de forma iterativa, con ciclos o con una pila propia. La recursión da código corto y natural cuando el problema se define sobre versiones más pequeñas de sí mismo (árboles, dividir y vencer, Torres de Hanói), pero gasta memoria de pila proporcional a la profundidad y paga el costo de cada llamada; la iteración usa memoria constante y suele ser más rápida. La recursión es <b>lineal</b> si hace una sola llamada (factorial), <b>múltiple</b> si hace varias (Fibonacci hace dos) y <b>de cola</b> si la llamada es lo último que se ejecuta. El Fibonacci recursivo repite subproblemas y su costo crece de forma exponencial, mientras que el iterativo es \\(O(n)\\). Las Torres de Hanói con \\(n\\) discos necesitan \\(2^n-1\\) movimientos."
+     ],
+     "u": [
+      "Recorrer carpetas y subcarpetas, menús o comentarios anidados, árboles, y los ordenamientos por mezcla y rápido.",
+      "Muchas estructuras son recursivas por definición: un árbol es una raíz con subárboles.",
+      "Cuando el problema se parte en subproblemas del mismo tipo y la profundidad es manejable.",
+      "Define el caso base, define el paso que reduce el problema y comprueba con una traza de la pila para una entrada pequeña."
+     ],
+     "f": "H(n)=2\\,H(n-1)+1=2^{n}-1"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "¿Cuántas veces se ejecuta <code>c++</code> cuando <code>n = 6</code> y cuál es el orden del fragmento?<pre><code>int c = 0;\nfor (int i = 0; i &lt; n; i++)\n  for (int j = i + 1; j &lt; n; j++)\n    c++;</code></pre>",
+     "pasos": [
+      "<b>Ciclo interno.</b> Para cada valor de <code>i</code>, <code>j</code> va de <code>i + 1</code> a <code>n - 1</code>: da \\(n-1-i\\) vueltas.",
+      "<b>Con n = 6.</b> Para <code>i</code> = 0, 1, 2, 3, 4 y 5 son 5, 4, 3, 2, 1 y 0 vueltas: \\(5+4+3+2+1+0=15\\).",
+      "<b>Fórmula.</b> La suma es \\(n(n-1)/2\\); con \\(n=6\\): \\(6\\cdot 5/2=15\\).",
+      "<b>Orden.</b> \\(n(n-1)/2=\\tfrac12 n^2-\\tfrac12 n\\): queda el término dominante sin su constante, \\(O(n^2)\\)."
+     ],
+     "r": "15 veces; en general \\(n(n-1)/2\\), que es \\(O(n^2)\\).",
+     "fin": "Reconocer que un ciclo interno que depende del externo sigue siendo cuadrático: es el patrón de burbuja y de selección."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cuántas veces se ejecuta <code>c++</code> cuando <code>n = 16</code> y cuál es el orden del fragmento?<pre><code>int c = 0;\nfor (int i = 0; i &lt; n; i++)\n  for (int j = 1; j &lt; n; j = j * 2)\n    c++;</code></pre>",
+     "pasos": [
+      "<b>Ciclo interno.</b> <code>j</code> se duplica en cada vuelta: toma los valores 1, 2, 4 y 8, y con 16 ya no entra. Son 4 vueltas, que es \\(\\log_2 16\\).",
+      "<b>Ciclo externo.</b> Da \\(n=16\\) vueltas y el interno no depende de <code>i</code>: los costos se multiplican.",
+      "<b>Total.</b> \\(16\\times 4=64\\).",
+      "<b>Orden.</b> En general son \\(n\\cdot\\log_2 n\\) ejecuciones (el logaritmo se redondea hacia arriba cuando \\(n\\) no es potencia de 2): \\(O(n\\log n)\\)."
+     ],
+     "r": "64 veces; \\(O(n\\log n)\\).",
+     "fin": "Detectar el logaritmo: aparece siempre que una variable se multiplica o se divide por una constante en cada vuelta."
+    },
+    {
+     "nv": "I",
+     "q": "Sigue la pila de llamadas de <code>factorial(4)</code> con esta función. ¿Cuántos marcos llega a tener la pila y en qué orden retornan las llamadas?<pre><code>int factorial(int n) {\n  if (n == 0) return 1;\n  return n * factorial(n - 1);\n}</code></pre>",
+     "pasos": [
+      "<b>Llamadas.</b> <code>factorial(4)</code> llama a <code>factorial(3)</code>, esta a <code>factorial(2)</code>, luego vienen <code>factorial(1)</code> y <code>factorial(0)</code>. Ninguna ha terminado todavía: cada una espera el resultado de la siguiente.",
+      "<b>Pila en su punto más alto.</b> De la base a la cima: <code>f(4)</code>, <code>f(3)</code>, <code>f(2)</code>, <code>f(1)</code>, <code>f(0)</code>. Son 5 marcos, es decir, \\(n+1\\).",
+      "<b>Caso base.</b> <code>factorial(0)</code> devuelve 1 sin llamar a nadie y su marco sale de la pila.",
+      "<b>Retornos.</b> En orden inverso al de las llamadas: <code>f(1)</code> devuelve \\(1\\cdot 1=1\\); <code>f(2)</code>, \\(2\\cdot 1=2\\); <code>f(3)</code>, \\(3\\cdot 2=6\\); <code>f(4)</code>, \\(4\\cdot 6=24\\).",
+      "<b>Costo.</b> Una multiplicación por llamada: tiempo \\(O(n)\\). La pila llega a \\(n+1\\) marcos: memoria \\(O(n)\\), contra \\(O(1)\\) de la versión con un ciclo."
+     ],
+     "r": "Devuelve 24. La pila llega a 5 marcos y las llamadas retornan en el orden <code>f(0)</code>, <code>f(1)</code>, <code>f(2)</code>, <code>f(3)</code>, <code>f(4)</code>.",
+     "fin": "Explicar en el oral qué guarda la pila de llamadas y por qué la recursión gasta memoria aunque no declares ninguna estructura."
+    },
+    {
+     "nv": "A",
+     "q": "El ordenamiento por mezcla cumple la recurrencia \\(T(n)=2\\,T(n/2)+n\\), con \\(T(1)=1\\). Calcula \\(T(8)\\) y deduce el orden de crecimiento.",
+     "pasos": [
+      "<b>Qué dice la recurrencia.</b> Ordenar \\(n\\) datos cuesta ordenar dos mitades, \\(2\\,T(n/2)\\), más mezclarlas en \\(n\\) pasos.",
+      "<b>Sustitución hacia arriba.</b> \\(T(2)=2\\cdot 1+2=4\\); \\(T(4)=2\\cdot 4+4=12\\); \\(T(8)=2\\cdot 12+8=32\\).",
+      "<b>Expansión.</b> \\(T(n)=2\\,T(n/2)+n=4\\,T(n/4)+2n=8\\,T(n/8)+3n\\). Tras \\(k\\) pasos: \\(T(n)=2^k\\,T(n/2^k)+k\\,n\\).",
+      "<b>Hasta el caso base.</b> Se llega a \\(T(1)\\) cuando \\(2^k=n\\), o sea, \\(k=\\log_2 n\\): \\(T(n)=n\\cdot T(1)+n\\log_2 n=n+n\\log_2 n\\).",
+      "<b>Comprobación.</b> Con \\(n=8\\): \\(8+8\\cdot 3=32\\). Coincide."
+     ],
+     "r": "\\(T(8)=32\\) y \\(T(n)=n\\log_2 n+n\\), que es \\(O(n\\log n)\\).",
+     "fin": "Justificar de dónde sale el \\(n\\log n\\) de los ordenamientos de dividir y vencer: \\(\\log_2 n\\) niveles con \\(n\\) de trabajo en cada uno."
+    },
+    {
+     "nv": "B",
+     "q": "¿Cuántas veces se imprime el mensaje cuando <code>n = 100</code> y cuál es el orden del fragmento?<pre><code>for (int i = 1; i &lt;= n; i = i * 2)\n  System.out.println(\"hola\");</code></pre>",
+     "r": "7 veces: <code>i</code> toma los valores 1, 2, 4, 8, 16, 32 y 64 (128 ya no entra). En general son \\(\\lfloor\\log_2 n\\rfloor+1\\) vueltas: \\(O(\\log n)\\)."
+    },
+    {
+     "nv": "I",
+     "q": "Torres de Hanói: escribe la secuencia de movimientos para pasar 3 discos de la torre A a la torre C usando B como auxiliar. ¿Cuántos movimientos se necesitan con 5 discos?",
+     "r": "Con 3 discos son 7 movimientos: A→C, A→B, C→B, A→C, B→A, B→C, A→C. Con 5 discos: \\(2^5-1=31\\). La recurrencia es \\(H(n)=2\\,H(n-1)+1\\): mover \\(n-1\\) discos a la auxiliar, el mayor al destino y los \\(n-1\\) de vuelta encima."
+    },
+    {
+     "nv": "A",
+     "q": "Con <code>fib(0) = 0</code> y <code>fib(1) = 1</code> como casos base y <code>fib(n) = fib(n - 1) + fib(n - 2)</code>, ¿cuántas llamadas en total genera <code>fib(5)</code>, contando la primera? ¿Cuántas veces se calcula <code>fib(2)</code>? ¿Cómo se evita la repetición?",
+     "r": "15 llamadas: \\(L(n)=1+L(n-1)+L(n-2)\\) con \\(L(0)=L(1)=1\\) da 1, 1, 3, 5, 9, 15. El resultado es <code>fib(5) = 5</code>. <code>fib(2)</code> se calcula 3 veces. Se evita guardando los resultados ya calculados (memoización) o con la versión iterativa, que es \\(O(n)\\) en lugar de exponencial."
+    },
+    {
+     "nv": "B",
+     "q": "¿Cuál de estas listas ordena las complejidades de menor a mayor crecimiento?",
+     "ops": [
+      "\\(O(1)\\), \\(O(n)\\), \\(O(\\log n)\\), \\(O(n\\log n)\\), \\(O(n^2)\\), \\(O(2^n)\\)",
+      "\\(O(1)\\), \\(O(\\log n)\\), \\(O(n)\\), \\(O(n\\log n)\\), \\(O(n^2)\\), \\(O(2^n)\\)",
+      "\\(O(1)\\), \\(O(\\log n)\\), \\(O(n)\\), \\(O(n^2)\\), \\(O(n\\log n)\\), \\(O(2^n)\\)",
+      "\\(O(1)\\), \\(O(\\log n)\\), \\(O(n)\\), \\(O(n\\log n)\\), \\(O(2^n)\\), \\(O(n^2)\\)"
+     ],
+     "ok": 1,
+     "r": "El logaritmo crece más despacio que cualquier potencia de \\(n\\): por eso \\(\\log n\\) va antes que \\(n\\), y \\(n\\log n\\) antes que \\(n^2\\). La exponencial \\(2^n\\) supera a cualquier polinomio. Con \\(n=1024\\): \\(\\log_2 n=10\\), \\(n\\log_2 n=10\\,240\\), \\(n^2\\) pasa del millón y \\(2^n\\) tiene más de 300 cifras."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué ocurre si a una función recursiva le falta el caso base?",
+     "ops": [
+      "El compilador la convierte en un ciclo infinito que no consume memoria",
+      "Devuelve cero, porque la pila de llamadas empieza vacía en cada ejecución",
+      "Se llama sin parar hasta agotar la pila de llamadas (desbordamiento de pila)",
+      "Se ejecuta una sola vez y termina sin devolver ningún valor al llamador"
+     ],
+     "ok": 2,
+     "r": "Cada llamada apila un marco nuevo con sus parámetros y su dirección de retorno; sin caso base nunca se empieza a retornar y la memoria de la pila se agota. Por eso no equivale a un ciclo infinito corriente: el programa termina con un error (<code>StackOverflowError</code> en Java). Tampoco devuelve cero ni se detiene sola: nada en la función corta la cadena de llamadas."
+    },
+    {
+     "nv": "I",
+     "q": "En la búsqueda secuencial de un valor que sí está en un arreglo de \\(n\\) elementos distintos, ¿cuántas comparaciones se hacen en el mejor caso, en el peor caso y en promedio?",
+     "ops": [
+      "1, \\(\\log_2 n\\) y \\(n\\)",
+      "0, \\(n\\) y \\(n^2/2\\)",
+      "1, \\(n^2\\) y \\(n\\)",
+      "1, \\(n\\) y \\((n+1)/2\\)"
+     ],
+     "ok": 3,
+     "r": "Mejor caso: está en la primera posición, 1 comparación. Peor caso: está en la última, \\(n\\). Promedio: si todas las posiciones son igual de probables, \\((1+2+\\dots+n)/n=(n+1)/2\\). El \\(\\log_2 n\\) corresponde a la búsqueda binaria, y ningún caso llega a \\(n^2\\) porque el arreglo se recorre una sola vez."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cuántas veces se ejecuta <code>x++</code> si <code>n = 8</code>?<pre><code>for (int i = 1; i &lt;= n; i++)\n  for (int j = 1; j &lt;= i; j++)\n    x++;</code></pre>",
+     "ops": [
+      "64",
+      "28",
+      "16",
+      "36"
+     ],
+     "ok": 3,
+     "r": "El ciclo interno da <code>i</code> vueltas: \\(1+2+\\dots+8=8\\cdot 9/2=36\\). 64 sería \\(n^2\\), si el interno llegara siempre hasta \\(n\\); 28 es \\(n(n-1)/2\\), si <code>j</code> llegara solo hasta <code>i - 1</code>; 16 sería \\(2n\\), si los ciclos fueran consecutivos y no anidados. El orden sigue siendo \\(O(n^2)\\)."
+    },
+    {
+     "nv": "A",
+     "q": "La recurrencia \\(T(n)=T(n/2)+1\\), con \\(T(1)=1\\), describe un algoritmo que en cada paso descarta la mitad de los datos con un trabajo constante. ¿Cuál es su orden y qué algoritmo clásico la cumple?",
+     "ops": [
+      "\\(O(\\log n)\\), la búsqueda binaria",
+      "\\(O(n)\\), la búsqueda secuencial",
+      "\\(O(n\\log n)\\), el ordenamiento por mezcla",
+      "\\(O(2^n)\\), las Torres de Hanói"
+     ],
+     "ok": 0,
+     "r": "Cada paso reduce \\(n\\) a la mitad, así que se llega a 1 en \\(\\log_2 n\\) pasos: \\(T(n)=\\log_2 n+1\\). La búsqueda secuencial cumple \\(T(n)=T(n-1)+1\\); la mezcla, \\(T(n)=2\\,T(n/2)+n\\); y Hanói, \\(T(n)=2\\,T(n-1)+1\\)."
+    }
+   ]
+  },
+  {
+   "titulo": "Listas enlazadas y tipos abstractos de datos",
+   "intro": "Qué es un tipo abstracto de datos y cómo se implementa una lista con un arreglo o con nodos enlazados (simple, doble y circular), con el manejo de punteros y el costo de cada operación.",
+   "conceptos": [
+    {
+     "n": "Tipo abstracto de datos (TDA) e implementación",
+     "e": [
+      "Un <b>tipo abstracto de datos</b> define un conjunto de valores y las operaciones que se pueden hacer con ellos, sin decir cómo se guardan: especifica el <i>qué</i> (la interfaz), no el <i>cómo</i>. La <b>estructura de datos</b> es la implementación concreta. El TDA Lista ofrece insertar, eliminar, buscar, recorrer y consultar el tamaño; por dentro puede ser un arreglo o una cadena de nodos, y el código que la usa no cambia. A eso se le llama encapsulamiento u ocultamiento de la información. En Java, <code>List</code> es la interfaz y <code>ArrayList</code> y <code>LinkedList</code> son dos implementaciones.",
+      "Las estructuras se clasifican en <b>lineales</b>, donde cada elemento tiene un único sucesor (arreglo, lista, pila, cola), y <b>no lineales</b> (árboles y grafos). También en <b>estáticas</b>, cuyo tamaño se fija al crearlas (arreglo), y <b>dinámicas</b>, que piden y liberan memoria durante la ejecución (listas enlazadas, árboles)."
+     ],
+     "u": [
+      "En las colecciones de cualquier lenguaje: <code>List</code>, <code>Map</code> y <code>Queue</code> en Java, o las colecciones de Laravel, que usas sin ver cómo están hechas.",
+      "Permite cambiar la implementación por otra más rápida sin tocar el resto del programa.",
+      "Al diseñar: primero decides qué operaciones necesitas y después qué estructura las hace baratas.",
+      "Escribe la interfaz (operaciones, parámetros y resultado), elige la estructura según la operación más frecuente e impleméntala detrás de esa interfaz."
+     ]
+    },
+    {
+     "n": "Arreglo contra lista enlazada",
+     "e": [
+      "Un <b>arreglo</b> guarda sus elementos en posiciones contiguas de memoria: la dirección del elemento <code>i</code> se calcula directamente, así que el acceso por índice es \\(O(1)\\). A cambio, insertar o eliminar en medio obliga a desplazar los elementos que siguen, \\(O(n)\\), y su tamaño es fijo: para crecer hay que crear otro arreglo y copiar. Una <b>lista enlazada</b> guarda cada elemento en un <b>nodo</b>, que puede estar en cualquier parte de la memoria y contiene el dato y un puntero (referencia) al nodo siguiente. No tiene acceso directo: para llegar a la posición <code>i</code> hay que recorrer desde la cabeza, \\(O(n)\\). A cambio, insertar o eliminar cuando ya se tiene la referencia al nodo anterior solo cambia punteros, \\(O(1)\\), y la lista crece nodo a nodo."
+     ],
+     "u": [
+      "<code>ArrayList</code> contra <code>LinkedList</code> en Java; el arreglo de JavaScript se comporta como arreglo dinámico: <code>push</code> al final es barato y <code>unshift</code> al inicio desplaza todo.",
+      "Elegir mal convierte una operación frecuente de \\(O(1)\\) en \\(O(n)\\).",
+      "Arreglo si lees mucho por posición; lista si insertas y eliminas mucho en los extremos o durante un recorrido.",
+      "Anota qué operaciones dominan en tu problema y compara sus costos fila por fila en la tabla."
+     ],
+     "tabla": "<table><tr><th>Operación</th><th>Arreglo</th><th>Lista simple con puntero a la cabeza</th></tr><tr><td>Leer la posición <code>i</code></td><td>\\(O(1)\\)</td><td>\\(O(n)\\)</td></tr><tr><td>Buscar un valor</td><td>\\(O(n)\\); \\(O(\\log n)\\) si está ordenado</td><td>\\(O(n)\\)</td></tr><tr><td>Insertar o eliminar al inicio</td><td>\\(O(n)\\)</td><td>\\(O(1)\\)</td></tr><tr><td>Insertar al final</td><td>\\(O(1)\\) si hay espacio</td><td>\\(O(n)\\); \\(O(1)\\) con puntero a la cola</td></tr><tr><td>Eliminar el último</td><td>\\(O(1)\\)</td><td>\\(O(n)\\), aun con puntero a la cola</td></tr><tr><td>Insertar o eliminar en medio</td><td>\\(O(n)\\) por los desplazamientos</td><td>\\(O(n)\\) para llegar y \\(O(1)\\) para enlazar</td></tr><tr><td>Memoria</td><td>Solo los datos; tamaño fijo</td><td>Dato y puntero por nodo; crece según se necesite</td></tr></table>"
+    },
+    {
+     "n": "Lista simple, doble y circular: manejo de punteros",
+     "e": [
+      "En la <b>lista simple</b> cada nodo guarda el dato y un puntero <code>siguiente</code>; <code>cabeza</code> apunta al primer nodo y el último apunta a <code>null</code>. Solo se recorre hacia adelante. En la <b>lista doble</b> cada nodo guarda además <code>anterior</code>: se recorre en los dos sentidos y un nodo se puede eliminar en \\(O(1)\\) teniendo solo su referencia, a cambio de un puntero más por nodo y de más enlaces que actualizar. En la <b>lista circular</b> el último nodo apunta al primero en lugar de a <code>null</code> (y en la doble circular el primero apunta también al último): el recorrido termina cuando se vuelve al nodo de partida.<pre><code>class Nodo {\n  int dato;\n  Nodo siguiente;\n  Nodo(int d) { dato = d; siguiente = null; }\n}</code></pre>",
+      "Regla para no perder la lista: primero se enlaza el nodo nuevo y después se modifica el nodo existente. Insertar <code>nuevo</code> después de <code>p</code>: <code>nuevo.siguiente = p.siguiente; p.siguiente = nuevo;</code>. Eliminar el nodo que sigue a <code>p</code>: <code>p.siguiente = p.siguiente.siguiente;</code>. En Java el recolector de basura libera el nodo que queda sin referencias; en C o C++ hay que liberarlo a mano. Los casos especiales que se preguntan en examen son la lista vacía, insertar o eliminar en la cabeza y eliminar el último."
+     ],
+     "u": [
+      "Historial de un navegador con atrás y adelante (doble), lista de reproducción que se repite o turnos de procesos en el sistema operativo (circular), deshacer y rehacer de un editor.",
+      "Insertar y eliminar sin mover los demás elementos es lo que hace eficientes a las pilas, las colas y las tablas hash con encadenamiento.",
+      "Cuando el tamaño cambia mucho y no necesitas acceso por posición.",
+      "Dibuja los nodos como cajas con flechas, numera las asignaciones de punteros y revisa los casos de lista vacía, cabeza y último."
+     ]
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Una lista simple tiene los nodos 12 → 25 → 40 y <code>cabeza</code> apunta al 12. Escribe las instrucciones para insertar el 7 al inicio y di cuánto cuesta.",
+     "pasos": [
+      "<b>Crear el nodo.</b> <code>Nodo nuevo = new Nodo(7);</code> Su <code>siguiente</code> vale <code>null</code>.",
+      "<b>Enlazar el nuevo.</b> <code>nuevo.siguiente = cabeza;</code> Ahora el 7 apunta al 12 y la lista original sigue intacta.",
+      "<b>Mover la cabeza.</b> <code>cabeza = nuevo;</code> La lista queda 7 → 12 → 25 → 40.",
+      "<b>Por qué en ese orden.</b> Si primero haces <code>cabeza = nuevo</code>, ya nadie apunta al 12 y pierdes la lista: después, <code>nuevo.siguiente = cabeza</code> haría que el 7 se apunte a sí mismo.",
+      "<b>Costo.</b> Dos asignaciones, sin importar el tamaño: \\(O(1)\\). En un arreglo habría que desplazar los tres elementos: \\(O(n)\\)."
+     ],
+     "r": "7 → 12 → 25 → 40, con <code>nuevo.siguiente = cabeza; cabeza = nuevo;</code> en \\(O(1)\\).",
+     "fin": "Dominar el orden de las asignaciones de punteros, que es lo que se califica en estas preguntas."
+    },
+    {
+     "nv": "I",
+     "q": "La lista simple 10 → 20 → 40 → 50 está ordenada. Inserta el 30 en su lugar con este código: indica dónde se detiene el puntero <code>p</code>, qué punteros cambian y cuánto cuesta.<pre><code>Nodo p = cabeza;\nwhile (p.siguiente != null &amp;&amp; p.siguiente.dato &lt; 30)\n  p = p.siguiente;\nnuevo.siguiente = p.siguiente;\np.siguiente = nuevo;</code></pre>",
+     "pasos": [
+      "<b>Idea.</b> Hay que detenerse en el nodo <i>anterior</i> al lugar de inserción; por eso se compara <code>p.siguiente.dato</code> y no <code>p.dato</code>.",
+      "<b>Recorrido.</b> Con <code>p</code> en el 10: el siguiente es 20 y 20 &lt; 30, avanza. Con <code>p</code> en el 20: el siguiente es 40 y 40 &lt; 30 es falso, se detiene. <code>p</code> queda en el 20.",
+      "<b>Enlazar el nuevo.</b> <code>nuevo.siguiente = p.siguiente;</code> El 30 apunta al 40.",
+      "<b>Enlazar el anterior.</b> <code>p.siguiente = nuevo;</code> El 20 apunta al 30. Resultado: 10 → 20 → 30 → 40 → 50.",
+      "<b>Costo.</b> Encontrar el lugar es \\(O(n)\\) en el peor caso; enlazar es \\(O(1)\\). Si el valor fuera menor que el de la cabeza sería una inserción al inicio, que se trata aparte."
+     ],
+     "r": "10 → 20 → 30 → 40 → 50. <code>p</code> se detiene en el 20, cambian dos punteros y el costo total es \\(O(n)\\) por la búsqueda del lugar.",
+     "fin": "Separar las dos partes de toda inserción en una lista: ubicar el nodo anterior y reenlazar."
+    },
+    {
+     "nv": "I",
+     "q": "En la lista doble 5 ↔ 8 ↔ 13 ↔ 21 tienes una referencia <code>x</code> al nodo que guarda el 13. Elimínalo sin recorrer la lista e indica qué casos especiales hay que cuidar.",
+     "pasos": [
+      "<b>Saltar hacia adelante.</b> <code>x.anterior.siguiente = x.siguiente;</code> El 8 ahora apunta al 21.",
+      "<b>Saltar hacia atrás.</b> <code>x.siguiente.anterior = x.anterior;</code> El 21 ahora apunta hacia atrás al 8.",
+      "<b>Resultado.</b> 5 ↔ 8 ↔ 21. Nadie apunta ya al 13 y el recolector de basura lo libera.",
+      "<b>Casos especiales.</b> Si <code>x</code> es la cabeza, <code>x.anterior</code> es <code>null</code>: en lugar de la primera asignación se hace <code>cabeza = x.siguiente</code>. Si <code>x</code> es el último, <code>x.siguiente</code> es <code>null</code>: en lugar de la segunda se hace <code>cola = x.anterior</code>.",
+      "<b>Costo.</b> \\(O(1)\\). En una lista simple haría falta recorrer desde la cabeza para hallar el nodo anterior: \\(O(n)\\)."
+     ],
+     "r": "5 ↔ 8 ↔ 21, con dos asignaciones de punteros, en \\(O(1)\\).",
+     "fin": "Explicar la ventaja concreta de la lista doble: eliminar un nodo con solo su referencia."
+    },
+    {
+     "nv": "A",
+     "q": "Invierte la lista simple 1 → 2 → 3 sin crear nodos nuevos. Sigue el valor de los punteros en cada vuelta del ciclo.<pre><code>Nodo anterior = null, actual = cabeza;\nwhile (actual != null) {\n  Nodo sig = actual.siguiente;\n  actual.siguiente = anterior;\n  anterior = actual;\n  actual = sig;\n}\ncabeza = anterior;</code></pre>",
+     "pasos": [
+      "<b>Idea.</b> Se recorre la lista una vez y a cada nodo se le voltea la flecha para que apunte al nodo anterior. <code>sig</code> guarda el resto de la lista antes de romper el enlace.",
+      "<b>Vuelta 1.</b> <code>sig</code> = 2; el 1 pasa a apuntar a <code>null</code>; <code>anterior</code> = 1; <code>actual</code> = 2.",
+      "<b>Vuelta 2.</b> <code>sig</code> = 3; el 2 pasa a apuntar al 1; <code>anterior</code> = 2; <code>actual</code> = 3.",
+      "<b>Vuelta 3.</b> <code>sig</code> = <code>null</code>; el 3 pasa a apuntar al 2; <code>anterior</code> = 3; <code>actual</code> = <code>null</code> y el ciclo termina.",
+      "<b>Cierre.</b> <code>cabeza = anterior;</code> La cabeza es ahora el 3: 3 → 2 → 1."
+     ],
+     "r": "3 → 2 → 1, en tiempo \\(O(n)\\) y con memoria adicional \\(O(1)\\): tres punteros auxiliares.",
+     "fin": "Es la pregunta clásica de punteros: demuestra que sabes guardar el resto de la lista antes de modificar un enlace."
+    },
+    {
+     "nv": "B",
+     "q": "Sobre la lista simple 4 → 9 → 15 → 23, de la que solo tienes el puntero <code>cabeza</code>, se hace en este orden: eliminar el primer nodo, insertar el 30 al final e insertar el 1 al inicio. ¿Cómo queda la lista y cuál de las tres operaciones cuesta \\(O(n)\\)?",
+     "r": "Queda 1 → 9 → 15 → 23 → 30. Insertar al final cuesta \\(O(n)\\), porque hay que recorrer hasta el último nodo; eliminar el primero e insertar al inicio son \\(O(1)\\)."
+    },
+    {
+     "nv": "I",
+     "q": "En una lista doble, los nodos <code>a</code> y <code>b</code> son vecinos (<code>a.siguiente</code> es <code>b</code>). Escribe las asignaciones para insertar un nodo <code>nuevo</code> entre los dos. ¿Cuántos punteros cambian y cuánto cuesta?",
+     "r": "<code>nuevo.anterior = a; nuevo.siguiente = b; a.siguiente = nuevo; b.anterior = nuevo;</code> Cambian 4 punteros y cuesta \\(O(1)\\). Primero se llenan los dos punteros del nodo nuevo y después se modifican los vecinos."
+    },
+    {
+     "nv": "A",
+     "q": "Cinco personas, numeradas 1, 2, 3, 4 y 5, forman una lista circular en ese orden. Se empieza a contar en la persona 1: se cuenta «uno, dos» y la persona a la que le toca el «dos» sale de la ronda; la cuenta vuelve a empezar en la persona que le seguía. ¿En qué orden salen y quién queda al final?",
+     "r": "Salen 2, 4, 1 y 5; queda la persona 3. En la lista circular no hay <code>null</code>: después del 5 se vuelve al 1, y cada salida es un <code>p.siguiente = p.siguiente.siguiente</code>. Es el problema de Josefo."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué define un tipo abstracto de datos (TDA)?",
+     "ops": [
+      "La forma exacta en que los datos se guardan en la memoria del equipo",
+      "Una clase que no puede tener atributos ni métodos de acceso privado",
+      "Un arreglo cuyo tamaño se decide en el momento de compilar el programa",
+      "Los valores y las operaciones permitidas, sin fijar cómo se implementan"
+     ],
+     "ok": 3,
+     "r": "El TDA es la especificación: qué operaciones hay y qué hacen. Cómo se guardan los datos es asunto de la estructura de datos que lo implementa, y puede haber varias para el mismo TDA: una lista con arreglo o con nodos enlazados. Ocultar esos detalles con atributos privados es justamente lo habitual, y un TDA no tiene por qué ser un arreglo."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué operación cuesta \\(O(1)\\) en un arreglo y \\(O(n)\\) en una lista enlazada simple?",
+     "ops": [
+      "Leer el elemento que está en la posición <code>i</code>",
+      "Insertar un elemento nuevo al inicio",
+      "Eliminar el primer elemento",
+      "Buscar un valor en datos sin ordenar"
+     ],
+     "ok": 0,
+     "r": "El arreglo calcula la dirección del elemento <code>i</code> directamente; la lista tiene que recorrer <code>i</code> nodos desde la cabeza. Insertar o eliminar al inicio es al revés: \\(O(1)\\) en la lista y \\(O(n)\\) en el arreglo, por los desplazamientos. Buscar un valor sin orden es \\(O(n)\\) en las dos."
+    },
+    {
+     "nv": "I",
+     "q": "En una lista simple quieres insertar el nodo <code>nuevo</code> justo después del nodo <code>p</code>. ¿Qué secuencia es correcta?",
+     "ops": [
+      "<code>nuevo.siguiente = p.siguiente; p.siguiente = nuevo;</code>",
+      "<code>p.siguiente = nuevo; nuevo.siguiente = p.siguiente;</code>",
+      "<code>nuevo.siguiente = p; p.siguiente = nuevo;</code>",
+      "<code>p = nuevo; nuevo.siguiente = p.siguiente;</code>"
+     ],
+     "ok": 0,
+     "r": "Primero el nodo nuevo toma como siguiente al que seguía a <code>p</code>, y después <code>p</code> apunta al nuevo. Si se asigna primero <code>p.siguiente = nuevo</code>, se pierde el resto de la lista y el nuevo termina apuntándose a sí mismo. Con <code>nuevo.siguiente = p</code> se forma un ciclo entre los dos nodos, y <code>p = nuevo</code> solo mueve la variable local sin enlazar nada."
+    },
+    {
+     "nv": "I",
+     "q": "Una lista simple tiene punteros a la cabeza y a la cola. ¿Cuál de estas operaciones sigue costando \\(O(n)\\)?",
+     "ops": [
+      "Insertar un nodo al final",
+      "Eliminar el último nodo",
+      "Insertar un nodo al inicio",
+      "Eliminar el primer nodo"
+     ],
+     "ok": 1,
+     "r": "Para eliminar el último hay que dejar la cola en el penúltimo nodo, y en una lista simple no se puede retroceder: hay que recorrer desde la cabeza. Las otras tres operaciones solo tocan la cabeza o la cola y son \\(O(1)\\). En una lista doble, eliminar el último también es \\(O(1)\\)."
+    },
+    {
+     "nv": "A",
+     "q": "¿Qué ventaja tiene la lista doblemente enlazada sobre la simple y cuál es su costo?",
+     "ops": [
+      "Permite el acceso directo por índice en \\(O(1)\\), a cambio de que su tamaño quede fijo desde el momento en que se crea",
+      "Hace la búsqueda de un valor en \\(O(\\log n)\\), a cambio de tener que mantener los nodos siempre ordenados por clave",
+      "Elimina un nodo con solo su referencia en \\(O(1)\\) y se recorre en ambos sentidos, a cambio de un puntero más por nodo",
+      "Ocupa menos memoria que la lista simple, a cambio de que solo se pueda insertar y eliminar por uno de sus extremos"
+     ],
+     "ok": 2,
+     "r": "El puntero <code>anterior</code> permite llegar al nodo previo sin recorrer la lista, que es lo que necesita la eliminación, y permite recorrer hacia atrás. Sigue sin tener acceso por índice (eso es del arreglo); la búsqueda sigue siendo \\(O(n)\\), porque no se puede saltar al centro; y ocupa más memoria, no menos."
+    }
+   ]
+  },
+  {
+   "titulo": "Pilas y colas",
+   "intro": "Las dos estructuras lineales de acceso restringido, la pila (LIFO) y la cola (FIFO), con sus implementaciones, la cola circular, la cola de prioridad y la bicola, y sus aplicaciones con expresiones aritméticas.",
+   "conceptos": [
+    {
+     "n": "Pila (LIFO)",
+     "e": [
+      "Una <b>pila</b> es una estructura lineal en la que se inserta y se elimina por un solo extremo, la <b>cima</b> (o tope): el último en entrar es el primero en salir, <b>LIFO</b> (<i>last in, first out</i>). Sus operaciones son <code>push</code> (apilar), <code>pop</code> (desapilar: quita y devuelve la cima), <code>peek</code> o <code>top</code> (consultar la cima sin quitarla) e <code>isEmpty</code> (saber si está vacía); todas cuestan \\(O(1)\\). Hacer <code>pop</code> sobre una pila vacía es un <b>subdesbordamiento</b> (<i>underflow</i>); hacer <code>push</code> sobre una pila llena, un <b>desbordamiento</b> (<i>overflow</i>).",
+      "Con <b>arreglo</b>: un índice <code>tope</code> que empieza en −1; apilar es <code>a[++tope] = x</code> y desapilar es <code>x = a[tope--]</code>; la capacidad es fija. Con <b>lista enlazada</b>: se apila y se desapila en la cabeza de la lista, que hace de cima, y no hay límite de tamaño."
+     ],
+     "u": [
+      "Pila de llamadas de un programa, deshacer (Ctrl+Z), botón «atrás» del navegador, recorrido en profundidad y análisis de expresiones en un compilador.",
+      "Resuelve de forma natural todo lo que debe deshacerse o cerrarse en orden inverso al que se abrió.",
+      "Cuando lo más reciente es lo primero que hay que atender.",
+      "Escribe la pila en una fila, con la cima a la derecha, y anota su contenido después de cada operación."
+     ]
+    },
+    {
+     "n": "Cola (FIFO), cola circular, cola de prioridad y bicola",
+     "e": [
+      "Una <b>cola</b> inserta por un extremo, el <b>final</b>, y elimina por el otro, el <b>frente</b>: el primero en entrar es el primero en salir, <b>FIFO</b> (<i>first in, first out</i>). Sus operaciones son <code>enqueue</code> (encolar), <code>dequeue</code> (desencolar), <code>front</code> (consultar el frente) e <code>isEmpty</code>, todas \\(O(1)\\). Con lista enlazada se llevan dos punteros, <code>frente</code> y <code>final</code>. Con un arreglo lineal aparece un problema: al desencolar, el frente avanza y deja al inicio casillas libres que no se vuelven a usar, así que la cola parece llena aunque no lo esté.",
+      "La <b>cola circular</b> lo resuelve tratando el arreglo como un anillo: después de la última casilla sigue la primera, con aritmética modular. Para distinguir la cola llena de la vacía se lleva un contador de elementos o se deja una casilla sin usar. En la <b>cola de prioridad</b> no sale el más antiguo, sino el de mayor prioridad; se implementa con un montículo, que inserta y extrae en \\(O(\\log n)\\). La <b>bicola</b> (<i>deque</i>) permite insertar y eliminar por los dos extremos, de modo que generaliza a la pila y a la cola."
+     ],
+     "u": [
+      "La cola de un banco, la cola de impresión, los trabajos en segundo plano de Laravel (<code>queue</code>) y el recorrido en anchura; la cola de prioridad, en la emergencia de un hospital.",
+      "Atiende en orden de llegada, que es lo justo cuando un recurso se comparte.",
+      "Cuando quien produce y quien consume trabajan a ritmos distintos y hay que guardar lo pendiente.",
+      "Con arreglo, dibuja las casillas, marca <code>frente</code> y <code>final</code> y avanza cada índice con módulo \\(N\\)."
+     ],
+     "f": "\\text{final}=(\\text{final}+1)\\bmod N\\qquad \\text{frente}=(\\text{frente}+1)\\bmod N"
+    },
+    {
+     "n": "Expresiones: balanceo de símbolos, notación infija y posfija",
+     "e": [
+      "En notación <b>infija</b> el operador va entre los operandos (<code>A + B</code>) y hacen falta reglas de precedencia y paréntesis. En <b>posfija</b> (polaca inversa) va después (<code>A B +</code>) y en <b>prefija</b> (polaca) va antes (<code>+ A B</code>); ninguna de las dos necesita paréntesis. Para <b>evaluar una posfija</b> se recorre de izquierda a derecha: cada operando se apila; con cada operador se desapilan dos valores (el primero que sale es el operando derecho), se opera y se apila el resultado; al final queda un solo valor. Para verificar el <b>balanceo</b> de paréntesis, corchetes y llaves, cada símbolo de apertura se apila y cada cierre debe coincidir con la cima; al terminar, la pila debe quedar vacía.",
+      "Para <b>convertir de infija a posfija</b> se usa una pila de operadores. Un operando va directo a la salida. Un <code>(</code> se apila. Con un <code>)</code> se desapila hacia la salida hasta encontrar el <code>(</code>, que se descarta. Con un operador, primero se desapilan hacia la salida los operadores de la cima con precedencia mayor o igual (para <code>^</code>, solo mayor, porque asocia por la derecha), sin pasar de un <code>(</code>, y luego se apila el operador. Al acabar la expresión se vacía la pila hacia la salida. Los operandos conservan siempre su orden original."
+     ],
+     "u": [
+      "Compiladores e intérpretes, calculadoras, el editor de código que marca la llave sin cerrar, validación de HTML o JSON.",
+      "La posfija se evalúa en una sola pasada, sin reglas de precedencia ni paréntesis.",
+      "Al traducir o evaluar expresiones y al validar símbolos anidados.",
+      "Haz una tabla con tres columnas (símbolo leído, pila y salida) y llénala un símbolo a la vez."
+     ],
+     "tabla": "<table><tr><th>Operador</th><th>Precedencia</th><th>Asociatividad</th></tr><tr><td><code>^</code></td><td>3 (la mayor)</td><td>Por la derecha: <code>2 ^ 3 ^ 2</code> es <code>2 ^ (3 ^ 2)</code></td></tr><tr><td><code>*</code> y <code>/</code></td><td>2</td><td>Por la izquierda: <code>8 / 4 / 2</code> es <code>(8 / 4) / 2</code></td></tr><tr><td><code>+</code> y <code>-</code></td><td>1 (la menor)</td><td>Por la izquierda: <code>8 - 3 - 2</code> es <code>(8 - 3) - 2</code></td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Sobre una pila vacía se ejecuta: <code>push(5)</code>, <code>push(8)</code>, <code>pop()</code>, <code>push(3)</code>, <code>push(7)</code>, <code>pop()</code>, <code>push(2)</code>. Muestra la pila después de cada operación y di qué devolvió cada <code>pop</code>.",
+     "pasos": [
+      "<b>Dos push.</b> Tras <code>push(5)</code>: [5]. Tras <code>push(8)</code>: [5, 8]. La cima es el elemento de la derecha.",
+      "<b>Primer pop.</b> Sale la cima: devuelve 8 y queda [5].",
+      "<b>Dos push.</b> Tras <code>push(3)</code>: [5, 3]. Tras <code>push(7)</code>: [5, 3, 7].",
+      "<b>Segundo pop.</b> Devuelve 7 y queda [5, 3].",
+      "<b>Último push.</b> Tras <code>push(2)</code>: [5, 3, 2]."
+     ],
+     "r": "La pila queda [5, 3, 2], con el 2 en la cima; los <code>pop</code> devolvieron 8 y 7.",
+     "fin": "Aplicar LIFO sin dudar: siempre sale lo último que entró, no lo más antiguo."
+    },
+    {
+     "nv": "I",
+     "q": "Convierte a notación posfija la expresión infija <code>A + B * ( C - D ) / E</code>, mostrando la pila de operadores.",
+     "pasos": [
+      "<b>Leer A + B.</b> <code>A</code> va a la salida; <code>+</code> se apila; <code>B</code> va a la salida. Pila: <code>+</code>. Salida: <code>A B</code>.",
+      "<b>Leer * (.</b> <code>*</code> tiene más precedencia que el <code>+</code> de la cima: se apila sin sacar nada. El <code>(</code> se apila siempre. Pila: <code>+ * (</code>.",
+      "<b>Leer C - D.</b> <code>C</code> va a la salida; <code>-</code> se apila, porque la cima es un paréntesis; <code>D</code> va a la salida. Pila: <code>+ * ( -</code>. Salida: <code>A B C D</code>.",
+      "<b>Leer ).</b> Se desapila hasta el <code>(</code>: sale <code>-</code> y el paréntesis se descarta. Pila: <code>+ *</code>. Salida: <code>A B C D -</code>.",
+      "<b>Leer / E.</b> <code>/</code> tiene la misma precedencia que el <code>*</code> de la cima y asocia por la izquierda: primero sale <code>*</code>. El <code>+</code> tiene menos precedencia y se queda. Se apila <code>/</code> y <code>E</code> va a la salida. Pila: <code>+ /</code>. Salida: <code>A B C D - * E</code>.",
+      "<b>Fin de la expresión.</b> Se vacía la pila desde la cima: sale <code>/</code> y luego <code>+</code>."
+     ],
+     "r": "<code>A B C D - * E / +</code>",
+     "fin": "Es el ejercicio de pilas más repetido en parciales; la clave es qué se desapila cuando llega un operador."
+    },
+    {
+     "nv": "I",
+     "q": "Evalúa la expresión posfija <code>8 2 3 * + 4 2 / -</code> mostrando la pila después de cada símbolo.",
+     "pasos": [
+      "<b>Leer 8, 2, 3.</b> Son operandos: se apilan. Pila: [8, 2, 3].",
+      "<b>Leer *.</b> Salen 3 (operando derecho) y 2 (izquierdo): \\(2\\times 3=6\\). Pila: [8, 6].",
+      "<b>Leer +.</b> Salen 6 y 8: \\(8+6=14\\). Pila: [14].",
+      "<b>Leer 4, 2.</b> Se apilan. Pila: [14, 4, 2].",
+      "<b>Leer /.</b> Salen 2 (derecho) y 4 (izquierdo): \\(4/2=2\\). Pila: [14, 2].",
+      "<b>Leer -.</b> Salen 2 (derecho) y 14 (izquierdo): \\(14-2=12\\). Pila: [12]."
+     ],
+     "r": "12. Equivale a la expresión infija <code>8 + 2 * 3 - 4 / 2</code>.",
+     "fin": "Recordar que el primer valor que sale de la pila es el operando derecho: en la resta y en la división, invertirlos cambia el resultado."
+    },
+    {
+     "nv": "A",
+     "q": "Una cola circular usa un arreglo de \\(N=5\\) casillas (índices 0 a 4). <code>frente</code> es el índice del primer elemento, <code>final</code> el de la próxima casilla libre y <code>n</code> la cantidad de elementos; los tres empiezan en 0. Se encolan A, B, C y D; se desencola dos veces; se encolan E, F y G. Muestra el arreglo y los índices, y di qué pasa si después se intenta encolar H.",
+     "pasos": [
+      "<b>Encolar A, B, C, D.</b> Ocupan las casillas 0 a 3. Arreglo: [A, B, C, D, _]; <code>frente</code> = 0, <code>final</code> = 4, <code>n</code> = 4.",
+      "<b>Desencolar dos veces.</b> Salen A y B, en orden de llegada, y <code>frente</code> avanza a 2. Arreglo: [_, _, C, D, _]; <code>final</code> = 4, <code>n</code> = 2.",
+      "<b>Encolar E.</b> Entra en la casilla 4 y <code>final</code> = (4 + 1) % 5 = 0: da la vuelta. Arreglo: [_, _, C, D, E]; <code>n</code> = 3.",
+      "<b>Encolar F y G.</b> F entra en la casilla 0 y G en la 1, que habían quedado libres. Arreglo: [F, G, C, D, E]; <code>final</code> = 2, <code>n</code> = 5.",
+      "<b>Encolar H.</b> <code>n</code> = 5 = \\(N\\): la cola está llena y hay desbordamiento. Fíjate en que <code>final</code> = <code>frente</code> = 2, igual que en una cola vacía: por eso hace falta el contador."
+     ],
+     "r": "Arreglo [F, G, C, D, E], con <code>frente</code> = 2, <code>final</code> = 2 y <code>n</code> = 5; el orden de salida sería C, D, E, F, G. Encolar H no se puede: la cola está llena.",
+     "fin": "Mostrar cómo la aritmética modular reutiliza las casillas liberadas y por qué comparar <code>frente</code> con <code>final</code> no basta para saber si la cola está llena o vacía."
+    },
+    {
+     "nv": "B",
+     "q": "Usa una pila para decidir si los símbolos están balanceados en <code>{ [ ( ) ] ( ) }</code> y en <code>( [ ) ]</code>. Si alguna falla, indica en qué símbolo.",
+     "r": "La primera está balanceada: cada cierre coincide con la cima y la pila termina vacía. La segunda falla al leer <code>)</code>, el tercer símbolo: la cima es <code>[</code> y no es su pareja."
+    },
+    {
+     "nv": "I",
+     "q": "Convierte a posfija la expresión <code>( 7 + 3 ) * ( 6 - 2 ) / 5</code> y evalúala con una pila.",
+     "r": "Posfija: <code>7 3 + 6 2 - * 5 /</code>. Evaluación: \\(7+3=10\\); \\(6-2=4\\); \\(10\\times 4=40\\); \\(40/5=8\\). Resultado: 8."
+    },
+    {
+     "nv": "A",
+     "q": "Convierte a posfija <code>2 ^ 3 ^ 2 - 4 * ( 1 + 5 )</code> y evalúala. Recuerda que <code>^</code> (potencia) asocia por la derecha.",
+     "r": "Posfija: <code>2 3 2 ^ ^ 4 1 5 + * -</code>. Evaluación: \\(3^2=9\\); \\(2^9=512\\); \\(1+5=6\\); \\(4\\times 6=24\\); \\(512-24=488\\). Al llegar el segundo <code>^</code> no se desapila el primero: con asociatividad por la derecha solo salen los operadores de precedencia estrictamente mayor."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué estructura conviene para la función «deshacer» de un editor de texto y por qué?",
+     "ops": [
+      "Una cola, porque las acciones se deshacen en el orden en que se hicieron",
+      "Una pila, porque la última acción hecha es la primera que se deshace",
+      "Una cola de prioridad, porque primero se deshace la acción más importante",
+      "Una lista circular, porque al deshacer todo se vuelve a la primera acción"
+     ],
+     "ok": 1,
+     "r": "Deshacer revierte primero lo más reciente: eso es LIFO, una pila. Una cola revertiría primero la acción más antigua; la prioridad y el recorrido circular no tienen relación con el orden en que se hicieron los cambios."
+    },
+    {
+     "nv": "B",
+     "q": "A la cola de un banco llegan, en este orden, Ana, Luis y Marta. Se atiende a una persona y después llega Pedro. ¿Quién está ahora en el frente de la cola?",
+     "ops": [
+      "Luis",
+      "Ana",
+      "Marta",
+      "Pedro"
+     ],
+     "ok": 0,
+     "r": "La cola es FIFO: se atiende primero a Ana, que llegó antes, y el frente pasa a Luis. Pedro entra por el final, detrás de Marta. Si fuera una pila habría salido Marta, la última en llegar."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cuál es la forma posfija de la expresión <code>A * ( B + C ) - D</code>?",
+     "ops": [
+      "<code>A B * C + D -</code>",
+      "<code>A B C * + D -</code>",
+      "<code>- * A + B C D</code>",
+      "<code>A B C + * D -</code>"
+     ],
+     "ok": 3,
+     "r": "El paréntesis obliga a sumar primero: <code>B C +</code>. Ese resultado se multiplica por A: <code>A B C + *</code>. Al final se resta D. <code>A B * C + D -</code> ignora el paréntesis; <code>A B C * + D -</code> multiplica B por C; y <code>- * A + B C D</code> es la forma prefija, no la posfija."
+    },
+    {
+     "nv": "I",
+     "q": "Una cola circular usa un arreglo de \\(N=6\\) casillas (índices 0 a 5). El frente está en el índice 4 y hay 3 elementos guardados. ¿Qué casillas ocupan y en cuál se insertará el siguiente?",
+     "ops": [
+      "Las casillas 4, 5 y 6; el siguiente entra en la 7",
+      "Las casillas 4, 5 y 0; el siguiente entra en la 6",
+      "Las casillas 4, 5 y 0; el siguiente entra en la 1",
+      "Las casillas 2, 3 y 4; el siguiente entra en la 5"
+     ],
+     "ok": 2,
+     "r": "Los índices avanzan con módulo 6: después del 5 sigue \\((5+1)\\bmod 6=0\\). Los elementos están en 4, 5 y 0, y el siguiente entra en \\((4+3)\\bmod 6=1\\). Las casillas 6 y 7 no existen, y contar hacia atrás desde el frente confunde el sentido en que crece la cola."
+    },
+    {
+     "nv": "A",
+     "q": "¿Qué implementación conviene para una cola de prioridad y cuánto cuestan insertar y extraer el elemento de mayor prioridad?",
+     "ops": [
+      "Un arreglo ordenado: las dos operaciones en \\(O(1)\\)",
+      "Una lista enlazada sin ordenar: las dos en \\(O(\\log n)\\)",
+      "Una cola circular: las dos operaciones en \\(O(1)\\)",
+      "Un montículo binario: las dos operaciones en \\(O(\\log n)\\)"
+     ],
+     "ok": 3,
+     "r": "El montículo mantiene el máximo en la raíz y repara su orden subiendo o bajando por un camino de longitud \\(\\log n\\). En un arreglo ordenado extraer es \\(O(1)\\), pero insertar es \\(O(n)\\) por los desplazamientos; en una lista sin ordenar insertar es \\(O(1)\\), pero hallar el máximo es \\(O(n)\\); y una cola circular atiende por orden de llegada, no por prioridad."
+    }
+   ]
+  },
+  {
+   "titulo": "Árboles",
+   "intro": "Estructuras jerárquicas: vocabulario, árbol binario y sus recorridos, árbol binario de búsqueda, equilibrio AVL, montículo binario y una mención de los árboles B.",
+   "conceptos": [
+    {
+     "n": "Terminología y recorridos del árbol binario",
+     "e": [
+      "Un <b>árbol</b> es una estructura no lineal y jerárquica de nodos unidos por aristas, sin ciclos: tiene un nodo <b>raíz</b>, que no tiene padre, y cada uno de los demás tiene exactamente un padre. Una <b>hoja</b> es un nodo sin hijos; los demás son nodos internos. El <b>grado</b> de un nodo es su número de hijos, y el grado del árbol, el mayor de ellos. El <b>nivel</b> (o profundidad) de un nodo es el número de aristas desde la raíz, que está en el nivel 0. La <b>altura</b> de un nodo es el número de aristas del camino más largo hasta una hoja; la altura del árbol es la de su raíz. En esta guía una hoja tiene altura 0 y el árbol vacío, −1; otros textos cuentan nodos en lugar de aristas, y entonces un árbol de un solo nodo tiene altura 1 y la raíz está en el nivel 1. Di siempre qué convención usas.",
+      "En un <b>árbol binario</b> cada nodo tiene como máximo dos hijos, izquierdo y derecho. Es <b>completo</b> si todos sus niveles están llenos salvo quizá el último, que se llena de izquierda a derecha, y <b>lleno</b> (o perfecto) si todos los niveles están llenos. Con altura \\(h\\) tiene como máximo \\(2^{h+1}-1\\) nodos. Se recorre de cuatro formas: <b>preorden</b> (raíz, izquierdo, derecho), <b>inorden</b> (izquierdo, raíz, derecho), <b>posorden</b> (izquierdo, derecho, raíz) y <b>por niveles</b> o en anchura (nivel por nivel, de izquierda a derecha, con ayuda de una cola). Los tres primeros son recorridos en profundidad y se programan de forma recursiva."
+     ],
+     "u": [
+      "Carpetas de un disco, el DOM de una página web, el árbol de componentes de React, organigramas e índices de bases de datos.",
+      "Representa jerarquías y, bien equilibrado, permite buscar en \\(O(\\log n)\\) en lugar de \\(O(n)\\).",
+      "Cuando los datos tienen relación de padre e hijo o cuando hay que mantenerlos ordenados con inserciones frecuentes.",
+      "Para recorrer a mano, aplica la regla del recorrido en la raíz y repítela completa en cada subárbol antes de seguir."
+     ],
+     "f": "n_{\\max}=2^{h+1}-1\\qquad h_{\\min}=\\lfloor \\log_2 n\\rfloor"
+    },
+    {
+     "n": "Árbol binario de búsqueda (ABB) y árbol AVL",
+     "e": [
+      "Un <b>árbol binario de búsqueda</b> cumple en cada nodo que todas las claves de su subárbol izquierdo son menores y todas las de su subárbol derecho son mayores. Buscar e insertar consisten en comparar con el nodo y bajar a la izquierda o a la derecha; la clave nueva siempre queda como hoja. El costo es \\(O(h)\\), con \\(h\\) la altura: \\(O(\\log n)\\) si el árbol está equilibrado y \\(O(n)\\) si degenera en una lista, que es lo que pasa al insertar claves ya ordenadas. Su recorrido inorden entrega las claves en orden ascendente. La <b>eliminación</b> tiene tres casos: si el nodo es hoja, se quita; si tiene un solo hijo, ese hijo ocupa su lugar; si tiene dos hijos, su clave se reemplaza por la de su <b>sucesor inorden</b> (la menor del subárbol derecho) o la de su predecesor inorden (la mayor del izquierdo), y se elimina ese otro nodo, que cae en uno de los dos primeros casos.",
+      "Un <b>árbol AVL</b> (por sus autores, Adelson-Velsky y Landis) es un ABB que se mantiene equilibrado: en cada nodo, las alturas de sus dos subárboles difieren como máximo en 1. El <b>factor de equilibrio</b> es FE = altura del subárbol derecho − altura del subárbol izquierdo, y debe valer −1, 0 o 1; algunos textos lo restan al revés y solo cambia el signo. Si después de insertar o eliminar algún nodo queda con FE de +2 o −2, se corrige con una <b>rotación</b> en el nodo desequilibrado más cercano a la clave insertada. Así la altura se mantiene en \\(O(\\log n)\\), y buscar, insertar y eliminar cuestan \\(O(\\log n)\\) siempre."
+     ],
+     "u": [
+      "Conjuntos y diccionarios ordenados (<code>TreeMap</code> y <code>TreeSet</code> de Java usan un árbol equilibrado), índices en memoria y consultas por rango.",
+      "Mantiene los datos ordenados y permite buscar, insertar y eliminar en \\(O(\\log n)\\); el equilibrio evita el peor caso \\(O(n)\\).",
+      "Cuando necesitas búsquedas rápidas y además recorrer en orden o consultar rangos, algo que una tabla hash no da.",
+      "Inserta comparando desde la raíz; en un AVL, sube desde la hoja nueva recalculando el FE y rota en el primer nodo que llegue a +2 o −2."
+     ],
+     "tabla": "<table><tr><th>Caso</th><th>Dónde cayó la clave nueva</th><th>Corrección</th></tr><tr><td>II (izquierda-izquierda)</td><td>Subárbol izquierdo del hijo izquierdo</td><td>Rotación simple a la derecha</td></tr><tr><td>DD (derecha-derecha)</td><td>Subárbol derecho del hijo derecho</td><td>Rotación simple a la izquierda</td></tr><tr><td>ID (izquierda-derecha)</td><td>Subárbol derecho del hijo izquierdo</td><td>Rotación doble: a la izquierda en el hijo y a la derecha en el nodo</td></tr><tr><td>DI (derecha-izquierda)</td><td>Subárbol izquierdo del hijo derecho</td><td>Rotación doble: a la derecha en el hijo y a la izquierda en el nodo</td></tr></table>"
+    },
+    {
+     "n": "Montículo binario (heap) y árboles B",
+     "e": [
+      "Un <b>montículo binario</b> es un árbol binario completo que cumple una propiedad de orden: en un montículo de máximos cada padre es mayor o igual que sus hijos, de modo que la raíz es el máximo; en uno de mínimos, menor o igual. No es un ABB: entre hermanos no hay orden. Por ser completo se guarda en un arreglo, sin punteros: con índices desde 0, los hijos del nodo \\(i\\) están en \\(2i+1\\) y \\(2i+2\\) y su padre en \\(\\lfloor (i-1)/2\\rfloor\\) (con índices desde 1 son \\(2i\\), \\(2i+1\\) y \\(\\lfloor i/2\\rfloor\\)). <b>Insertar</b>: el elemento se coloca al final y <i>flota</i>, intercambiándose con su padre mientras sea mayor que él, \\(O(\\log n)\\). <b>Extraer la raíz</b>: el último elemento pasa a la raíz y se <i>hunde</i>, intercambiándose con el mayor de sus hijos mientras sea menor que él, \\(O(\\log n)\\). Consultar el máximo es \\(O(1)\\), y construir un montículo con \\(n\\) elementos, hundiendo desde el último padre hasta la raíz, es \\(O(n)\\).",
+      "Un <b>árbol B</b> es un árbol de búsqueda equilibrado y multicamino, pensado para disco: cada nodo guarda varias claves ordenadas y tiene varios hijos, y todas las hojas están en el mismo nivel. En un árbol B de orden \\(m\\) cada nodo tiene como máximo \\(m\\) hijos y \\(m-1\\) claves (la definición de «orden» cambia de un libro a otro). Cuando un nodo se llena, se divide en dos y la clave central sube al padre: el árbol crece hacia arriba. Como cada nodo ocupa un bloque de disco, la altura es muy baja y una búsqueda necesita pocas lecturas. Los índices de MySQL y de PostgreSQL usan variantes B+, que guardan los datos solo en las hojas y las enlazan entre sí."
+     ],
+     "u": [
+      "Montículo: colas de prioridad (planificador de procesos, Dijkstra, Prim) y ordenamiento por montículo. Árbol B: índices de bases de datos y sistemas de archivos.",
+      "El montículo entrega el máximo o el mínimo al instante; el árbol B reduce las lecturas a disco, que son lo más lento.",
+      "Montículo cuando solo interesa el extremo y no el orden total; árbol B cuando los datos no caben en memoria.",
+      "Dibuja el montículo como árbol y escríbelo como arreglo por niveles; tras cada cambio compara padre con hijos e intercambia."
+     ],
+     "f": "\\text{hijos}(i)=2i+1,\\ 2i+2\\qquad \\text{padre}(i)=\\left\\lfloor \\frac{i-1}{2}\\right\\rfloor"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "En este árbol binario (F es hijo derecho de C y G es hijo izquierdo de E) indica la raíz, las hojas, la altura en aristas, el nivel de G y el grado de B y de C. Después escribe sus recorridos en preorden, inorden, posorden y por niveles.<pre><code>     A\n   /   \\\n  B     C\n / \\     \\\nD   E     F\n   /\n  G</code></pre>",
+     "pasos": [
+      "<b>Vocabulario.</b> Raíz: A. Hojas: D, G y F. Altura: 3, por el camino A, B, E, G. G está en el nivel 3. B tiene grado 2 y C tiene grado 1.",
+      "<b>Preorden (raíz, izquierdo, derecho).</b> A; luego todo el subárbol de B: B, D, E, G; luego el de C: C, F. Resultado: A B D E G C F.",
+      "<b>Inorden (izquierdo, raíz, derecho).</b> Subárbol de B: D, B, G, E; luego A; luego el de C, que no tiene hijo izquierdo: C, F. Resultado: D B G E A C F.",
+      "<b>Posorden (izquierdo, derecho, raíz).</b> Subárbol de B: D, G, E, B; subárbol de C: F, C; al final A. Resultado: D G E B F C A.",
+      "<b>Por niveles.</b> Nivel 0: A. Nivel 1: B, C. Nivel 2: D, E, F. Nivel 3: G. Resultado: A B C D E F G."
+     ],
+     "r": "Preorden: A B D E G C F. Inorden: D B G E A C F. Posorden: D G E B F C A. Por niveles: A B C D E F G. Altura 3; hojas D, G y F.",
+     "fin": "Los cuatro recorridos son pregunta fija. Para revisar: la raíz va de primera en preorden y de última en posorden."
+    },
+    {
+     "nv": "I",
+     "q": "Inserta en un árbol binario de búsqueda vacío, en este orden: 50, 30, 70, 20, 40, 60, 80, 65. Da su recorrido inorden. Después elimina, en este orden, 20, 60 y 50, usando el sucesor inorden cuando el nodo tenga dos hijos.",
+     "pasos": [
+      "<b>Inserción.</b> Cada clave se compara desde la raíz y baja a la izquierda si es menor o a la derecha si es mayor. El 65, por ejemplo: mayor que 50, menor que 70, mayor que 60; queda como hijo derecho del 60.<pre><code>       50\n     /    \\\n   30      70\n  /  \\    /  \\\n20   40  60   80\n           \\\n           65</code></pre>",
+      "<b>Inorden.</b> 20 30 40 50 60 65 70 80. Sale ordenado, como en todo ABB.",
+      "<b>Eliminar 20 (hoja).</b> Se quita y el 30 se queda sin hijo izquierdo.",
+      "<b>Eliminar 60 (un hijo).</b> Su único hijo, el 65, ocupa su lugar: ahora el 65 es el hijo izquierdo del 70.",
+      "<b>Eliminar 50 (dos hijos).</b> Su sucesor inorden es la menor clave del subárbol derecho: desde el 70 se baja a la izquierda mientras se pueda y se llega al 65. El 65 sube a la raíz y su nodo original, que era hoja, se elimina.<pre><code>   65\n  /  \\\n30    70\n  \\     \\\n  40    80</code></pre>"
+     ],
+     "r": "Árbol final: raíz 65; a su izquierda el 30, con el 40 como hijo derecho; a su derecha el 70, con el 80 como hijo derecho. Preorden: 65 30 40 70 80. Inorden: 30 40 65 70 80.",
+     "fin": "Practicar los tres casos de eliminación en un solo árbol: hoja, un hijo y dos hijos."
+    },
+    {
+     "nv": "A",
+     "q": "Inserta en un árbol AVL vacío, en este orden: 30, 20, 10, 25, 28. Indica en qué inserciones se pierde el equilibrio, qué rotación lo corrige y cómo queda el árbol. Usa FE = altura del subárbol derecho − altura del izquierdo, con altura 0 para una hoja y −1 para un subárbol vacío.",
+     "pasos": [
+      "<b>Insertar 30, 20, 10.</b> Quedan en fila hacia la izquierda. El 30 tiene a su izquierda un subárbol de altura 1 (el 20 con el 10 debajo) y a su derecha uno vacío, de altura −1: FE(30) = −1 − 1 = −2. Está desequilibrado.",
+      "<b>Rotación simple a la derecha (caso II).</b> El 10 cayó en el subárbol izquierdo del hijo izquierdo. El 20 sube y el 30 baja a su derecha: la raíz es el 20, con hijos 10 y 30.",
+      "<b>Insertar 25.</b> Mayor que 20 y menor que 30: queda como hijo izquierdo del 30. FE(30) = −1 y FE(20) = +1: sigue equilibrado.",
+      "<b>Insertar 28.</b> Queda como hijo derecho del 25. Ahora FE(25) = +1 y FE(30) = −2. El 20 también llega a +2, pero se corrige el nodo desequilibrado más cercano a la hoja nueva, el 30. El 28 cayó en el subárbol derecho de su hijo izquierdo: caso ID.",
+      "<b>Rotación doble (caso ID).</b> Primero a la izquierda sobre el 25: el 28 sube y el 25 queda a su izquierda. Después a la derecha sobre el 30: el 28 sube y el 30 queda a su derecha.<pre><code>   20\n  /  \\\n10    28\n     /  \\\n   25    30</code></pre>",
+      "<b>Comprobación.</b> FE(28) = 0 y FE(20) = +1; el inorden es 10 20 25 28 30. Sigue siendo un ABB y vuelve a ser AVL."
+     ],
+     "r": "Dos correcciones: rotación simple a la derecha sobre el 30 al insertar el 10 y rotación doble izquierda-derecha sobre el 30 al insertar el 28. Árbol final: raíz 20, hijo izquierdo 10 e hijo derecho 28, que tiene por hijos al 25 y al 30. Preorden: 20 10 28 25 30.",
+     "fin": "Identificar el caso (II, DD, ID o DI) por el camino que siguió la clave insertada: de eso depende la rotación."
+    },
+    {
+     "nv": "I",
+     "q": "Construye un montículo de máximos insertando uno por uno 15, 40, 30, 50, 10 y 60, y muestra el arreglo (índices desde 0) después de cada inserción. Luego extrae el máximo.",
+     "pasos": [
+      "<b>Insertar 15 y 40.</b> [15]. El 40 entra al final, [15, 40], y es mayor que su padre: flota. Queda [40, 15].",
+      "<b>Insertar 30.</b> Entra al final: [40, 15, 30]. Su padre es el 40 y no hay cambio.",
+      "<b>Insertar 50.</b> Entra en el índice 3: [40, 15, 30, 50]. Su padre está en \\(\\lfloor (3-1)/2\\rfloor=1\\) y es el 15: se intercambian. Ahora su padre es el 40: se intercambian otra vez. Queda [50, 40, 30, 15].",
+      "<b>Insertar 10.</b> Entra en el índice 4 y su padre es el 40: sin cambio. [50, 40, 30, 15, 10].",
+      "<b>Insertar 60.</b> Entra en el índice 5; su padre, en el índice 2, es el 30: se intercambian. Luego se intercambia con el 50 de la raíz. Queda [60, 40, 50, 15, 10, 30].",
+      "<b>Extraer el máximo.</b> Sale el 60. El último elemento, 30, pasa a la raíz: [30, 40, 50, 15, 10]. Se hunde intercambiándose con su hijo mayor, el 50: [50, 40, 30, 15, 10]. En el índice 2 ya no tiene hijos y se detiene."
+     ],
+     "r": "Montículo: [60, 40, 50, 15, 10, 30]. Después de extraer el 60: [50, 40, 30, 15, 10].",
+     "fin": "Manejar el montículo como arreglo, con las fórmulas de padre e hijos: así funciona una cola de prioridad."
+    },
+    {
+     "nv": "B",
+     "q": "Inserta en un árbol binario de búsqueda vacío, en este orden: 8, 3, 10, 1, 6, 14, 4, 7, 13. Escribe sus recorridos en preorden, inorden y posorden, su altura en aristas y sus hojas.",
+     "r": "Preorden: 8 3 1 6 4 7 10 14 13. Inorden: 1 3 4 6 7 8 10 13 14. Posorden: 1 4 7 6 3 13 14 10 8. Altura 3. Hojas: 1, 4, 7 y 13."
+    },
+    {
+     "nv": "I",
+     "q": "El arreglo [70, 50, 60, 20, 30, 40] es un montículo de máximos con índices desde 0. a) ¿Quiénes son el padre y los hijos del 50? b) Inserta el 65 y escribe el arreglo. c) Sobre ese resultado, extrae el máximo y escribe el arreglo.",
+     "r": "a) El 50 está en el índice 1: su padre es el 70 (índice 0) y sus hijos son el 20 y el 30 (índices 3 y 4). b) El 65 entra en el índice 6 y se intercambia con su padre, el 60: [70, 50, 65, 20, 30, 40, 60]. c) Sale el 70; el 60 pasa a la raíz y se hunde cambiando con el 65: [65, 50, 60, 20, 30, 40]."
+    },
+    {
+     "nv": "A",
+     "q": "Inserta en un árbol AVL vacío, en este orden: 10, 20, 30, 40, 50, 25. Indica cada rotación y escribe el preorden del árbol final.",
+     "r": "Al insertar el 30 se desequilibra el 10 (caso DD): rotación simple a la izquierda, y la raíz pasa a ser el 20. Al insertar el 50 se desequilibra el 30 (caso DD): rotación simple a la izquierda, y el 40 queda con hijos 30 y 50. Al insertar el 25 se desequilibra la raíz, el 20 (caso DI): rotación doble, a la derecha sobre el 40 y a la izquierda sobre el 20. Árbol final: raíz 30; a su izquierda el 20, con hijos 10 y 25; a su derecha el 40, con hijo derecho 50. Preorden: 30 20 10 25 40 50."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué recorrido de un árbol binario de búsqueda entrega las claves en orden ascendente?",
+     "ops": [
+      "Preorden",
+      "Posorden",
+      "Por niveles",
+      "Inorden"
+     ],
+     "ok": 3,
+     "r": "El inorden visita primero el subárbol izquierdo (claves menores), luego la raíz y después el derecho (claves mayores), y aplica lo mismo en cada subárbol. El preorden empieza por la raíz, el posorden termina en ella y el recorrido por niveles va de arriba hacia abajo: ninguno de los tres respeta el orden de las claves."
+    },
+    {
+     "nv": "I",
+     "q": "¿Por qué los índices de las bases de datos usan árboles B o B+ en lugar de un árbol binario de búsqueda?",
+     "ops": [
+      "Porque cada nodo guarda una sola clave y dos punteros: así ocupan menos espacio en disco que cualquier otra estructura",
+      "Porque no necesitan mantenerse equilibrados: sus hojas pueden quedar en niveles distintos sin afectar a la búsqueda",
+      "Porque cada nodo guarda muchas claves y ocupa un bloque de disco: el árbol queda muy bajo y se hacen pocas lecturas",
+      "Porque buscan en tiempo constante, igual que una tabla hash: no dependen de cuántos registros tenga la tabla"
+     ],
+     "ok": 2,
+     "r": "Leer del disco es lo más lento, así que conviene que cada lectura traiga muchas claves. Con cientos de claves por nodo, un árbol B de tres o cuatro niveles indexa millones de registros. Un nodo con una clave y dos punteros describe al árbol binario; el árbol B sí está equilibrado, con todas sus hojas en el mismo nivel; y su búsqueda es logarítmica, no constante."
+    },
+    {
+     "nv": "I",
+     "q": "Al eliminar de un árbol binario de búsqueda un nodo que tiene dos hijos, ¿con qué clave se reemplaza?",
+     "ops": [
+      "Con la menor clave de todo el árbol, que se halla bajando por la izquierda",
+      "Con su sucesor inorden, que es la menor clave de su subárbol derecho",
+      "Con la última hoja del último nivel, como al extraer en un montículo",
+      "Con la clave de su padre, que baja a ocupar el lugar que quedó vacío"
+     ],
+     "ok": 1,
+     "r": "El sucesor inorden es la clave que le sigue en orden: al ponerla en ese lugar, todo lo de la izquierda sigue siendo menor y todo lo de la derecha, mayor. También sirve el predecesor inorden, la mayor clave del subárbol izquierdo. La menor clave de todo el árbol quedaría por debajo de las de su propio subárbol izquierdo; usar la última hoja es la regla del montículo; y bajar al padre rompe el orden con los dos subárboles."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cuál de estos arreglos (índices desde 0) representa un montículo de máximos válido?",
+     "ops": [
+      "[90, 70, 80, 75, 60, 50]",
+      "[90, 70, 80, 30, 60, 50]",
+      "[80, 90, 70, 30, 60, 50]",
+      "[90, 70, 60, 30, 80, 50]"
+     ],
+     "ok": 1,
+     "r": "Cada padre debe ser mayor o igual que sus hijos, que están en los índices \\(2i+1\\) y \\(2i+2\\). En [90, 70, 80, 30, 60, 50] se cumple: 90 sobre 70 y 80; 70 sobre 30 y 60; 80 sobre 50. En los otros falla un padre: el 75 es hijo del 70, el 90 es hijo del 80 y el 80 es hijo del 70. No hace falta que el arreglo esté ordenado."
+    },
+    {
+     "nv": "A",
+     "q": "En un árbol AVL vacío se insertan 10, 20 y 15, en ese orden. ¿Qué corrección hace falta?",
+     "ops": [
+      "Una rotación doble: a la derecha sobre el 20 y luego a la izquierda sobre el 10",
+      "Una rotación simple a la izquierda sobre el 10, por ser el caso derecha-derecha",
+      "Una rotación simple a la derecha sobre el 20, por ser el caso izquierda-izquierda",
+      "Ninguna, porque con solo tres nodos el árbol no puede quedar desequilibrado"
+     ],
+     "ok": 0,
+     "r": "El 20 queda a la derecha del 10 y el 15 a la izquierda del 20: es el caso derecha-izquierda (DI), un zigzag. Una rotación simple a la izquierda sobre el 10 dejaría al 20 de raíz, con el 10 a su izquierda y el 15 colgando a la derecha del 10: sigue desequilibrado. La rotación doble sube el 15 a la raíz, con el 10 y el 20 como hijos. Tres nodos en fila o en zigzag sí están desequilibrados: la raíz tiene FE de +2."
+    }
+   ]
+  },
+  {
+   "titulo": "Ordenamiento, búsqueda y tablas hash",
+   "intro": "Los ordenamientos por burbuja, selección, inserción, mezcla, rápido y por montículo con su costo y su estabilidad, la búsqueda secuencial y binaria, y las tablas hash con sus colisiones y su factor de carga.",
+   "conceptos": [
+    {
+     "n": "Ordenamientos elementales y estabilidad",
+     "e": [
+      "Los tres métodos elementales cuestan \\(O(n^2)\\) en el peor caso y no usan memoria extra. <b>Burbuja</b> recorre el arreglo comparando cada par de vecinos y los intercambia si están en desorden; en cada pasada el mayor de la parte sin ordenar «sube» hasta el final, así que la pasada \\(k\\) hace \\(n-k\\) comparaciones. Con una <b>bandera</b> que detecte una pasada sin intercambios se detiene antes, y su mejor caso, el arreglo ya ordenado, baja a \\(O(n)\\). <b>Selección</b> busca en cada pasada el mínimo de la parte sin ordenar y lo intercambia con el primero de esa parte: hace siempre \\(n(n-1)/2\\) comparaciones, venga como venga el arreglo, pero a lo sumo \\(n-1\\) intercambios. <b>Inserción</b> toma el siguiente elemento y lo coloca en su lugar dentro de la parte ya ordenada de la izquierda, desplazando a la derecha los mayores; con datos casi ordenados trabaja muy poco y su mejor caso es \\(O(n)\\).<pre><code>void insercion(int[] a) {\n  for (int i = 1; i &lt; a.length; i++) {\n    int x = a[i];\n    int j = i - 1;\n    while (j &gt;= 0 &amp;&amp; a[j] &gt; x) {   // desplaza los mayores\n      a[j + 1] = a[j];\n      j--;\n    }\n    a[j + 1] = x;\n  }\n}</code></pre>",
+      "Un ordenamiento es <b>estable</b> si conserva el orden relativo de los elementos con la misma clave: si dos facturas tienen la misma fecha, salen en el mismo orden en que entraron. Importa cuando se ordena por varias claves en pasos sucesivos, por ejemplo primero por nombre y luego por departamento. Burbuja e inserción son estables porque un elemento nunca pasa por encima de otro igual: solo se mueven cuando hay desorden estricto; selección no lo es, porque su intercambio a distancia puede saltarse un elemento igual. Un ordenamiento es <b>in situ</b> (en el lugar) si solo usa memoria adicional constante, y los tres elementales lo son. No confundas los términos: estable habla del orden de los empates; in situ, de la memoria."
+     ],
+     "u": [
+      "Ordenar pocos datos, como las notas de una sección o los productos de una tienda, y como paso final de métodos más rápidos: las bibliotecas de Java usan inserción para los tramos cortos.",
+      "Son la pregunta típica de traza y la base para entender los demás; además, inserción es de lo más rápido con pocos datos o casi ordenados.",
+      "Con pocos elementos, con datos casi ordenados (inserción) o cuando escribir en memoria es caro y conviene hacer pocos intercambios (selección).",
+      "En la traza escribe el arreglo completo al final de cada pasada y marca la parte que ya quedó ordenada."
+     ],
+     "f": "\\text{comparaciones}=(n-1)+(n-2)+\\dots+1=\\frac{n(n-1)}{2}"
+    },
+    {
+     "n": "Ordenamientos eficientes: mezcla, rápido y por montículo",
+     "e": [
+      "El <b>ordenamiento por mezcla</b> (mergesort) aplica <b>dividir y vencer</b>: parte el arreglo en dos mitades, ordena cada una de forma recursiva y luego las <b>mezcla</b>, tomando en cada paso el menor de los dos primeros elementos. Mezclar dos listas que suman \\(n\\) elementos cuesta \\(O(n)\\) y hay \\(\\log_2 n\\) niveles de división; de ahí su recurrencia \\(T(n)=2\\,T(n/2)+n\\) y su costo \\(O(n\\log n)\\) en todos los casos. Es estable, pero necesita un arreglo auxiliar de tamaño \\(n\\). El <b>ordenamiento rápido</b> (quicksort) elige un <b>pivote</b> y <b>particiona</b>: deja a un lado los menores o iguales, al otro los mayores y el pivote en su posición final; después ordena cada lado de forma recursiva. Si el pivote reparte el tramo en partes parecidas cuesta \\(O(n\\log n)\\), que es lo que pasa en promedio; si siempre queda en un extremo, como al tomar el último elemento de un arreglo ya ordenado, cada partición separa un solo elemento y cae a \\(O(n^2)\\). En la práctica es el más rápido de los tres porque trabaja sobre el mismo arreglo, pero no es estable.",
+      "El <b>ordenamiento por montículo</b> (heapsort) primero convierte el arreglo en un montículo de máximos, en \\(O(n)\\). Después intercambia la raíz, que es el máximo, con el último elemento de la parte que sigue siendo montículo, reduce esa parte en uno y hunde la nueva raíz. Repite \\(n-1\\) veces, cada una en \\(O(\\log n)\\): total \\(O(n\\log n)\\) en todos los casos y sin memoria extra, aunque no es estable. Todo ordenamiento que solo compare claves necesita \\(\\Omega(n\\log n)\\) comparaciones en el peor caso, así que estos tres son asintóticamente óptimos."
+     ],
+     "u": [
+      "<code>Arrays.sort</code> de Java ordena tipos primitivos con una variante de quicksort y objetos con una variante estable de mezcla (TimSort); MySQL mezcla bloques en disco cuando un <code>ORDER BY</code> no cabe en memoria.",
+      "Con un millón de datos, \\(n^2\\) es un billón de pasos y \\(n\\log_2 n\\) son unos 20 millones: la diferencia entre horas y una fracción de segundo.",
+      "Mezcla si necesitas estabilidad o un peor caso garantizado; rápido para ordenar en memoria lo más rápido posible; montículo si quieres \\(O(n\\log n)\\) garantizado sin memoria extra.",
+      "En la traza de quicksort escribe el arreglo después de cada partición y marca dónde quedó el pivote; en la de mezcla, escribe los bloques de cada nivel."
+     ],
+     "tabla": "<table><tr><th>Método</th><th>Mejor</th><th>Promedio</th><th>Peor</th><th>Memoria extra</th><th>Estable</th></tr><tr><td>Burbuja (con bandera)</td><td>\\(O(n)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(1)\\)</td><td>Sí</td></tr><tr><td>Selección</td><td>\\(O(n^2)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(1)\\)</td><td>No</td></tr><tr><td>Inserción</td><td>\\(O(n)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(1)\\)</td><td>Sí</td></tr><tr><td>Mezcla</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n)\\)</td><td>Sí</td></tr><tr><td>Rápido</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n^2)\\)</td><td>\\(O(\\log n)\\) de pila</td><td>No</td></tr><tr><td>Montículo</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n\\log n)\\)</td><td>\\(O(n\\log n)\\)</td><td>\\(O(1)\\)</td><td>No</td></tr></table>"
+    },
+    {
+     "n": "Búsqueda secuencial, búsqueda binaria y tablas hash",
+     "e": [
+      "La <b>búsqueda secuencial</b> revisa los elementos uno por uno hasta hallar la clave o llegar al final: \\(O(n)\\), y funciona con datos desordenados o en una lista enlazada. La <b>búsqueda binaria</b> exige un arreglo <b>ordenado</b> con acceso directo por índice. Compara la clave con el elemento del medio, \\(\\text{medio}=\\lfloor(\\text{inf}+\\text{sup})/2\\rfloor\\): si es igual, termina; si la clave es menor, sigue en la mitad izquierda (\\(\\text{sup}=\\text{medio}-1\\)); si es mayor, en la derecha (\\(\\text{inf}=\\text{medio}+1\\)). Cuando los límites se cruzan (\\(\\text{inf}\\gt\\text{sup}\\)), la clave no está. Como descarta la mitad en cada paso, hace como máximo \\(\\lfloor\\log_2 n\\rfloor+1\\) comparaciones: 10 con mil datos y 20 con un millón.",
+      "Una <b>tabla hash</b> guarda cada clave en un arreglo de \\(m\\) casillas, en la posición que calcula una <b>función hash</b>; para enteros la más común es \\(h(k)=k \\bmod m\\), con \\(m\\) primo para repartir mejor. Hay <b>colisión</b> cuando dos claves caen en la misma casilla. En el <b>encadenamiento</b> cada casilla guarda una lista enlazada con todas las claves que caen ahí. En el <b>direccionamiento abierto</b> todas las claves van en el propio arreglo: con <b>sondeo lineal</b>, si la casilla está ocupada se prueba la siguiente, \\((h(k)+i)\\bmod m\\) para \\(i=1, 2, \\dots\\), dando la vuelta al final. El sondeo lineal forma bloques de casillas ocupadas seguidas (<b>agrupamiento primario</b>) que alargan las búsquedas; una búsqueda termina al hallar la clave o una casilla vacía, y por eso al eliminar se deja una marca de «borrado» en lugar de vaciar la casilla. El <b>factor de carga</b> \\(\\alpha=n/m\\) mide qué tan llena está la tabla: con encadenamiento es el largo promedio de las listas y puede pasar de 1; con direccionamiento abierto no puede pasar de 1 y conviene mantenerlo por debajo de 0.7, agrandando la tabla y reinsertando todo (<b>rehashing</b>) cuando se supera. Así, buscar, insertar y eliminar cuestan \\(O(1)\\) en promedio, aunque el peor caso es \\(O(n)\\)."
+     ],
+     "u": [
+      "Binaria: buscar un NIT en un padrón ordenado o un código en un catálogo. Hash: <code>HashMap</code> de Java, los arreglos asociativos de PHP, <code>Map</code> de JavaScript y las cachés como Redis.",
+      "La binaria responde en 20 pasos donde la secuencial podría necesitar un millón; la tabla hash responde en tiempo constante en promedio, sin importar cuántos datos haya.",
+      "Binaria cuando los datos ya están ordenados y cambian poco; hash cuando solo buscas por igualdad, sin rangos ni orden, y quieres la respuesta más rápida.",
+      "En la traza binaria lleva una tabla con inf, sup y medio; en la tabla hash calcula \\(k \\bmod m\\) y, si la casilla está ocupada, avanza de una en una dando la vuelta al final."
+     ],
+     "f": "\\alpha=\\frac{n}{m}\\qquad h_i(k)=\\bigl(h(k)+i\\bigr)\\bmod m"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Ordena de forma ascendente el arreglo [5, 2, 9, 1, 6] con este método de burbuja. Escribe el arreglo al final de cada pasada y cuenta las comparaciones y los intercambios.<pre><code>void burbuja(int[] a) {\n  int n = a.length;\n  for (int p = 0; p &lt; n - 1; p++)          // pasadas\n    for (int j = 0; j &lt; n - 1 - p; j++)    // vecinos de la parte sin ordenar\n      if (a[j] &gt; a[j + 1]) {\n        int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n      }\n}</code></pre>",
+     "pasos": [
+      "<b>Pasada 1.</b> (5, 2): se intercambian; (5, 9): no; (9, 1): se intercambian; (9, 6): se intercambian. Queda [2, 5, 1, 6, 9] y el 9, que es el mayor, ya está en su lugar. 4 comparaciones y 3 intercambios.",
+      "<b>Pasada 2.</b> Solo sobre las 4 primeras posiciones: (2, 5): no; (5, 1): se intercambian; (5, 6): no. Queda [2, 1, 5, 6, 9]. 3 comparaciones y 1 intercambio.",
+      "<b>Pasada 3.</b> (2, 1): se intercambian; (2, 5): no. Queda [1, 2, 5, 6, 9]. 2 comparaciones y 1 intercambio.",
+      "<b>Pasada 4.</b> (1, 2): no. Sigue [1, 2, 5, 6, 9]. 1 comparación y ningún intercambio. Con una bandera de «hubo intercambio», una pasada sin cambios detiene el método; aquí no ahorra nada porque la única pasada limpia es la última.",
+      "<b>Conteo.</b> Comparaciones: \\(4+3+2+1=10=n(n-1)/2\\). Intercambios: \\(3+1+1+0=5\\), que es el número de pares en desorden del arreglo original: (5, 2), (5, 1), (2, 1), (9, 1) y (9, 6)."
+     ],
+     "r": "Tras cada pasada: [2, 5, 1, 6, 9], [2, 1, 5, 6, 9], [1, 2, 5, 6, 9] y [1, 2, 5, 6, 9]. En total, 10 comparaciones y 5 intercambios.",
+     "fin": "Es la traza más pedida: en cada pasada el mayor de la parte sin ordenar queda fijo al final, y el tramo que se revisa se acorta en uno."
+    },
+    {
+     "nv": "I",
+     "q": "Ordena de forma ascendente [29, 10, 14, 37, 13] primero por selección y después, partiendo otra vez del arreglo original, por inserción. Escribe el arreglo al final de cada pasada y cuenta los intercambios de selección y los desplazamientos de inserción.",
+     "pasos": [
+      "<b>Selección, pasada 1.</b> El mínimo de todo el arreglo es el 10, en el índice 1: se intercambia con el 29 del índice 0. Queda [10, 29, 14, 37, 13].",
+      "<b>Selección, pasadas 2 a 4.</b> El mínimo de 29, 14, 37, 13 es el 13: se intercambia con el 29, [10, 13, 14, 37, 29]. El mínimo de 14, 37, 29 es el 14, que ya está en su lugar: no hay intercambio. El mínimo de 37, 29 es el 29: [10, 13, 14, 29, 37]. Fueron 3 intercambios y \\(4+3+2+1=10\\) comparaciones.",
+      "<b>Inserción del 10 y del 14.</b> El 10 es menor que el 29: el 29 se desplaza a la derecha y el 10 entra al inicio, [10, 29, 14, 37, 13]. El 14 es menor que el 29, pero no que el 10: un desplazamiento, [10, 14, 29, 37, 13].",
+      "<b>Inserción del 37 y del 13.</b> El 37 es mayor que el 29 y se queda donde está, sin desplazamientos. El 13 es menor que 37, 29 y 14, pero no que 10: esos tres se desplazan y el 13 entra en el índice 1, [10, 13, 14, 29, 37].",
+      "<b>Comparación.</b> Selección hizo sus 10 comparaciones de siempre y solo 3 intercambios. Inserción hizo \\(1+1+0+3=5\\) desplazamientos: trabaja menos cuanto más ordenado viene el arreglo, y con uno ya ordenado no desplaza nada."
+     ],
+     "r": "Selección: [10, 29, 14, 37, 13], [10, 13, 14, 37, 29], [10, 13, 14, 37, 29], [10, 13, 14, 29, 37], con 3 intercambios. Inserción: [10, 29, 14, 37, 13], [10, 14, 29, 37, 13], [10, 14, 29, 37, 13], [10, 13, 14, 29, 37], con 5 desplazamientos.",
+     "fin": "Distinguir los dos métodos en una traza: selección fija en cada pasada el mínimo al inicio; inserción mantiene ordenado el tramo de la izquierda, aunque sus elementos todavía no estén en su lugar final."
+    },
+    {
+     "nv": "A",
+     "q": "Ordena [7, 2, 9, 4, 3, 8, 5] con quicksort usando esta partición, que toma como pivote el último elemento del tramo. Escribe el arreglo después de cada partición e indica dónde queda cada pivote.<pre><code>int particion(int[] a, int ini, int fin) {\n  int piv = a[fin];\n  int i = ini - 1;\n  for (int j = ini; j &lt; fin; j++)\n    if (a[j] &lt;= piv) {\n      i++;\n      intercambiar(a, i, j);\n    }\n  intercambiar(a, i + 1, fin);   // el pivote a su lugar final\n  return i + 1;\n}\n\nvoid quicksort(int[] a, int ini, int fin) {\n  if (ini &lt; fin) {\n    int p = particion(a, ini, fin);\n    quicksort(a, ini, p - 1);\n    quicksort(a, p + 1, fin);\n  }\n}</code></pre>",
+     "pasos": [
+      "<b>Primera partición, tramo 0 a 6, pivote 5.</b> <code>i</code> marca el final de la zona de menores o iguales y empieza en −1. <code>j</code> recorre: el 7 no entra; el 2 sí (<code>i = 0</code>, cambia con el 7): [2, 7, 9, 4, 3, 8, 5]; el 9 no; el 4 sí (<code>i = 1</code>, cambia con el 7): [2, 4, 9, 7, 3, 8, 5]; el 3 sí (<code>i = 2</code>, cambia con el 9): [2, 4, 3, 7, 9, 8, 5]; el 8 no.",
+      "<b>Pivote a su lugar.</b> El 5 se intercambia con la posición <code>i + 1 = 3</code>: [2, 4, 3, <b>5</b>, 9, 8, 7]. El 5 ya está en su posición final: a su izquierda quedan los menores y a su derecha los mayores, todavía desordenados.",
+      "<b>Tramo 0 a 2, pivote 3.</b> El 2 es menor (<code>i = 0</code>, cambia consigo mismo); el 4 no. El pivote va a la posición 1: [2, <b>3</b>, 4, 5, 9, 8, 7]. Los tramos [2] y [4] tienen un solo elemento y ya están ordenados.",
+      "<b>Tramo 4 a 6, pivote 7.</b> Ni el 9 ni el 8 son menores o iguales que 7: <code>i</code> no avanza y el pivote va a la posición 4, cambiando con el 9: [2, 3, 4, 5, <b>7</b>, 8, 9].",
+      "<b>Tramo 5 a 6, pivote 9.</b> El 8 es menor y se queda en la posición 5; el 9 queda en la 6. No cambia nada visible: [2, 3, 4, 5, 7, 8, 9]. Fueron 4 particiones.",
+      "<b>Calidad del pivote.</b> El primer pivote, 5, repartió 3 elementos a cada lado: es el caso bueno. Si el arreglo hubiera llegado ya ordenado, el último elemento sería siempre el máximo, cada partición separaría un solo elemento y el costo subiría a \\(O(n^2)\\)."
+     ],
+     "r": "Después de cada partición: [2, 4, 3, 5, 9, 8, 7] (pivote 5 en la posición 3), [2, 3, 4, 5, 9, 8, 7] (pivote 3 en la 1), [2, 3, 4, 5, 7, 8, 9] (pivote 7 en la 4) y [2, 3, 4, 5, 7, 8, 9] (pivote 9 en la 6).",
+     "fin": "Hacer a mano una partición con el pivote que fija el enunciado y entender por qué la elección del pivote decide entre \\(O(n\\log n)\\) y \\(O(n^2)\\)."
+    },
+    {
+     "nv": "I",
+     "q": "Una tabla hash de 11 casillas (0 a 10) usa \\(h(k)=k \\bmod 11\\) y resuelve las colisiones con sondeo lineal. Inserta, en este orden, 20, 31, 14, 9, 42, 25 y 3. Muestra la tabla final, calcula el factor de carga y di qué casillas se revisan al buscar el 42 y al buscar el 53.",
+     "pasos": [
+      "<b>20 y 31.</b> \\(20 \\bmod 11=9\\): va a la casilla 9. \\(31 \\bmod 11=9\\): colisión; se prueba la 10, que está libre.",
+      "<b>14 y 9.</b> \\(14 \\bmod 11=3\\): casilla 3, libre. \\(9 \\bmod 11=9\\): la 9 y la 10 están ocupadas; se da la vuelta y entra en la 0.",
+      "<b>42, 25 y 3.</b> \\(42 \\bmod 11=9\\): revisa la 9, la 10 y la 0, ocupadas, y entra en la 1. \\(25 \\bmod 11=3\\): la 3 está ocupada y entra en la 4. \\(3 \\bmod 11=3\\): revisa la 3 y la 4 y entra en la 5.",
+      "<b>Tabla final y factor de carga.</b> Las cuatro claves que dieron 9 formaron un bloque seguido que da la vuelta al final: es el agrupamiento primario. El factor de carga es \\(\\alpha=7/11\\approx 0.64\\).<table><tr><th>Casilla</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr><tr><th>Clave</th><td>9</td><td>42</td><td>—</td><td>14</td><td>25</td><td>3</td><td>—</td><td>—</td><td>—</td><td>20</td><td>31</td></tr></table>",
+      "<b>Búsquedas.</b> El 42: se revisan la 9, la 10, la 0 y la 1, donde está; son 4 casillas. El 53: \\(53 \\bmod 11=9\\); se revisan la 9, la 10, la 0, la 1 y la 2, y como la 2 está vacía, el 53 no está; son 5 casillas.",
+      "<b>Con encadenamiento.</b> La casilla 9 tendría la lista 20, 31, 9, 42 y la casilla 3, la lista 14, 25, 3; las demás quedarían vacías. Las claves ya no invaden casillas vecinas, pero las listas se alargan."
+     ],
+     "r": "Casillas 0 a 10: 9, 42, vacía, 14, 25, 3, vacía, vacía, vacía, 20, 31. Factor de carga \\(7/11\\approx 0.64\\). Buscar el 42 revisa 4 casillas (9, 10, 0 y 1); buscar el 53 revisa 5 (9, 10, 0, 1 y 2) y termina en una casilla vacía: no está.",
+     "fin": "Es el ejercicio clásico de tablas hash: muestra cómo se amontonan las colisiones y por qué una búsqueda fallida se detiene en la primera casilla vacía."
+    },
+    {
+     "nv": "B",
+     "q": "En el arreglo ordenado [3, 8, 12, 17, 21, 26, 30, 35, 41, 48], con índices de 0 a 9, aplica búsqueda binaria con \\(\\text{medio}=\\lfloor(\\text{inf}+\\text{sup})/2\\rfloor\\). a) Busca el 41 y escribe inf, sup y medio en cada paso. b) Busca el 10. c) ¿Cuántas comparaciones hace como máximo en un arreglo de 1000 elementos?",
+     "r": "a) inf 0, sup 9, medio 4: \\(21\\lt 41\\), sigue a la derecha. inf 5, sup 9, medio 7: \\(35\\lt 41\\). inf 8, sup 9, medio 8: encontrado en el índice 8, con 3 comparaciones. b) inf 0, sup 9, medio 4: \\(21\\gt 10\\), sigue a la izquierda. inf 0, sup 3, medio 1: \\(8\\lt 10\\). inf 2, sup 3, medio 2: \\(12\\gt 10\\). Ahora inf 2 y sup 1 se cruzan: no está, tras 3 comparaciones. c) \\(\\lfloor\\log_2 1000\\rfloor+1=10\\)."
+    },
+    {
+     "nv": "I",
+     "q": "Ordena [38, 27, 43, 3, 9, 82, 10, 15] por mezcla. Escribe los bloques que quedan después de cada nivel de mezcla y cuenta las comparaciones de cada mezcla.",
+     "r": "Nivel 1: [27, 38] [3, 43] [9, 82] [10, 15], con 1 comparación cada mezcla. Nivel 2: [3, 27, 38, 43] [9, 10, 15, 82], con 3 cada una. Nivel 3: [3, 9, 10, 15, 27, 38, 43, 82], con 7. Total: \\(4+6+7=17\\) comparaciones en \\(\\log_2 8=3\\) niveles; cada nivel cuesta como mucho \\(n\\) comparaciones, y de ahí el \\(n\\log n\\)."
+    },
+    {
+     "nv": "A",
+     "q": "Ordena [4, 10, 3, 5, 1] por montículo (heapsort), con índices desde 0. a) Construye el montículo de máximos hundiendo desde el último padre hasta la raíz y escribe el arreglo. b) Escribe el arreglo después de cada extracción del máximo, separando con una barra la parte que sigue siendo montículo de la ya ordenada.",
+     "r": "a) El último padre es el índice 1, el 10, que ya es mayor que sus hijos 5 y 1. Luego la raíz, el 4, se hunde: cambia con el 10 y después con el 5. Montículo: [10, 5, 3, 4, 1]. b) [5, 4, 3, 1 | 10], [4, 1, 3 | 5, 10], [3, 1 | 4, 5, 10], [1 | 3, 4, 5, 10]. Resultado: [1, 3, 4, 5, 10]."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué significa que un método de ordenamiento sea estable?",
+     "ops": [
+      "Que conserva el orden relativo de los elementos con la misma clave",
+      "Que tarda lo mismo con cualquier entrada, venga ordenada o desordenada",
+      "Que ordena sobre el mismo arreglo, sin necesitar memoria adicional para copias",
+      "Que nunca cae en su peor caso, porque elige el pivote de forma cuidadosa"
+     ],
+     "ok": 0,
+     "r": "Estable se refiere a los empates: si dos facturas tienen la misma fecha y se ordena por fecha, salen en el mismo orden relativo en que estaban. Ordenar sin memoria adicional es ser <i>in situ</i>, una propiedad distinta: el montículo es in situ y no es estable. Tardar lo mismo con cualquier entrada o evitar el peor caso habla del tiempo, no del orden de los empates."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué condición debe cumplir un arreglo para aplicarle búsqueda binaria?",
+     "ops": [
+      "Tener un número de elementos que sea potencia de 2",
+      "Estar ordenado según la clave que se busca",
+      "No tener claves repetidas en ninguna posición",
+      "Estar guardado en una lista doblemente enlazada"
+     ],
+     "ok": 1,
+     "r": "La binaria decide hacia qué mitad seguir comparando con el elemento del medio, y eso solo tiene sentido si todo lo de la izquierda es menor y todo lo de la derecha es mayor. El tamaño puede ser cualquiera, porque el medio se redondea hacia abajo, y las claves repetidas no impiden encontrar una de ellas. Una lista enlazada no sirve: sin acceso directo por índice, llegar al medio obliga a recorrer media lista."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cuál es el peor caso de quicksort y cuándo se produce?",
+     "ops": [
+      "\\(O(n\\log n)\\), porque cada partición divide el arreglo en dos mitades del mismo tamaño sin importar el pivote",
+      "\\(O(n^2)\\), cuando el pivote queda siempre en un extremo, como el último de un arreglo ya ordenado",
+      "\\(O(n)\\), cuando el arreglo ya está ordenado y la partición no necesita hacer ningún intercambio entre elementos",
+      "\\(O(2^n)\\), porque cada llamada genera otras dos llamadas recursivas que vuelven a recorrer todo el arreglo"
+     ],
+     "ok": 1,
+     "r": "Si el pivote es el mayor o el menor del tramo, la partición deja un lado vacío y el otro con \\(n-1\\) elementos: \\(T(n)=T(n-1)+(n-1)\\), que suma \\(n(n-1)/2\\) comparaciones, \\(O(n^2)\\). Con el último elemento como pivote, un arreglo ya ordenado provoca justo eso. \\(O(n\\log n)\\) es el caso promedio, y solo se da si el pivote reparte bien. Con datos ordenados la partición igual compara cada elemento con el pivote, así que no es lineal. Y las dos llamadas trabajan sobre partes distintas del arreglo, no sobre todo: no hay crecimiento exponencial."
+    },
+    {
+     "nv": "I",
+     "q": "Una tabla hash vacía de 10 casillas usa \\(h(k)=k \\bmod 10\\) con sondeo lineal. Se insertan 15, 25 y 35, en ese orden. ¿En qué casilla queda el 35?",
+     "ops": [
+      "En la 5",
+      "En la 6",
+      "En la 7",
+      "En la 8"
+     ],
+     "ok": 2,
+     "r": "Las tres claves dan 5. El 15 ocupa la 5; el 25 la encuentra ocupada y pasa a la 6; el 35 revisa la 5 y la 6, ambas ocupadas, y entra en la 7. La 5 es solo su posición inicial, la 6 ya la tomó el 25 y llegar a la 8 supondría saltarse una casilla libre. Las tres claves forman un bloque seguido: es el agrupamiento primario del sondeo lineal."
+    },
+    {
+     "nv": "A",
+     "q": "Una lista de facturas ya está ordenada por número. Quieres ordenarla por fecha de modo que las facturas de una misma fecha sigan ordenadas por número, y con \\(O(n\\log n)\\) garantizado en el peor caso. ¿Qué método cumple las dos condiciones?",
+     "ops": [
+      "Rápido (quicksort), que es el más veloz en promedio",
+      "Montículo (heapsort), que es \\(O(n\\log n)\\) en todos los casos",
+      "Inserción, que es estable y aprovecha el orden previo",
+      "Mezcla (mergesort), que es estable y siempre \\(O(n\\log n)\\)"
+     ],
+     "ok": 3,
+     "r": "Hacen falta estabilidad, para no desordenar los números dentro de cada fecha, y un peor caso \\(O(n\\log n)\\). Mezcla cumple ambas. Quicksort no es estable y su peor caso es \\(O(n^2)\\). El montículo garantiza \\(O(n\\log n)\\), pero no es estable. Inserción es estable, pero su peor caso es \\(O(n^2)\\), y el orden previo por número no le ayuda porque ahora la clave es la fecha."
+    }
+   ]
+  },
+  {
+   "titulo": "Grafos",
+   "intro": "Vocabulario de grafos, su representación con matriz y lista de adyacencia, los recorridos en anchura y en profundidad, el orden topológico, el camino más corto con Dijkstra y el árbol de expansión mínima con Prim y Kruskal.",
+   "conceptos": [
+    {
+     "n": "Terminología y representación de grafos",
+     "e": [
+      "Un <b>grafo</b> \\(G=(V,E)\\) es un conjunto de <b>vértices</b> (nodos) y un conjunto de <b>aristas</b> que unen pares de vértices. En un grafo <b>no dirigido</b> la arista \\(\\{u,v\\}\\) se recorre en los dos sentidos; en uno <b>dirigido</b> (dígrafo) cada <b>arco</b> \\((u,v)\\) va de \\(u\\) hacia \\(v\\). Es <b>ponderado</b> si cada arista tiene un <b>peso</b>: distancia, costo o tiempo. Dos vértices son <b>adyacentes</b> si una arista los une, y el <b>grado</b> de un vértice es su número de aristas; en un dirigido se distingue el grado de entrada del de salida. Un <b>camino</b> es una sucesión de vértices unidos por aristas, y un <b>ciclo</b>, un camino que empieza y termina en el mismo vértice sin repetir aristas. Un grafo no dirigido es <b>conexo</b> si hay camino entre cualquier par de vértices. Un <b>árbol</b> es un grafo conexo y sin ciclos, y con \\(n\\) vértices tiene exactamente \\(n-1\\) aristas. Un grafo dirigido sin ciclos se llama <b>DAG</b> (grafo dirigido acíclico).",
+      "Se representa de dos formas. La <b>matriz de adyacencia</b> es una tabla de \\(|V|\\times|V|\\) cuya casilla \\([i][j]\\) vale 1 (o el peso) si hay arista de \\(i\\) a \\(j\\) y 0 si no; en un grafo no dirigido es simétrica. Dice en \\(O(1)\\) si dos vértices son adyacentes, pero ocupa \\(O(|V|^2)\\) aunque haya pocas aristas, y listar los vecinos de un vértice cuesta \\(O(|V|)\\). La <b>lista de adyacencia</b> guarda para cada vértice una lista con sus vecinos, y sus pesos si los hay: ocupa \\(O(|V|+|E|)\\) y recorre los vecinos de un vértice en tiempo proporcional a su grado, pero saber si dos vértices son adyacentes obliga a recorrer una lista. Casi todos los grafos reales son <b>dispersos</b>, con muchas menos aristas que \\(|V|^2\\), así que la lista es lo habitual; la matriz conviene en grafos <b>densos</b> o pequeños. En un grafo no dirigido cada arista aparece en las listas de sus dos extremos y suma 2 a los grados: la suma de grados es \\(2|E|\\)."
+     ],
+     "u": [
+      "Mapas y rutas de GPS, redes sociales (quién sigue a quién), redes de computadoras, dependencias entre paquetes de npm o Composer y el pensum de la carrera con sus prerrequisitos.",
+      "Modela cualquier problema de relaciones entre objetos, y la representación decide el costo: recorrer el grafo cuesta \\(O(|V|^2)\\) con matriz y \\(O(|V|+|E|)\\) con listas.",
+      "Cuando los datos son entidades conectadas por relaciones que no forman una jerarquía: puede haber ciclos y varios caminos entre dos puntos.",
+      "Para pasar de una lista de aristas a la representación, anota cada arista en la fila o lista de sus dos extremos si el grafo es no dirigido, o solo en la de su origen si es dirigido."
+     ],
+     "f": "\\sum_{v\\in V}\\text{grado}(v)=2\\,|E|",
+     "tabla": "<table><tr><th>Operación</th><th>Matriz</th><th>Lista</th></tr><tr><td>Memoria</td><td>\\(O(|V|^2)\\)</td><td>\\(O(|V|+|E|)\\)</td></tr><tr><td>¿Son adyacentes u y v?</td><td>\\(O(1)\\)</td><td>\\(O(\\text{grado}(u))\\)</td></tr><tr><td>Recorrer los vecinos de u</td><td>\\(O(|V|)\\)</td><td>\\(O(\\text{grado}(u))\\)</td></tr><tr><td>Agregar una arista</td><td>\\(O(1)\\)</td><td>\\(O(1)\\)</td></tr><tr><td>Recorrer todo el grafo (BFS o DFS)</td><td>\\(O(|V|^2)\\)</td><td>\\(O(|V|+|E|)\\)</td></tr></table>"
+    },
+    {
+     "n": "Recorridos en anchura y en profundidad; orden topológico",
+     "e": [
+      "Un recorrido visita todos los vértices alcanzables desde uno inicial y los marca como visitados para no repetirlos, porque puede haber ciclos. El <b>recorrido en anchura</b> (BFS, <i>breadth-first search</i>) usa una <b>cola</b>: saca un vértice, lo procesa y encola sus vecinos no visitados, marcándolos al encolarlos. Visita por capas: primero el inicial, luego los que están a una arista, luego los que están a dos; por eso, en un grafo sin pesos, da el camino con menos aristas. El <b>recorrido en profundidad</b> (DFS, <i>depth-first search</i>) usa una <b>pila</b> o la recursión: desde el vértice actual avanza al primer vecino no visitado y sigue bajando; cuando ya no hay vecinos nuevos, <b>retrocede</b> al vértice anterior (<i>backtracking</i>). Con listas de adyacencia ambos cuestan \\(O(|V|+|E|)\\). El resultado depende del orden en que se revisan los vecinos, y por eso los enunciados fijan un desempate, como «vecinos en orden alfabético».<pre><code>BFS(G, s):\n  marcar s como visitado\n  cola.encolar(s)\n  mientras la cola no esté vacía:\n    u = cola.desencolar()\n    procesar(u)\n    para cada vecino v de u, en el orden fijado:\n      si v no está visitado:\n        marcar v como visitado\n        cola.encolar(v)</code></pre>",
+      "Un <b>orden topológico</b> de un grafo dirigido es una lista de todos sus vértices en la que, para cada arco \\(u\\to v\\), \\(u\\) aparece antes que \\(v\\): por ejemplo, un orden para llevar los cursos que respete los prerrequisitos. Solo existe si el grafo es un DAG, y en general no es único. El <b>algoritmo de Kahn</b> calcula el grado de entrada de cada vértice, pone en una lista de disponibles los que tienen grado 0 y repite: saca uno, lo agrega al orden y resta 1 al grado de entrada de cada sucesor; el que llega a 0 pasa a disponibles. Si los disponibles se acaban antes de sacar todos los vértices, el grafo tiene un ciclo. Otra forma es hacer un DFS y listar los vértices en orden inverso al de su terminación."
+     ],
+     "u": [
+      "BFS: contactos a distancia 2 en una red social o la ruta con menos estaciones en el Transmetro. DFS: laberintos, detección de ciclos y componentes conexas. Topológico: instalar dependencias, correr migraciones y planificar cursos con prerrequisitos.",
+      "Son la base de casi todos los algoritmos de grafos: Dijkstra y Prim siguen la idea de BFS, pero con una cola de prioridad en lugar de una cola simple.",
+      "BFS cuando importa la distancia en número de aristas; DFS cuando hay que explorar caminos completos o detectar ciclos; topológico cuando hay tareas que deben ir antes que otras.",
+      "En la traza lleva tres columnas: el vértice que sale, los vecinos nuevos que entran y el contenido de la cola (o de la pila) después del paso."
+     ],
+     "f": "(u\\to v)\\in E\\ \\Rightarrow\\ \\text{pos}(u)\\lt\\text{pos}(v)"
+    },
+    {
+     "n": "Camino más corto (Dijkstra) y árbol de expansión mínima (Prim y Kruskal)",
+     "e": [
+      "El <b>algoritmo de Dijkstra</b> calcula el camino más corto desde un vértice origen hasta todos los demás, en un grafo con pesos <b>no negativos</b>. Mantiene una distancia tentativa \\(d[v]\\) para cada vértice, 0 para el origen e infinito para el resto, y repite: elige, entre los vértices que aún no son definitivos, el de menor \\(d\\), lo marca como definitivo y <b>relaja</b> sus aristas: si \\(d[u]+w(u,v)\\lt d[v]\\), actualiza \\(d[v]\\) y anota a \\(u\\) como predecesor de \\(v\\). Siguiendo los predecesores hacia atrás se reconstruye cada camino. Es un algoritmo <b>voraz</b>: una distancia definitiva ya no cambia, y eso solo es correcto si no hay pesos negativos; para ellos existe Bellman-Ford. Con una cola de prioridad (montículo) cuesta \\(O((|V|+|E|)\\log|V|)\\), y con un arreglo, \\(O(|V|^2)\\).",
+      "Un <b>árbol de expansión</b> de un grafo no dirigido y conexo es un subgrafo que contiene todos los vértices y es un árbol, así que tiene \\(|V|-1\\) aristas. El <b>árbol de expansión mínima</b> (MST, <i>minimum spanning tree</i>) es el de menor peso total. <b>Prim</b> lo hace crecer desde un vértice inicial: en cada paso agrega la arista más barata que une un vértice del árbol con uno de fuera. <b>Kruskal</b> ordena todas las aristas de menor a mayor peso y las recorre: acepta cada una si une dos componentes distintas y la descarta si formaría un ciclo, algo que comprueba con una estructura de conjuntos disjuntos (unión-búsqueda). Los dos son voraces y dan el mismo peso total; si todos los pesos son distintos, dan el mismo árbol. No confundas los problemas: el MST minimiza el peso total de la red, no la distancia entre dos vértices, que es lo que resuelve Dijkstra."
+     ],
+     "u": [
+      "Dijkstra: rutas de GPS, enrutamiento de paquetes en una red (OSPF) y costos de envío entre bodegas. MST: tender fibra óptica, tubería municipal de agua o cableado entre los edificios de un campus al menor costo.",
+      "Resuelven de forma exacta y eficiente problemas que por fuerza bruta obligarían a probar una cantidad exponencial de caminos o de árboles.",
+      "Dijkstra cuando buscas la ruta más barata desde un punto y no hay pesos negativos; Prim o Kruskal cuando hay que conectar todos los puntos con el menor costo total.",
+      "En Dijkstra lleva una tabla con la distancia y el predecesor de cada vértice y marca cuál queda definitivo en cada paso; en Kruskal, la lista de aristas ordenadas con «aceptada» o «ciclo»."
+     ],
+     "f": "d[v]\\leftarrow \\min\\bigl(d[v],\\ d[u]+w(u,v)\\bigr)",
+     "tabla": "<table><tr><th>Algoritmo</th><th>Problema</th><th>Elige en cada paso</th><th>Costo</th></tr><tr><td>Dijkstra</td><td>Camino más corto desde un origen</td><td>El vértice no definitivo con menor distancia</td><td>\\(O((|V|+|E|)\\log|V|)\\)</td></tr><tr><td>Prim</td><td>Árbol de expansión mínima</td><td>La arista más barata que sale del árbol</td><td>\\(O((|V|+|E|)\\log|V|)\\)</td></tr><tr><td>Kruskal</td><td>Árbol de expansión mínima</td><td>La arista más barata que no forma ciclo</td><td>\\(O(|E|\\log|E|)\\)</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Un grafo no dirigido tiene los vértices A, B, C, D y E y las aristas A-B, A-C, B-C, B-D y D-E. Escribe su matriz de adyacencia, su lista de adyacencia y el grado de cada vértice. ¿Es conexo? ¿Tiene ciclos?",
+     "pasos": [
+      "<b>Matriz.</b> Cada arista pone un 1 en dos casillas simétricas: A-B, por ejemplo, en [A][B] y en [B][A]. La diagonal queda en 0 porque no hay aristas de un vértice a sí mismo.<table><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr><tr><th>A</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><th>B</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><th>C</th><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><th>D</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><th>E</th><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr></table>",
+      "<b>Lista de adyacencia.</b> A: B, C. B: A, C, D. C: A, B. D: B, E. E: D.",
+      "<b>Grados.</b> A 2, B 3, C 2, D 2 y E 1: es el número de unos de cada fila, o el largo de cada lista. Suman 10, que es \\(2\\times 5\\) aristas, como debe ser.",
+      "<b>Conexo y ciclos.</b> Desde A se llega a todos los vértices (a E por B y D): es conexo. A, B y C forman el ciclo A-B-C-A. Cuadra con el conteo: un árbol de 5 vértices tendría 4 aristas, y este grafo conexo tiene una más, que cierra exactamente un ciclo."
+     ],
+     "r": "Matriz por filas (A a E): 01100, 10110, 11000, 01001, 00010. Listas: A: B, C; B: A, C, D; C: A, B; D: B, E; E: D. Grados 2, 3, 2, 2 y 1, que suman \\(10=2|E|\\). Es conexo y tiene un ciclo, A-B-C.",
+     "fin": "Pasar de una lista de aristas a matriz y a lista de adyacencia es el primer paso de cualquier problema de grafos; la suma de grados sirve para revisar que no faltó ninguna arista."
+    },
+    {
+     "nv": "I",
+     "q": "Recorre desde A el grafo no dirigido con aristas A-C, A-D, A-F, B-C, B-E, C-E, D-G, E-G y F-G, revisando los vecinos en orden alfabético: a) en anchura (BFS), con el contenido de la cola en cada paso; b) en profundidad (DFS), de forma recursiva.",
+     "pasos": [
+      "<b>Listas de adyacencia ordenadas.</b> A: C, D, F. B: C, E. C: A, B, E. D: A, G. E: B, C, G. F: A, G. G: D, E, F.",
+      "<b>BFS.</b> Cada vértice se marca al encolarlo, para no encolarlo dos veces.<table><tr><th>Sale</th><th>Entran</th><th>Cola después</th></tr><tr><td>A</td><td>C, D, F</td><td>C, D, F</td></tr><tr><td>C</td><td>B, E</td><td>D, F, B, E</td></tr><tr><td>D</td><td>G</td><td>F, B, E, G</td></tr><tr><td>F</td><td>—</td><td>B, E, G</td></tr><tr><td>B</td><td>—</td><td>E, G</td></tr><tr><td>E</td><td>—</td><td>G</td></tr><tr><td>G</td><td>—</td><td>vacía</td></tr></table>",
+      "<b>Orden BFS y capas.</b> A C D F B E G. Las capas son A; luego C, D y F, a una arista; luego B, E y G, a dos aristas.",
+      "<b>DFS.</b> Desde A, el primer vecino es C; desde C, el primero no visitado es B; desde B, el E; desde E, el G; desde G, el D. D ya no tiene vecinos nuevos, porque A y G están visitados, y se retrocede a G, que todavía tiene a F. Desde F no hay nada nuevo y se retrocede hasta A, que ya no tiene pendientes.",
+      "<b>Orden DFS.</b> A C B E G D F. Las aristas que llevaron a vértices nuevos, A-C, C-B, B-E, E-G, G-D y G-F, forman el árbol del recorrido."
+     ],
+     "r": "BFS: A C D F B E G. DFS: A C B E G D F.",
+     "fin": "Ver en un mismo grafo la diferencia entre los dos: BFS avanza por capas con una cola y DFS baja hasta el fondo y retrocede, como una pila."
+    },
+    {
+     "nv": "A",
+     "q": "Aplica Dijkstra desde A al grafo no dirigido con aristas ponderadas A-B 4, A-C 5, A-D 12, B-C 3, B-D 7, C-E 5, D-E 2, D-F 5 y E-F 4. Da la distancia mínima a cada vértice y el camino hasta F.",
+     "pasos": [
+      "<b>Inicio.</b> \\(d[A]=0\\) y los demás valen \\(\\infty\\). A es definitivo y relaja sus aristas: \\(d[B]=4\\), \\(d[C]=5\\) y \\(d[D]=12\\), todos con predecesor A.",
+      "<b>Sale B, con 4.</b> Hacia C: \\(4+3=7\\), no mejora el 5. Hacia D: \\(4+7=11\\lt 12\\), así que \\(d[D]=11\\), con predecesor B.",
+      "<b>Sale C, con 5.</b> Hacia E: \\(5+5=10\\), así que \\(d[E]=10\\), con predecesor C. B ya es definitivo y no se toca.",
+      "<b>Sale E, con 10.</b> Hacia D: \\(10+2=12\\), no mejora el 11. Hacia F: \\(10+4=14\\), así que \\(d[F]=14\\), con predecesor E.",
+      "<b>Salen D, con 11, y F, con 14.</b> Desde D hacia F: \\(11+5=16\\), no mejora el 14. F ya no cambia nada.<table><tr><th>Vértice</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr><tr><th>Distancia</th><td>0</td><td>4</td><td>5</td><td>11</td><td>10</td><td>14</td></tr><tr><th>Predecesor</th><td>—</td><td>A</td><td>A</td><td>B</td><td>C</td><td>E</td></tr></table>",
+      "<b>Camino a F.</b> Se siguen los predecesores hacia atrás: F viene de E, E de C y C de A. El camino es A-C-E-F, de peso \\(5+5+4=14\\)."
+     ],
+     "r": "Distancias desde A: B 4, C 5, D 11, E 10 y F 14. Camino a F: A-C-E-F, de peso 14. A D se llega por A-B-D, con 11, y no por la arista directa de peso 12.",
+     "fin": "Es la traza de Dijkstra que se pide en parcial: en cada paso sale el vértice no definitivo más cercano, se relajan sus aristas y la fila de predecesores da los caminos."
+    },
+    {
+     "nv": "I",
+     "q": "En el grafo del ejercicio anterior (A-B 4, A-C 5, A-D 12, B-C 3, B-D 7, C-E 5, D-E 2, D-F 5, E-F 4) halla el árbol de expansión mínima con Kruskal y compruébalo con Prim desde A. Entre aristas de igual peso, revisa primero la que va antes en orden alfabético.",
+     "pasos": [
+      "<b>Kruskal: aristas ordenadas.</b> D-E 2, B-C 3, A-B 4, E-F 4, A-C 5, C-E 5, D-F 5, B-D 7, A-D 12.",
+      "<b>Kruskal: decisiones.</b> D-E, B-C, A-B y E-F se aceptan porque unen componentes distintas; quedan dos componentes, {A, B, C} y {D, E, F}. A-C se descarta: A y C ya están unidos por A-B-C. C-E se acepta y une las dos componentes. Con \\(6-1=5\\) aristas el árbol está completo: D-F, B-D y A-D cerrarían ciclos.",
+      "<b>Prim desde A.</b> En cada paso, la arista más barata que sale del árbol: A-B 4; luego B-C 3; luego C-E 5, porque las otras opciones eran B-D 7 y A-D 12; luego E-D 2; por último E-F 4, que le gana a D-F 5.",
+      "<b>Comparación.</b> Los dos eligen las mismas cinco aristas, en distinto orden. Peso total: \\(2+3+4+4+5=18\\)."
+     ],
+     "r": "Árbol de expansión mínima: D-E, B-C, A-B, E-F y C-E, con peso total 18. Prim desde A llega a las mismas aristas.",
+     "fin": "Ejecutar los dos algoritmos voraces sobre el mismo grafo: Kruskal mira todas las aristas ordenadas y Prim crece desde un vértice, pero llegan al mismo peso."
+    },
+    {
+     "nv": "B",
+     "q": "Escribe el recorrido en anchura y el recorrido en profundidad desde A del grafo no dirigido con aristas A-B, A-E, B-C, B-F, C-D, D-F y E-F, revisando los vecinos en orden alfabético.",
+     "r": "BFS: A B E C F D; la cola pasa por [B, E], [E, C, F], [C, F], [F, D], [D] y queda vacía. DFS: A B C D F E; de D se pasa a F, de F a E, y después se retrocede hasta A."
+    },
+    {
+     "nv": "I",
+     "q": "Los cursos A a G tienen estos prerrequisitos, escritos como arcos «antes → después»: C → A, C → F, E → A, E → B, A → D, B → D, F → B y D → G. Calcula el grado de entrada de cada curso y un orden topológico con el algoritmo de Kahn; cuando haya varios disponibles, toma primero el menor en orden alfabético. ¿Qué pasaría si se agregara el arco G → C?",
+     "r": "Grados de entrada: A 2, B 2, C 0, D 2, E 0, F 1 y G 1. Orden: C E A F B D G; los disponibles pasan por {C, E}, {E, F}, {A, F}, {F}, {B}, {D} y {G}. Con G → C se forma el ciclo C → F → B → D → G → C: Kahn solo puede sacar a E y se detiene, así que no existe orden topológico."
+    },
+    {
+     "nv": "A",
+     "q": "Aplica Dijkstra desde A al grafo dirigido con arcos ponderados A→B 7, A→C 2, C→B 3, B→D 1, C→D 8, C→E 5, D→F 4, E→D 2 y E→F 7. Da la distancia mínima a cada vértice y el camino más corto hasta F.",
+     "r": "Los vértices quedan definitivos en este orden: A (0), C (2), B (5), D (6), E (7) y F (10). Distancias: B 5, C 2, D 6, E 7 y F 10. Camino a F: A→C→B→D→F, de peso \\(2+3+1+4=10\\). El arco directo A→B, de peso 7, pierde contra A→C→B, de peso 5."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué estructura auxiliar usan los recorridos en anchura (BFS) y en profundidad (DFS)?",
+     "ops": [
+      "BFS usa una pila o la recursión, y DFS una cola",
+      "BFS usa una cola, y DFS una pila o la recursión",
+      "Los dos usan una cola de prioridad ordenada por peso",
+      "BFS usa una tabla hash, y DFS una lista ordenada"
+     ],
+     "ok": 1,
+     "r": "BFS saca primero lo que entró primero, y eso lo hace avanzar por capas. DFS saca lo último que entró: sigue por el vecino más reciente hasta el fondo, y la recursión hace lo mismo con la pila de llamadas. La cola de prioridad es la de Dijkstra y Prim. Una tabla hash puede servir para marcar los visitados, pero no decide el orden del recorrido."
+    },
+    {
+     "nv": "I",
+     "q": "Un grafo no dirigido tiene 1000 vértices y 3000 aristas. ¿Qué representación conviene y por qué?",
+     "ops": [
+      "Matriz de adyacencia: ocupa menos memoria, porque cada una de sus casillas puede ser un solo bit",
+      "Matriz de adyacencia: es la única representación que permite recorrer el grafo en anchura (BFS)",
+      "Lista de adyacencia: unas 6000 entradas de vecinos, frente al millón de casillas de la matriz",
+      "Lista de adyacencia: es la única representación en la que se puede guardar el peso de cada arista"
+     ],
+     "ok": 2,
+     "r": "El grafo es disperso: 3000 aristas frente a \\(1000^2\\), un millón de casillas. La lista guarda cada arista dos veces, una por extremo: 6000 entradas más 1000 encabezados, y un BFS o un DFS sobre ella cuestan \\(O(|V|+|E|)\\). La matriz ocupa un millón de casillas aunque sean bits, y casi todas valdrían 0. Las dos representaciones admiten recorridos y pesos: en la matriz, el peso va en la casilla."
+    },
+    {
+     "nv": "I",
+     "q": "Con Kruskal, ¿cuál es el árbol de expansión mínima del grafo no dirigido con aristas A-B 1, B-C 2, A-C 3, C-D 4 y B-D 5?",
+     "ops": [
+      "A-B, B-C y C-D, con peso total 7",
+      "A-B, B-C y A-C, con peso total 6",
+      "A-B, A-C y C-D, con peso total 8",
+      "A-B, B-C y B-D, con peso total 8"
+     ],
+     "ok": 0,
+     "r": "Kruskal toma A-B (1) y B-C (2); descarta A-C (3) porque A y C ya están unidos a través de B y cerraría un ciclo; toma C-D (4) y ya tiene las 3 aristas de un árbol con 4 vértices. A-B, B-C y A-C pesa 6, pero forma un ciclo y deja fuera a D. Las otras dos opciones son árboles válidos, pero pesan 8."
+    },
+    {
+     "nv": "A",
+     "q": "¿Por qué el algoritmo de Dijkstra puede dar distancias incorrectas si el grafo tiene aristas de peso negativo?",
+     "ops": [
+      "Porque el montículo que usa como cola de prioridad no puede guardar claves negativas sin romper su orden",
+      "Porque un peso negativo desconecta el grafo y algunos vértices quedan sin ninguna distancia calculada",
+      "Porque relaja cada arista una sola vez, y las aristas negativas tienen que relajarse dos veces seguidas",
+      "Porque da por definitiva la distancia de cada vértice que saca, y un arco negativo podría bajarla"
+     ],
+     "ok": 3,
+     "r": "Dijkstra es voraz: el vértice con menor distancia tentativa se vuelve definitivo, suponiendo que ningún camino por vértices más lejanos puede salir más barato. Con pesos negativos eso falla. Con A→B 2, A→C 3 y C→B −2, Dijkstra fija B en 2 antes de revisar C, aunque A→C→B cuesta 1. El montículo ordena claves negativas sin problema, el signo de un peso no cambia qué vértices están conectados y relajar dos veces no arregla nada: para pesos negativos se usa Bellman-Ford, que relaja todas las aristas \\(|V|-1\\) veces."
+    },
+    {
+     "nv": "A",
+     "q": "Al aplicar el algoritmo de Kahn a un grafo dirigido de 7 vértices, la lista de disponibles (vértices con grado de entrada 0) se vacía cuando solo se han sacado 4. ¿Qué significa?",
+     "ops": [
+      "Que el grafo no es conexo y hay que reiniciar Kahn desde cualquiera de los vértices que faltan",
+      "Que los 3 restantes no tienen sucesores y pueden ir al final del orden en cualquier posición",
+      "Que los 3 restantes están en un ciclo o dependen de uno, así que no hay orden topológico",
+      "Que el grafo tiene arcos de peso negativo y hay que cambiar a otro algoritmo, como Bellman-Ford"
+     ],
+     "ok": 2,
+     "r": "Cada vértice restante conserva un grado de entrada mayor que 0: alguno de sus predecesores nunca salió. Eso solo ocurre si hay un ciclo, porque en un DAG siempre queda algún vértice sin predecesores pendientes. Que el grafo no sea conexo no estorba: todos los vértices con grado 0 entran a disponibles desde el inicio. Un vértice sin sucesores cuyos predecesores ya salieron habría salido también. Y los pesos no intervienen en el orden topológico."
+    }
+   ]
+  }
+ ]
+}

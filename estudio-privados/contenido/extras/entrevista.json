@@ -1,0 +1,86 @@
+{
+  "formato": "Entrevista oral por videollamada, con cámara. La nota de la entrevista se promedia con la del examen escrito.",
+  "preparacion": [
+    "Cámara encendida y un espejo detrás de ti, como lo piden el día del examen.",
+    "Sin notas en pantalla ni en papel.",
+    "Respuestas de 45 a 90 segundos: una idea, una razón y un ejemplo.",
+    "Grábate, escúchate y anota tres errores. Repite la misma pregunta al día siguiente."
+  ],
+  "frases": [
+    { "para": "Ganar tiempo", "en": ["Let me think about that for a moment.", "That's an interesting question.", "Well, it depends on..."] },
+    { "para": "Dar una opinión", "en": ["In my view, ...", "As far as I'm concerned, ...", "I'd say that...", "To be honest, I'm not sure, but..."] },
+    { "para": "Contrastar", "en": ["On the one hand, ... On the other hand, ...", "Having said that, ...", "Although it's convenient, ..."] },
+    { "para": "Pedir que repitan", "en": ["Sorry, could you say that again, please?", "I'm afraid I didn't catch the last part.", "Do you mean...?"] },
+    { "para": "Corregirte", "en": ["Sorry, what I meant was...", "Let me put that another way."] },
+    { "para": "Uso británico", "en": ["I've got two brothers.", "at the weekend", "I'm at university.", "I sent my CV.", "I'm going on holiday in a fortnight."] }
+  ],
+  "categorias": [
+    {
+      "id": "presentacion", "titulo": "Presentación de dos minutos", "segundos": 120,
+      "preguntas": [
+        "Introduce yourself in about two minutes: who you are, where you are from, what you studied and what you do now.",
+        "Tell me about yourself and your family.",
+        "How would your friends describe you?"
+      ]
+    },
+    {
+      "id": "estudios", "titulo": "Estudios", "segundos": 90,
+      "preguntas": [
+        "What did you study at university, and why did you choose it?",
+        "Which course did you find most difficult, and how did you deal with it?",
+        "What is the most useful thing you have learnt at university?",
+        "How do you usually prepare for an important exam?",
+        "If you could change one thing about your degree, what would it be?"
+      ]
+    },
+    {
+      "id": "trabajo", "titulo": "Trabajo", "segundos": 90,
+      "preguntas": [
+        "What do you do for a living? Describe a typical working day.",
+        "What do you like most and least about your job?",
+        "Tell me about a problem you had at work and how you solved it.",
+        "What skills does someone need to be good at your job?",
+        "Do you prefer working alone or in a team? Why?"
+      ]
+    },
+    {
+      "id": "proyecto", "titulo": "Proyecto de graduación", "segundos": 120,
+      "preguntas": [
+        "Tell me about your graduation project. What problem does it solve, and who uses it?",
+        "Which technologies did you use, and why did you choose them?",
+        "What was the hardest part of the project?",
+        "What would you do differently if you started it again?"
+      ]
+    },
+    {
+      "id": "planes", "titulo": "Planes", "segundos": 90,
+      "preguntas": [
+        "What are your plans for the next five years?",
+        "Would you like to study or work abroad? Why, or why not?",
+        "Why do you need English, and how have you learnt it so far?",
+        "What would you like to study after your degree?"
+      ]
+    },
+    {
+      "id": "opiniones", "titulo": "Opiniones", "segundos": 90,
+      "preguntas": [
+        "Do you think artificial intelligence will change your profession? How?",
+        "What are the advantages and disadvantages of working from home?",
+        "Some people say experience matters more than a university degree. Do you agree?",
+        "How has technology changed the way people learn?",
+        "Is it better to work for a large company or to run your own business?",
+        "Should children learn to program at school?"
+      ]
+    },
+    {
+      "id": "cotidiano", "titulo": "Vida diaria", "segundos": 60,
+      "preguntas": [
+        "Describe the place where you live.",
+        "What do you usually do at the weekend?",
+        "Tell me about the last film or series you watched.",
+        "Describe a trip you remember well.",
+        "What did you do last weekend, and what are you going to do next weekend?"
+      ]
+    }
+  ]
+}

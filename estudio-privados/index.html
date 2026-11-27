@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Basado en PrivStudyPage (https://github.com/jairocodes/PrivStudyPage), de jairocodes; adaptado. -->
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Estudio local para el Seminario de Privados de Ingeniería en Sistemas UMG (pensum 2014) y el examen de ubicación de inglés: plan por semana, guías, modo examen, oral, cuaderno de errores, fundamentos e inglés.">
+  <title>Inge 2028</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23243A33%22/%3E%3Cpath d=%22M8 22l5-12 3 8 3-5 5 9%22 fill=%22none%22 stroke=%22%23E8C766%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+  <script>try{var t=localStorage.getItem('guia-tema');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+  <a class="saltar ui" href="#app">Saltar al contenido</a>
+  <header class="top">
+    <div class="top-in">
+      <button class="btn btn-indice" type="button" aria-expanded="false" aria-controls="toc" hidden>Índice</button>
+      <a class="marca ui" href="#/">Inge 2028</a>
+      <span class="curso ui" id="barra-titulo"></span>
+      <span class="barra" id="barra-avance" aria-hidden="true" hidden><i></i></span>
+      <span class="prog ui" id="barra-prog"></span>
+      <span class="crono ui" id="crono" hidden>
+        <a href="#/" id="crono-texto" title="Sesión en curso"></a>
+        <button type="button" id="crono-pausa" aria-label="Pausar la sesión">Pausar</button>
+        <button type="button" id="crono-fin" aria-label="Terminar y registrar la sesión">Terminar</button>
+      </span>
+      <button class="btn btn-tema" type="button">Modo claro</button>
+    </div>
+    <nav class="nav-top ui" aria-label="Principal">
+      <a href="#/" data-nav="hoy">Hoy</a>
+      <a href="#/plan" data-nav="plan">Plan</a>
+      <a href="#/areas" data-nav="areas">Áreas</a>
+      <a href="#/examen" data-nav="examen">Examen</a>
+      <a href="#/oral" data-nav="oral">Oral</a>
+      <a href="#/repaso" data-nav="repaso">Repaso<span class="cuenta" id="nav-repaso" hidden></span></a>
+      <a href="#/fundamentos" data-nav="fundamentos">Fundamentos</a>
+      <a href="#/ingles" data-nav="ingles">Inglés</a>
+    </nav>
+  </header>
+  <div id="app" tabindex="-1"><p class="cargando ui">Cargando…</p></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

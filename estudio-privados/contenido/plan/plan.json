@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "nombre": "Escenario bueno",
+  "descripcion": "Estudio previo de las tres áreas y de inglés del 25-nov-2026 al 31-ene-2027, y seminario de privados virtual desde el sábado 6-mar-2027.",
+  "actualizado": "2026-11-26",
+  "meta": { "fecha": "2028-12-31", "texto": "Tener completo todo lo necesario para graduarse, a espera solo de papelería y acto de investidura." },
+  "arranqueSeminario": "2027-03-06",
+  "totales": { "area": 83, "ingles": 41, "fundamentos": 5 },
+  "plantilla": {
+    "horasSemana": 16,
+    "nota": "Semanas de Navidad y Año Nuevo: 6 h de área y 4 h de inglés.",
+    "dias": {
+      "1": [{ "tipo": "area", "min": 90, "cuando": "por la noche" }, { "tipo": "ingles", "min": 45, "modo": "rutina" }],
+      "2": [{ "tipo": "area", "min": 90, "cuando": "por la noche" }, { "tipo": "ingles", "min": 45, "modo": "rutina" }],
+      "3": [{ "tipo": "area", "min": 90, "cuando": "por la noche" }, { "tipo": "ingles", "min": 45, "modo": "rutina" }],
+      "4": [{ "tipo": "area", "min": 90, "cuando": "por la noche" }, { "tipo": "ingles", "min": 45, "modo": "rutina" }],
+      "5": [{ "tipo": "ingles", "min": 45, "modo": "rutina" }],
+      "6": [{ "tipo": "area", "min": 300, "cuando": "de 07:00 a 12:00", "modo": "sabado" }],
+      "0": [{ "tipo": "ingles", "min": 75, "modo": "simulacro" }]
+    }
+  },
+  "libres": ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01"],
+  "metodo": [
+    { "t": "Teoría con NotebookLM", "d": "Un cuaderno por bloque y un audio por tema, con el enfoque escrito en «Personalizar». Los audios se oyen en tiempos muertos y no gastan horas de la plantilla. De cada curso sale una hoja de fórmulas hecha a mano." },
+    { "t": "Lunes: cuestionario de entrada", "d": "20 minutos para saber qué tema oír y practicar primero. Después, tarjetas y el cuestionario del bloque." },
+    { "t": "Problemas a mano con reloj", "d": "En los bloques numéricos, de 10 a 15 ejercicios tipo examen por sesión: el audio da el mapa, pero el parcial se gana resolviendo. Una hora de teoría por cada tres de problemas." },
+    { "t": "Sábado de 07:00 a 12:00", "d": "Simulacro de 2 horas con reloj, revisión de errores y dos temas explicados en voz alta: quien falla el oral pierde el área." },
+    { "t": "Cada error, una tarjeta", "d": "Lo que falles pasa al cuaderno de errores: 10 minutos diarios de repaso." }
+  ],
+  "semanas": [
+    {
+      "id": "S0", "inicio": "2026-11-25", "fin": "2026-11-30",
+      "titulo": "Fundamentos sin calculadora",
+      "area": [
+        { "clave": "fundamentos", "nombre": "Fundamentos sin calculadora", "horas": 5, "ruta": "#/fundamentos", "nota": "Una hora diaria, a lápiz: es la base de todo lo numérico." }
+      ],
+      "inglesHoras": 0,
+      "inglesNota": "El inglés arranca el martes 1 de diciembre.",
+      "tramites": [
+        { "id": "s0-notas", "texto": "Revisar a diario si ya subieron las notas que faltan para cerrar pensum; cuando estén, pedir de una vez certificación de cursos y cierre de pensum." },
+        { "id": "s0-grupo", "texto": "Preguntar por grupos de seminario 2027 en otras sedes y en el grupo de Facebook de la carrera." }
+      ]
+    },
+    {
+      "id": "S1", "inicio": "2026-12-01", "fin": "2026-12-06",
+      "titulo": "Precálculo",
+      "area": [
+        { "clave": "precalculo", "nombre": "Precálculo", "horas": 5, "area": "ciencias", "bloque": "matematica", "cursos": ["precalculo"], "nota": "Funciones, polinomios y trigonometría." }
+      ],
+      "inglesHoras": 3,
+      "inglesNota": "Rutina diaria desde el martes y una grabación de 5 minutos hablando, como referencia.",
+      "tramites": [
+        { "id": "s1-cuadernos", "texto": "Armar los cuadernos de NotebookLM de Matemática y Cálculo con sus fuentes.", "fecha": "2026-12-01" },
+        { "id": "s1-practicas", "texto": "Correo al coordinador de la sede por la carta de prácticas con visto bueno.", "fecha": "2026-12-01" },
+        { "id": "s1-grupo", "texto": "Seguimiento del grupo de seminario 2027 fuera de la sede.", "fecha": "2026-12-02" },
+        { "id": "s1-correos", "texto": "Correos a la Escuela de Idiomas (esc_idiomas@umg.edu.gt: fechas de ubicación de enero y ciclos intensivos) y a Tesorería (tesoreria@umg.edu.gt: aranceles 2027 de los rubros 393, 334 y 329).", "fecha": "2026-12-02" },
+        { "id": "s1-cierre", "texto": "Pedir certificación de cursos (rubro 411, Q60 + envío) y cierre de pensum (rubro 412, Q70 + envío) en umg.edu.gt/pagos. La inscripción 2026 vence el sábado 5.", "fecha": "2026-12-04" },
+        { "id": "s1-grabacion", "texto": "Grabarte 5 minutos hablando en inglés y guardar el audio como punto de partida." }
+      ]
+    },
+    {
+      "id": "S2", "inicio": "2026-12-07", "fin": "2026-12-13",
+      "titulo": "Matemática",
+      "area": [
+        { "clave": "algebra-lineal", "nombre": "Álgebra Lineal", "horas": 6, "area": "ciencias", "bloque": "matematica", "cursos": ["algebra-lineal"] },
+        { "clave": "matematica-discreta", "nombre": "Matemática Discreta", "horas": 5, "area": "ciencias", "bloque": "matematica", "cursos": ["matematica-discreta"] }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "Rutina completa.",
+      "tramites": [
+        { "id": "s2-admin", "texto": "Último día con actividad administrativa en la universidad: cerrar lo pendiente.", "fecha": "2026-12-10" },
+        { "id": "s2-pc1", "texto": "Punto de control 1: ¿ya hay grupo de seminario 2027 al cual sumarte?", "fecha": "2026-12-11" },
+        { "id": "s2-reenvios", "texto": "Reenviar los correos que sigan sin respuesta." },
+        { "id": "s2-pg2", "texto": "Guardar constancia de la nota de Proyecto de Graduación II con su fecha: de ahí salen los dos años de vigencia del proyecto." }
+      ]
+    },
+    {
+      "id": "S3", "inicio": "2026-12-14", "fin": "2026-12-20",
+      "titulo": "Cálculo",
+      "area": [
+        { "clave": "calculo", "nombre": "Cálculo I y II", "horas": 11, "area": "ciencias", "bloque": "calculo", "cursos": ["calculo-1", "calculo-2"], "nota": "A partes iguales. Métodos Numéricos solo si sobra tiempo." }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "Rutina completa.",
+      "tramites": [
+        { "id": "s3-sedes", "texto": "Seguimiento a las sedes consultadas por el seminario." }
+      ]
+    },
+    {
+      "id": "S4", "inicio": "2026-12-21", "fin": "2026-12-27",
+      "titulo": "Metodología y repaso de errores",
+      "reducida": true,
+      "area": [
+        { "clave": "metodologia", "nombre": "Metodología de la Investigación, en audio", "horas": 2, "area": "ciencias", "bloque": "metodologia-de-la-investigacion", "cursos": ["metodologia-investigacion"] },
+        { "clave": "calculo-errores", "nombre": "Cálculo: segunda vuelta a los errores", "horas": 2, "area": "ciencias", "bloque": "calculo", "cursos": ["calculo-1", "calculo-2"], "repaso": true },
+        { "clave": "matematica-errores", "nombre": "Matemática: repaso de errores", "horas": 2, "area": "ciencias", "bloque": "matematica", "cursos": ["precalculo", "algebra-lineal", "matematica-discreta"], "repaso": true }
+      ],
+      "inglesHoras": 4,
+      "inglesNota": "Semana corta: 24 y 25 libres.",
+      "tramites": []
+    },
+    {
+      "id": "S5", "inicio": "2026-12-28", "fin": "2027-01-03",
+      "titulo": "Probabilidad y estadística, primera parte",
+      "reducida": true,
+      "area": [
+        { "clave": "estadistica-a", "nombre": "Probabilidad y estadística, primera parte", "horas": 6, "area": "ciencias", "bloque": "probabilidad-y-estadistica", "cursos": ["estadistica-1"], "nota": "Descriptiva, probabilidad, Bayes y variables aleatorias." }
+      ],
+      "inglesHoras": 4,
+      "inglesNota": "Semana corta: 31 y 1 libres.",
+      "tramites": []
+    },
+    {
+      "id": "S6", "inicio": "2027-01-04", "fin": "2027-01-10",
+      "titulo": "Física y Electrónica Analógica",
+      "area": [
+        { "clave": "fisica", "nombre": "Física I y II", "horas": 7, "area": "ciencias", "bloque": "fisica", "cursos": ["fisica-1", "fisica-2"], "nota": "Con más peso en Física II." },
+        { "clave": "electronica-analogica", "nombre": "Electrónica Analógica", "horas": 4, "area": "ciencias", "bloque": "electronica", "cursos": ["electronica-analogica"] }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "Rutina completa y primer ensayo de entrevista.",
+      "tramites": [
+        { "id": "s6-inscripcion", "texto": "Inscripción anual 2027: rubro 171, Q675. Es la cuota de quienes van a privados, seminario o trabajo de graduación, no la inscripción ordinaria.", "fecha": "2027-01-04" },
+        { "id": "s6-ubicacion", "texto": "Pagar el examen de ubicación de inglés (rubro 321, Q100) y pedir fecha.", "fecha": "2027-01-04" },
+        { "id": "s6-facultad", "texto": "Correo al Coordinador Académico de la Facultad por los seminarios programados en los centros: esa información se pide desde enero.", "fecha": "2027-01-04" },
+        { "id": "s6-facebook", "texto": "Revisar a diario el grupo de Facebook de la carrera: en 2025 la lista del seminario virtual salió el 6 de enero." },
+        { "id": "s6-cierre", "texto": "Cierre de pensum, si no salió en diciembre." },
+        { "id": "s6-entrevista", "texto": "Primer ensayo de entrevista en inglés: 30 minutos, con cámara y espejo." }
+      ]
+    },
+    {
+      "id": "S7", "inicio": "2027-01-11", "fin": "2027-01-17",
+      "titulo": "Probabilidad y estadística, segunda parte",
+      "area": [
+        { "clave": "estadistica-b", "nombre": "Probabilidad y estadística, segunda parte", "horas": 9, "area": "ciencias", "bloque": "probabilidad-y-estadistica", "cursos": ["estadistica-1", "estadistica-2"], "nota": "Distribuciones, estimación, pruebas de hipótesis y regresión. Investigación de Operaciones solo si sobra tiempo." },
+        { "clave": "electronica-digital", "nombre": "Electrónica Digital", "horas": 2, "area": "ciencias", "bloque": "electronica", "cursos": ["electronica-digital"] }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "Rutina completa y ensayo de entrevista.",
+      "tramites": [
+        { "id": "s7-pc2", "texto": "Punto de control 2: ¿hay convocatoria o lista abierta del seminario virtual 2027 y estás inscrito?", "fecha": "2027-01-15" },
+        { "id": "s7-entrevista", "texto": "Ensayo de entrevista en inglés: 30 minutos, con cámara y espejo." }
+      ]
+    },
+    {
+      "id": "S8", "inicio": "2027-01-18", "fin": "2027-01-24",
+      "titulo": "Simulacro de Ciencias y Administración",
+      "area": [
+        { "clave": "simulacro-ciencias", "nombre": "Simulacro de Ciencias con reloj", "horas": 2, "area": "ciencias", "ruta": "#/examen?area=ciencias&preset=simulacro" },
+        { "clave": "administracion", "nombre": "Administración de Sistemas: mapa del área", "horas": 9, "area": "administracion", "nota": "Empezando por Sistemas operativos y Arquitectura. Una hoja por curso y tarjetas de repaso que se reusan antes del área." }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "EF SET de control: meta 61 o más.",
+      "tramites": [
+        { "id": "s8-ubicacion", "texto": "Examen de ubicación de inglés (ventana objetivo: del 18 al 30 de enero)." },
+        { "id": "s8-efset", "texto": "Repetir el EF SET y anotar el puntaje en la sección de inglés." },
+        { "id": "s8-antecedentes", "texto": "Antecedentes penales, cuando haya fecha de expediente." },
+        { "id": "s8-entrevista", "texto": "Ensayo de entrevista en inglés: 30 minutos, con cámara y espejo." }
+      ]
+    },
+    {
+      "id": "S9", "inicio": "2027-01-25", "fin": "2027-01-31",
+      "titulo": "Cierre de Administración y Análisis",
+      "area": [
+        { "clave": "administracion-cierre", "nombre": "Administración: cierre del mapa", "horas": 1, "area": "administracion" },
+        { "clave": "analisis", "nombre": "Análisis, Diseño y Desarrollo: mapa del área", "horas": 10, "area": "desarrollo", "cursos": ["bases-de-datos-1", "bases-de-datos-2", "programacion-3"], "nota": "Empezando por Bases de datos y estructuras de datos." }
+      ],
+      "inglesHoras": 5,
+      "inglesNota": "Rutina completa.",
+      "tramites": [
+        { "id": "s9-ciclo", "texto": "Con el resultado de la ubicación, inscribirte al primer ciclo de inglés que abra." },
+        { "id": "s9-practicas", "texto": "Carta de prácticas con visto bueno, en mano." },
+        { "id": "s9-febrero", "texto": "Revisar el simulacro de Ciencias y fijar el plan de febrero.", "fecha": "2027-01-31" },
+        { "id": "s9-entrevista", "texto": "Ensayo de entrevista en inglés: 30 minutos, con cámara y espejo." }
+      ]
+    }
+  ],
+  "fases": [
+    {
+      "id": "febrero", "inicio": "2027-02-01", "finDesdeArranque": -1,
+      "titulo": "Segunda pasada de Ciencias",
+      "estudio": "Solo ejercicios con reloj, de 6 a 8 horas por semana. En paralelo, el primer nivel de inglés y los ajustes de formato de la tesis.",
+      "area": "ciencias",
+      "hitos": [
+        { "desdeArranque": -15, "texto": "Expediente del área 1 en Registro: inscripción anual, DPI, antecedentes penales y constancia de práctica con visto bueno." },
+        { "desdeArranque": -8, "texto": "Pago del área 1 (Q2,000). Cada pago vale un año y no tiene reintegro: no conviene adelantar los tres." }
+      ]
+    },
+    {
+      "id": "area1", "inicioDesdeArranque": 0, "finDesdeArranque": 77,
+      "titulo": "Seminario, área 1: Ciencias de la Ingeniería",
+      "estudio": "Un curso por semana. El parcial de cada curso suele hacerse el mismo día del repaso, así que el curso de la semana se estudia antes de la clase, no después.",
+      "area": "ciencias", "seminario": true,
+      "clases": [0, 7, 14, 28, 35, 42, 49, 63],
+      "hitos": [
+        { "desdeArranque": 70, "texto": "Examen escrito del área 1." },
+        { "desdeArranque": 77, "texto": "Oral del área 1, a más tardar. Confirmar que el acta quedó firmada y anotar la fecha de evaluación." }
+      ]
+    },
+    {
+      "id": "repaso-administracion", "inicioDesdeArranque": 78, "finDesdeArranque": 90,
+      "titulo": "Repaso fuerte de Administración de Sistemas",
+      "estudio": "Dos semanas antes de arrancar el área, empezando por Sistemas operativos y Arquitectura. Se reusan las hojas y tarjetas de enero.",
+      "area": "administracion",
+      "hitos": [
+        { "desdeArranque": 83, "texto": "Expediente y pago del área 2." }
+      ]
+    },
+    {
+      "id": "area2", "inicioDesdeArranque": 91, "finDesdeArranque": 154,
+      "titulo": "Seminario, área 2: Administración de Sistemas",
+      "estudio": "Un curso por semana. El proyecto del área puede valer la mitad del examen final: apártale horas desde el inicio y prepáralo para explicarlo en el oral.",
+      "area": "administracion", "seminario": true,
+      "clases": [91, 98, 105, 112, 119, 126, 133, 140],
+      "hitos": [
+        { "desdeArranque": 147, "texto": "Examen escrito del área 2." },
+        { "desdeArranque": 154, "texto": "Oral del área 2, a más tardar. Confirmar acta y fecha de evaluación." }
+      ]
+    },
+    {
+      "id": "repaso-analisis", "inicioDesdeArranque": 155, "finDesdeArranque": 167,
+      "titulo": "Repaso fuerte de Análisis, Diseño y Desarrollo",
+      "estudio": "Dos semanas antes de arrancar el área, empezando por Bases de datos y Programación III.",
+      "area": "desarrollo",
+      "hitos": [
+        { "desdeArranque": 160, "texto": "Expediente y pago del área 3. Antecedentes penales nuevos si los de febrero ya vencieron." }
+      ]
+    },
+    {
+      "id": "area3", "inicioDesdeArranque": 168, "finDesdeArranque": 238,
+      "titulo": "Seminario, área 3: Análisis, Diseño y Desarrollo",
+      "estudio": "Un curso por semana. El riesgo aquí es la teoría y el vocabulario, no la práctica.",
+      "area": "desarrollo", "seminario": true,
+      "clases": [168, 175, 182, 189, 196, 203, 210, 217],
+      "hitos": [
+        { "desdeArranque": 224, "texto": "Examen escrito del área 3." },
+        { "desdeArranque": 238, "texto": "Oral del área 3, a más tardar. Confirmar acta y fecha de evaluación." }
+      ]
+    },
+    {
+      "id": "certificacion", "inicioDesdeArranque": 241, "finDesdeArranque": 331,
+      "titulo": "Certificación de privados",
+      "estudio": "Ya no hay exámenes de área. Tesis en formato final y seguimiento semanal del certificado.",
+      "hitos": [
+        { "desdeArranque": 241, "texto": "Solicitar la certificación de privados: boleta 393 y correo a sgcertificaciones@umg.edu.gt con las tres fechas de evaluación." },
+        { "desdeArranque": 331, "texto": "Certificación de privados en mano (día 90 desde la solicitud)." }
+      ]
+    },
+    {
+      "id": "tesis", "inicioDesdeArranque": 333, "finDesdeArranque": 436,
+      "titulo": "Revisión formal de la tesis",
+      "estudio": "Devolver cada ronda de correcciones en menos de una semana.",
+      "hitos": [
+        { "desdeArranque": 333, "texto": "Envío del expediente a la Facultad: certificaciones de cierre de pensum, de privados y de inglés; tesis en PDF y en Word; constancia del catedrático de PG II con aval del coordinador." },
+        { "desdeArranque": 433, "texto": "Carta de aprobación de la tesis." },
+        { "desdeArranque": 436, "texto": "Paquete completo: correo a la Facultad con los seis adjuntos. Meta cumplida." }
+      ]
+    }
+  ],
+  "puntosDeControl": [
+    { "id": "PC1", "fecha": "2026-12-11", "pregunta": "¿Ya hay un grupo de seminario 2027 identificado y quedaste anotado?", "siNo": "Insistir con las sedes consultadas, mantener abiertas las otras vías y retomar el lunes 4 de enero con la Facultad." },
+    { "id": "PC2", "fecha": "2027-01-15", "pregunta": "¿Hay convocatoria o lista abierta del seminario virtual 2027 y estás inscrito?", "siNo": "Plan B, en este orden: otro centro con grupo virtual o el sabatino en línea de la Central, si acepta tu carné." },
+    { "id": "PC3", "fecha": "2027-03-15", "pregunta": "¿Hay fecha de inicio confirmada, a más tardar a mediados de mayo?", "siNo": "Pedir fechas de privado tradicional (en 2025 tardaron unos 3 meses en darlas) y decidir." },
+    { "id": "PC4", "desdeArranque": 77, "pregunta": "Al cerrar cada área: ¿quedó firmada el acta y anotaste la fecha de evaluación?", "siNo": "Insistir con quien coordina el seminario antes de pagar la siguiente área." },
+    { "id": "PC5", "desdeArranque": 331, "pregunta": "¿Llegó la certificación de privados?", "siNo": "Ir a Secretaría General y avisar a la Facultad. La tesis ya debe estar lista para salir el mismo día." },
+    { "id": "PC6", "fecha": "2028-06-30", "pregunta": "¿Hay carta de aprobación de la tesis?", "siNo": "Escalar con el coordinador y la Facultad por la ventana de dos años del proyecto de graduación." }
+  ]
+}

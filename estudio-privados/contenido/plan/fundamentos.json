@@ -1,0 +1,100 @@
+{
+  "titulo": "Fundamentos sin calculadora",
+  "descripcion": "Cinco sesiones de una hora, a lápiz y sin calculadora. La división a mano reaparece en el algoritmo de Euclides (Matemática Discreta), en la división de polinomios (Precálculo) y al pasar de decimal a binario (Electrónica Digital). Aquí el audio casi no ayuda: se recupera repitiendo.",
+  "regla": "Videos a 1.5×, resolviendo cada ejemplo antes que el profesor. Si la hora no alcanza, se recorta video y no práctica.",
+  "material": [
+    { "t": "Khan Academy: cursos de preparación para Álgebra y Precálculo (en español)", "url": "https://blog.khanacademy.org/new-math-courses-to-help-students-get-ready-for" },
+    { "t": "Álgebra y Trigonometría (OpenStax), capítulo 1: Prerrequisitos, en LibreTexts Español", "url": "https://espanol.libretexts.org/Bookshelves/Matematicas/Algebra/Libro%3A_Algebra_y_Trigonometria_(OpenStax)/01%3A_Prerrequisitos" }
+  ],
+  "sesiones": [
+    {
+      "id": "f1", "fecha": "2026-11-25",
+      "titulo": "Signos, jerarquía de operaciones, fracciones y división larga",
+      "temas": ["signos", "jerarquia", "fracciones", "division"],
+      "reparto": "Signos 10 minutos, operaciones combinadas 10, fracciones 20 y división 20.",
+      "videos": [
+        { "t": "Ley de los signos", "canal": "Daniel Carreón", "url": "https://www.youtube.com/watch?v=6f40XK7nssY" },
+        { "t": "Suma y resta de números con diferente signo", "canal": "Daniel Carreón", "url": "https://www.youtube.com/watch?v=EfsMlucTGXM" },
+        { "t": "Operaciones combinadas", "canal": "Daniel Carreón", "url": "https://www.youtube.com/watch?v=w016sdtyv1w" },
+        { "t": "Suma, resta, multiplicación y división de fracciones", "canal": "Daniel Carreón", "dur": "14:52", "url": "https://www.youtube.com/watch?v=FUbla-rPt3M" },
+        { "t": "Divisiones con dos cifras", "canal": "Daniel Carreón", "url": "https://www.youtube.com/watch?v=21Aqc1TQVBQ" },
+        { "t": "División con punto decimal", "canal": "Daniel Carreón", "url": "https://www.youtube.com/watch?v=wOIoZuo4mJM" }
+      ]
+    },
+    {
+      "id": "f2", "fecha": "2026-11-26",
+      "titulo": "Potencias, raíces, notación científica y porcentajes",
+      "temas": ["potencias", "raices", "cientifica", "porcentajes"],
+      "reparto": "Exponentes 20 minutos, raíces 20, notación científica 10 y porcentajes 10.",
+      "lectura": "LibreTexts, ejercicios 1.2E y 1.3E (exponentes, notación científica y radicales).",
+      "videos": [
+        { "t": "Todas las leyes de los exponentes", "canal": "Daniel Carreón", "dur": "11:55", "url": "https://www.youtube.com/watch?v=ainnlQ_Owq8" },
+        { "t": "Potencia con exponente fracción", "canal": "Matemáticas profe Alex", "dur": "6:17", "url": "https://www.youtube.com/watch?v=IqW4-JUrd3k" },
+        { "t": "Simplificación de radicales, parte 1", "canal": "Matemáticas profe Alex", "dur": "11:49", "url": "https://www.youtube.com/watch?v=2HachLBuoZo" },
+        { "t": "Notación científica", "canal": "Daniel Carreón", "dur": "5:21", "url": "https://www.youtube.com/watch?v=fYBFpz3ly28" },
+        { "t": "Cómo calcular un porcentaje", "canal": "Daniel Carreón", "dur": "4:20", "url": "https://www.youtube.com/watch?v=RE3XoDORMys" },
+        { "t": "Qué porcentaje es un número de otro", "canal": "Daniel Carreón", "dur": "3:24", "url": "https://www.youtube.com/watch?v=PId8BE7N_EI" }
+      ],
+      "reserva": [
+        { "t": "Exponente negativo", "dur": "4:46", "url": "https://www.youtube.com/watch?v=AOPpWM1Qr2Q" },
+        { "t": "Raíz cuadrada", "dur": "4:34", "url": "https://www.youtube.com/watch?v=gPV5VqQ3Ajg" },
+        { "t": "Descuentos", "dur": "5:02", "url": "https://www.youtube.com/watch?v=jjyJ4p3E4KM" }
+      ]
+    },
+    {
+      "id": "f3", "fecha": "2026-11-27",
+      "titulo": "Productos notables y factorización",
+      "temas": ["notables", "factorizacion"],
+      "reparto": "38 minutos de video (unos 25 a 1.5×); el resto de la hora, práctica.",
+      "lectura": "LibreTexts, ejercicios 1.4E y 1.5E (polinomios y factorización).",
+      "videos": [
+        { "t": "Binomio al cuadrado", "canal": "Daniel Carreón", "dur": "6:23", "url": "https://www.youtube.com/watch?v=6xGq9M1XW0U" },
+        { "t": "Binomios conjugados", "canal": "Daniel Carreón", "dur": "4:09", "url": "https://www.youtube.com/watch?v=wQuK20H0ZNw" },
+        { "t": "Factor común", "canal": "Daniel Carreón", "dur": "6:38", "url": "https://www.youtube.com/watch?v=BygK11QxQnA" },
+        { "t": "Diferencia de cuadrados", "canal": "Daniel Carreón", "dur": "6:35", "url": "https://www.youtube.com/watch?v=esbREDCXTpM" },
+        { "t": "Trinomio cuadrado perfecto", "canal": "Daniel Carreón", "dur": "7:39", "url": "https://www.youtube.com/watch?v=TKo7NtIilWM" },
+        { "t": "Trinomio de la forma x² + bx + c", "canal": "Matemáticas profe Alex", "dur": "6:08", "url": "https://www.youtube.com/watch?v=ND-UMsE-uPI" }
+      ],
+      "reserva": [
+        { "t": "Binomio al cuadrado con resta", "dur": "5:25", "url": "https://www.youtube.com/watch?v=3z6tP-pt45A" },
+        { "t": "Binomio por binomio", "dur": "6:46", "url": "https://www.youtube.com/watch?v=Ej6lfi8VJeo" }
+      ]
+    },
+    {
+      "id": "f4", "fecha": "2026-11-28",
+      "titulo": "Fracciones algebraicas, despejes y ecuaciones",
+      "temas": ["racionales", "despejes", "lineales", "cuadraticas"],
+      "reparto": "44 minutos de video (unos 30 a 1.5×); el resto de la hora, práctica.",
+      "lectura": "LibreTexts, ejercicios 1.6E (expresiones racionales).",
+      "videos": [
+        { "t": "Simplificación de fracciones algebraicas, ejemplo 1", "canal": "Matemáticas profe Alex", "dur": "11:51", "url": "https://www.youtube.com/watch?v=zYM93DA5S7A" },
+        { "t": "Despeje de ecuaciones", "canal": "Daniel Carreón", "dur": "3:44", "url": "https://www.youtube.com/watch?v=9Ly9qasM8IM" },
+        { "t": "Ecuaciones de primer grado", "canal": "Daniel Carreón", "dur": "10:07", "url": "https://www.youtube.com/watch?v=IHblqjW8RY8" },
+        { "t": "Segundo grado por factorización", "canal": "Daniel Carreón", "dur": "9:16", "url": "https://www.youtube.com/watch?v=oXm9s1iFSpw" },
+        { "t": "Segundo grado por fórmula general", "canal": "Daniel Carreón", "dur": "9:18", "url": "https://www.youtube.com/watch?v=ZC67c5ar9mA" }
+      ],
+      "reserva": [
+        { "t": "Primer grado con paréntesis", "dur": "9:46", "url": "https://www.youtube.com/watch?v=kRGwE6OKN9M" }
+      ]
+    },
+    {
+      "id": "f5", "fecha": "2026-11-30",
+      "titulo": "Sistemas 2×2, desigualdades, división de polinomios y logaritmos",
+      "temas": ["sistemas", "desigualdades", "ruffini", "logaritmos"],
+      "reparto": "37 minutos de video (unos 25 a 1.5×); el resto de la hora, práctica.",
+      "videos": [
+        { "t": "Sistemas por reducción", "canal": "Daniel Carreón", "dur": "8:09", "url": "https://www.youtube.com/watch?v=TR27etegq7g" },
+        { "t": "Inecuaciones de primer grado, parte 1", "canal": "Daniel Carreón", "dur": "5:40", "url": "https://www.youtube.com/watch?v=gMDAtLLW5lM" },
+        { "t": "División de polinomios, parte 1", "canal": "Daniel Carreón", "dur": "4:14", "url": "https://www.youtube.com/watch?v=bU9m3PF71Oo" },
+        { "t": "Regla de Ruffini", "canal": "Gominol Tree Matemáticas", "dur": "5:09", "url": "https://www.youtube.com/watch?v=vzi21Dcf_lI" },
+        { "t": "Logaritmos", "canal": "Daniel Carreón", "dur": "5:32", "url": "https://www.youtube.com/watch?v=kcWwLcvb2-4" },
+        { "t": "Propiedades de los logaritmos", "canal": "Susi Profe", "dur": "7:59", "url": "https://www.youtube.com/watch?v=vcLE0wNTdXo" }
+      ],
+      "reserva": [
+        { "t": "Sistemas por sustitución", "dur": "6:52", "url": "https://www.youtube.com/watch?v=L0QuX9RpEoM" },
+        { "t": "Inecuaciones, parte 2", "dur": "4:35", "url": "https://www.youtube.com/watch?v=Uu5DD5gW8H0" },
+        { "t": "División de polinomios, parte 2", "dur": "5:46", "url": "https://www.youtube.com/watch?v=ZPrTUwQQDk4" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Dependencias y compilación
+node_modules/
+dist/
+
+# Generado por scripts/generar-datos.mjs
+public/data/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Datos personales (notas, contactos, pendientes propios): nunca van al repositorio
+personal/*
+!personal/LEEME.md
+!personal/mis-datos.ejemplo.json
+
+# Guías de PrivStudyPage: se descargan de su repositorio con npm run traer-guias (ver README, Créditos)
+privados-umg/
