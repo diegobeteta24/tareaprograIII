@@ -1,0 +1,286 @@
+{
+  "id": "reading",
+  "grupo": "lectura",
+  "titulo": "Reading comprehension",
+  "resumen": [
+    "<b>Lee primero las preguntas</b> (unos 30 segundos) y subraya sus palabras clave; así lees el texto sabiendo qué buscar: <i>According to the text, what do criminals do…?</i>",
+    "<b>Idea principal:</b> mira el título, la primera oración de cada párrafo y el cierre. La opción correcta resume todo el texto, no un solo detalle: <i>What is the text mainly about?</i>",
+    "<b>Preguntas de detalle:</b> busca la palabra clave o un sinónimo (<i>sick days</i> ↔ <i>days lost to illness</i>) y lee con calma solo esa oración y la siguiente.",
+    "<b>Descarta</b> lo que el texto contradice y también lo que no menciona, aunque suene lógico o sea cierto en la vida real: <i>Not stated</i> nunca es la respuesta correcta.",
+    "<b>Inferencia:</b> <i>What can be inferred…?</i> o <i>The writer implies…</i> piden una conclusión que se deduce de una oración concreta. Si no puedes señalar esa oración, no elijas la opción.",
+    "<b>Vocabulario en contexto:</b> la palabra puede tener otro significado del que conoces (<i>admit</i> = reconocer, no solo «dejar entrar»). Pon cada opción en lugar de la palabra y quédate con la que conserva el sentido.",
+    "<b>Conectores:</b> <i>however, by contrast, instead, rather than</i> cambian la dirección del texto; ahí suele estar la respuesta de las preguntas difíciles.",
+    "<b>Controla el reloj:</b> calcula unos 5 o 6 minutos por texto de cinco preguntas. Si una pregunta te traba, elige la opción más probable, márcala y vuelve al final si te sobra tiempo."
+  ],
+  "textos": [
+    {
+      "id": "reading-t1",
+      "nv": "B1",
+      "titulo": "Changes to the Main Library",
+      "texto": [
+        "From Monday 6 October, the Main Library will be open from 8 am to 10 pm on weekdays, so it will close two hours later than it did last year. Weekend opening hours will not change: 10 am to 6 pm.",
+        "The second floor is being redecorated and will be closed until the end of November. During this time, the silent study area will move to the ground floor, next to the café. The group study rooms on the first floor are still available, but they must now be booked online at least 24 hours in advance.",
+        "We are also changing the way you borrow books. Instead of queuing at the main desk, you will use the new self-service machines near the entrance. You can borrow up to ten books at a time and renew them online twice. Fines for late returns will no longer be charged. Instead, if a book is late, you will not be able to borrow anything else until you return it.",
+        "If you have any questions, please ask a member of staff at the information point. We apologise for any inconvenience while the work is being done."
+      ],
+      "preguntas": [
+        {
+          "id": "reading-t1-01",
+          "nv": "B1",
+          "q": "What is the main purpose of the announcement?",
+          "a": "To tell library users about several changes this term",
+          "d": ["To announce that the library will be closed until November", "To warn students about higher fines for late books", "To advertise the new café on the ground floor"],
+          "x": "Cada párrafo presenta un cambio: el horario (<i>From Monday 6 October…</i>), las obras (<i>The second floor is being redecorated…</i>) y los préstamos (<i>We are also changing the way you borrow books</i>). Solo cierra el segundo piso, no toda la biblioteca, y las multas desaparecen en vez de subir."
+        },
+        {
+          "id": "reading-t1-02",
+          "nv": "B1",
+          "q": "From 6 October, what time will the library close on weekdays?",
+          "a": "At 10 pm",
+          "d": ["At 8 pm", "At 6 pm", "At 8 am"],
+          "x": "El texto dice: <i>the Main Library will be open from 8 am to 10 pm on weekdays</i>. Las 8 pm era la hora de cierre del año pasado (dos horas antes) y las 6 pm es el cierre de los fines de semana."
+        },
+        {
+          "id": "reading-t1-03",
+          "nv": "B1",
+          "q": "Where can students study in silence until the end of November?",
+          "a": "On the ground floor, next to the café",
+          "d": ["On the second floor, as usual", "In the group study rooms on the first floor", "At the main desk near the entrance"],
+          "x": "El texto dice: <i>During this time, the silent study area will move to the ground floor, next to the café.</i> El segundo piso está cerrado por obras, y las salas del primer piso son para trabajo en grupo."
+        },
+        {
+          "id": "reading-t1-04",
+          "nv": "B1",
+          "q": "In the third paragraph, “renew” means ___.",
+          "a": "extend the time you can keep them",
+          "d": ["return them to the library", "buy new copies of them", "pay a fine for them"],
+          "x": "En <i>You can borrow up to ten books at a time and renew them online twice</i>, <i>renew</i> significa «renovar» el préstamo, es decir, ampliar el plazo para quedarte con los libros. No es devolverlos ni pagar, y el texto aclara que ya no hay multas."
+        },
+        {
+          "id": "reading-t1-05",
+          "nv": "B2",
+          "q": "A student wants to use a group study room on Friday at 9 am. What should she do?",
+          "a": "Book it online by 9 am on Thursday at the latest",
+          "d": ["Ask a member of staff when she arrives on Friday", "Use one of the self-service machines near the entrance", "Go to the second floor, where the rooms are"],
+          "x": "Se deduce de <i>they must now be booked online at least 24 hours in advance</i>: para el viernes a las 9 hay que reservar antes del jueves a las 9. Las salas están en el primer piso, y las máquinas de autoservicio son para prestar libros."
+        }
+      ]
+    },
+    {
+      "id": "reading-t2",
+      "nv": "B1",
+      "titulo": "Working from home: one company's experience",
+      "texto": [
+        "Two years ago, Harbour Code, a small software company in Bristol, decided to let its forty employees work from home three days a week. Before the change, many of them spent more than an hour travelling to the office every morning.",
+        "So far, the results have been mostly positive. In the company's own survey, 85 per cent of staff said they felt less stressed, and the number of days lost to illness has fallen by a third. ‘I get more done at home because nobody interrupts me,’ says Priya, a junior developer.",
+        "However, not everything has been easy. Some new employees say it is harder to learn from experienced colleagues when they only see them on a screen. To solve this problem, everyone now comes to the office on Tuesdays and Thursdays, when most meetings and training sessions take place.",
+        "The company also had to spend money on equipment: every employee received a laptop, a second monitor and a comfortable chair. ‘It was expensive at first,’ admits the director, Tom Hughes, ‘but we've saved money since we moved to a smaller office.’"
+      ],
+      "preguntas": [
+        {
+          "id": "reading-t2-01",
+          "nv": "B1",
+          "q": "What is the text mainly about?",
+          "a": "How a decision to let staff work from home has worked out",
+          "d": ["Why a software company moved to another city", "How to set up a comfortable office at home", "Why most staff want to go back to the office every day"],
+          "x": "El texto presenta la decisión (<i>decided to let its forty employees work from home three days a week</i>) y luego sus ventajas (<i>So far, the results have been mostly positive</i>) y sus problemas (<i>However, not everything has been easy</i>). Nadie pide volver a la oficina todos los días."
+        },
+        {
+          "id": "reading-t2-02",
+          "nv": "B1",
+          "q": "How many days a week do the employees work from home?",
+          "a": "Three",
+          "d": ["Two", "Four", "Five"],
+          "x": "El texto dice: <i>decided to let its forty employees work from home three days a week</i>. Los otros dos días (<i>Tuesdays and Thursdays</i>) todos van a la oficina."
+        },
+        {
+          "id": "reading-t2-03",
+          "nv": "B1",
+          "q": "According to the company's survey, what has happened since the change?",
+          "a": "Fewer days have been lost to illness.",
+          "d": ["Staff have felt more stressed.", "Meetings have become shorter.", "New employees have learnt faster."],
+          "x": "El texto dice: <i>the number of days lost to illness has fallen by a third</i>. Los empleados se sienten menos estresados, no más; las reuniones no se mencionan, y los nuevos dicen que les cuesta más aprender."
+        },
+        {
+          "id": "reading-t2-04",
+          "nv": "B1",
+          "q": "In the last paragraph, “admits” means that Tom Hughes ___.",
+          "a": "agrees that something negative is true",
+          "d": ["allows someone to come in", "refuses to accept a fact", "complains about a problem"],
+          "x": "En <i>‘It was expensive at first,’ admits the director</i>, <i>admit</i> significa «reconocer» algo poco favorable (que fue caro). «Dejar entrar» es otro significado de <i>admit</i> que no encaja aquí, y el director no se queja: enseguida añade que han ahorrado."
+        },
+        {
+          "id": "reading-t2-05",
+          "nv": "B2",
+          "q": "What can we infer about the company's old office?",
+          "a": "It was bigger and more expensive than the current one.",
+          "d": ["It was closer to most employees' homes.", "It had no rooms for meetings or training.", "It was in a different city from the current one."],
+          "x": "Se deduce de <i>we've saved money since we moved to a smaller office</i>: la oficina anterior era más grande y costaba más. El texto no dice nada sobre sus salas ni sobre la ciudad, y según el primer párrafo muchos empleados tardaban más de una hora en llegar a ella."
+        }
+      ]
+    },
+    {
+      "id": "reading-t3",
+      "nv": "B2",
+      "titulo": "Is your password really good enough?",
+      "texto": [
+        "Every year, security companies publish lists of the most common passwords, and every year the same ones appear at the top: ‘123456’, ‘password’ and ‘qwerty’. It is easy to laugh at them, but even people who choose more complicated passwords often make a serious mistake: they use the same one for several accounts.",
+        "This matters because websites are hacked far more often than most people realise. When criminals steal a list of email addresses and passwords from one site, they use software to try the same combinations on hundreds of others, including banks and online shops. If you reuse your password, a single leak can give a stranger access to your entire digital life.",
+        "Experts now recommend long passphrases – four or five random words joined together – rather than short passwords full of symbols. A phrase such as ‘violin-carrot-harbour-seven’ is easier to remember and much harder for a computer to guess than ‘P@ss1!’. A password manager, an app that creates and stores a different password for every site, means you only have to remember one.",
+        "Finally, switch on two-factor authentication wherever it is offered. Logging in then requires a second step, usually a code sent to your phone. It takes a few extra seconds, but it means that a stolen password on its own is useless."
+      ],
+      "preguntas": [
+        {
+          "id": "reading-t3-01",
+          "nv": "B2",
+          "q": "What is the main purpose of the article?",
+          "a": "To explain a common password mistake and how to stay safe",
+          "d": ["To list the most popular passwords of the year", "To argue that password managers are not safe", "To describe how criminals sell stolen data"],
+          "x": "El primer párrafo plantea el error (<i>they use the same one for several accounts</i>), el segundo explica por qué es grave y los dos últimos dan consejos (<i>Experts now recommend…</i>, <i>Finally, switch on two-factor authentication…</i>). La lista de contraseñas es solo la introducción, y el texto recomienda los gestores de contraseñas."
+        },
+        {
+          "id": "reading-t3-02",
+          "nv": "B2",
+          "q": "According to the article, what do criminals do after stealing passwords from one website?",
+          "a": "They try them on many other websites.",
+          "d": ["They sell them back to the company.", "They publish them in lists of common passwords.", "They change them so users cannot log in."],
+          "x": "El texto dice: <i>they use software to try the same combinations on hundreds of others, including banks and online shops</i>. Las listas de contraseñas comunes las publican las empresas de seguridad, no los delincuentes, y lo demás no se menciona."
+        },
+        {
+          "id": "reading-t3-03",
+          "nv": "B2",
+          "q": "Why do experts prefer passphrases to short passwords with symbols?",
+          "a": "They are easier to remember and harder for computers to guess.",
+          "d": ["They can safely be used for several accounts.", "They never need to be changed.", "They make two-factor authentication unnecessary."],
+          "x": "El texto dice que una frase así <i>is easier to remember and much harder for a computer to guess than ‘P@ss1!’</i>. Usarla en varias cuentas es justo el error que critica, y la verificación en dos pasos se recomienda además, no en lugar de ella."
+        },
+        {
+          "id": "reading-t3-04",
+          "nv": "B2",
+          "q": "In paragraph 2, the word “leak” refers to ___.",
+          "a": "an occasion when private data becomes public",
+          "d": ["a hole that lets water escape", "a mistake made when typing", "a kind of computer virus"],
+          "x": "En <i>a single leak can give a stranger access to your entire digital life</i>, <i>leak</i> es una filtración: datos privados robados que quedan en manos de otros. «Agujero por donde se escapa el agua» es el sentido literal, que aquí no encaja."
+        },
+        {
+          "id": "reading-t3-05",
+          "nv": "C1",
+          "q": "Which person is following the writer's advice most closely?",
+          "a": "Ana, who uses a password manager and a code from her phone",
+          "d": ["Ben, who uses one long passphrase for all his accounts", "Carla, who has replaced ‘123456’ with ‘P@ss1!’ everywhere", "David, who turns off two-factor authentication to save time"],
+          "x": "Ana sigue dos consejos: el gestor que crea <i>a different password for every site</i> y <i>switch on two-factor authentication wherever it is offered</i>. Ben y Carla repiten la misma contraseña en todas partes (el error principal), y David desactiva justamente la protección que el texto recomienda."
+        }
+      ]
+    },
+    {
+      "id": "reading-t4",
+      "nv": "B2",
+      "titulo": "A complaint to an airline",
+      "texto": [
+        "Dear Sir or Madam,",
+        "I am writing to complain about my flight from London to Madrid on 14 March (flight 482).",
+        "The flight was due to depart at 9.15 am, but passengers were not allowed to board until 1.40 pm. During this time, we heard only two brief announcements, neither of which explained the reason for the delay. Staff at the gate were unable to answer our questions, and the food vouchers we had been promised were never handed out.",
+        "When we finally landed in Madrid, almost five hours late, my suitcase was not on the belt. I was told that it had been left in London by mistake. It was delivered to my hotel two days later, by which time I had been forced to buy clothes and toiletries for a business conference. I enclose the receipts, which come to €186.",
+        "I understand that delays sometimes happen, but I believe that the lack of information and the loss of my luggage were avoidable. I would therefore ask you to refund the cost of these items and to pay the compensation to which I am entitled for a delay of this length.",
+        "I look forward to your reply within fourteen days. If I do not receive a satisfactory response, I will have no choice but to take the matter further.",
+        "Yours faithfully,",
+        "Laura Méndez"
+      ],
+      "preguntas": [
+        {
+          "id": "reading-t4-01",
+          "nv": "B2",
+          "q": "Why did Laura Méndez write this letter?",
+          "a": "To complain about a delay and lost luggage and ask for money",
+          "d": ["To thank the airline staff for their help during a delay", "To ask the airline to change the date of a future flight", "To complain about the meals served during the flight"],
+          "x": "La carta empieza con <i>I am writing to complain about my flight…</i> y pide dinero: <i>I would therefore ask you to refund the cost of these items and to pay the compensation…</i>. Nunca agradece al personal, y lo que critica de la comida es que los vales no se entregaron, no lo que se sirvió a bordo."
+        },
+        {
+          "id": "reading-t4-02",
+          "nv": "B2",
+          "q": "How late did the flight arrive in Madrid?",
+          "a": "Almost five hours late",
+          "d": ["Four hours and twenty-five minutes late", "About two hours late", "Two days late"],
+          "x": "El texto dice: <i>When we finally landed in Madrid, almost five hours late…</i>. Cuatro horas y veinticinco minutos es el retraso para embarcar (de las 9.15 a la 1.40), y los dos días son lo que tardó en llegar la maleta."
+        },
+        {
+          "id": "reading-t4-03",
+          "nv": "B2",
+          "q": "What happened to the food vouchers?",
+          "a": "The passengers never received them.",
+          "d": ["They were handed out at the gate.", "They were only enough for a drink.", "They could not be used at the airport."],
+          "x": "El texto dice: <i>the food vouchers we had been promised were never handed out</i>. Como nunca se entregaron, las otras opciones, que suponen que los pasajeros sí los recibieron, quedan descartadas."
+        },
+        {
+          "id": "reading-t4-04",
+          "nv": "B2",
+          "q": "What can be inferred about Laura's trip to Madrid?",
+          "a": "It was at least partly for work.",
+          "d": ["It was her first flight with this airline.", "She was travelling with her family.", "She stayed with friends in Madrid."],
+          "x": "Se deduce de <i>I had been forced to buy clothes and toiletries for a business conference</i>: viajaba por trabajo. Además, la maleta llegó <i>to my hotel</i>, así que no se quedó con amigos, y la carta no dice nada de su familia ni de vuelos anteriores."
+        },
+        {
+          "id": "reading-t4-05",
+          "nv": "C1",
+          "q": "Near the end of the letter, “take the matter further” most probably means ___.",
+          "a": "complain to a higher authority",
+          "d": ["forget about the problem", "fly with the airline again", "discuss it with other passengers"],
+          "x": "En <i>If I do not receive a satisfactory response, I will have no choice but to take the matter further</i>, la expresión es una advertencia: llevará el reclamo a una instancia superior (un organismo oficial o un tribunal). Olvidarse del asunto sería lo contrario de lo que anuncia."
+        }
+      ]
+    },
+    {
+      "id": "reading-t5",
+      "nv": "C1",
+      "titulo": "Thinking for ourselves in the age of AI",
+      "texto": [
+        "When pocket calculators arrived in classrooms in the 1970s, critics warned that a generation would grow up unable to do simple sums. The fear proved exaggerated: pupils still learnt arithmetic, and calculators freed up time for more demanding mathematics. Many people assume that artificial intelligence will follow the same path. I am not so sure.",
+        "A calculator performs a single, narrow task. A chatbot, by contrast, can draft an essay, summarise a novel or solve a physics problem in seconds – precisely the activities through which students are supposed to learn to think. If the machine does the struggling, the student may end up with a polished answer and little idea of how it was reached.",
+        "None of this justifies a ban, which would be both futile and counterproductive. Students will use these tools at work, so they need to learn to use them critically: to check facts, question sources and notice when a confident answer is wrong. Some teachers already ask students to submit their conversation with a chatbot alongside the finished essay, so that the thinking, not just the product, is assessed.",
+        "The real danger, then, lies less in the software than in an education system that rewards only final results. If schools go on valuing the essay over the reasoning behind it, they should not be surprised when students hand that reasoning over to a machine."
+      ],
+      "preguntas": [
+        {
+          "id": "reading-t5-01",
+          "nv": "C1",
+          "q": "What is the writer's main argument?",
+          "a": "Schools must assess students' thinking, not only their final work",
+          "d": ["AI should be banned in schools until students use it well", "AI will change education just as calculators once did", "Teachers are mainly to blame for students' misuse of AI"],
+          "x": "La conclusión lo resume: <i>The real danger, then, lies less in the software than in an education system that rewards only final results.</i> El autor rechaza la prohibición (<i>None of this justifies a ban</i>), duda de la comparación con las calculadoras y culpa al sistema, no a los profesores."
+        },
+        {
+          "id": "reading-t5-02",
+          "nv": "C1",
+          "q": "According to the writer, how is a chatbot different from a calculator?",
+          "a": "It can do the tasks through which students are meant to learn to think.",
+          "d": ["It gives wrong answers more often than a calculator does.", "It is cheaper and easier for schools to buy.", "It has been introduced into schools more slowly."],
+          "x": "El texto dice que un chatbot hace tareas como redactar o resumir, <i>precisely the activities through which students are supposed to learn to think</i>, mientras que <i>A calculator performs a single, narrow task.</i> El autor no compara errores, precios ni velocidad de adopción."
+        },
+        {
+          "id": "reading-t5-03",
+          "nv": "C1",
+          "q": "What do some teachers already ask students to do?",
+          "a": "Hand in their chatbot conversation together with the essay",
+          "d": ["Write their essays by hand in the classroom", "List every source that the chatbot has used", "Avoid using any technology for homework"],
+          "x": "El texto dice: <i>Some teachers already ask students to submit their conversation with a chatbot alongside the finished essay</i>. Así se evalúa el proceso; no se prohíbe la tecnología ni se exige escribir a mano."
+        },
+        {
+          "id": "reading-t5-04",
+          "nv": "C1",
+          "q": "In paragraph 3, “futile” is closest in meaning to ___.",
+          "a": "pointless, because it could not succeed",
+          "d": ["harmful to young people's health", "too expensive to organise", "likely to be very popular"],
+          "x": "En <i>None of this justifies a ban, which would be both futile and counterproductive</i>, <i>futile</i> significa «inútil, condenado al fracaso»; la oración siguiente lo explica: los estudiantes usarán estas herramientas de todos modos en el trabajo. El daño lo expresa la otra palabra, <i>counterproductive</i>."
+        },
+        {
+          "id": "reading-t5-05",
+          "nv": "C1",
+          "q": "Why does the writer begin with the example of calculators?",
+          "a": "To introduce a comparison that the writer then questions",
+          "d": ["To show that new technology always improves education", "To argue that calculators should be removed from schools", "To prove that today's students are worse at maths"],
+          "x": "Tras el ejemplo, el autor escribe: <i>Many people assume that artificial intelligence will follow the same path. I am not so sure.</i> Presenta la comparación para cuestionarla; no dice que la tecnología siempre mejore la educación ni critica las calculadoras."
+        }
+      ]
+    }
+  ]
+}
