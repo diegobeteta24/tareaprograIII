@@ -1,0 +1,161 @@
+{
+  "id": "connectors",
+  "grupo": "gramatica",
+  "titulo": "Linking words",
+  "resumen": [
+    "<b>Although / even though</b> + cláusula completa (sujeto + verbo): <i>Although it was late, we kept working.</i>",
+    "<b>Despite / in spite of</b> + sustantivo o <i>-ing</i>, nunca <i>despite of</i>: <i>Despite the rain…</i>, <i>In spite of feeling tired…</i>; con cláusula: <i>despite the fact that…</i>",
+    "<b>However / nevertheless</b> son adverbios: conectan con la oración anterior (tras punto o punto y coma) y llevan coma: <i>It was cheap; however, it broke.</i>",
+    "<b>Whereas / while</b> contrastan dos hechos dentro de la misma oración: <i>I love cities, whereas my brother prefers the countryside.</i>",
+    "<b>Causa</b>: <i>because</i> + cláusula; <i>because of</i>, <i>due to</i> y <i>owing to</i> + sustantivo: <i>owing to the fog</i>.",
+    "<b>Resultado</b>: <i>therefore</i>, <i>consequently</i> y <i>as a result</i> son adverbios con coma (<i>As a result, prices rose.</i>); <i>as a result of</i> va + sustantivo.",
+    "<b>Propósito</b>: <i>to</i> / <i>in order to</i> / <i>so as to</i> + infinitivo (negativo: <i>so as not to</i>); <i>so that</i> + sujeto + <i>can/could</i>: <i>so that I can rest</i>.",
+    "<b>Adición</b>: <i>moreover</i>, <i>furthermore</i> e <i>in addition</i> abren oración; <i>as well as</i>, <i>besides</i> e <i>in addition to</i> van con sustantivo o <i>-ing</i>: <i>besides being cheap</i>."
+  ],
+  "preguntas": [
+    {
+      "id": "connectors-01",
+      "nv": "B1",
+      "q": "___ it was raining, we went for a walk in the park.",
+      "a": "Although",
+      "d": ["Despite", "However", "Because of"],
+      "x": "<i>Although</i> va seguido de una cláusula completa (sujeto + verbo): <i>although it was raining</i>. <i>Despite</i> necesita sustantivo o <i>-ing</i> (<i>despite the rain</i>), y <i>however</i> une dos oraciones separadas, no introduce una subordinada."
+    },
+    {
+      "id": "connectors-02",
+      "nv": "B1",
+      "q": "Our flight was delayed ___ the fog.",
+      "a": "because of",
+      "d": ["because", "so", "although"],
+      "x": "<i>Because of</i> + sustantivo: <i>because of the fog</i>. <i>Because</i> solo necesita una cláusula (<i>because it was foggy</i>), y <i>so</i> introduce un resultado, no una causa."
+    },
+    {
+      "id": "connectors-03",
+      "nv": "B1",
+      "q": "I'm saving money ___ buy a new laptop.",
+      "a": "to",
+      "d": ["for", "for to", "so"],
+      "x": "Para expresar propósito con un verbo se usa <i>to</i> + infinitivo: <i>to buy</i>. <i>For</i> va con sustantivos (<i>for a new laptop</i>), y <i>for to buy</i> es un calco de «para comprar»."
+    },
+    {
+      "id": "connectors-04",
+      "nv": "B1",
+      "q": "Marta plays the guitar ___ the piano.",
+      "a": "as well as",
+      "d": ["as well", "also", "too"],
+      "x": "<i>As well as</i> = «además de» y va delante de un sustantivo: <i>the guitar as well as the piano</i>. <i>As well</i>, <i>also</i> y <i>too</i> son adverbios y no pueden unir dos sustantivos de este modo."
+    },
+    {
+      "id": "connectors-05",
+      "nv": "B2",
+      "q": "The match went ahead ___ the terrible weather.",
+      "a": "despite",
+      "d": ["although", "however", "despite of"],
+      "x": "<i>Despite</i> + sustantivo, sin <i>of</i>: <i>despite the terrible weather</i>. <i>Despite of</i> mezcla <i>despite</i> con <i>in spite of</i>, y <i>although</i> necesitaría una cláusula (<i>although the weather was terrible</i>)."
+    },
+    {
+      "id": "connectors-06",
+      "nv": "B2",
+      "q": "The hotel was expensive. ___, the service was excellent.",
+      "a": "However",
+      "d": ["Although", "Despite", "Even though"],
+      "x": "<i>However</i> es un adverbio que conecta con la oración anterior, ya cerrada con punto, y va seguido de coma. <i>Although</i> y <i>even though</i> son conjunciones que introducen una cláusula dentro de la misma oración, y <i>despite</i> necesita un sustantivo."
+    },
+    {
+      "id": "connectors-07",
+      "nv": "B2",
+      "q": "My brother loves crowded cities, ___ I prefer quiet villages.",
+      "a": "whereas",
+      "d": ["however", "despite", "in spite of"],
+      "x": "<i>Whereas</i> une dos cláusulas para contrastar dos hechos: <i>he loves cities, whereas I prefer villages</i>. <i>However</i> no puede unir dos oraciones con una simple coma (necesita punto o punto y coma), y <i>despite</i> e <i>in spite of</i> exigen sustantivo."
+    },
+    {
+      "id": "connectors-08",
+      "nv": "B2",
+      "q": "I'm leaving work early ___ I can catch the six o'clock train.",
+      "a": "so that",
+      "d": ["in order to", "so as to", "because of"],
+      "x": "<i>So that</i> + sujeto + <i>can/could</i> expresa propósito con una cláusula completa: <i>so that I can catch…</i>. <i>In order to</i> y <i>so as to</i> van seguidos directamente del infinitivo (<i>in order to catch</i>), nunca de un sujeto."
+    },
+    {
+      "id": "connectors-09",
+      "nv": "B2",
+      "q": "Lucía wrote down every step ___ forget how to configure the router.",
+      "a": "so as not to",
+      "d": ["in order to don't", "for not", "so that not"],
+      "x": "El propósito negativo se forma con <i>so as not to</i> o <i>in order not to</i> + infinitivo: <i>so as not to forget</i>. <i>For not</i> calca «para no», y <i>so that</i> necesitaría sujeto y verbo: <i>so that she wouldn't forget</i>."
+    },
+    {
+      "id": "connectors-10",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Despite feeling nervous, she gave a brilliant talk.",
+      "d": ["Despite she felt nervous, she gave a brilliant talk.", "Although her nerves, she gave a brilliant talk.", "Despite of feeling nervous, she gave a brilliant talk."],
+      "x": "<i>Despite</i> (sin <i>of</i>) va con sustantivo o <i>-ing</i>: <i>despite feeling nervous</i>. <i>Although</i> necesita una cláusula (<i>although she felt nervous</i>), así que <i>despite she felt</i> y <i>although her nerves</i> mezclan las dos estructuras."
+    },
+    {
+      "id": "connectors-11",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “The roads were icy, so the school closed.”",
+      "a": "The school closed owing to the icy roads.",
+      "d": ["The school closed in spite of the icy roads.", "The school closed owing to the roads were icy.", "The roads were icy owing to the school closed."],
+      "x": "<i>Owing to</i> (como <i>due to</i> o <i>because of</i>) + sustantivo expresa la causa: <i>owing to the icy roads</i>. Con una cláusula haría falta <i>because</i> u <i>owing to the fact that</i>, e <i>in spite of</i> expresa contraste, no causa."
+    },
+    {
+      "id": "connectors-12",
+      "nv": "B2",
+      "q": "The course is free. ___, you get a certificate when you finish.",
+      "a": "Moreover",
+      "d": ["As well as", "Besides of", "Although"],
+      "x": "<i>Moreover</i> (como <i>furthermore</i> o <i>in addition</i>) es un adverbio que añade información al inicio de una nueva oración, seguido de coma. <i>As well as</i> necesita un sustantivo o <i>-ing</i> detrás (<i>as well as being free</i>), y <i>besides of</i> no existe."
+    },
+    {
+      "id": "connectors-13",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “Tom is very outgoing, but his sister is quite shy.”",
+      "a": "While Tom is very outgoing, his sister is quite shy.",
+      "d": ["In spite of Tom is very outgoing, his sister is quite shy.", "Tom is very outgoing, therefore his sister is quite shy.", "Tom is very outgoing as well as his sister is quite shy."],
+      "x": "<i>While</i> (o <i>whereas</i>) une dos cláusulas que contrastan: <i>While Tom is outgoing, his sister is shy</i>. <i>Therefore</i> indica consecuencia, <i>in spite of</i> no admite una cláusula y <i>as well as</i> no une oraciones completas."
+    },
+    {
+      "id": "connectors-14",
+      "nv": "C1",
+      "q": "The software was outdated and, ___, it had to be replaced.",
+      "a": "therefore",
+      "d": ["so", "because", "as a result of"],
+      "x": "<i>Therefore</i> es un adverbio de resultado y puede ir entre comas en medio de la oración: <i>and, therefore, it had to be replaced</i>. <i>So</i> es una conjunción y no se aísla entre comas, y <i>as a result of</i> necesita un sustantivo detrás."
+    },
+    {
+      "id": "connectors-15",
+      "nv": "C1",
+      "q": "In addition ___ a degree, you'll need at least two years' experience.",
+      "a": "to having",
+      "d": ["to have", "of having", "having"],
+      "x": "En <i>in addition to</i>, <i>to</i> es preposición (no parte de un infinitivo), así que va con sustantivo o <i>-ing</i>: <i>in addition to having</i>. El error típico es <i>in addition to have</i>."
+    },
+    {
+      "id": "connectors-16",
+      "nv": "C1",
+      "q": "The company lost several important clients ___ the data breach.",
+      "a": "as a result of",
+      "d": ["as a result", "consequently", "therefore"],
+      "x": "<i>As a result of</i> + sustantivo indica la causa: <i>as a result of the data breach</i>. <i>As a result</i>, <i>consequently</i> y <i>therefore</i> son adverbios que conectan oraciones y no pueden ir seguidos directamente de un sustantivo."
+    },
+    {
+      "id": "connectors-17",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "The plan was risky; nevertheless, the board approved it.",
+      "d": ["The plan was risky, nevertheless the board approved it.", "The plan was risky. Despite, the board approved it.", "Although the plan was risky, but the board approved it."],
+      "x": "<i>Nevertheless</i> (como <i>however</i>) es un adverbio: entre dos oraciones independientes pide punto o punto y coma delante y coma detrás. <i>Despite</i> nunca va solo, y <i>although</i> no se combina con <i>but</i> en la misma oración."
+    },
+    {
+      "id": "connectors-18",
+      "nv": "C1",
+      "q": "___ being cheaper, the new model uses less energy.",
+      "a": "Besides",
+      "d": ["Moreover", "Furthermore", "In addition"],
+      "x": "<i>Besides</i> puede funcionar como preposición (= <i>in addition to</i>) y va con sustantivo o <i>-ing</i>: <i>besides being cheaper</i>. <i>Moreover</i> y <i>furthermore</i> son adverbios que abren una oración nueva, e <i>in addition</i> necesitaría <i>to</i>: <i>in addition to being</i>."
+    }
+  ]
+}

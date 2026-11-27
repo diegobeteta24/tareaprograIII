@@ -1,0 +1,112 @@
+{
+  "id": "causative",
+  "grupo": "gramatica",
+  "titulo": "Causative: have and get",
+  "resumen": [
+    "<b>have / get + objeto + participio</b>: otra persona hace el trabajo por nosotros: <i>I had my hair cut.</i>, <i>I'm going to get my car serviced.</i> (<i>I cut my hair</i> = me lo corté yo).",
+    "<b>Tiempos</b>: solo cambia <i>have/get</i> y el participio queda igual: <i>We're getting the office painted.</i>, <i>Have you had it redecorated?</i>",
+    "<b>Experiencias negativas</b>: <i>have something done</i> también cuenta lo que otros nos hicieron: <i>We had our car stolen.</i> = nos robaron el coche.",
+    "<b>have + persona + infinitivo sin to</b> (encargar una tarea): <i>I'll have the technician check it.</i>; <b>get + persona + to</b> (convencer): <i>I got my brother to help.</i>",
+    "<b>make / let + objeto + infinitivo sin to</b>: <i>She made me practise.</i>, <i>They let me use the car.</i>; <b>help</b> admite ambos (<i>help me (to) move</i>), nunca <i>-ing</i>.",
+    "<b>Pasiva de make</b>: recupera el <i>to</i>: <i>We were made to wear a tie.</i>; <i>let</i> no tiene pasiva: se dice <i>we were allowed to</i>.",
+    "<b>need + -ing</b> tiene sentido pasivo: <i>The windows need cleaning.</i> = <i>need to be cleaned</i>."
+  ],
+  "preguntas": [
+    {
+      "id": "causative-01",
+      "nv": "B2",
+      "q": "Do you like my hair? I didn't cut it myself; I ___ at the new salon near the office.",
+      "a": "had it cut",
+      "d": ["cut it", "had cut it", "made it cut"],
+      "x": "<i>Have something done</i> indica que otra persona hizo el trabajo: <i>I had it cut</i> = me lo cortaron. <i>I cut it</i> diría que lo hice yo, y <i>had cut it</i> es past perfect, no causativa: en la causativa el objeto va antes del participio."
+    },
+    {
+      "id": "causative-02",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “A mechanic is going to service my car tomorrow.”",
+      "a": "I'm going to get my car serviced tomorrow.",
+      "d": ["I'm going to service my car tomorrow.", "I'm going to get serviced my car tomorrow.", "I'm going to get my car to service tomorrow."],
+      "x": "<i>Get/have</i> + objeto + participio: <i>get my car serviced</i> = que me lo revisen. <i>I'm going to service my car</i> significa que lo haré yo, y en la causativa el objeto va siempre antes del participio."
+    },
+    {
+      "id": "causative-03",
+      "nv": "B2",
+      "q": "My parents let me ___ the car at weekends if I help my dad ___ the garden.",
+      "a": "use … clean",
+      "d": ["to use … clean", "use … cleaning", "using … to clean"],
+      "x": "<i>Let</i> + objeto + infinitivo sin <i>to</i>: <i>let me use</i>. <i>Help</i> + objeto admite infinitivo con o sin <i>to</i> (<i>help my dad clean</i> o <i>to clean</i>), pero nunca <i>-ing</i>."
+    },
+    {
+      "id": "causative-04",
+      "nv": "B2",
+      "q": "After a lot of persuading, I finally ___ my brother to help me paint the living room.",
+      "a": "got",
+      "d": ["made", "let", "managed"],
+      "x": "De los verbos causativos, solo <i>get</i> lleva <i>to</i>: <i>get someone to do</i> = «conseguir que alguien haga algo», normalmente convenciéndolo. <i>Make</i> y <i>let</i> van con infinitivo sin <i>to</i>, y <i>manage</i> no admite objeto (<i>I managed to paint it</i>)."
+    },
+    {
+      "id": "causative-05",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "My piano teacher made me practise the same piece twenty times.",
+      "d": ["My piano teacher made me to practise the same piece twenty times.", "My piano teacher made me practising the same piece twenty times.", "My piano teacher made that I practised the same piece twenty times."],
+      "x": "<i>Make</i> + objeto + infinitivo sin <i>to</i> = obligar a alguien: <i>made me practise</i>. <i>Made me to practise</i> es el error más común, y <i>made that I practised</i> calca «hizo que practicara»."
+    },
+    {
+      "id": "causative-06",
+      "nv": "B2",
+      "q": "Decorators are in our office this week: we're ___, so we're all working from home.",
+      "a": "getting it painted",
+      "d": ["getting painted it", "getting it paint", "getting it to paint"],
+      "x": "La causativa admite cualquier tiempo cambiando solo <i>get/have</i>: <i>we're getting it painted</i> (presente continuo). El objeto va antes del participio, y <i>get it to paint</i> diría que la oficina va a pintar algo."
+    },
+    {
+      "id": "causative-07",
+      "nv": "C1",
+      "q": "When I was at secondary school, we ___ wear a tie every single day.",
+      "a": "were made to",
+      "d": ["were made", "made to", "were let to"],
+      "x": "En pasiva, <i>make</i> recupera el <i>to</i>: <i>we were made to wear a tie</i> (= nos obligaban). <i>Let</i> no se usa en pasiva así; se diría <i>we were allowed to</i>."
+    },
+    {
+      "id": "causative-08",
+      "nv": "C1",
+      "q": "The windows are filthy after the storm; they really need ___.",
+      "a": "cleaning",
+      "d": ["to clean", "clean", "be cleaning"],
+      "x": "<i>Need</i> + <i>-ing</i> tiene sentido pasivo: <i>they need cleaning</i> = <i>they need to be cleaned</i>. <i>They need to clean</i> diría que las ventanas tienen que limpiar algo."
+    },
+    {
+      "id": "causative-09",
+      "nv": "C1",
+      "q": "We ___ last night while we were at the cinema, so we had to get a taxi home.",
+      "a": "had our car stolen",
+      "d": ["stole our car", "had stolen our car", "got stolen our car"],
+      "x": "<i>Have something done</i> también describe algo desagradable que nos hacen otros: <i>We had our car stolen</i> = nos robaron el coche. <i>We had stolen our car</i> es past perfect y diría que lo robamos nosotros."
+    },
+    {
+      "id": "causative-10",
+      "nv": "C1",
+      "q": "The kitchen looks fantastic! ___ it redecorated?",
+      "a": "Have you had",
+      "d": ["Have you", "Did you have had", "Had you"],
+      "x": "En present perfect, la causativa repite <i>have</i>: <i>Have you had it redecorated?</i> (el primero es auxiliar y el segundo, el verbo causativo). <i>Have you it redecorated?</i> omite el verbo principal."
+    },
+    {
+      "id": "causative-11",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I persuaded my landlord to fix the heating.”",
+      "a": "I got my landlord to fix the heating.",
+      "d": ["I got my landlord fix the heating.", "I made my landlord to fix the heating.", "I let my landlord fix the heating."],
+      "x": "<i>Get someone to do something</i> = «convencer a alguien de que haga algo», el sentido de <i>persuade</i>. Con <i>get</i> el <i>to</i> es obligatorio, <i>make</i> no lo lleva, y <i>let</i> significa «permitir», no «convencer»."
+    },
+    {
+      "id": "causative-12",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "I'll have the technician check your laptop this afternoon.",
+      "d": ["I'll have the technician checked your laptop this afternoon.", "I'll get the technician check your laptop this afternoon.", "I'll have checked your laptop by the technician this afternoon."],
+      "x": "<i>Have</i> + persona + infinitivo sin <i>to</i> = encargarle una tarea a alguien: <i>have the technician check it</i>. El participio solo va con la cosa (<i>have your laptop checked</i>), y con <i>get</i> haría falta <i>to</i>: <i>get the technician to check</i>."
+    }
+  ]
+}

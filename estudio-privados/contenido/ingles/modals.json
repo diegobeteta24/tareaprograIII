@@ -1,0 +1,177 @@
+{
+  "id": "modals",
+  "grupo": "gramatica",
+  "titulo": "Modal verbs",
+  "resumen": [
+    "<b>Must / have to:</b> obligación en presente: <i>I must finish this today.</i> <i>We have to wear a uniform.</i> <i>Must</i> no tiene pasado; se usa <i>had to</i>: <i>I had to get up at five.</i>",
+    "<b>Mustn't / don't have to / needn't:</b> <i>mustn't</i> prohíbe (<i>You mustn't use your phone</i>); <i>don't have to</i> y <i>needn't</i> solo dicen que no hace falta: <i>You don't have to wear a suit.</i>",
+    "<b>Consejo:</b> <i>should</i> y <i>ought to</i> + infinitivo (<i>You ought to rest</i>); <i>had better</i> (<i>'d better</i>) es más urgente y va sin <i>to</i>: <i>You'd better not be late.</i> Para criticar el pasado: <i>You should have told me.</i>",
+    "<b>Deducción en presente:</b> <i>must be</i> (seguro que sí), <i>might/could be</i> (quizás), <i>can't be</i> (seguro que no): <i>It can't be Marta; she's in Spain.</i>",
+    "<b>Deducción en pasado:</b> modal + <i>have</i> + participio: <i>It must have rained.</i> <i>I might have left them at work.</i> <i>He can't have read it.</i> En afirmativa no existe <i>can have</i>.",
+    "<b>Habilidad:</b> <i>can/could</i> para la habilidad general; <i>be able to</i> en los tiempos que <i>can</i> no tiene (<i>I won't be able to come</i>). Para un logro concreto en el pasado, <i>managed to</i> o <i>was able to</i>, no <i>could</i>: <i>We managed to catch the train.</i>",
+    "<b>Needn't have / didn't need to:</b> <i>I needn't have cooked so much</i> = lo hice y no hacía falta; <i>I didn't need to take a taxi</i> = no hacía falta y, normalmente, no lo hice.",
+    "<b>Be supposed to:</b> lo que se espera según una norma o lo que dice la gente: <i>We aren't supposed to eat here.</i> <i>The library is supposed to be amazing.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "modals-01",
+      "nv": "B1",
+      "q": "You ___ wear a suit to the interview, but you can if you want to.",
+      "a": "don't have to",
+      "d": ["mustn't", "can't", "don't must"],
+      "x": "<i>Don't have to</i> indica que algo no es obligatorio. <i>Mustn't</i> y <i>can't</i> lo prohibirían, lo que contradice <i>you can if you want to</i>, y <i>don't must</i> no existe."
+    },
+    {
+      "id": "modals-02",
+      "nv": "B1",
+      "q": "You ___ use your phone during the exam, or they'll take your paper away.",
+      "a": "mustn't",
+      "d": ["don't have to", "needn't", "mustn't to"],
+      "x": "<i>Mustn't</i> expresa prohibición. <i>Don't have to</i> y <i>needn't</i> solo dicen que no es necesario, lo que no encaja con la amenaza, y después de <i>must</i> nunca va <i>to</i>."
+    },
+    {
+      "id": "modals-03",
+      "nv": "B1",
+      "q": "I ___ get up at five yesterday because my flight was at seven.",
+      "a": "had to",
+      "d": ["must", "have to", "musted"],
+      "x": "<i>Must</i> no tiene pasado; la obligación pasada se expresa con <i>had to</i>: <i>I had to get up</i>. <i>Must</i> y <i>have to</i> no concuerdan con <i>yesterday</i>, y <i>musted</i> no existe."
+    },
+    {
+      "id": "modals-04",
+      "nv": "B1",
+      "q": "You look exhausted. You ___ go to bed earlier.",
+      "a": "should",
+      "d": ["should to", "ought", "must to"],
+      "x": "<i>Should</i> + infinitivo sin <i>to</i> da un consejo: <i>You should go to bed earlier</i>. <i>Ought</i> sí necesita <i>to</i> (<i>ought to go</i>), pero ni <i>should</i> ni <i>must</i> van seguidos de <i>to</i>."
+    },
+    {
+      "id": "modals-05",
+      "nv": "B2",
+      "q": "You've been travelling for twenty hours! You ___ be really tired.",
+      "a": "must",
+      "d": ["can't", "mustn't", "can"],
+      "x": "Para una deducción casi segura en presente se usa <i>must be</i>. <i>Can't be</i> diría lo contrario, <i>mustn't</i> expresa prohibición y <i>can</i> no sirve para deducir algo concreto."
+    },
+    {
+      "id": "modals-06",
+      "nv": "B2",
+      "q": "Someone's knocking at the door. It ___ Marta; she's on holiday in Spain.",
+      "a": "can't be",
+      "d": ["must be", "might be", "can't have been"],
+      "x": "Para una deducción negativa en presente se usa <i>can't be</i>: estoy seguro de que no es ella. <i>Must be</i> y <i>might be</i> contradicen que está en España, y <i>can't have been</i> se refiere al pasado."
+    },
+    {
+      "id": "modals-07",
+      "nv": "B2",
+      "q": "The streets are all wet. It ___ during the night.",
+      "a": "must have rained",
+      "d": ["must rain", "had to rain", "can't have rained"],
+      "x": "Una deducción segura sobre el pasado se forma con <i>must have</i> + participio: <i>must have rained</i>. <i>Had to rain</i> expresa obligación, no deducción, y <i>must rain</i> se refiere al presente."
+    },
+    {
+      "id": "modals-08",
+      "nv": "B2",
+      "q": "I'm afraid I won't ___ come to the meeting tomorrow.",
+      "a": "be able to",
+      "d": ["can", "could", "able to"],
+      "x": "<i>Can</i> no tiene futuro ni infinitivo, así que después de <i>will/won't</i> se usa <i>be able to</i>: <i>won't be able to come</i>. Dos modales no pueden ir juntos (<i>won't can</i>), y <i>able</i> necesita <i>be</i>."
+    },
+    {
+      "id": "modals-09",
+      "nv": "B2",
+      "q": "The traffic was terrible, but we ___ catch the last train.",
+      "a": "managed to",
+      "d": ["could", "can", "succeeded to"],
+      "x": "Para un logro concreto en el pasado se usa <i>managed to</i> (o <i>were able to</i>); <i>could</i> en afirmativa expresa habilidad general (<i>I could swim at five</i>), no un éxito puntual. <i>Succeed</i> va con <i>in</i> + <i>-ing</i>."
+    },
+    {
+      "id": "modals-10",
+      "nv": "B2",
+      "q": "The last bus leaves at eleven. You ___ hurry or you'll miss it.",
+      "a": "had better",
+      "d": ["had better to", "would better", "have better"],
+      "x": "<i>Had better</i> (contraído, <i>'d better</i>) + infinitivo sin <i>to</i> da un consejo urgente. La contracción <i>'d</i> es <i>had</i>, no <i>would</i>, y nunca va seguida de <i>to</i>."
+    },
+    {
+      "id": "modals-11",
+      "nv": "B2",
+      "q": "We ___ eat at our desks, but almost everyone does.",
+      "a": "aren't supposed to",
+      "d": ["don't suppose to", "aren't supposing to", "don't supposed to"],
+      "x": "<i>Be supposed to</i> indica lo que se espera por una norma, aunque no se cumpla: <i>We aren't supposed to eat here</i>. Se forma con <i>be</i> + el participio <i>supposed</i>, no con <i>do</i> ni con <i>-ing</i>."
+    },
+    {
+      "id": "modals-12",
+      "nv": "B2",
+      "q": "I failed the exam. I ___ harder last term.",
+      "a": "should have worked",
+      "d": ["should work", "must have worked", "should worked"],
+      "x": "Para criticar o lamentar algo del pasado se usa <i>should have</i> + participio: <i>should have worked</i>. <i>Must have worked</i> es una deducción («seguro que trabajé más»), que no tiene sentido después de suspender."
+    },
+    {
+      "id": "modals-13",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "I'd love to be able to speak Japanese.",
+      "d": ["I'd love to can speak Japanese.", "I'd love to could speak Japanese.", "I'd love that I can speak Japanese."],
+      "x": "<i>Can</i> no tiene infinitivo, así que después de <i>to</i> se usa <i>be able to</i>: <i>I'd love to be able to speak</i>. <i>To can</i> y <i>to could</i> no existen, y <i>love that I can</i> es un calco de «me encantaría que pudiera»."
+    },
+    {
+      "id": "modals-14",
+      "nv": "B2",
+      "q": "I'm not sure where my keys are. I ___ them at the office, or maybe they're in the car.",
+      "a": "might have left",
+      "d": ["must have left", "might leave", "can have left"],
+      "x": "Para una posibilidad en el pasado se usa <i>might have</i> + participio (también <i>may have</i> o <i>could have</i>). <i>Must have</i> es demasiado seguro para <i>or maybe</i>, y <i>can have</i> no se usa en afirmativa."
+    },
+    {
+      "id": "modals-15",
+      "nv": "C1",
+      "q": "Leo ___ the email; he's been offline all week.",
+      "a": "can't have read",
+      "d": ["must have read", "shouldn't have read", "didn't need to read"],
+      "x": "Una deducción negativa sobre el pasado se forma con <i>can't have</i> + participio: es imposible que lo haya leído. <i>Must have read</i> contradice la evidencia, y <i>shouldn't have read</i> critica una acción en lugar de deducir."
+    },
+    {
+      "id": "modals-16",
+      "nv": "C1",
+      "q": "Ana gave me a lift to the station, so I ___ a taxi.",
+      "a": "didn't need to take",
+      "d": ["needn't have taken", "mustn't take", "didn't need take"],
+      "x": "<i>Didn't need to</i> dice que algo no fue necesario y, normalmente, que no se hizo: no tomé taxi. <i>Needn't have taken</i> significaría que sí lo tomé sin necesidad, lo que contradice que me llevaron."
+    },
+    {
+      "id": "modals-17",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'I took an umbrella, but it didn't rain, so it wasn't necessary.'",
+      "a": "I needn't have taken an umbrella.",
+      "d": ["I can't have taken an umbrella.", "I mustn't have taken an umbrella.", "I wouldn't have taken an umbrella."],
+      "x": "<i>Needn't have</i> + participio expresa que hicimos algo que no era necesario: <i>I needn't have taken an umbrella</i>. <i>Can't have taken</i> es una deducción («es imposible que lo llevara»), no una falta de necesidad."
+    },
+    {
+      "id": "modals-18",
+      "nv": "C1",
+      "q": "You ___ told me the meeting was cancelled; I waited for an hour.",
+      "a": "ought to have",
+      "d": ["ought have", "ought to had", "must to have"],
+      "x": "<i>Ought to have</i> + participio, igual que <i>should have</i>, critica algo que no se hizo en el pasado. <i>Ought</i> siempre lleva <i>to</i>, y después va <i>have</i>, no <i>had</i>."
+    },
+    {
+      "id": "modals-19",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "You'd better not tell anyone about this.",
+      "d": ["You'd better don't tell anyone about this.", "You'd not better tell anyone about this.", "You'd better to not tell anyone about this."],
+      "x": "La negativa de <i>had better</i> se forma con <i>not</i> después de <i>better</i>: <i>You'd better not tell</i>. No se usa <i>don't</i> ni <i>to</i> detrás de <i>better</i>."
+    },
+    {
+      "id": "modals-20",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'Everyone says the new library is amazing.'",
+      "a": "The new library is supposed to be amazing.",
+      "d": ["The new library supposes to be amazing.", "The new library should have been amazing.", "The new library must have been amazing."],
+      "x": "<i>Be supposed to be</i> también significa «dicen que es»: <i>It's supposed to be amazing</i>. <i>Should have been</i> indica una expectativa que no se cumplió, y <i>must have been</i> es una deducción sobre el pasado."
+    }
+  ]
+}

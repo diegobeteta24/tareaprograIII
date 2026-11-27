@@ -1,0 +1,129 @@
+{
+  "id": "inversion-emphasis",
+  "grupo": "gramatica",
+  "titulo": "Inversion and emphasis",
+  "resumen": [
+    "<b>Adverbios negativos al inicio</b> (<i>never</i>, <i>rarely</i>, <i>seldom</i>, <i>little</i>, <i>under no circumstances</i>): el auxiliar va antes del sujeto, como en una pregunta: <i>Never have I seen…</i>, <i>Little did we know…</i>",
+    "<b>Hardly … when / No sooner … than</b>, con past perfect: <i>Hardly had we left when it rained.</i>, <i>No sooner had I sat down than the phone rang.</i>",
+    "<b>Not only … but also</b>: la inversión va solo en la primera parte: <i>Not only was he late, but he also forgot the tickets.</i>",
+    "<b>Not until / Only then</b>: la inversión va en la cláusula principal: <i>Not until I got home did I realise…</i>, <i>Only then did she understand.</i>",
+    "<b>Condicionales invertidos</b> (formales, sin <i>if</i>): <i>Had I known…</i>, <i>Were I to win…</i>, <i>Should you need anything…</i>",
+    "<b>So + adjetivo</b> al inicio también invierte: <i>So loud was the music that nobody could hear.</i>",
+    "<b>Oraciones hendidas</b> para destacar un elemento: <i>It was Marco who broke it.</i>, <i>What I need is a holiday.</i>",
+    "<b>Do enfático</b> (<i>do/does/did</i> + infinitivo) para insistir o contradecir: <i>I did send it!</i> = sí que lo envié."
+  ],
+  "preguntas": [
+    {
+      "id": "inversion-emphasis-01",
+      "nv": "B2",
+      "q": "I know you think I forgot, but I ___ send you the email yesterday; check your spam folder.",
+      "a": "did",
+      "d": ["do", "have", "was"],
+      "x": "El <i>do</i> enfático (<i>do/does/did</i> + infinitivo sin <i>to</i>) refuerza una afirmación que alguien duda: <i>I did send it</i> = «sí que lo envié». Con <i>yesterday</i> hace falta <i>did</i>; <i>have send</i> y <i>was send</i> no son formas posibles."
+    },
+    {
+      "id": "inversion-emphasis-02",
+      "nv": "B2",
+      "q": "I didn't break the printer! It was Marco ___ broke it.",
+      "a": "who",
+      "d": ["which", "what", "whom"],
+      "x": "En las oraciones hendidas <i>It was + persona + who…</i> se destaca quién hizo algo; <i>who</i> (o <i>that</i>) es el sujeto de <i>broke</i>. <i>Whom</i> solo funciona como objeto y <i>which</i> no se usa para personas."
+    },
+    {
+      "id": "inversion-emphasis-03",
+      "nv": "B2",
+      "q": "I don't need more advice. ___ is a long holiday somewhere quiet.",
+      "a": "What I need",
+      "d": ["That I need", "Which I need", "The thing what I need"],
+      "x": "Las oraciones hendidas con <i>what</i> destacan una información: <i>What I need is a holiday</i> (= «lo que necesito es…»). <i>What</i> ya significa «lo que», por eso no se dice <i>the thing what</i> ni se empieza con <i>That</i> o <i>Which</i>."
+    },
+    {
+      "id": "inversion-emphasis-04",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Seldom have I met such a talented young programmer.",
+      "d": ["Never I have seen such a beautiful sunset.", "Rarely we eat out during the week.", "Never did I saw anything like it."],
+      "x": "<i>Never</i>, <i>rarely</i> y <i>seldom</i> al inicio de la oración exigen inversión con auxiliar: <i>Seldom have I met…</i>, <i>Rarely do we eat out…</i>. Tras el auxiliar invertido, el verbo va en su forma normal: <i>did I see</i>, no <i>did I saw</i>."
+    },
+    {
+      "id": "inversion-emphasis-05",
+      "nv": "B2",
+      "q": "Not only ___ late, but he also forgot the tickets.",
+      "a": "was he",
+      "d": ["he was", "did he", "he did"],
+      "x": "Con <i>Not only</i> al inicio hay inversión en la primera parte: <i>Not only was he late, but he also…</i>. Con el verbo <i>be</i> se invierte el propio <i>was</i>; <i>did</i> solo aparece con otros verbos (<i>Not only did he forget…</i>)."
+    },
+    {
+      "id": "inversion-emphasis-06",
+      "nv": "C1",
+      "q": "Hardly ___ the house when it started to pour with rain.",
+      "a": "had we left",
+      "d": ["we had left", "have we left", "we left"],
+      "x": "<i>Hardly … when</i> (= «apenas … cuando») va con past perfect invertido: <i>Hardly had we left when…</i>. Sin inversión (<i>Hardly we had left</i>) es incorrecto en esta posición, y el present perfect no encaja en un relato en pasado."
+    },
+    {
+      "id": "inversion-emphasis-07",
+      "nv": "C1",
+      "q": "No sooner ___ sat down ___ the phone rang.",
+      "a": "had I … than",
+      "d": ["I had … than", "had I … then", "I had … that"],
+      "x": "<i>No sooner</i> lleva inversión (<i>had I sat</i>) y se completa con <i>than</i>, porque es una comparación: <i>No sooner had I sat down than the phone rang</i> (= «en cuanto me senté, sonó el teléfono»). <i>Then</i> es «entonces» y no sirve aquí."
+    },
+    {
+      "id": "inversion-emphasis-08",
+      "nv": "C1",
+      "q": "Under no circumstances ___ your password with anyone, not even IT staff.",
+      "a": "should you share",
+      "d": ["you should share", "shouldn't you share", "you shouldn't share"],
+      "x": "<i>Under no circumstances</i> (= «bajo ningún concepto») es una expresión negativa y exige inversión: <i>should you share</i>. Añadir <i>not</i> (<i>shouldn't you share</i>) crearía una doble negación."
+    },
+    {
+      "id": "inversion-emphasis-09",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "Little did we know that the company was about to close.",
+      "d": ["Only then she realised how serious the problem was.", "Under no circumstances you should leave the door open.", "Not only he forgot the tickets, but he was also late."],
+      "x": "<i>Little</i> al inicio (= «qué poco sabíamos») exige inversión con auxiliar: <i>Little did we know…</i>. Las otras tres necesitan lo mismo: <i>Only then did she realise</i>, <i>Under no circumstances should you leave</i>, <i>Not only did he forget</i>."
+    },
+    {
+      "id": "inversion-emphasis-10",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I didn't realise I'd lost my keys until I got home.”",
+      "a": "Not until I got home did I realise I'd lost my keys.",
+      "d": ["Not until I got home I realised I'd lost my keys.", "Not until did I get home I realised I'd lost my keys.", "Until I got home did I realise I'd lost my keys."],
+      "x": "Con <i>Not until</i> + momento o cláusula al inicio, la inversión va en la cláusula principal: <i>Not until I got home did I realise…</i>. La cláusula de <i>until</i> no se invierte, y sin <i>not</i> no hay inversión posible."
+    },
+    {
+      "id": "inversion-emphasis-11",
+      "nv": "C1",
+      "q": "___ about the train strike, I would have taken a taxi.",
+      "a": "Had I known",
+      "d": ["Have I known", "Did I know", "If had I known"],
+      "x": "En el tercer condicional se puede suprimir <i>if</i> e invertir <i>had</i>: <i>Had I known</i> = <i>If I had known</i>. No se mezclan <i>if</i> e inversión (<i>If had I known</i>), y esta inversión solo es posible con <i>had</i>, <i>were</i> y <i>should</i>."
+    },
+    {
+      "id": "inversion-emphasis-12",
+      "nv": "C1",
+      "q": "___ any further information, please do not hesitate to contact me.",
+      "a": "Should you need",
+      "d": ["Would you need", "If should you need", "Shall you need"],
+      "x": "<i>Should you need…</i> es un condicional invertido y formal (= <i>If you need…</i>), muy típico de los correos profesionales. Solo <i>should</i> funciona así: <i>would</i> y <i>shall</i> no, y no se combina <i>if</i> con la inversión."
+    },
+    {
+      "id": "inversion-emphasis-13",
+      "nv": "C1",
+      "q": "___ the lottery, I would give half of it to charity.",
+      "a": "Were I to win",
+      "d": ["Was I to win", "Would I win", "If I would win"],
+      "x": "<i>Were I to</i> + infinitivo es la versión invertida y formal de <i>If I were to win</i> (segundo condicional, algo improbable). En la inversión solo vale <i>were</i>, nunca <i>was</i>, y <i>would</i> no va en la parte de la condición."
+    },
+    {
+      "id": "inversion-emphasis-14",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “The music was so loud that nobody could hear the speaker.”",
+      "a": "So loud was the music that nobody could hear the speaker.",
+      "d": ["So loud the music was that nobody could hear the speaker.", "So the music was loud that nobody could hear the speaker.", "Such loud was the music that nobody could hear the speaker."],
+      "x": "Para dar énfasis, <i>so</i> + adjetivo pasa al inicio y el verbo se invierte: <i>So loud was the music that…</i>. <i>Such</i> va con un sustantivo (<i>such loud music</i>), no con un adjetivo solo."
+    }
+  ]
+}

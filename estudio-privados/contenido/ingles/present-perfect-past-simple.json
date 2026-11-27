@@ -1,0 +1,177 @@
+{
+  "id": "present-perfect-past-simple",
+  "grupo": "gramatica",
+  "titulo": "Present perfect vs past simple",
+  "resumen": [
+    "<b>Present perfect</b> (<i>have/has + participio</i>) une el pasado con el presente: experiencias, resultados que se notan ahora y periodos que no han terminado: <i>I've never seen anything like it.</i>",
+    "<b>Past simple</b> cuando el momento ya terminó (<i>yesterday, last year, in 2020, ago, When...?</i>): <i>My aunt retired last year.</i> Nunca <i>I have seen it yesterday</i>.",
+    "<b>for</b> + duración y <b>since</b> + punto de inicio, con present perfect si la situación sigue: <i>I've lived here for three years / since 2023.</i> No existe <i>since three years</i>.",
+    "<b>Present perfect continuous</b> (<i>have been + -ing</i>) para una actividad que sigue o acaba de parar; el simple para resultados y cantidades: <i>I've been waiting for twenty minutes</i> frente a <i>I've written fifteen emails</i>.",
+    "Los <b>verbos de estado</b> (<i>know</i>, <i>have</i> = poseer, <i>like</i>) no van en continuo: <i>How long have you known Andrés?</i>, nunca <i>have you been knowing</i>.",
+    "<b>just</b> y <b>already</b> van entre <i>have</i> y el participio; <b>yet</b> va al final de preguntas y negaciones: <i>I've already sent it, but they haven't paid yet.</i>",
+    "<b>gone</b> frente a <b>been</b>: <i>She's gone to the bank</i> (todavía está allí); <i>I've been to Scotland</i> (fui y volví).",
+    "<b>It's the first/third time</b> + present perfect: <i>This is the third time it has broken down.</i> Tras <b>since</b> el punto de inicio va en past simple: <i>It's been ages since I last saw you.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "present-perfect-past-simple-01",
+      "nv": "B1",
+      "q": "Sam has lived in Leeds ___ three years now.",
+      "a": "for",
+      "d": ["since", "during", "from"],
+      "x": "<i>For</i> va con una duración (<i>three years</i>) y <i>since</i> con el punto de inicio (<i>since 2023</i>). <i>Since three years</i> es un calco de «desde hace tres años», y <i>during</i> no mide cuánto dura algo hasta ahora."
+    },
+    {
+      "id": "present-perfect-past-simple-02",
+      "nv": "B1",
+      "q": "This view is amazing! I've ___ seen anything like it.",
+      "a": "never",
+      "d": ["ever", "already", "yet"],
+      "x": "<i>Never</i> ya es negativo («nunca») y por eso va con <i>anything</i>. <i>Ever</i> solo va en preguntas, negaciones o después de un superlativo, así que <i>I've ever seen</i> en una afirmación es incorrecto."
+    },
+    {
+      "id": "present-perfect-past-simple-03",
+      "nv": "B1",
+      "q": "Can I call you back in ten minutes? I've ___ walked in and I haven't even taken my coat off.",
+      "a": "just",
+      "d": ["yet", "ever", "still"],
+      "x": "<i>Just</i> («acabo de») va entre <i>have</i> y el participio para algo muy reciente. <i>Yet</i> solo se usa en preguntas y negaciones, normalmente al final, y <i>ever</i> no va en afirmaciones."
+    },
+    {
+      "id": "present-perfect-past-simple-04",
+      "nv": "B1",
+      "q": "Lucía isn't here at the moment — she's ___ to the bank. She'll be back in ten minutes.",
+      "a": "gone",
+      "d": ["been", "went", "left"],
+      "x": "<i>She's gone to</i> significa que fue y sigue allí; <i>she's been to</i> significa que fue y ya volvió, lo que contradice <i>isn't here</i>. <i>Went</i> no es participio y <i>leave</i> se construye con <i>for</i> (<i>she's left for the bank</i>)."
+    },
+    {
+      "id": "present-perfect-past-simple-05",
+      "nv": "B2",
+      "q": "How long ___ Andrés? — Since we were at school together.",
+      "a": "have you known",
+      "d": ["have you been knowing", "do you know", "did you know"],
+      "x": "Algo que empezó en el pasado y sigue hoy va en present perfect: <i>How long have you known...?</i> <i>Know</i> es un verbo de estado y no va en continuo, y <i>do you know</i> calca «¿desde cuándo conoces...?»."
+    },
+    {
+      "id": "present-perfect-past-simple-06",
+      "nv": "B2",
+      "q": "How long ___ here? — About twenty minutes, and there's still no sign of the bus.",
+      "a": "have you been waiting",
+      "d": ["are you waiting", "do you wait", "were you waiting"],
+      "x": "Una actividad que empezó hace un rato y continúa ahora va en present perfect continuous. Decimos «¿cuánto llevas esperando?», pero <i>are you waiting</i> no expresa esa duración, y <i>were you waiting</i> daría a entender que ya no esperas."
+    },
+    {
+      "id": "present-perfect-past-simple-07",
+      "nv": "B2",
+      "q": "I've lost my wallet. I think I ___ it on the bus yesterday.",
+      "a": "left",
+      "d": ["have left", "had left", "was leaving"],
+      "x": "La noticia va en present perfect (<i>I've lost</i>), pero el detalle con un momento terminado (<i>yesterday</i>) va en past simple. <i>Have left</i> no combina con <i>yesterday</i>, y <i>had left</i> necesitaría otro hecho pasado posterior como referencia."
+    },
+    {
+      "id": "present-perfect-past-simple-08",
+      "nv": "B2",
+      "q": "My aunt ___ as a nurse for twenty years before she retired last year.",
+      "a": "worked",
+      "d": ["has worked", "has been working", "is working"],
+      "x": "Esos veinte años terminaron cuando se jubiló (<i>last year</i>), así que va past simple aunque aparezca <i>for</i>. El present perfect (<i>has worked</i>, <i>has been working</i>) solo sirve si la situación continúa hasta ahora."
+    },
+    {
+      "id": "present-perfect-past-simple-09",
+      "nv": "B2",
+      "q": "So far today I ___ fifteen emails, and it's only ten o'clock.",
+      "a": "have written",
+      "d": ["have been writing", "am writing", "had written"],
+      "x": "Con <i>so far</i> y una cantidad de cosas terminadas (<i>fifteen emails</i>) se usa present perfect simple. El continuo <i>have been writing</i> destaca la actividad y no se combina con un número de cosas acabadas; <i>had written</i> exige una referencia en el pasado."
+    },
+    {
+      "id": "present-perfect-past-simple-10",
+      "nv": "B2",
+      "q": "What a waste of two hours! That's the most boring film I ___.",
+      "a": "have ever seen",
+      "d": ["have never seen", "never saw", "had ever seen"],
+      "x": "Después de un superlativo va <i>ever</i> con present perfect: <i>the most boring film I've ever seen</i>. <i>I've never seen</i> calca «la peor película que he visto nunca» y dice lo contrario; <i>had ever seen</i> no concuerda con <i>That's</i>."
+    },
+    {
+      "id": "present-perfect-past-simple-11",
+      "nv": "B2",
+      "q": "I ___ this laptop for five years, so it's time I got a new one.",
+      "a": "have had",
+      "d": ["have been having", "have", "am having"],
+      "x": "Una posesión que empezó hace cinco años y sigue va en present perfect simple: <i>I've had it for five years</i>. <i>I have this laptop for five years</i> calca «lo tengo desde hace cinco años», y <i>have</i> (poseer) no va en continuo."
+    },
+    {
+      "id": "present-perfect-past-simple-12",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "I've already sent the invoice, but the client hasn't paid yet.",
+      "d": [
+        "I've sent already the invoice, but the client hasn't paid yet.",
+        "I've already sent the invoice, but the client hasn't paid already.",
+        "I've sent the invoice yet, but the client hasn't paid already."
+      ],
+      "x": "<i>Already</i> va entre <i>have</i> y el participio, nunca entre el verbo y su objeto, y <i>yet</i> va al final de negaciones y preguntas. Los dos se traducen «ya», pero <i>yet</i> no se usa en afirmaciones ni <i>already</i> en una negación como esta."
+    },
+    {
+      "id": "present-perfect-past-simple-13",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “It's the first time I've used a 3D printer.”",
+      "a": "I've never used a 3D printer before.",
+      "d": [
+        "I haven't used a 3D printer for a long time.",
+        "I've used a 3D printer once before.",
+        "I used a 3D printer for the first time last year."
+      ],
+      "x": "<i>It's the first time I've...</i> equivale a <i>I've never... before</i>. <i>I haven't used it for a long time</i> implica que ya lo usé antes, igual que las otras dos opciones."
+    },
+    {
+      "id": "present-perfect-past-simple-14",
+      "nv": "C1",
+      "q": "It's 11 p.m. and I can't sleep. I ___ four coffees this morning, which was a big mistake.",
+      "a": "had",
+      "d": ["have had", "have been having", "was having"],
+      "x": "A las once de la noche, <i>this morning</i> ya es un periodo terminado, así que va past simple: <i>I had four coffees this morning</i>. <i>I've had</i> solo sería correcto si todavía fuera por la mañana."
+    },
+    {
+      "id": "present-perfect-past-simple-15",
+      "nv": "C1",
+      "q": "Prices ___ steadily since January, and analysts expect them to keep going up.",
+      "a": "have been rising",
+      "d": ["rose", "are rising", "had risen"],
+      "x": "Un proceso que empezó en enero y sigue ahora va en present perfect continuous con <i>since</i>. <i>Are rising since</i> calca «suben desde enero», <i>rose</i> no se combina con <i>since</i> así y <i>had risen</i> exigiría una referencia en el pasado."
+    },
+    {
+      "id": "present-perfect-past-simple-16",
+      "nv": "C1",
+      "q": "It's been ages since I last ___ you! What have you been up to?",
+      "a": "saw",
+      "d": ["have seen", "had seen", "was seeing"],
+      "x": "El present perfect va en la oración principal (<i>It's been ages</i>), pero tras <i>since</i> el punto de inicio es un hecho terminado y va en past simple: <i>since I last saw you</i>. <i>Last</i> marca un momento concreto, por eso <i>have seen</i> no encaja."
+    },
+    {
+      "id": "present-perfect-past-simple-17",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "This is the third time the printer has broken down this month.",
+      "d": [
+        "This is the third time the printer breaks down this month.",
+        "This is the third time the printer was breaking down this month.",
+        "This was the third time the printer has broken down this month."
+      ],
+      "x": "Después de <i>This is the first/second/third time</i> va present perfect. <i>Breaks down</i> calca «es la tercera vez que se estropea», y con <i>This was</i> haría falta past perfect (<i>had broken down</i>)."
+    },
+    {
+      "id": "present-perfect-past-simple-18",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I haven't been to the cinema for months.”",
+      "a": "The last time I went to the cinema was months ago.",
+      "d": [
+        "It's months that I don't go to the cinema.",
+        "I haven't gone to the cinema since months.",
+        "I didn't go to the cinema months ago."
+      ],
+      "x": "<i>The last time I + past simple... was + tiempo + ago</i> equivale a <i>I haven't... for + tiempo</i>. <i>It's months that I don't go</i> calca «hace meses que no voy», y <i>since months</i> confunde <i>since</i> con <i>for</i>."
+    }
+  ]
+}

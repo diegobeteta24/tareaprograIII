@@ -1,0 +1,161 @@
+{
+  "id": "questions-comparison",
+  "grupo": "gramatica",
+  "titulo": "Questions, tags and comparison",
+  "resumen": [
+    "<b>Sujeto u objeto:</b> si <i>who/what</i> es el sujeto, la pregunta no lleva auxiliar: <i>Who phoned you?</i>; si es el objeto, sí lo lleva: <i>Who did you phone?</i>",
+    "<b>Question tags:</b> afirmativa → coletilla negativa y al revés, con el mismo auxiliar: <i>You've finished, haven't you?</i> Casos especiales: <i>I'm late, aren't I?</i> · <i>Let's go, shall we?</i> · <i>Don't forget, will you?</i> · <i>Nobody called, did they?</i> · <i>He never calls, does he?</i>",
+    "<b>Preguntas indirectas:</b> tras <i>Could you tell me…? / Do you know…? / I wonder…</i> se usa el orden de la afirmativa y sin <i>do</i>: <i>Could you tell me where the station is?</i> Para sí/no, <i>if</i> o <i>whether</i>.",
+    "<b>So / Neither:</b> «yo también» = <i>So</i> + auxiliar + sujeto (<i>So do I</i>, <i>So am I</i>); «yo tampoco» = <i>Neither/Nor</i> + auxiliar afirmativo + sujeto (<i>Neither have I</i>).",
+    "<b>Comparativos y superlativos:</b> irregulares <i>good – better – best</i>, <i>bad – worse – worst</i>, <i>far – further – furthest</i>. Se intensifican con <i>much / far / a lot</i> o <i>slightly / a bit</i>, nunca con <i>very</i>: <i>far cheaper</i>.",
+    "<b>As…as y multiplicadores:</b> <i>not as big as</i>, <i>twice as big as</i>, <i>three times as fast as</i>; <i>than</i> va solo con el comparativo. Doble comparativo: <i>The more you practise, the better you get.</i>",
+    "<b>So / Such:</b> <i>so</i> + adjetivo o adverbio (<i>so tired</i>, <i>so many</i>); <i>such (a)</i> + (adjetivo) + sustantivo (<i>such a long day</i>, <i>such good news</i>).",
+    "<b>Too / Enough:</b> <i>too</i> va antes del adjetivo (<i>too expensive</i>); <i>enough</i> va después del adjetivo y antes del sustantivo (<i>old enough</i>, <i>enough time</i>)."
+  ],
+  "preguntas": [
+    {
+      "id": "questions-comparison-01",
+      "nv": "B1",
+      "q": "Mark phoned someone last night, and you want to know who that person was. Which question do you ask?",
+      "a": "Who did Mark phone?",
+      "d": ["Who phoned Mark?", "Who Mark phoned?", "Who did Mark phoned?"],
+      "x": "Aquí <i>who</i> es el objeto (Mark llamó a alguien), así que se necesita auxiliar: <i>Who did Mark phone?</i> <i>Who phoned Mark?</i> es gramatical, pero pregunta por la persona que llamó a Mark; y tras <i>did</i> el verbo va en forma base, no en pasado."
+    },
+    {
+      "id": "questions-comparison-02",
+      "nv": "B1",
+      "q": "Everyone looks upset. What ___ at the meeting this morning?",
+      "a": "happened",
+      "d": ["was happened", "did it happen", "has it happened"],
+      "x": "Cuando <i>what</i> es el sujeto, la pregunta no lleva auxiliar: <i>What happened?</i> <i>Happen</i> no tiene voz pasiva, así que <i>was happened</i> es imposible, y <i>did it happen</i> añade un sujeto que sobra (calco de «¿qué pasó?»)."
+    },
+    {
+      "id": "questions-comparison-03",
+      "nv": "B1",
+      "q": "That was the ___ film I've ever seen. I left the cinema after twenty minutes.",
+      "a": "worst",
+      "d": ["baddest", "most bad", "worse"],
+      "x": "<i>Bad</i> es irregular: <i>bad – worse – the worst</i>. Con <i>the</i> + <i>I've ever seen</i> se necesita el superlativo; <i>worse</i> es el comparativo, y <i>baddest</i> o <i>most bad</i> no existen en el inglés estándar."
+    },
+    {
+      "id": "questions-comparison-04",
+      "nv": "B1",
+      "q": "A: I'm really tired after that exam. B: So ___ I. Let's go home.",
+      "a": "am",
+      "d": ["do", "have", "did"],
+      "x": "Para decir «yo también» se repite el auxiliar de la primera frase: <i>I'm tired</i> → <i>So am I</i>. <i>So do I</i> responde a un verbo en presente simple sin auxiliar (<i>I like it</i> → <i>So do I</i>), y <i>did</i> cambiaría el tiempo."
+    },
+    {
+      "id": "questions-comparison-05",
+      "nv": "B1",
+      "q": "Excuse me, could you tell me where ___?",
+      "a": "the nearest cash machine is",
+      "d": ["is the nearest cash machine", "the nearest cash machine it is", "does the nearest cash machine is"],
+      "x": "En una pregunta indirecta (<i>Could you tell me…?</i>, <i>Do you know…?</i>) la segunda parte va en orden de afirmativa: sujeto + verbo. <i>Where is the nearest cash machine</i> es el orden de la pregunta directa y no se repite aquí."
+    },
+    {
+      "id": "questions-comparison-06",
+      "nv": "B2",
+      "q": "It was ___ lovely afternoon that we decided to have our class outside.",
+      "a": "such a",
+      "d": ["so", "so a", "such"],
+      "x": "<i>Such a/an</i> va delante de un sustantivo contable singular, con o sin adjetivo: <i>such a lovely afternoon</i>. <i>So</i> va solo con un adjetivo o adverbio (<i>It was so lovely that…</i>), y <i>such</i> sin artículo solo sirve con plurales o incontables (<i>such lovely weather</i>)."
+    },
+    {
+      "id": "questions-comparison-07",
+      "nv": "B2",
+      "q": "The second test was ___ harder than the first one; almost nobody passed it.",
+      "a": "far",
+      "d": ["very", "too", "more"],
+      "x": "Un comparativo se intensifica con <i>far</i>, <i>much</i> o <i>a lot</i> (y con <i>slightly</i> o <i>a bit</i> si la diferencia es pequeña): <i>far harder</i>. <i>Very</i> y <i>too</i> no modifican comparativos, y <i>more harder</i> duplica el comparativo."
+    },
+    {
+      "id": "questions-comparison-08",
+      "nv": "B2",
+      "q": "I'm on the list for Friday's workshop, ___? I signed up last week.",
+      "a": "aren't I",
+      "d": ["am not I", "isn't it", "don't I"],
+      "x": "Después de <i>I am</i> en afirmativo, la coletilla es la forma irregular <i>aren't I?</i> (la muy formal es <i>am I not?</i>). <i>Isn't it</i> es el calco del «¿no es cierto?» del español, y <i>am not I</i> tiene el orden equivocado."
+    },
+    {
+      "id": "questions-comparison-09",
+      "nv": "B2",
+      "q": "Nobody has replied to the group chat yet, ___?",
+      "a": "have they",
+      "d": ["haven't they", "has he", "hasn't it"],
+      "x": "<i>Nobody</i> ya hace negativa la oración, así que la coletilla va en afirmativo, y con <i>nobody / somebody / everyone</i> se usa <i>they</i>: <i>have they?</i> <i>Haven't they</i> sería una doble negación."
+    },
+    {
+      "id": "questions-comparison-10",
+      "nv": "B2",
+      "q": "A: I haven't finished the essay yet. B: ___ I. Shall we work on it together?",
+      "a": "Neither have",
+      "d": ["So have", "Neither haven't", "Either have"],
+      "x": "«Yo tampoco» tras una frase negativa: <i>Neither/Nor</i> + auxiliar en afirmativo + sujeto: <i>Neither have I</i>. <i>Neither haven't I</i> tiene doble negación, <i>So have I</i> respondería a una afirmativa y <i>either</i> solo va al final: <i>I haven't either</i>."
+    },
+    {
+      "id": "questions-comparison-11",
+      "nv": "B2",
+      "q": "Renting a flat in the city centre is ___ renting one in the suburbs.",
+      "a": "twice as expensive as",
+      "d": ["twice more expensive as", "two times as expensive than", "twice as expensive than"],
+      "x": "Para multiplicar se usa <i>twice / three times + as + adjetivo + as</i>: <i>twice as expensive as</i>. <i>As…as</i> no se mezcla con <i>than</i>, que solo acompaña al comparativo (<i>more expensive than</i>)."
+    },
+    {
+      "id": "questions-comparison-12",
+      "nv": "B2",
+      "q": "Don't forget to back up your files before the update, ___?",
+      "a": "will you",
+      "d": ["do you", "don't you", "aren't you"],
+      "x": "Con imperativos la coletilla se forma con <i>will</i>, no con <i>do</i>: tras <i>Don't…</i> la única posible es <i>will you?</i> (<i>Don't forget, will you?</i>). <i>Do you</i> y <i>don't you</i> preguntarían por una costumbre en vez de suavizar una petición."
+    },
+    {
+      "id": "questions-comparison-13",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Could you tell me when the next train to Oxford leaves?",
+      "d": ["Could you tell me when does the next train to Oxford leave?", "Could you tell me when leaves the next train to Oxford?", "Could you tell me when will the next train to Oxford leave?"],
+      "x": "En la pregunta indirecta desaparece el auxiliar <i>do/does</i> y se usa el orden sujeto + verbo: <i>when the next train leaves</i>. Conservar <i>does</i> o invertir el verbo (<i>when leaves</i>, <i>when will the train</i>) es copiar el orden de la pregunta directa."
+    },
+    {
+      "id": "questions-comparison-14",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “The meeting room was too small for all the participants.”",
+      "a": "The meeting room wasn't big enough for all the participants.",
+      "d": ["The meeting room wasn't enough big for all the participants.", "The meeting room wasn't small enough for all the participants.", "The meeting room was big enough for all the participants."],
+      "x": "<i>Too</i> + adjetivo (más de la cuenta) equivale a <i>not</i> + adjetivo contrario + <i>enough</i>: <i>too small</i> = <i>not big enough</i>. <i>Enough</i> va después del adjetivo, nunca antes (<i>big enough</i>, no <i>enough big</i>)."
+    },
+    {
+      "id": "questions-comparison-15",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "Let's leave the rest of the agenda for Monday, shall we?",
+      "d": ["He never answers emails on time, doesn't he?", "Don't be late for the interview, do you?", "There's no milk left, isn't there?"],
+      "x": "Tras <i>Let's…</i> la coletilla es <i>shall we?</i>. Las demás fallan: <i>never</i> y <i>no</i> ya hacen negativa la oración, así que piden coletilla afirmativa (<i>does he?</i>, <i>is there?</i>), y tras un imperativo negativo va <i>will you?</i>."
+    },
+    {
+      "id": "questions-comparison-16",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “Marta isn't nearly as confident as her sister.”",
+      "a": "Her sister is much more confident than Marta.",
+      "d": ["Her sister is almost as confident as Marta.", "Marta is nearly as confident as her sister.", "Marta is much more confident than her sister."],
+      "x": "<i>Not nearly as… as</i> significa «ni de lejos tan… como»: la diferencia es grande, así que equivale a <i>much more… than</i> con los sujetos invertidos. <i>Nearly as confident as</i> (casi tan seguro como) expresa justo lo contrario: una diferencia pequeña."
+    },
+    {
+      "id": "questions-comparison-17",
+      "nv": "C1",
+      "q": "The longer we wait to book, ___.",
+      "a": "the more expensive the tickets will be",
+      "d": ["the tickets will be more expensive", "the more the tickets will be expensive", "more expensive the tickets will be"],
+      "x": "El doble comparativo lleva <i>the</i> + comparativo al principio de las dos partes, con el adjetivo pegado a <i>the more</i>: <i>the more expensive the tickets will be</i>. Si falta <i>the</i> o el adjetivo se queda al final (<i>the more the tickets will be expensive</i>), la estructura se rompe."
+    },
+    {
+      "id": "questions-comparison-18",
+      "nv": "C1",
+      "q": "___ was the demand for tickets that the website crashed within minutes.",
+      "a": "Such",
+      "d": ["So", "So much", "Such a"],
+      "x": "En registro formal se antepone <i>such</i> con inversión: <i>Such was the demand that…</i> (= <i>The demand was so great that…</i>). <i>So</i> necesitaría un adjetivo (<i>So great was the demand…</i>), y <i>such a</i> exige un sustantivo contable justo detrás."
+    }
+  ]
+}

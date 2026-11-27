@@ -1,0 +1,177 @@
+{
+  "id": "narrative-tenses",
+  "grupo": "gramatica",
+  "titulo": "Narrative tenses: past continuous, past perfect, used to",
+  "resumen": [
+    "<b>Past continuous</b> (<i>was/were + -ing</i>) para la acción de fondo que se interrumpe y <b>past simple</b> para la acción corta que la interrumpe: <i>I was cooking dinner when the power went off.</i>",
+    "<b>when</b> suele introducir la acción corta y <b>while</b> la larga; <b>during</b> va con un sustantivo, no con una oración: <i>My phone rang during the exam.</i>",
+    "<b>Past perfect</b> (<i>had + participio</i>) para lo que ocurrió antes de otro momento pasado, sobre todo con <i>by the time</i>: <i>By the time we got there, the train had left.</i>",
+    "<b>Past perfect continuous</b> (<i>had been + -ing</i>) para una actividad que duraba hasta un momento del pasado o que explica cómo estaba alguien: <i>She had been living in London for six years.</i>",
+    "<b>used to</b> + infinitivo para hábitos y estados pasados que ya no ocurren; en negativo y pregunta, <i>didn't use to</i>: <i>We used to have a dog. I didn't use to like coffee.</i>",
+    "<b>would</b> + infinitivo solo para acciones repetidas, nunca para estados: <i>Every Sunday my grandad would take us to the park</i>, pero no <i>we would have a dog</i>. Para un número concreto de veces, past simple: <i>I went three times.</i>",
+    "<b>be used to</b> (estar acostumbrado) y <b>get used to</b> (acostumbrarse) van seguidos de sustantivo o <i>-ing</i>: <i>I'm used to getting up early. I can't get used to driving on the left.</i>",
+    "<b>Futuro en el pasado</b>: <i>would</i> para lo que pasaría después y <i>was/were going to</i> para planes que no se cumplieron: <i>She had no idea she would run the company. We were going to go camping, but it rained.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "narrative-tenses-01",
+      "nv": "B1",
+      "q": "My phone rang ___ the exam, which was really embarrassing.",
+      "a": "during",
+      "d": ["while", "meanwhile", "when"],
+      "x": "<i>During</i> va seguido de un sustantivo (<i>the exam</i>); <i>while</i> y <i>when</i> necesitan una oración con sujeto y verbo (<i>while I was doing the exam</i>). <i>Meanwhile</i> es un adverbio («mientras tanto») y no puede introducir un sustantivo."
+    },
+    {
+      "id": "narrative-tenses-02",
+      "nv": "B1",
+      "q": "When I was a child, we ___ a dog called Toby.",
+      "a": "used to have",
+      "d": ["would have", "use to have", "were having"],
+      "x": "Para un estado pasado que ya no existe se usa <i>used to</i>: <i>we used to have a dog</i>. <i>Would</i> solo vale para acciones repetidas, no para estados como <i>have</i> (poseer), que tampoco va en continuo; en afirmativo se escribe <i>used</i>, con -d."
+    },
+    {
+      "id": "narrative-tenses-03",
+      "nv": "B1",
+      "q": "I ___ dinner when the power went off, so we ended up eating sandwiches.",
+      "a": "was cooking",
+      "d": ["cooked", "had cooked", "have cooked"],
+      "x": "La acción larga que se interrumpe va en past continuous y la que interrumpe en past simple: <i>I was cooking when the power went off</i>. Con <i>cooked</i> o <i>had cooked</i> la cena ya estaría hecha y no habría hecho falta comer sándwiches."
+    },
+    {
+      "id": "narrative-tenses-04",
+      "nv": "B1",
+      "q": "By the time we got to the station, the train ___.",
+      "a": "had left",
+      "d": ["left", "has left", "leaves"],
+      "x": "<i>By the time</i> + pasado indica que la otra acción ya había terminado antes: <i>the train had left</i>. Con <i>left</i> parecería que el tren salió en ese mismo momento, y <i>has left</i> no encaja en un relato en pasado."
+    },
+    {
+      "id": "narrative-tenses-05",
+      "nv": "B2",
+      "q": "I ___ to Paris three times when I was a student.",
+      "a": "went",
+      "d": ["used to go", "would go", "was going"],
+      "x": "Para un número concreto de veces se usa past simple: <i>I went three times</i>. <i>Used to</i> y <i>would</i> expresan hábitos sin contar las veces (<i>I used to go every summer</i>), y el past continuous no sirve para hechos completos."
+    },
+    {
+      "id": "narrative-tenses-06",
+      "nv": "B2",
+      "q": "I ___ like coffee, but now I can't start the day without it.",
+      "a": "didn't use to",
+      "d": ["wasn't used to", "wouldn't", "don't use to"],
+      "x": "La negación de <i>used to</i> es <i>didn't use to</i> + infinitivo. <i>Wasn't used to</i> significa «no estaba acostumbrado» y pide <i>-ing</i>, <i>would</i> no se usa con estados como <i>like</i>, y <i>don't use to</i> calca «no suelo»."
+    },
+    {
+      "id": "narrative-tenses-07",
+      "nv": "B2",
+      "q": "I've lived in London for a year, but I still can't get used to ___ on the left.",
+      "a": "driving",
+      "d": ["drive", "drove", "have driven"],
+      "x": "En <i>get used to</i> y <i>be used to</i>, <i>to</i> es una preposición y va seguida de <i>-ing</i>: <i>get used to driving</i>. <i>Drive</i> es el error típico porque se confunde con <i>used to</i> + infinitivo."
+    },
+    {
+      "id": "narrative-tenses-08",
+      "nv": "B2",
+      "q": "I ___ getting up early — I've done it for years, so it doesn't bother me at all.",
+      "a": "am used to",
+      "d": ["used to", "get used to", "use to"],
+      "x": "<i>Be used to</i> + <i>-ing</i> significa «estar acostumbrado»: <i>I'm used to getting up early</i>. <i>Used to</i> + verbo habla de un hábito pasado y no admite <i>-ing</i>, y <i>get used to</i> describe el proceso de acostumbrarse, que aquí ya terminó."
+    },
+    {
+      "id": "narrative-tenses-09",
+      "nv": "B2",
+      "q": "When I met Carla, she ___ in London for six years, so she knew all the best places to eat.",
+      "a": "had been living",
+      "d": ["has been living", "was living", "lived"],
+      "x": "Una situación que ya duraba seis años en un momento del pasado (<i>When I met Carla</i>) va en past perfect continuous. Con <i>for</i> + duración hasta ese momento no sirven <i>was living</i> ni <i>lived</i>, y <i>has been living</i> llega hasta el presente."
+    },
+    {
+      "id": "narrative-tenses-10",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "I was waiting for the bus when I saw the accident.",
+      "d": [
+        "I waited for the bus while I was seeing the accident.",
+        "I was waiting for the bus while I saw the accident.",
+        "I was waiting for the bus when I was seeing the accident."
+      ],
+      "x": "La acción larga va en past continuous y la corta que la interrumpe en past simple, introducida por <i>when</i>. <i>See</i> describe aquí un hecho puntual, así que no va con <i>while</i> ni en continuo (<i>was seeing</i>)."
+    },
+    {
+      "id": "narrative-tenses-11",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "When I first met Ana, I didn't know she was Paolo's sister.",
+      "d": [
+        "When I first met Ana, I wasn't knowing she was Paolo's sister.",
+        "When I first met Ana, I didn't know she had been Paolo's sister.",
+        "When I had first met Ana, I didn't know she was Paolo's sister."
+      ],
+      "x": "<i>Know</i> es un verbo de estado y no va en continuo, y ser hermana de alguien no es algo que terminara antes, así que no lleva past perfect. Tampoco hace falta en <i>When I first met</i>: los dos hechos ocurren a la vez."
+    },
+    {
+      "id": "narrative-tenses-12",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “Working from home felt strange at first, but now it feels completely normal.”",
+      "a": "I've got used to working from home.",
+      "d": [
+        "I used to work from home.",
+        "I'm used to work from home.",
+        "I've used to working from home."
+      ],
+      "x": "<i>Get used to</i> + <i>-ing</i> es el proceso de acostumbrarse, y en present perfect indica que ya lo logré. <i>I used to work from home</i> significa que antes lo hacía y ya no, y tras <i>be used to</i> hace falta <i>-ing</i>."
+    },
+    {
+      "id": "narrative-tenses-13",
+      "nv": "B2",
+      "q": "She ___ three chapters of her thesis by the time the library closed.",
+      "a": "had written",
+      "d": ["had been writing", "wrote", "has written"],
+      "x": "Con <i>by the time</i> y una cantidad terminada (<i>three chapters</i>) va past perfect simple. <i>Had been writing</i> destaca la actividad y no combina con un número de cosas acabadas, y <i>wrote</i> no expresa que ya estaban hechos antes de ese momento."
+    },
+    {
+      "id": "narrative-tenses-14",
+      "nv": "C1",
+      "q": "It was the first time I ___ snow, so I took hundreds of photos.",
+      "a": "had seen",
+      "d": ["have seen", "see", "had been seeing"],
+      "x": "Con <i>It was the first time</i> va past perfect: <i>It was the first time I had seen snow</i>. <i>Have seen</i> solo sirve con <i>It's the first time</i> (presente), y <i>see</i> calca «era la primera vez que veía»."
+    },
+    {
+      "id": "narrative-tenses-15",
+      "nv": "C1",
+      "q": "Every Sunday, my grandad ___ us to the park and buy us an ice cream on the way home.",
+      "a": "would take",
+      "d": ["took", "was taking", "had taken"],
+      "x": "<i>Would</i> + infinitivo expresa acciones repetidas en el pasado, y el segundo verbo sin <i>to</i> (<i>buy</i>) depende del mismo <i>would</i>. Con <i>took</i> haría falta <i>bought</i>; <i>used to take</i> también sería correcto, pero no está entre las opciones."
+    },
+    {
+      "id": "narrative-tenses-16",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “We got to the cinema ten minutes after the film started.”",
+      "a": "When we got to the cinema, the film had been on for ten minutes.",
+      "d": [
+        "When we got to the cinema, the film started ten minutes later.",
+        "The film had started ten minutes after we got to the cinema.",
+        "When we got to the cinema, the film was on for ten minutes."
+      ],
+      "x": "La película empezó antes de que llegáramos, así que va past perfect: <i>the film had been on for ten minutes</i> («llevaba diez minutos»). <i>Was on for ten minutes</i> no expresa duración hasta un momento pasado, y las otras dos opciones invierten el orden de los hechos."
+    },
+    {
+      "id": "narrative-tenses-17",
+      "nv": "C1",
+      "q": "When she started her first job at eighteen, she had no idea that one day she ___ the whole company.",
+      "a": "would run",
+      "d": ["will run", "had run", "used to run"],
+      "x": "Para lo que iba a ocurrir más tarde, visto desde un momento del pasado, se usa <i>would</i> (futuro en el pasado): <i>she had no idea that one day she would run the company</i>. <i>Will</i> no concuerda con un relato en pasado, y <i>had run</i> y <i>used to run</i> hablan de algo anterior o habitual."
+    },
+    {
+      "id": "narrative-tenses-18",
+      "nv": "C1",
+      "q": "We ___ camping last weekend, but it rained so much that we stayed at home.",
+      "a": "were going to go",
+      "d": ["would go", "used to go", "had gone"],
+      "x": "<i>Was/were going to</i> expresa un plan del pasado que no se cumplió. <i>Would go</i> y <i>used to go</i> describen hábitos, no un plan concreto, y <i>had gone</i> diría que sí fuimos, lo que contradice <i>we stayed at home</i>."
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "phrasal-verbs",
+  "grupo": "gramatica",
+  "titulo": "Phrasal verbs",
+  "resumen": [
+    "<b>Significado</b>: el sentido de un phrasal verb no siempre se deduce de sus partes: <i>give up</i> = dejar, <i>turn down</i> = rechazar, <i>break down</i> = averiarse.",
+    "<b>Separables</b> (<i>look up</i>, <i>turn down</i>, <i>bring up</i>, <i>put off</i>, <i>let down</i>): el sustantivo puede ir antes o después de la partícula, pero el <b>pronombre</b> va siempre en medio: <i>turn it down</i>, nunca <i>turn down it</i>.",
+    "<b>Inseparables</b> (<i>look after</i>, <i>come across</i>, <i>get over</i>): el objeto, también si es pronombre, va después de la partícula: <i>She looks after them.</i>",
+    "<b>De tres partes</b> (<i>run out of</i>, <i>put up with</i>, <i>get on with</i>, <i>cut down on</i>, <i>live up to</i>): no se separan y la preposición final es obligatoria: <i>We've run out of milk.</i>",
+    "<b>look forward to</b> + <i>-ing</i>, porque <i>to</i> es preposición: <i>I'm looking forward to seeing you.</i>",
+    "<b>Pares que se confunden</b>: <i>put off</i> (aplazar) / <i>call off</i> (cancelar); <i>come across</i> (encontrar por casualidad) / <i>come up with</i> (idear); <i>take over</i> (asumir el mando) / <i>take after</i> (parecerse a).",
+    "<b>Sin objeto</b>: <i>break down</i>, <i>fall through</i>, <i>carry on</i> o <i>grow up</i> no llevan objeto directo: <i>The deal fell through.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "phrasal-verbs-01",
+      "nv": "B1",
+      "q": "Could you ___ my cat while I'm on holiday next week?",
+      "a": "look after",
+      "d": ["look for", "look up", "look into"],
+      "x": "<i>Look after</i> = «cuidar» a una persona o un animal. <i>Look for</i> es «buscar» y <i>look into</i> «investigar», así que no encajan con cuidar al gato mientras estás fuera."
+    },
+    {
+      "id": "phrasal-verbs-02",
+      "nv": "B1",
+      "q": "We're really looking forward ___ you at the graduation ceremony.",
+      "a": "to seeing",
+      "d": ["to see", "seeing", "for seeing"],
+      "x": "En <i>look forward to</i> («tener muchas ganas de»), <i>to</i> es una preposición, así que va seguida de <i>-ing</i> o de un sustantivo: <i>looking forward to seeing you</i>. <i>To see</i> es el error más frecuente."
+    },
+    {
+      "id": "phrasal-verbs-03",
+      "nv": "B1",
+      "q": "My dad ___ smoking ten years ago, and he feels much healthier now.",
+      "a": "gave up",
+      "d": ["gave in", "gave out", "gave away"],
+      "x": "<i>Give up</i> + <i>-ing</i> = «dejar (un hábito)». <i>Give in</i> es «ceder, rendirse» y <i>give away</i> «regalar»; ninguno significa abandonar una costumbre."
+    },
+    {
+      "id": "phrasal-verbs-04",
+      "nv": "B1",
+      "q": "I'll ring the museum to ___ what time it opens on Sunday.",
+      "a": "find out",
+      "d": ["look out", "turn out", "make up"],
+      "x": "<i>Find out</i> = «averiguar, enterarse de» un dato. <i>Turn out</i> es «resultar», <i>look out</i> «tener cuidado» y <i>make up</i> «inventar»; ninguno significa conseguir información."
+    },
+    {
+      "id": "phrasal-verbs-05",
+      "nv": "B2",
+      "q": "We've ___ milk, so I'll pop to the corner shop before breakfast.",
+      "a": "run out of",
+      "d": ["run out", "run off", "run over"],
+      "x": "<i>Run out of</i> + sustantivo = «quedarse sin»: <i>We've run out of milk</i>. Sin <i>of</i> el verbo no lleva objeto (<i>The milk has run out</i>), y <i>run over</i> es «atropellar»."
+    },
+    {
+      "id": "phrasal-verbs-06",
+      "nv": "B2",
+      "q": "Don't worry, the meeting hasn't been ___ altogether; it's just been ___ until Friday.",
+      "a": "called off … put off",
+      "d": ["put off … called off", "called up … put off", "called off … put out"],
+      "x": "<i>Call off</i> = «cancelar» (<i>altogether</i>, del todo) y <i>put off</i> = «aplazar» (<i>until Friday</i>). Si se invierten, la frase pierde la lógica: algo no se cancela «hasta el viernes»."
+    },
+    {
+      "id": "phrasal-verbs-07",
+      "nv": "B2",
+      "q": "Sorry for interrupting. Please ___ with your presentation.",
+      "a": "carry on",
+      "d": ["carry out", "take on", "set out"],
+      "x": "<i>Carry on (with something)</i> = «continuar». <i>Carry out</i> es «llevar a cabo» y va con objeto directo, sin <i>with</i> (<i>carry out a survey</i>)."
+    },
+    {
+      "id": "phrasal-verbs-08",
+      "nv": "B2",
+      "q": "I ___ well with my ex now, but it took me months to ___ the break-up.",
+      "a": "get on … get over",
+      "d": ["get over … get on", "get by … get over", "get on … get off"],
+      "x": "<i>Get on (well) with someone</i> = «llevarse bien con alguien» y <i>get over something</i> = «superar» una ruptura o una enfermedad. <i>Get by</i> es «arreglárselas» y <i>get off</i> «bajarse (de un vehículo)»; ninguno significa superar."
+    },
+    {
+      "id": "phrasal-verbs-09",
+      "nv": "B2",
+      "q": "While searching online, I ___ an interesting article, and it helped me ___ an idea for my essay.",
+      "a": "came across … come up with",
+      "d": ["came up … come across", "came over … come up with", "came across … come up"],
+      "x": "<i>Come across</i> = «encontrar por casualidad» y <i>come up with</i> = «idear, ocurrírsele a uno» (una idea, un plan). <i>Come up</i> sin <i>with</i> significa «surgir» y no lleva objeto."
+    },
+    {
+      "id": "phrasal-verbs-10",
+      "nv": "B2",
+      "q": "My grandparents ___ in Quetzaltenango while my parents were working abroad.",
+      "a": "brought me up",
+      "d": ["grew me up", "brought up me", "raised up me"],
+      "x": "<i>Bring someone up</i> = «criar». Es separable y, con pronombre, este va en medio: <i>brought me up</i>, nunca <i>brought up me</i>. <i>Grow up</i> («crecer») no lleva objeto, así que <i>grew me up</i> es incorrecto."
+    },
+    {
+      "id": "phrasal-verbs-11",
+      "nv": "B2",
+      "q": "She ___ the job offer because the salary was too low.",
+      "a": "turned down",
+      "d": ["turned off", "turned over", "turned up"],
+      "x": "<i>Turn down</i> = «rechazar» (una oferta, una invitación). <i>Turn off</i> es «apagar» y <i>turn up</i> «subir el volumen» o «aparecer»."
+    },
+    {
+      "id": "phrasal-verbs-12",
+      "nv": "B2",
+      "q": "Sorry I'm late: the bus ___ on the motorway and we had to wait for another one.",
+      "a": "broke down",
+      "d": ["broke out", "broke off", "broke in"],
+      "x": "<i>Break down</i> = «averiarse» (un vehículo, una máquina). <i>Break out</i> es «estallar» (una guerra, un incendio) y <i>break in</i> «entrar a la fuerza»."
+    },
+    {
+      "id": "phrasal-verbs-13",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "My aunt looks after the twins when I'm at work.",
+      "d": ["I didn't know the word, so I looked up it.", "The match was on Friday, but they put off it.", "Those old photos? I came them across in a drawer."],
+      "x": "Con los separables (<i>look up</i>, <i>put off</i>) el pronombre va entre el verbo y la partícula: <i>looked it up</i>, <i>put it off</i>. Los inseparables (<i>look after</i>, <i>come across</i>) nunca se dividen: <i>came across them</i>."
+    },
+    {
+      "id": "phrasal-verbs-14",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “My cousin founded her own design company in 2020.”",
+      "a": "My cousin set up her own design company in 2020.",
+      "d": ["My cousin took over her own design company in 2020.", "My cousin set off her own design company in 2020.", "My cousin put up her own design company in 2020."],
+      "x": "<i>Set up</i> = «fundar, montar» un negocio. <i>Take over</i> también se usa con empresas, pero significa «tomar el control» de una que ya existe, no crearla; <i>set off</i> es «ponerse en camino»."
+    },
+    {
+      "id": "phrasal-verbs-15",
+      "nv": "C1",
+      "q": "When the founder retired, his daughter ___ from him as CEO.",
+      "a": "took over",
+      "d": ["took after", "took in", "took on"],
+      "x": "<i>Take over (from someone)</i> = «relevar a alguien, asumir el mando». <i>Take after</i> significa «parecerse a un familiar» (<i>She takes after her father</i>), y <i>take on</i> («contratar, asumir una tarea») no se construye con <i>from him</i>."
+    },
+    {
+      "id": "phrasal-verbs-16",
+      "nv": "C1",
+      "q": "I promised Ana I'd help her move house on Saturday, so I can't ___ now.",
+      "a": "let her down",
+      "d": ["let down her", "let her off", "put down her"],
+      "x": "<i>Let someone down</i> = «fallarle a alguien, decepcionarlo». Es separable y el pronombre va en medio (<i>let her down</i>); <i>let her off</i> significa «perdonarle un castigo»."
+    },
+    {
+      "id": "phrasal-verbs-17",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I can't tolerate the noise from my neighbours any longer.”",
+      "a": "I can't put up with the noise from my neighbours any longer.",
+      "d": ["I can't put up the noise from my neighbours any longer.", "I can't get over the noise from my neighbours any longer.", "I can't put off the noise from my neighbours any longer."],
+      "x": "<i>Put up with</i> = «aguantar, tolerar». Sin <i>with</i>, <i>put up</i> significa «colgar» o «alojar», y <i>can't get over something</i> expresa asombro («no me lo puedo creer»), no falta de tolerancia."
+    },
+    {
+      "id": "phrasal-verbs-18",
+      "nv": "C1",
+      "q": "My doctor told me to ___ sugar, so now I have one biscuit a day instead of five.",
+      "a": "cut down on",
+      "d": ["cut off", "cut out of", "cut down with"],
+      "x": "<i>Cut down on</i> = «reducir el consumo de» algo; pasar de cinco galletas a una es reducir, no eliminar. <i>Cut off</i> es «cortar (un suministro)» o «aislar», y <i>cut out of</i> y <i>cut down with</i> no funcionan con este sentido."
+    },
+    {
+      "id": "phrasal-verbs-19",
+      "nv": "C1",
+      "q": "Sadly, the new phone didn't ___ the expectations created by its advertising campaign.",
+      "a": "live up to",
+      "d": ["live up", "live on", "come up with"],
+      "x": "<i>Live up to</i> + expectativas o fama = «estar a la altura de». Necesita <i>to</i> antes del objeto; <i>live on</i> es «vivir de» (<i>live on a small salary</i>) y <i>come up with</i>, «idear»."
+    },
+    {
+      "id": "phrasal-verbs-20",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "Our plans to visit Tikal fell through at the last minute.",
+      "d": ["Can you point out me where the exit is?", "The police have ruled out to arrest anyone.", "I can't work out him: he never says what he thinks."],
+      "x": "<i>Fall through</i> = «venirse abajo, no concretarse» (un plan). En las otras se dice <i>point out to me</i> («señalarme»), <i>rule out</i> + sustantivo o <i>-ing</i> (<i>ruled out arresting</i>, «descartaron») y <i>work him out</i> («entenderlo»), con el pronombre en medio."
+    }
+  ]
+}

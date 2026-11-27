@@ -1,0 +1,177 @@
+{
+  "id": "passive",
+  "grupo": "gramatica",
+  "titulo": "The passive",
+  "resumen": [
+    "La <b>pasiva</b> se forma con <i>be</i> en el tiempo que corresponda + participio: <i>These laptops are made in Taiwan. Our school was built in 1965.</i>",
+    "En los tiempos continuos se añade <b>being</b> y en los perfectos <b>been</b>: <i>The room is being cleaned. Our table had already been given to another couple.</i>",
+    "Con <b>modales</b>: <i>modal + be + participio</i> (<i>Phones must be switched off</i>) y, para el pasado, <i>modal + have been + participio</i> (<i>The accident could have been avoided</i>).",
+    "Infinitivo pasivo <b>to be + participio</b> y gerundio pasivo <b>being + participio</b>: <i>All applications have to be submitted online. Nobody likes being criticised.</i>",
+    "Con verbos de <b>dos objetos</b> (<i>give, offer, send, show</i>) lo normal es que la persona sea el sujeto: <i>My sister has been offered a scholarship.</i> <i>Explain</i> no lo admite: <i>It was explained to us</i>, no <i>We were explained</i>.",
+    "<b>Pasiva impersonal</b> con <i>say, think, believe, expect</i>: <i>It is said that he is rich</i> o <i>He is said to be rich</i>; para un hecho anterior, <i>to have + participio</i>: <i>They are thought to have left.</i>",
+    "<b>by</b> introduce a quien hace la acción y <b>with</b> el instrumento: <i>painted by a famous artist with a fine brush</i>. Si el agente no importa o es obvio, se omite.",
+    "<b>make</b> en pasiva recupera el <i>to</i>: <i>They made us wait</i> → <i>We were made to wait.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "passive-01",
+      "nv": "B1",
+      "q": "These laptops ___ in Taiwan.",
+      "a": "are made",
+      "d": ["make", "are making", "are make"],
+      "x": "La pasiva en presente se forma con <i>am/is/are</i> + participio: <i>are made</i>. <i>These laptops make</i> diría que los portátiles fabrican algo, y <i>are make</i> usa el infinitivo en lugar del participio."
+    },
+    {
+      "id": "passive-02",
+      "nv": "B1",
+      "q": "Our school ___ in 1965.",
+      "a": "was built",
+      "d": ["built", "has been built", "is built"],
+      "x": "Para un hecho terminado con fecha (<i>in 1965</i>) se usa past simple pasivo: <i>was built</i>. <i>Has been built</i> no combina con una fecha pasada, y <i>Our school built</i> diría que la escuela construyó algo."
+    },
+    {
+      "id": "passive-03",
+      "nv": "B1",
+      "q": "Mobile phones must ___ off during the exam.",
+      "a": "be switched",
+      "d": ["switched", "be switching", "been switched"],
+      "x": "Tras un modal, la pasiva se forma con <i>be</i> + participio: <i>must be switched off</i>. <i>Must switched</i> omite <i>be</i>, y <i>must been</i> no existe porque después del modal va el infinitivo."
+    },
+    {
+      "id": "passive-04",
+      "nv": "B1",
+      "q": "The winners ___ by email next week.",
+      "a": "will be informed",
+      "d": ["will inform", "will be informing", "are informing"],
+      "x": "La pasiva en futuro es <i>will be</i> + participio: <i>will be informed</i>. <i>Will inform</i> y <i>will be informing</i> son activas y dirían que los ganadores van a informar a alguien."
+    },
+    {
+      "id": "passive-05",
+      "nv": "B2",
+      "q": "The portrait was painted ___ a famous artist ___ a very fine brush.",
+      "a": "by / with",
+      "d": ["with / by", "by / by", "from / with"],
+      "x": "En la pasiva, <i>by</i> introduce a quien hace la acción (<i>by a famous artist</i>) y <i>with</i> el instrumento que usa (<i>with a brush</i>). <i>From</i> no introduce al agente: es un error que viene de «un cuadro de...»."
+    },
+    {
+      "id": "passive-06",
+      "nv": "B2",
+      "q": "Sorry, you can't use this room — it ___ at the moment.",
+      "a": "is being cleaned",
+      "d": ["is cleaning", "is cleaned", "has been cleaning"],
+      "x": "Para una acción pasiva en curso se usa <i>is being</i> + participio: <i>it's being cleaned</i>. <i>It is cleaning</i> diría que la sala limpia algo, e <i>is cleaned</i> describe un hábito, no algo que ocurre <i>at the moment</i>."
+    },
+    {
+      "id": "passive-07",
+      "nv": "B2",
+      "q": "When we arrived at the restaurant, our table ___ to another couple, so we had to wait at the bar.",
+      "a": "had already been given",
+      "d": ["had already given", "was already giving", "has already been given"],
+      "x": "Para algo que otros hicieron antes de un momento pasado se usa past perfect pasivo: <i>had already been given</i>. <i>Had already given</i> es activa (la mesa habría dado algo), y <i>has been given</i> no encaja en un relato en pasado."
+    },
+    {
+      "id": "passive-08",
+      "nv": "B2",
+      "q": "Nobody likes ___ by their boss in front of their colleagues.",
+      "a": "being criticised",
+      "d": ["criticising", "to criticise", "be criticised"],
+      "x": "<i>By their boss</i> exige una forma pasiva, y tras <i>like</i> la pasiva va en gerundio (<i>being criticised</i>) o en infinitivo con <i>to</i> (<i>to be criticised</i>). <i>Criticising</i> y <i>to criticise</i> son activas, y <i>be criticised</i> sin <i>to</i> no puede seguir a <i>like</i>."
+    },
+    {
+      "id": "passive-09",
+      "nv": "B2",
+      "q": "All applications have ___ online by 31 May.",
+      "a": "to be submitted",
+      "d": ["to submit", "be submitted", "to be submitting"],
+      "x": "Tras <i>have to</i>, la pasiva se forma con <i>to be</i> + participio: <i>have to be submitted</i>. <i>Have to submit</i> es activa (las solicitudes no envían nada) y <i>to be submitting</i> es continua, no pasiva."
+    },
+    {
+      "id": "passive-10",
+      "nv": "B2",
+      "q": "It ___ that the new metro line will open next year.",
+      "a": "is expected",
+      "d": ["expects", "is expecting", "has expected"],
+      "x": "La pasiva impersonal <i>It is expected that...</i> presenta una opinión general sin decir quién la tiene. <i>It expects</i> o <i>it is expecting</i> harían de <i>it</i> el sujeto que espera algo, lo cual no tiene sentido."
+    },
+    {
+      "id": "passive-11",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "The new procedure was explained to us by the manager.",
+      "d": [
+        "We were explained the new procedure by the manager.",
+        "The new procedure was explained us by the manager.",
+        "To us was explained the new procedure by the manager."
+      ],
+      "x": "<i>Explain</i> no admite dos objetos, así que la persona no puede ser el sujeto de la pasiva: <i>It was explained to us</i>. <i>We were explained</i> calca «nos explicaron», y sin <i>to</i> la frase tampoco funciona."
+    },
+    {
+      "id": "passive-12",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “They have offered my sister a scholarship.”",
+      "a": "My sister has been offered a scholarship.",
+      "d": [
+        "My sister has offered a scholarship.",
+        "A scholarship has been offered my sister.",
+        "My sister has been offering a scholarship."
+      ],
+      "x": "Con verbos de dos objetos como <i>offer</i>, lo más natural es que la persona sea el sujeto de la pasiva: <i>My sister has been offered a scholarship</i>. <i>My sister has offered</i> es activa y cambia el sentido, y si el sujeto es la cosa hace falta <i>to</i> (<i>offered to my sister</i>)."
+    },
+    {
+      "id": "passive-13",
+      "nv": "B2",
+      "q": "That email should ___ to the whole team yesterday, not just to me.",
+      "a": "have been sent",
+      "d": ["be sent", "have sent", "been sent"],
+      "x": "Para criticar algo que no se hizo en el pasado, en pasiva, se usa <i>should have been</i> + participio. <i>Should be sent</i> se refiere al presente o al futuro y choca con <i>yesterday</i>, y <i>should have sent</i> es activa (el correo no envía nada)."
+    },
+    {
+      "id": "passive-14",
+      "nv": "C1",
+      "q": "The thieves are thought ___ the country last night.",
+      "a": "to have left",
+      "d": ["to leave", "that they left", "having left"],
+      "x": "En la pasiva personal (<i>They are thought...</i>), un hecho anterior se expresa con infinitivo perfecto: <i>to have left</i>. <i>To leave</i> no encaja con <i>last night</i>, y <i>that</i> solo va con la construcción impersonal (<i>It is thought that they left</i>)."
+    },
+    {
+      "id": "passive-15",
+      "nv": "C1",
+      "q": "The accident ___ if the driver had been paying attention.",
+      "a": "could have been avoided",
+      "d": ["could have avoided", "could be avoided", "could avoid"],
+      "x": "Para una posibilidad pasada que no se cumplió, en pasiva, se usa <i>could have been</i> + participio. <i>The accident could have avoided</i> es activa (el accidente no evita nada), y <i>could be avoided</i> no se refiere al pasado."
+    },
+    {
+      "id": "passive-16",
+      "nv": "C1",
+      "q": "We were made ___ for two hours before anyone attended to us.",
+      "a": "to wait",
+      "d": ["wait", "waiting", "waited"],
+      "x": "En activa <i>make</i> va con infinitivo sin <i>to</i> (<i>They made us wait</i>), pero en pasiva el <i>to</i> reaparece: <i>We were made to wait</i>. <i>We were made wait</i> es el error más común."
+    },
+    {
+      "id": "passive-17",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "It is believed that the painting was stolen in the 1990s.",
+      "d": [
+        "It is believed the painting to have been stolen in the 1990s.",
+        "The painting is believed that it was stolen in the 1990s.",
+        "The painting is believed to be stolen in the 1990s."
+      ],
+      "x": "Hay dos formas correctas: <i>It is believed that</i> + oración, o <i>The painting is believed to have been stolen</i>. No se mezclan, y para un hecho pasado el infinitivo debe ser perfecto (<i>to have been stolen</i>), no <i>to be stolen</i>."
+    },
+    {
+      "id": "passive-18",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “People say that the new manager is very demanding.”",
+      "a": "The new manager is said to be very demanding.",
+      "d": [
+        "The new manager is said that he is very demanding.",
+        "The new manager says to be very demanding.",
+        "It is said the new manager to be very demanding."
+      ],
+      "x": "<i>People say that X...</i> puede pasar a <i>X is said to</i> + infinitivo o a <i>It is said that...</i>. No se mezcla <i>X is said</i> con <i>that</i>, y <i>The new manager says</i> cambiaría el sentido: sería él quien lo dice."
+    }
+  ]
+}

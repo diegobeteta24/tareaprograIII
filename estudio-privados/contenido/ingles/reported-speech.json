@@ -1,0 +1,161 @@
+{
+  "id": "reported-speech",
+  "grupo": "gramatica",
+  "titulo": "Reported speech",
+  "resumen": [
+    "<b>Cambio de tiempos:</b> si el verbo de reporte está en pasado, el tiempo retrocede un paso: <i>'I'm tired'</i> → <i>She said she was tired.</i> También <i>will</i> → <i>would</i>, <i>can</i> → <i>could</i>, <i>have done</i> → <i>had done</i>. Si lo dicho sigue siendo cierto, puede quedarse en presente.",
+    "<b>Pronombres, tiempo y lugar:</b> cambian según quién reporta y cuándo: <i>my</i> → <i>his/her</i>, <i>today</i> → <i>that day</i>, <i>tomorrow</i> → <i>the next day</i>, <i>yesterday</i> → <i>the day before</i>, <i>here</i> → <i>there</i>: <i>He said he would call her the next day.</i>",
+    "<b>Say / tell:</b> <i>tell</i> lleva a la persona sin preposición (<i>She told me that...</i>); <i>say</i> no (<i>She said that...</i>, <i>She said to me that...</i>). Nunca <i>said me</i> ni <i>explained me</i>.",
+    "<b>Preguntas indirectas:</b> orden de afirmación y sin <i>do/does/did</i>: <i>She asked me where I lived.</i> Las de sí o no llevan <i>if</i> o <i>whether</i>: <i>He asked if I had finished.</i> Delante de un infinitivo, solo <i>whether</i>: <i>She asked whether to bring anything.</i>",
+    "<b>Órdenes y peticiones:</b> <i>tell/ask</i> + persona + <i>(not) to</i> + infinitivo: <i>She told me to wait.</i> <i>He asked me not to tell anyone.</i>",
+    "<b>Verbos de reporte + to:</b> <i>promise</i> y <i>refuse</i> van con <i>to</i>; <i>advise</i> y <i>warn</i>, con persona + <i>to</i>: <i>He refused to sign.</i> <i>She advised me to rest.</i> <i>They warned us not to go.</i>",
+    "<b>Verbos de reporte + -ing:</b> <i>suggest</i>, <i>deny</i>, <i>accuse of</i>, <i>apologise for</i>, <i>insist on</i>: <i>He denied copying it.</i> <i>She accused him of lying.</i> <i>He insisted on paying.</i> <i>Suggest</i> también admite <i>that</i>: <i>She suggested that we leave early.</i>",
+    "<b>Deny / refuse:</b> <i>deny</i> niega un hecho (<i>He denied taking it</i>: dice que no lo tomó); <i>refuse</i> es negarse a hacer algo (<i>He refused to sign</i>: no quiso firmar)."
+  ],
+  "preguntas": [
+    {
+      "id": "reported-speech-01",
+      "nv": "B1",
+      "q": "She ___ me that the meeting had been cancelled.",
+      "a": "told",
+      "d": ["said", "explained", "spoke"],
+      "x": "<i>Tell</i> lleva a la persona directamente: <i>told me that...</i>. <i>Say</i> no admite a la persona sin <i>to</i> (<i>said to me</i>), y <i>explain</i> tampoco: se dice <i>explained to me</i>, no <i>explained me</i>."
+    },
+    {
+      "id": "reported-speech-02",
+      "nv": "B1",
+      "q": "Before the guests arrived, my mum told me ___ my room.",
+      "a": "to tidy",
+      "d": ["tidy", "tidying", "that I tidy"],
+      "x": "Una orden se reporta con <i>tell</i> + persona + <i>to</i> + infinitivo: <i>told me to tidy</i>. Con <i>that</i> haría falta un modal (<i>told me that I had to tidy</i>), y el verbo solo o con <i>-ing</i> no es posible."
+    },
+    {
+      "id": "reported-speech-03",
+      "nv": "B1",
+      "q": "Last Monday Lucía said, 'I'm working from home today.' → Lucía said she ___ from home that day.",
+      "a": "was working",
+      "d": ["is working", "has worked", "will work"],
+      "x": "Con el verbo de reporte en pasado, el presente continuo pasa a pasado continuo (<i>I'm working</i> → <i>she was working</i>) y <i>today</i> pasa a <i>that day</i>. <i>Is working</i> no sirve porque ese lunes ya pasó."
+    },
+    {
+      "id": "reported-speech-04",
+      "nv": "B1",
+      "q": "Which sentence is correct?",
+      "a": "Could you tell me where the nearest pharmacy is?",
+      "d": ["Could you tell me where is the nearest pharmacy?", "Could you tell me where the nearest pharmacy it is?", "Could you tell me where is it the nearest pharmacy?"],
+      "x": "En una pregunta indirecta (después de <i>Could you tell me</i>, <i>I wonder</i>, <i>She asked</i>) se usa el orden de afirmación, sujeto + verbo: <i>where the nearest pharmacy is</i>. <i>Where is the nearest pharmacy</i> conserva el orden de la pregunta directa, y el pronombre <i>it</i> sobra."
+    },
+    {
+      "id": "reported-speech-05",
+      "nv": "B2",
+      "q": "On Monday Carlos told Ana, 'I'll call you tomorrow.' On Wednesday Ana complained that Carlos had said he would call ___.",
+      "a": "her the next day",
+      "d": ["you tomorrow", "her tomorrow", "you the next day"],
+      "x": "En estilo indirecto cambian los pronombres según quién reporta (<i>you</i> → <i>her</i>) y las referencias de tiempo cuando ese día ya pasó: <i>tomorrow</i> → <i>the next day</i>. Dicho el miércoles, <i>tomorrow</i> señalaría el jueves."
+    },
+    {
+      "id": "reported-speech-06",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: 'Have you finished the report?' my boss asked me.",
+      "a": "My boss asked me if I had finished the report.",
+      "d": ["My boss asked me if had I finished the report.", "My boss asked me that I had finished the report.", "My boss asked to me if I had finished the report."],
+      "x": "Las preguntas de sí o no se reportan con <i>if</i> o <i>whether</i> y orden de afirmación: <i>asked me if I had finished</i>. No se invierte el verbo, <i>ask</i> no va con <i>that</i> y lleva a la persona sin <i>to</i>."
+    },
+    {
+      "id": "reported-speech-07",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: 'Please don't mention the new project to anyone,' my manager said to me.",
+      "a": "My manager asked me not to mention the new project to anyone.",
+      "d": ["My manager asked me don't mention the new project to anyone.", "My manager said me not to mention the new project to anyone.", "My manager asked me not mention the new project to anyone."],
+      "x": "Una petición negativa se reporta con <i>ask</i> + persona + <i>not to</i> + infinitivo: <i>asked me not to mention</i>. El imperativo <i>don't mention</i> no se conserva, y <i>say</i> no admite <i>said me</i>."
+    },
+    {
+      "id": "reported-speech-08",
+      "nv": "B2",
+      "q": "At the meeting, our team leader suggested ___ the deadline to Friday.",
+      "a": "moving",
+      "d": ["to move", "us to move", "that move"],
+      "x": "<i>Suggest</i> va con <i>-ing</i> (<i>suggested moving</i>) o con <i>that</i> + sujeto + verbo (<i>suggested that we move</i>). No admite <i>to</i> + infinitivo ni <i>suggest us to</i>, calco de «nos sugirió cambiar»."
+    },
+    {
+      "id": "reported-speech-09",
+      "nv": "B2",
+      "q": "The guide warned us ___ too close to the edge of the cliff.",
+      "a": "not to go",
+      "d": ["not going", "don't go", "of not going"],
+      "x": "<i>Warn</i> sigue el patrón persona + <i>(not) to</i> + infinitivo: <i>warned us not to go</i>. También existe <i>warned us against going</i>, pero no <i>of not going</i> ni el imperativo dentro de la oración."
+    },
+    {
+      "id": "reported-speech-10",
+      "nv": "B2",
+      "q": "When the teacher asked about the copied essay, Luis denied ___ it from the internet.",
+      "a": "copying",
+      "d": ["to copy", "to have copied", "copy"],
+      "x": "<i>Deny</i> va con <i>-ing</i> (o con <i>having</i> + participio): <i>denied copying</i>, <i>denied having copied</i>. No admite <i>to</i>, aunque en español digamos «negó haberlo copiado»."
+    },
+    {
+      "id": "reported-speech-11",
+      "nv": "B2",
+      "q": "During the meeting, Elena accused her colleague ___ her idea.",
+      "a": "of stealing",
+      "d": ["for stealing", "to steal", "about stealing"],
+      "x": "<i>Accuse</i> lleva <i>of</i> + <i>-ing</i>: <i>accused her colleague of stealing</i>. <i>For</i> es la preposición de <i>blame</i> (<i>blamed him for</i>), y por eso <i>accused ... for</i> es el error más común."
+    },
+    {
+      "id": "reported-speech-12",
+      "nv": "B2",
+      "q": "The receptionist apologised ___ us waiting for so long.",
+      "a": "for keeping",
+      "d": ["to keep", "of keeping", "for keep"],
+      "x": "<i>Apologise</i> lleva <i>for</i> + <i>-ing</i>: <i>apologised for keeping us waiting</i>; a la persona se la nombra con <i>to</i> (<i>apologised to us</i>). Después de una preposición nunca va el infinitivo."
+    },
+    {
+      "id": "reported-speech-13",
+      "nv": "B2",
+      "q": "We offered to split the bill, but my grandmother insisted ___ for everyone.",
+      "a": "on paying",
+      "d": ["to pay", "in paying", "paying"],
+      "x": "<i>Insist</i> va con <i>on</i> + <i>-ing</i> (<i>insisted on paying</i>) o con <i>that</i> + oración. La preposición es <i>on</i>, no <i>in</i>, aunque en español se diga «insistir en»."
+    },
+    {
+      "id": "reported-speech-14",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'No, I won't sign the new contract,' said the footballer.",
+      "a": "The footballer refused to sign the new contract.",
+      "d": ["The footballer denied signing the new contract.", "The footballer refused signing the new contract.", "The footballer denied to sign the new contract."],
+      "x": "Negarse a hacer algo es <i>refuse to</i> + infinitivo: <i>refused to sign</i>. <i>Deny</i> niega un hecho, así que <i>denied signing</i> significaría que dijo no haber firmado, no que se negó a firmar."
+    },
+    {
+      "id": "reported-speech-15",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'If I were you, I'd take a few days off,' the doctor said to me.",
+      "a": "The doctor advised me to take a few days off.",
+      "d": ["The doctor advised me taking a few days off.", "The doctor insisted me to take a few days off.", "The doctor advised to me to take a few days off."],
+      "x": "<i>If I were you, I'd...</i> es un consejo y se reporta con <i>advise</i> + persona + <i>to</i> + infinitivo: <i>advised me to take</i>. <i>Advise</i> admite <i>-ing</i> solo sin persona (<i>advised taking</i>), e <i>insist</i> nunca lleva persona + <i>to</i>."
+    },
+    {
+      "id": "reported-speech-16",
+      "nv": "C1",
+      "q": "Last year Mia told me she ___ to Scotland, so this summer I took her to Edinburgh.",
+      "a": "had never been",
+      "d": ["has never been", "has never gone", "was never"],
+      "x": "El <i>present perfect</i> (<i>I've never been</i>) pasa a <i>past perfect</i> en estilo indirecto: <i>she had never been</i>. Aquí el cambio es obligatorio, porque después del viaje a Edimburgo <i>has never been</i> ya no es verdad."
+    },
+    {
+      "id": "reported-speech-17",
+      "nv": "C1",
+      "q": "Before the party, Sara asked me ___ to bring anything.",
+      "a": "whether",
+      "d": ["if", "that", "what"],
+      "x": "Delante de un infinitivo solo se usa <i>whether</i>: <i>asked me whether to bring anything</i>. <i>If</i> funciona con una oración completa (<i>asked if she should bring anything</i>), pero no delante de <i>to</i>."
+    },
+    {
+      "id": "reported-speech-18",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "She promised to call me as soon as she landed.",
+      "d": ["She suggested to take a taxi from the airport.", "She refused helping us with the luggage.", "She advised me going straight home."],
+      "x": "<i>Promise</i> va con <i>to</i> + infinitivo (<i>promised to call</i>), igual que <i>refuse</i> (<i>refused to help</i>). <i>Suggest</i> pide <i>-ing</i> o <i>that</i> (<i>suggested taking</i>), y <i>advise</i> con persona pide <i>to</i> (<i>advised me to go</i>)."
+    }
+  ]
+}

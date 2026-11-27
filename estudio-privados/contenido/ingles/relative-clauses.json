@@ -1,0 +1,161 @@
+{
+  "id": "relative-clauses",
+  "grupo": "gramatica",
+  "titulo": "Relative clauses",
+  "resumen": [
+    "<b>Who / which / that:</b> <i>who</i> para personas y <i>which</i> para cosas; en las especificativas (<i>defining</i>) también vale <i>that</i>: <i>The man who/that called you is here.</i>",
+    "<b>Non-defining:</b> añaden información extra, van entre comas, nunca llevan <i>that</i> y no se puede omitir el pronombre: <i>My sister, who lives in London, is a nurse.</i>",
+    "<b>Whose, where, when, why:</b> posesión, lugar, tiempo y razón: <i>the student whose laptop was stolen</i>, <i>the café where we met</i>, <i>the day when I started</i>, <i>the reason why I'm calling</i>.",
+    "<b>Omisión del pronombre:</b> en las <i>defining</i> se puede quitar cuando es objeto (<i>the man I spoke to</i>), nunca cuando es sujeto (<i>the man who lives next door</i>). Tampoco se repite el objeto: no <i>the man I spoke to him</i>.",
+    "<b>Preposición + whom/which:</b> en registro formal la preposición va delante: <i>the colleague with whom I share an office</i>, <i>the town in which I grew up</i>, <i>three brothers, all of whom live abroad</i>. Nunca preposición + <i>that</i>.",
+    "<b>Which para toda la oración:</b> se refiere a todo lo dicho antes y va tras coma: <i>He passed all his exams, which surprised everyone.</i> No se usa <i>what</i>, calco de «lo que».",
+    "<b>What = the thing that:</b> <i>What I need is a cup of tea.</i> Pero después de <i>all</i>, <i>everything</i> o <i>nothing</i> va <i>that</i> o nada: <i>All (that) I need</i>, no <i>all what</i>.",
+    "<b>Cláusulas reducidas:</b> <i>-ing</i> para el sentido activo (<i>passengers travelling to Madrid</i>) y participio para el pasivo (<i>houses built in the 1920s</i>)."
+  ],
+  "preguntas": [
+    {
+      "id": "relative-clauses-01",
+      "nv": "B1",
+      "q": "That's the student ___ laptop was stolen in the library.",
+      "a": "whose",
+      "d": ["who's", "who", "which"],
+      "x": "<i>Whose</i> indica posesión («cuyo»): <i>the student whose laptop...</i>. <i>Who's</i> suena igual pero es <i>who is</i>, y ni <i>who</i> ni <i>which</i> pueden ir delante del sustantivo poseído."
+    },
+    {
+      "id": "relative-clauses-02",
+      "nv": "B1",
+      "q": "This is the café ___ we first met.",
+      "a": "where",
+      "d": ["which", "what", "when"],
+      "x": "Para un lugar sin preposición se usa <i>where</i>: <i>the café where we first met</i>. Con <i>which</i> haría falta la preposición (<i>the café which we first met in</i>), y <i>when</i> es para momentos."
+    },
+    {
+      "id": "relative-clauses-03",
+      "nv": "B1",
+      "q": "My sister, ___ lives in London, works as a nurse.",
+      "a": "who",
+      "d": ["that", "which", "she"],
+      "x": "En una cláusula explicativa (<i>non-defining</i>, entre comas) se usa <i>who</i> para personas y nunca <i>that</i>. <i>Which</i> es para cosas, y <i>she</i> no puede unir las dos oraciones."
+    },
+    {
+      "id": "relative-clauses-04",
+      "nv": "B1",
+      "q": "I'll never forget the day ___ I started university.",
+      "a": "when",
+      "d": ["which", "where", "what"],
+      "x": "Para un momento se usa <i>when</i>: <i>the day when I started</i> (también <i>the day I started</i>). <i>Which</i> necesitaría preposición (<i>the day on which</i>), y <i>where</i> es para lugares."
+    },
+    {
+      "id": "relative-clauses-05",
+      "nv": "B2",
+      "q": "The reason ___ I'm calling is to confirm your appointment.",
+      "a": "why",
+      "d": ["because", "which", "for what"],
+      "x": "Después de <i>the reason</i> se usa <i>why</i> (o <i>that</i>, o nada): <i>the reason why I'm calling</i>. <i>Because</i> es un calco de «la razón porque», y <i>for what</i> no funciona como relativo."
+    },
+    {
+      "id": "relative-clauses-06",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "The man I spoke to on the phone was very helpful.",
+      "d": ["The man I spoke to him on the phone was very helpful.", "The man spoke to me on the phone was very helpful.", "The man to I spoke on the phone was very helpful."],
+      "x": "En una cláusula <i>defining</i> se puede omitir el pronombre cuando es objeto: <i>the man (who) I spoke to</i>. No se repite el objeto (<i>him</i>), no se omite si es sujeto (<i>the man who spoke to me</i>) y tras una preposición haría falta <i>whom</i>."
+    },
+    {
+      "id": "relative-clauses-07",
+      "nv": "B2",
+      "q": "Last summer we stayed in Antigua, ___ my grandparents used to live.",
+      "a": "where",
+      "d": ["which", "that", "in that"],
+      "x": "Entre comas también se usa <i>where</i> para lugares: <i>Antigua, where my grandparents used to live</i>. <i>Which</i> necesitaría la preposición (<i>in which</i>), y <i>that</i> nunca va entre comas ni detrás de una preposición."
+    },
+    {
+      "id": "relative-clauses-08",
+      "nv": "B2",
+      "q": "Sam passed all his exams, ___ surprised everyone.",
+      "a": "which",
+      "d": ["what", "that", "who"],
+      "x": "Para referirse a toda la oración anterior se usa <i>which</i> tras coma: <i>..., which surprised everyone</i>. <i>What</i> es un calco de «lo que», y <i>that</i> no puede ir después de coma."
+    },
+    {
+      "id": "relative-clauses-09",
+      "nv": "B2",
+      "q": "___ I really need right now is a cup of tea.",
+      "a": "What",
+      "d": ["That", "Which", "The which"],
+      "x": "<i>What</i> significa «lo que» (<i>the thing that</i>) y no lleva antecedente: <i>What I need is...</i>. <i>That</i> y <i>which</i> necesitan un sustantivo delante, y <i>the which</i> no existe."
+    },
+    {
+      "id": "relative-clauses-10",
+      "nv": "B2",
+      "q": "The colleague with ___ I share an office is on holiday this week.",
+      "a": "whom",
+      "d": ["who", "that", "which"],
+      "x": "Después de una preposición se usa <i>whom</i> para personas: <i>with whom I share an office</i>. <i>That</i> nunca va tras preposición, <i>which</i> es para cosas y <i>with who</i> no se acepta en registro cuidado."
+    },
+    {
+      "id": "relative-clauses-11",
+      "nv": "B2",
+      "q": "It's a company ___ products are sold all over the world.",
+      "a": "whose",
+      "d": ["which", "that its", "who's"],
+      "x": "<i>Whose</i> también expresa posesión con cosas y organizaciones: <i>a company whose products...</i>. <i>That its</i> es un calco de «que sus productos», y <i>which</i> no puede ir delante del sustantivo poseído."
+    },
+    {
+      "id": "relative-clauses-12",
+      "nv": "B2",
+      "q": "The town ___ I grew up has changed a lot since then.",
+      "a": "in which",
+      "d": ["in that", "which", "in where"],
+      "x": "En registro formal, la preposición va delante de <i>which</i>: <i>the town in which I grew up</i> (o <i>where I grew up</i>). <i>That</i> nunca va detrás de preposición, y sin <i>in</i> falta la preposición de <i>grow up in</i>."
+    },
+    {
+      "id": "relative-clauses-13",
+      "nv": "B2",
+      "q": "Passengers ___ to Madrid should go to gate 12.",
+      "a": "travelling",
+      "d": ["travelled", "who travelling", "are travelling"],
+      "x": "Una cláusula de relativo activa se puede reducir a <i>-ing</i>: <i>passengers (who are) travelling to Madrid</i>. Si se conserva <i>who</i> hace falta el verbo (<i>who are travelling</i>), y el participio <i>travelled</i> tendría sentido pasivo."
+    },
+    {
+      "id": "relative-clauses-14",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'The houses which were built in the 1920s have now been renovated.'",
+      "a": "The houses built in the 1920s have now been renovated.",
+      "d": ["The houses building in the 1920s have now been renovated.", "The houses were built in the 1920s have now been renovated.", "The houses which built in the 1920s have now been renovated."],
+      "x": "Una cláusula pasiva se reduce al participio: <i>the houses (which were) built</i>. <i>Building</i> tendría sentido activo, y <i>which built</i> diría que las casas construyeron algo."
+    },
+    {
+      "id": "relative-clauses-15",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'Not all the students went to the review session, but the ones that went passed the exam.'",
+      "a": "The students who went to the review session passed the exam.",
+      "d": ["The students, who went to the review session, passed the exam.", "The students, that went to the review session, passed the exam.", "The students which went to the review session passed the exam."],
+      "x": "Sin comas (<i>defining</i>), la cláusula identifica de qué estudiantes hablamos: los que fueron aprobaron. Con comas significaría que todos fueron y todos aprobaron; además, <i>that</i> no va entre comas y <i>which</i> no se usa para personas."
+    },
+    {
+      "id": "relative-clauses-16",
+      "nv": "C1",
+      "q": "I've got three older brothers, ___ live abroad.",
+      "a": "all of whom",
+      "d": ["all of who", "all of which", "all them"],
+      "x": "Con un cuantificador + <i>of</i> (<i>all</i>, <i>some</i>, <i>most</i>, <i>none</i>) se usa <i>whom</i> para personas y <i>which</i> para cosas: <i>all of whom live abroad</i>. Después de <i>of</i> no va <i>who</i>, y <i>which</i> no sirve para personas."
+    },
+    {
+      "id": "relative-clauses-17",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "My laptop, which I bought only a year ago, has already stopped working.",
+      "d": ["My laptop, that I bought only a year ago, has already stopped working.", "My laptop, I bought only a year ago, has already stopped working.", "My laptop, which I bought it only a year ago, has already stopped working."],
+      "x": "En una cláusula <i>non-defining</i> el pronombre no se puede omitir ni cambiar por <i>that</i>, aunque sea objeto: <i>My laptop, which I bought...</i>. Tampoco se repite el objeto con <i>it</i>."
+    },
+    {
+      "id": "relative-clauses-18",
+      "nv": "C1",
+      "q": "The speed ___ technology is changing makes it hard to keep up.",
+      "a": "at which",
+      "d": ["in which", "which", "at what"],
+      "x": "Algunos sustantivos llevan su propia preposición delante de <i>which</i>: <i>at a speed</i> → <i>the speed at which</i>. Sin preposición la cláusula queda incompleta, e <i>in which</i> no combina con <i>speed</i>."
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "id": "futures",
+  "grupo": "gramatica",
+  "titulo": "Future forms",
+  "resumen": [
+    "<b>will</b> para decisiones tomadas en el momento de hablar, ofrecimientos y predicciones de opinión: <i>Oh, in that case I'll help you.</i>",
+    "<b>be going to</b> para planes decididos antes de hablar y predicciones con pruebas a la vista: <i>I've bought the eggs because I'm going to make a cake.</i>",
+    "<b>Present continuous</b> para planes ya organizados y <b>present simple</b> para horarios: <i>I'm meeting some friends on Saturday. What time does your train leave?</i>",
+    "<b>Future continuous</b> (<i>will be + -ing</i>) para una acción en curso en un momento futuro o para preguntar con cortesía por planes: <i>This time tomorrow I'll be lying on a beach. Will you be using the car tonight?</i>",
+    "<b>Future perfect</b> (<i>will have + participio</i>) para lo que ya habrá terminado antes de un momento futuro: <i>When you arrive, I'll have left.</i>",
+    "<b>be about to</b> (a punto de, sin hora concreta), <b>be due to</b> (programado) y <b>be bound to</b> (seguro que pasa): <i>The film is about to start. The meeting is due to start at 9.30. He's bound to break it.</i>",
+    "Tras <b>when, as soon as, until, by the time</b> el futuro va en presente o present perfect, nunca con <i>will</i>: <i>I'll lend it to you when I've finished it.</i>",
+    "<b>Shall I/we...?</b> para ofrecer y sugerir: <i>Shall I carry it for you? Let's take a break, shall we?</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "futures-01",
+      "nv": "B1",
+      "q": "That bag looks heavy. ___ carry it for you?",
+      "a": "Shall I",
+      "d": ["Do I", "Am I going to", "Do you want I"],
+      "x": "Para ofrecer ayuda se usa <i>Shall I...?</i> + infinitivo. <i>Do I carry it?</i> calca «¿te la llevo?», y <i>Do you want I...</i> es incorrecto: habría que decir <i>Do you want me to carry it?</i>"
+    },
+    {
+      "id": "futures-02",
+      "nv": "B1",
+      "q": "I've already bought the eggs and the flour because ___ a cake for Sara's birthday on Saturday.",
+      "a": "I'm going to make",
+      "d": ["I'll make", "I make", "I'd make"],
+      "x": "Para un plan decidido antes de hablar, con pruebas de que ya se preparó (<i>I've already bought the eggs</i>), se usa <i>be going to</i>. <i>I'll make</i> sonaría a una decisión tomada en ese momento, y <i>I make</i> calca «el sábado hago un pastel»."
+    },
+    {
+      "id": "futures-03",
+      "nv": "B1",
+      "q": "What ___ this weekend? — I'm meeting some friends from university.",
+      "a": "are you doing",
+      "d": ["do you do", "you are doing", "did you do"],
+      "x": "Para preguntar por planes ya organizados se usa present continuous: <i>What are you doing this weekend?</i> <i>What do you do?</i> pregunta por hábitos o por la profesión, y en una pregunta el auxiliar va antes del sujeto."
+    },
+    {
+      "id": "futures-04",
+      "nv": "B1",
+      "q": "Which sentence is correct?",
+      "a": "What time does your train leave tomorrow?",
+      "d": [
+        "What time leaves your train tomorrow?",
+        "What time does your train leaves tomorrow?",
+        "What time your train leaves tomorrow?"
+      ],
+      "x": "Para horarios se usa present simple, también con sentido futuro, y la pregunta se forma con <i>does</i> + sujeto + infinitivo sin -s. <i>What time leaves your train?</i> copia el orden del español «¿a qué hora sale tu tren?»."
+    },
+    {
+      "id": "futures-05",
+      "nv": "B2",
+      "q": "Why are you getting the ladder out? — ___ clean the windows. — Oh, in that case ___ help you.",
+      "a": "I'm going to / I'll",
+      "d": ["I'll / I'll", "I'll / I'm going to", "I'm going to / I'd"],
+      "x": "Quien saca la escalera ya había decidido limpiar las ventanas, así que usa <i>be going to</i>. Quien responde <i>in that case</i> decide en ese momento, y para eso se usa <i>will</i>: <i>I'll help you</i>."
+    },
+    {
+      "id": "futures-06",
+      "nv": "B2",
+      "q": "This time tomorrow, while you're sitting in the office, I ___ on a beach in Cancún.",
+      "a": "will be lying",
+      "d": ["will lie", "lie", "will have lain"],
+      "x": "Para una acción que estará en curso en un momento concreto del futuro (<i>this time tomorrow</i>) se usa future continuous: <i>I'll be lying on a beach</i>. <i>Will lie</i> presenta la acción como un hecho completo, y <i>will have lain</i> diría que ya habrá terminado."
+    },
+    {
+      "id": "futures-07",
+      "nv": "B2",
+      "q": "Next month I ___ at this company for exactly five years.",
+      "a": "will have worked",
+      "d": ["will work", "work", "have worked"],
+      "x": "Para una duración que se habrá completado en un momento futuro se usa future perfect: <i>Next month I'll have worked here for five years</i>. <i>Have worked</i> se refiere a hoy, no al mes que viene, y <i>will work</i> no expresa el tiempo acumulado."
+    },
+    {
+      "id": "futures-08",
+      "nv": "B2",
+      "q": "Hurry up! The film is ___ start.",
+      "a": "about to",
+      "d": ["about", "near to", "on the point to"],
+      "x": "<i>Be about to</i> + infinitivo significa «estar a punto de» y se usa para algo inminente. <i>On the point</i> va con <i>of</i> + <i>-ing</i> (<i>on the point of starting</i>), y <i>about</i> sin <i>to</i> no forma esta estructura."
+    },
+    {
+      "id": "futures-09",
+      "nv": "B2",
+      "q": "I'll lend you the book when I ___ it.",
+      "a": "have finished",
+      "d": ["will finish", "will have finished", "finished"],
+      "x": "Tras <i>when</i> con sentido futuro no va <i>will</i>, sino presente o present perfect; el perfecto subraya que primero lo termino: <i>when I've finished it</i>. <i>Finished</i> es pasado y no encaja con <i>I'll lend</i>."
+    },
+    {
+      "id": "futures-10",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "When I finish the course, I'll be able to apply for better jobs.",
+      "d": [
+        "When I will finish the course, I'll be able to apply for better jobs.",
+        "When I finish the course, I'll can apply for better jobs.",
+        "When I'll finish the course, I could apply for better jobs."
+      ],
+      "x": "Tras <i>when</i> el futuro se expresa en presente (<i>When I finish</i>), y como <i>can</i> no tiene futuro se usa <i>will be able to</i>. <i>I'll can</i> es un error típico al traducir «podré»."
+    },
+    {
+      "id": "futures-11",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “The meeting is scheduled to start at 9.30.”",
+      "a": "The meeting is due to start at 9.30.",
+      "d": [
+        "The meeting is about to start at 9.30.",
+        "The meeting is bound to start at 9.30.",
+        "The meeting is due starting at 9.30."
+      ],
+      "x": "<i>Be due to</i> + infinitivo significa que algo está programado para una hora. <i>Be about to</i> («a punto de») no se usa con una hora concreta, y <i>be bound to</i> expresa certeza, no programación."
+    },
+    {
+      "id": "futures-12",
+      "nv": "B2",
+      "q": "We can't start the meeting until Mr Ortiz ___ — he's bringing the projector.",
+      "a": "arrives",
+      "d": ["will arrive", "is going to arrive", "would arrive"],
+      "x": "Tras <i>until</i> con sentido futuro se usa presente: <i>until Mr Ortiz arrives</i>. <i>Will arrive</i> intenta traducir el subjuntivo del español («hasta que llegue»), pero en inglés la oración de tiempo no lleva <i>will</i>."
+    },
+    {
+      "id": "futures-13",
+      "nv": "B2",
+      "q": "Let's take a short break, ___ we?",
+      "a": "shall",
+      "d": ["will", "don't", "do"],
+      "x": "La pregunta de confirmación de <i>Let's...</i> es siempre <i>shall we?</i>: <i>Let's take a break, shall we?</i> Con <i>let's</i> no se usan <i>will we</i>, <i>don't we</i> ni <i>do we</i>."
+    },
+    {
+      "id": "futures-14",
+      "nv": "C1",
+      "q": "___ the car this evening? If not, could I borrow it?",
+      "a": "Will you be using",
+      "d": ["Do you use", "Will you have used", "Would you use"],
+      "x": "El future continuous sirve para preguntar con cortesía por los planes de alguien sin presionarlo: <i>Will you be using the car this evening?</i> <i>Do you use</i> pregunta por un hábito, y <i>Will you have used</i> preguntaría si ya habrá terminado de usarlo."
+    },
+    {
+      "id": "futures-15",
+      "nv": "C1",
+      "q": "Don't lend Mark your laptop — he's ___ break it. He breaks everything.",
+      "a": "bound to",
+      "d": ["due to", "supposed to", "used to"],
+      "x": "<i>Be bound to</i> + infinitivo significa «seguro que va a pasar», según lo que sabemos (<i>He breaks everything</i>). <i>Be due to</i> es para lo programado, <i>be supposed to</i> para lo que se espera que alguien haga, y <i>be used to</i> («estar acostumbrado») pide <i>-ing</i>."
+    },
+    {
+      "id": "futures-16",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I'm leaving at six, and you're arriving at seven.”",
+      "a": "When you arrive, I'll have left.",
+      "d": [
+        "When you will arrive, I'll have left.",
+        "When you arrive, I'll leave.",
+        "When you arrive, I'll be leaving."
+      ],
+      "x": "Si me voy a las seis y tú llegas a las siete, cuando llegues ya me habré ido: future perfect (<i>I'll have left</i>). <i>I'll leave</i> e <i>I'll be leaving</i> situarían mi salida en el momento de tu llegada, y tras <i>when</i> no se usa <i>will</i>."
+    },
+    {
+      "id": "futures-17",
+      "nv": "C1",
+      "q": "After months of losses, the company is on the point of ___ for bankruptcy.",
+      "a": "filing",
+      "d": ["file", "to file", "filed"],
+      "x": "<i>Be on the point of</i> + <i>-ing</i> equivale a <i>be about to</i> + infinitivo («estar a punto de»). Como <i>of</i> es una preposición, el verbo va en <i>-ing</i>; por eso no sirven <i>file</i> ni <i>to file</i>."
+    },
+    {
+      "id": "futures-18",
+      "nv": "C1",
+      "q": "The train ___ leave at 6.15, but it's been delayed by twenty minutes.",
+      "a": "was due to",
+      "d": ["was bound to", "is due", "was on the point to"],
+      "x": "<i>Was due to</i> indica lo que estaba programado y no se cumplió (<i>but it's been delayed</i>). <i>Was bound to</i> expresa certeza, lo que contradice el retraso; <i>is due</i> necesita <i>to</i>, y <i>on the point</i> va con <i>of</i> + <i>-ing</i>."
+    }
+  ]
+}

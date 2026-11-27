@@ -1,0 +1,161 @@
+{
+  "id": "articles-quantifiers",
+  "grupo": "gramatica",
+  "titulo": "Articles and quantifiers",
+  "resumen": [
+    "<b>A / an:</b> se elige por el sonido, no por la letra: <i>an hour</i>, <i>an MBA</i>, <i>a university</i>. Con profesiones el artículo es obligatorio: <i>She's an engineer.</i>",
+    "<b>Artículo cero para generalizar:</b> los incontables y los plurales en sentido general van sin <i>the</i>: <i>Health is more important than money.</i> <i>Dogs are loyal.</i> Lo mismo con las comidas: <i>have lunch</i>.",
+    "<b>School, prison, university, work:</b> sin artículo cuando se habla de su función (<i>He's in prison</i>, <i>She's at work</i>); con <i>the</i> cuando es el edificio: <i>She visits the prison every Sunday.</i> En inglés británico también se dice <i>in hospital</i>.",
+    "<b>The obligatorio:</b> con superlativos (<i>the worst meal</i>) y con océanos, ríos, cordilleras y países plurales o con <i>States/Kingdom/Republic</i> (<i>the Pacific</i>, <i>the Andes</i>, <i>the United States</i>). La mayoría de países, ciudades y lagos van sin artículo: <i>Guatemala</i>, <i>Lake Atitlán</i>.",
+    "<b>Much, many y los incontables:</b> <i>much</i> con incontables y <i>many</i> con contables, sobre todo en preguntas y negativas; en afirmativas suena más natural <i>a lot of</i>. Son incontables <i>advice</i>, <i>information</i>, <i>news</i>, <i>furniture</i> y <i>luggage</i>: <i>How much luggage?</i>, <i>The news was good.</i>",
+    "<b>Few / a few, little / a little:</b> sin <i>a</i> es negativo (casi nada) y con <i>a</i>, positivo (algo); <i>few</i> va con contables y <i>little</i> con incontables: <i>I've got a few friends there.</i> <i>Very few people came.</i>",
+    "<b>Some, any, no, none, enough:</b> <i>some</i> en afirmativas y ofrecimientos, <i>any</i> en negativas y preguntas; <i>no</i> va con sustantivo (<i>I've got no time</i>) y <i>none</i> va solo (<i>There's none left</i>). <i>Enough</i> va después del adjetivo: <i>big enough</i>.",
+    "<b>Each, every, whole, neither, either:</b> <i>each of</i> + plural con verbo en singular (nunca <i>every of</i>); <i>the whole morning</i>; para dos, <i>neither</i> = ninguno y <i>either</i> = cualquiera: <i>Neither of them was free.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "articles-quantifiers-01",
+      "nv": "B1",
+      "q": "This room isn't ___ for twenty people.",
+      "a": "big enough",
+      "d": ["enough big", "too much big", "so big enough"],
+      "x": "<i>Enough</i> va después de un adjetivo (<i>big enough</i>) y antes de un sustantivo (<i>enough chairs</i>). <i>Enough big</i> es el error más común, y <i>too</i> no lleva <i>much</i> delante de un adjetivo."
+    },
+    {
+      "id": "articles-quantifiers-02",
+      "nv": "B1",
+      "q": "Could you give me ___ information about the course?",
+      "a": "some",
+      "d": ["an", "a few", "many"],
+      "x": "<i>Information</i> es incontable en inglés: no lleva <i>a/an</i>, no tiene plural y no va con <i>a few</i> ni <i>many</i>. Se dice <i>some information</i> o <i>a piece of information</i>."
+    },
+    {
+      "id": "articles-quantifiers-03",
+      "nv": "B1",
+      "q": "How ___ luggage are you taking on the trip?",
+      "a": "much",
+      "d": ["many", "lots", "few"],
+      "x": "<i>Luggage</i> es incontable, así que se pregunta con <i>How much</i>. <i>How many</i> es para contables (<i>How many bags?</i>), y <i>lots</i> o <i>few</i> no forman preguntas con <i>how</i>."
+    },
+    {
+      "id": "articles-quantifiers-04",
+      "nv": "B1",
+      "q": "What time do you usually have ___ on weekdays?",
+      "a": "lunch",
+      "d": ["the lunch", "a lunch", "the lunches"],
+      "x": "Las comidas del día (<i>breakfast</i>, <i>lunch</i>, <i>dinner</i>) van sin artículo cuando se habla de ellas en general: <i>have lunch</i>. <i>The lunch</i> es un calco de «el almuerzo»."
+    },
+    {
+      "id": "articles-quantifiers-05",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "She's an honest person with a university degree and an MBA.",
+      "d": ["She's a honest person with an university degree and an MBA.", "She's an honest person with an university degree and a MBA.", "She's a honest person with a university degree and a MBA."],
+      "x": "<i>A</i> o <i>an</i> se elige por el sonido inicial, no por la letra: <i>an honest</i> (la h no suena), <i>a university</i> (empieza con sonido /j/) y <i>an MBA</i> (se pronuncia /em/)."
+    },
+    {
+      "id": "articles-quantifiers-06",
+      "nv": "B2",
+      "q": "For most people, ___ is more important than money.",
+      "a": "health",
+      "d": ["the health", "a health", "the healthy"],
+      "x": "Para hablar de algo en general, los incontables van sin artículo: <i>Health is more important than money</i>. <i>The health</i> es un calco de «la salud»."
+    },
+    {
+      "id": "articles-quantifiers-07",
+      "nv": "B2",
+      "q": "Honestly, that was ___ meal I've ever had.",
+      "a": "the worst",
+      "d": ["the most bad", "the worse", "a worst"],
+      "x": "Los superlativos llevan <i>the</i>, y <i>bad</i> es irregular: <i>bad</i> → <i>worse</i> → <i>the worst</i>. <i>The worse</i> es el comparativo, y <i>a worst</i> no es posible."
+    },
+    {
+      "id": "articles-quantifiers-08",
+      "nv": "B2",
+      "q": "I've got ___ friends in Madrid, so I won't feel lonely there.",
+      "a": "a few",
+      "d": ["few", "a little", "little"],
+      "x": "<i>A few</i> («algunos») tiene sentido positivo y va con contables: <i>a few friends</i>. <i>Few</i> sin <i>a</i> significa «casi ninguno», lo que contradice <i>I won't feel lonely</i>; <i>little</i> es para incontables."
+    },
+    {
+      "id": "articles-quantifiers-09",
+      "nv": "B2",
+      "q": "There's ___ milk left – enough for your coffee, anyway.",
+      "a": "a little",
+      "d": ["little", "a few", "few"],
+      "x": "<i>A little</i> («un poco») va con incontables y tiene sentido positivo: queda algo de leche. <i>Little</i> sin <i>a</i> significa «casi nada», lo que contradice <i>enough for your coffee</i>; <i>a few</i> es para contables."
+    },
+    {
+      "id": "articles-quantifiers-10",
+      "nv": "B2",
+      "q": "I'd love to help, but I've got ___ free time this week.",
+      "a": "no",
+      "d": ["none", "any", "not any"],
+      "x": "<i>No</i> va delante de un sustantivo con el verbo en afirmativa: <i>I've got no free time</i> (= <i>I haven't got any</i>). <i>None</i> se usa sin sustantivo (<i>I've got none</i>), y <i>any</i> necesitaría un verbo negativo."
+    },
+    {
+      "id": "articles-quantifiers-11",
+      "nv": "B2",
+      "q": "I spent the ___ morning answering emails.",
+      "a": "whole",
+      "d": ["all", "every", "complete"],
+      "x": "<i>Whole</i> va entre el artículo y el sustantivo: <i>the whole morning</i> (= <i>all morning</i>). <i>All</i> nunca va detrás de <i>the</i>, y <i>every</i> no significa «entero»."
+    },
+    {
+      "id": "articles-quantifiers-12",
+      "nv": "B2",
+      "q": "I asked my two brothers for help, but ___ of them was free.",
+      "a": "neither",
+      "d": ["either", "both", "any"],
+      "x": "Para decir «ninguno de los dos» se usa <i>neither</i>: <i>neither of them was free</i>. <i>Either</i> significa «cualquiera de los dos», <i>both</i> exigiría <i>were</i> y no encaja con <i>but</i>, y <i>any</i> es para más de dos."
+    },
+    {
+      "id": "articles-quantifiers-13",
+      "nv": "B2",
+      "q": "The news ___ better than we expected.",
+      "a": "was",
+      "d": ["were", "are", "have been"],
+      "x": "<i>News</i> termina en -s, pero es incontable y va con verbo en singular: <i>The news was good</i>. Lo mismo pasa con <i>advice</i>, <i>information</i> y <i>furniture</i>, que además no tienen plural."
+    },
+    {
+      "id": "articles-quantifiers-14",
+      "nv": "C1",
+      "q": "Her husband is in ___, so she goes to ___ every Sunday to visit him.",
+      "a": "prison / the prison",
+      "d": ["the prison / the prison", "prison / prison", "the prison / prison"],
+      "x": "<i>Prison</i>, <i>school</i> o <i>university</i> van sin artículo cuando se habla de su función: él está preso, <i>in prison</i>. Con <i>the</i> se habla del edificio, como cuando ella va de visita: <i>goes to the prison</i>; <i>goes to prison</i> significaría que la encarcelan."
+    },
+    {
+      "id": "articles-quantifiers-15",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "After a week at Lake Atitlán, we flew to the United States.",
+      "d": ["After a week at the Lake Atitlán, we flew to the United States.", "After a week at Lake Atitlán, we flew to United States.", "After a week at the Lake Atitlán, we flew to United States."],
+      "x": "Los lagos con la palabra <i>Lake</i> van sin artículo (<i>Lake Atitlán</i>), pero los países con nombre plural o con <i>States</i>, <i>Kingdom</i> o <i>Republic</i> llevan <i>the</i>: <i>the United States</i>, <i>the UK</i>."
+    },
+    {
+      "id": "articles-quantifiers-16",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'Hardly anyone came to the meeting.'",
+      "a": "Very few people came to the meeting.",
+      "d": ["A few people came to the meeting.", "Very little people came to the meeting.", "Few of people came to the meeting."],
+      "x": "<i>Few</i> sin <i>a</i> significa «casi nadie», igual que <i>hardly anyone</i>. <i>A few</i> tiene sentido positivo (vinieron algunos), <i>little</i> es para incontables y <i>few of</i> necesita un determinante (<i>few of the people</i>)."
+    },
+    {
+      "id": "articles-quantifiers-17",
+      "nv": "C1",
+      "q": "___ of the candidates was interviewed for twenty minutes.",
+      "a": "Each",
+      "d": ["Every", "All", "Whole"],
+      "x": "<i>Each of</i> + plural va con verbo en singular: <i>Each of the candidates was interviewed</i>. <i>Every</i> no puede ir seguido de <i>of</i>, y <i>All of the candidates</i> exigiría <i>were</i>."
+    },
+    {
+      "id": "articles-quantifiers-18",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'Marta doesn't eat meat, and Pablo doesn't eat it either.'",
+      "a": "Neither Marta nor Pablo eats meat.",
+      "d": ["Either Marta or Pablo eats meat.", "Neither Marta nor Pablo doesn't eat meat.", "Neither of Marta and Pablo eat meat."],
+      "x": "<i>Neither ... nor</i> niega a los dos y va con el verbo en afirmativa: <i>Neither Marta nor Pablo eats meat</i>. Añadir <i>doesn't</i> crea una doble negación, y <i>either ... or</i> diría que uno de los dos sí come carne."
+    }
+  ]
+}

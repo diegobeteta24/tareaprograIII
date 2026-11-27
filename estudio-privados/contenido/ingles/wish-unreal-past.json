@@ -1,0 +1,128 @@
+{
+  "id": "wish-unreal-past",
+  "grupo": "gramatica",
+  "titulo": "Wish, if only and unreal past",
+  "resumen": [
+    "<b>wish / if only + past simple</b>: deseo sobre el presente: <i>I wish I had more time.</i>; para capacidad, <i>could</i>: <i>I wish I could drive.</i>",
+    "<b>wish / if only + past perfect</b>: lamento sobre el pasado: <i>I wish I hadn't said that.</i>, <i>If only I had listened!</i>; para capacidad, <i>could have</i>: <i>I wish I could have come.</i>",
+    "<b>wish + would</b>: queja por lo que otro hace o deseo de un cambio que no controlamos: <i>I wish you would stop interrupting.</i> Nunca con el mismo sujeto: no <i>I wish I would</i>.",
+    "<b>would rather</b> + infinitivo sin <i>to</i> si el sujeto es el mismo (<i>I'd rather walk.</i>); + otro sujeto + past simple si cambia: <i>I'd rather you didn't smoke.</i>",
+    "<b>It's (high) time</b> + sujeto + past simple, aunque hable del presente: <i>It's time we left.</i> (o <i>It's time to leave.</i>)",
+    "<b>as if / as though</b> + pasado para comparaciones irreales: <i>He talks as if he were the boss.</i>; past perfect para algo anterior: <i>She looked as if she hadn't slept.</i>",
+    "<b>suppose / supposing</b> = «imagina que, suponiendo que»; con past simple para algo improbable: <i>Supposing you won the lottery, what would you do?</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "wish-unreal-past-01",
+      "nv": "B1",
+      "q": "I don't have a car, and the buses are terrible. I wish I ___ one.",
+      "a": "had",
+      "d": ["have", "would have", "will have"],
+      "x": "Para desear que una situación presente sea distinta se usa <i>wish</i> + past simple: <i>I wish I had a car</i>. Tras <i>wish</i> no va presente ni futuro, y <i>would have</i> no se usa con el mismo sujeto para un estado presente."
+    },
+    {
+      "id": "wish-unreal-past-02",
+      "nv": "B2",
+      "q": "I wish I ___ to the party last night; everyone says it was amazing.",
+      "a": "had gone",
+      "d": ["went", "would go", "have gone"],
+      "x": "Para lamentar algo del pasado se usa <i>wish</i> + past perfect: <i>I wish I had gone</i>. <i>Went</i> se refiere al presente (<i>I wish I went out more</i>), y <i>last night</i> obliga a retroceder un tiempo más."
+    },
+    {
+      "id": "wish-unreal-past-03",
+      "nv": "B2",
+      "q": "I wish my neighbours ___ so much noise late at night; I can never get to sleep.",
+      "a": "wouldn't make",
+      "d": ["don't make", "won't make", "haven't made"],
+      "x": "<i>Wish</i> + <i>would</i> expresa fastidio por algo que otra persona hace y quisiéramos que cambiara: <i>I wish they wouldn't make so much noise</i>. Después de <i>wish</i> nunca va presente ni futuro (<i>don't</i>, <i>won't</i>)."
+    },
+    {
+      "id": "wish-unreal-past-04",
+      "nv": "B2",
+      "q": "I wish it ___ raining; we've been stuck indoors all weekend.",
+      "a": "would stop",
+      "d": ["stops", "will stop", "is stopping"],
+      "x": "<i>Wish</i> + <i>would</i> también expresa el deseo de que cambie algo que no controlamos, como el tiempo: <i>I wish it would stop raining</i>. Tras <i>wish</i> no se usa presente (<i>stops</i>, <i>is stopping</i>) ni <i>will</i>."
+    },
+    {
+      "id": "wish-unreal-past-05",
+      "nv": "B2",
+      "q": "If only I ___ the answer! Then I could help you with your homework.",
+      "a": "knew",
+      "d": ["know", "would know", "had known"],
+      "x": "<i>If only</i> es un <i>wish</i> más enfático: + past simple para el presente: <i>If only I knew</i>. <i>Had known</i> hablaría del pasado y exigiría <i>I could have helped</i>; <i>would know</i> no se usa con el mismo sujeto."
+    },
+    {
+      "id": "wish-unreal-past-06",
+      "nv": "B2",
+      "q": "I'm exhausted. I'd rather ___ in tonight than go to the cinema.",
+      "a": "stay",
+      "d": ["to stay", "staying", "stayed"],
+      "x": "Con el mismo sujeto, <i>would rather</i> va seguido de infinitivo sin <i>to</i>: <i>I'd rather stay in than go out</i>. El past simple solo aparece cuando cambia el sujeto (<i>I'd rather you stayed</i>)."
+    },
+    {
+      "id": "wish-unreal-past-07",
+      "nv": "B2",
+      "q": "It's nearly midnight, and we've got an early start tomorrow. It's time we ___ home.",
+      "a": "went",
+      "d": ["will go", "would go", "have gone"],
+      "x": "<i>It's time</i> + sujeto + past simple (aunque hable del presente) indica que algo ya debería estar pasando: <i>It's time we went home</i>. También se puede decir <i>It's time to go</i>, pero nunca con <i>will</i> ni <i>would</i>."
+    },
+    {
+      "id": "wish-unreal-past-08",
+      "nv": "C1",
+      "q": "I wish I ___ to your wedding, but I was in hospital that weekend.",
+      "a": "could have come",
+      "d": ["could come", "would have come", "can come"],
+      "x": "Para lamentar no haber podido hacer algo se usa <i>wish</i> + <i>could have</i> + participio: <i>I wish I could have come</i>. <i>Could come</i> se refiere al presente o al futuro, y <i>would have</i> no se usa tras <i>wish</i> con el mismo sujeto."
+    },
+    {
+      "id": "wish-unreal-past-09",
+      "nv": "C1",
+      "q": "He talks about Paris ___ he had lived there for years, but he's only been there once.",
+      "a": "as if",
+      "d": ["like if", "even if", "as long as"],
+      "x": "<i>As if</i> (o <i>as though</i>) + pasado compara con una situación irreal: habla como si hubiera vivido allí, aunque no es así. <i>Like if</i> es un calco de «como si», y <i>even if</i> significa «aunque, incluso si»."
+    },
+    {
+      "id": "wish-unreal-past-10",
+      "nv": "C1",
+      "q": "___ you lost your passport while travelling abroad, what would you do?",
+      "a": "Supposing",
+      "d": ["Unless", "Provided", "In case"],
+      "x": "<i>Supposing</i> (o <i>suppose</i>) = «suponiendo que, imagina que» y plantea una hipótesis, aquí con past simple porque es improbable. <i>In case</i> significa «por si acaso» y <i>provided</i>, «siempre que», y ninguno abre una pregunta hipotética."
+    },
+    {
+      "id": "wish-unreal-past-11",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "She looked at me as though she had never seen me before.",
+      "d": ["She looked at me as though she has never seen me before.", "She looked at me like if she had never seen me before.", "She looked at me as though she would never see me before."],
+      "x": "En un relato en pasado, <i>as though</i> / <i>as if</i> + past perfect describe algo anterior que parece cierto pero no lo es: <i>as though she had never seen me</i>. El present perfect rompe la secuencia de tiempos y <i>like if</i> no existe."
+    },
+    {
+      "id": "wish-unreal-past-12",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I regret not studying harder for last month's exam.”",
+      "a": "I wish I had studied harder for last month's exam.",
+      "d": ["I wish I studied harder for last month's exam.", "I wish I would study harder for last month's exam.", "I wish I hadn't studied harder for last month's exam."],
+      "x": "<i>Regret not doing</i> algo del pasado equivale a <i>wish</i> + past perfect afirmativo: <i>I wish I had studied harder</i>. Con <i>last month's exam</i> el past simple no sirve, y <i>hadn't studied</i> invierte el sentido."
+    },
+    {
+      "id": "wish-unreal-past-13",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “I'd prefer you not to tell anyone about this.”",
+      "a": "I'd rather you didn't tell anyone about this.",
+      "d": ["I'd rather you not to tell anyone about this.", "I'd rather not you told anyone about this.", "I'd rather you hadn't told anyone about this."],
+      "x": "<i>Would rather</i> + otro sujeto + past simple expresa una preferencia sobre lo que hará otra persona: <i>I'd rather you didn't tell anyone</i>. <i>Not to tell</i> solo funciona con <i>prefer</i>, y <i>hadn't told</i> sería un reproche por algo ya ocurrido."
+    },
+    {
+      "id": "wish-unreal-past-14",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "If only she had told me the truth last week, we wouldn't be in this mess now.",
+      "d": ["If only she told me the truth last week, we wouldn't be in this mess now.", "If only she has told me the truth last week, we wouldn't be in this mess now.", "If only she would have told me the truth last week, we wouldn't be in this mess now."],
+      "x": "Para lamentar algo del pasado, <i>if only</i> va con past perfect (<i>had told</i>), aunque la consecuencia sea presente (<i>wouldn't be … now</i>). <i>Would have told</i> tras <i>if only</i> es un error frecuente, y <i>told</i> con <i>last week</i> no retrocede lo suficiente."
+    }
+  ]
+}

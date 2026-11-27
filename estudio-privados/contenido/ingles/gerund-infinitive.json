@@ -1,0 +1,161 @@
+{
+  "id": "gerund-infinitive",
+  "grupo": "gramatica",
+  "titulo": "Gerund vs infinitive",
+  "resumen": [
+    "<b>Verbos + -ing:</b> <i>enjoy</i>, <i>mind</i>, <i>avoid</i>, <i>finish</i>, <i>suggest</i>, <i>consider</i>: <i>I enjoy listening to podcasts.</i>",
+    "<b>Verbos + to:</b> <i>decide</i>, <i>want</i>, <i>hope</i>, <i>agree</i>, <i>refuse</i>; con objeto, <i>encourage</i>, <i>allow</i>, <i>persuade</i>, <i>ask</i>: <i>She encouraged us to ask questions.</i>",
+    "<b>Make y let:</b> objeto + infinitivo sin <i>to</i>: <i>He made me rewrite it.</i> <i>They let me stay.</i> En cambio, <i>allow</i> sí lleva <i>to</i>: <i>They allowed me to stay.</i>",
+    "<b>Preposición + -ing:</b> <i>before installing</i>, <i>thanks for helping</i>. Ojo cuando <i>to</i> es preposición: <i>look forward to seeing</i>, <i>be/get used to driving</i>, <i>object to working</i>.",
+    "<b>Propósito:</b> «para» + verbo se dice con <i>to</i>, no con <i>for</i>: <i>I went to the library to borrow some books.</i>",
+    "<b>Stop, remember, forget, try:</b> <i>stop doing</i> (dejar de) / <i>stop to do</i> (detenerse para); <i>remember/forget doing</i> (algo ya hecho) / <i>remember/forget to do</i> (una tarea); <i>try doing</i> (probar) / <i>try to do</i> (intentar).",
+    "<b>Regret, go on, mean:</b> <i>regret to inform</i> (lamentar comunicar) / <i>regret doing</i> (arrepentirse); <i>go on doing</i> (seguir) / <i>go on to do</i> (pasar a); <i>mean doing</i> (implicar) / <i>mean to do</i> (tener intención).",
+    "<b>It's no use / worth + -ing:</b> <i>It's no use complaining.</i> <i>The museum is worth visiting.</i> Nunca <i>worth to visit</i> ni <i>doesn't worth</i>."
+  ],
+  "preguntas": [
+    {
+      "id": "gerund-infinitive-01",
+      "nv": "B1",
+      "q": "I really enjoy ___ to podcasts on my way to work.",
+      "a": "listening",
+      "d": ["to listen", "listen", "to listening"],
+      "x": "<i>Enjoy</i> va siempre seguido de <i>-ing</i>: <i>I enjoy listening</i>. No admite <i>to</i> + infinitivo, aunque en español digamos «disfruto escuchar»."
+    },
+    {
+      "id": "gerund-infinitive-02",
+      "nv": "B1",
+      "q": "We've decided ___ a flat closer to the city centre.",
+      "a": "to rent",
+      "d": ["renting", "rent", "for renting"],
+      "x": "<i>Decide</i> va con <i>to</i> + infinitivo, como <i>want</i>, <i>hope</i>, <i>plan</i> o <i>agree</i>: <i>We've decided to rent</i>. <i>Decided renting</i> no es posible."
+    },
+    {
+      "id": "gerund-infinitive-03",
+      "nv": "B1",
+      "q": "I went to the library ___ some books for my essay.",
+      "a": "to borrow",
+      "d": ["for borrow", "for borrowing", "borrowing"],
+      "x": "Para expresar el propósito de una acción se usa el infinitivo con <i>to</i>: <i>I went to the library to borrow some books</i>. <i>For</i> + verbo es un calco del español «para»."
+    },
+    {
+      "id": "gerund-infinitive-04",
+      "nv": "B1",
+      "q": "Always read the instructions before ___ new software.",
+      "a": "installing",
+      "d": ["install", "to install", "installed"],
+      "x": "Después de una preposición (<i>before</i>, <i>after</i>, <i>without</i>, <i>for</i>...) el verbo va en <i>-ing</i>: <i>before installing</i>. <i>Before to install</i> es un calco de «antes de instalar»."
+    },
+    {
+      "id": "gerund-infinitive-05",
+      "nv": "B2",
+      "q": "My boss made me ___ the whole report again.",
+      "a": "rewrite",
+      "d": ["to rewrite", "rewriting", "rewrote"],
+      "x": "<i>Make</i> + objeto va seguido del infinitivo sin <i>to</i>: <i>made me rewrite</i>. El <i>to</i> solo aparece en pasiva (<i>I was made to rewrite it</i>)."
+    },
+    {
+      "id": "gerund-infinitive-06",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "My parents didn't allow me to stay out late.",
+      "d": ["My parents didn't let me to stay out late.", "My parents didn't allow me stay out late.", "My parents didn't let me staying out late."],
+      "x": "<i>Allow</i> va con objeto + <i>to</i> (<i>allow me to stay</i>), mientras que <i>let</i> va con objeto + infinitivo sin <i>to</i> (<i>let me stay</i>). Mezclar los dos patrones es el error más común."
+    },
+    {
+      "id": "gerund-infinitive-07",
+      "nv": "B2",
+      "q": "Our tutor encouraged us ___ questions during the lecture.",
+      "a": "to ask",
+      "d": ["asking", "ask", "that we ask"],
+      "x": "<i>Encourage</i>, como <i>persuade</i>, <i>allow</i> o <i>advise</i>, va con objeto + <i>to</i> + infinitivo: <i>encouraged us to ask</i>. No admite objeto + <i>-ing</i> ni una oración con <i>that</i> detrás del objeto."
+    },
+    {
+      "id": "gerund-infinitive-08",
+      "nv": "B2",
+      "q": "I'm looking forward to ___ you at the conference next month.",
+      "a": "seeing",
+      "d": ["see", "will see", "seen"],
+      "x": "En <i>look forward to</i> la palabra <i>to</i> es una preposición, así que va seguida de <i>-ing</i>: <i>looking forward to seeing you</i>. <i>Looking forward to see</i> es el error más frecuente."
+    },
+    {
+      "id": "gerund-infinitive-09",
+      "nv": "B2",
+      "q": "Many employees objected to ___ at weekends.",
+      "a": "working",
+      "d": ["work", "be working", "worked"],
+      "x": "En <i>object to</i> la palabra <i>to</i> es preposición y pide <i>-ing</i>: <i>objected to working</i>. Por eso no puede ir seguida del infinitivo (<i>objected to work</i>)."
+    },
+    {
+      "id": "gerund-infinitive-10",
+      "nv": "B2",
+      "q": "I stopped ___ coffee last month because it was affecting my sleep.",
+      "a": "drinking",
+      "d": ["to drink", "drink", "to drinking"],
+      "x": "<i>Stop</i> + <i>-ing</i> significa dejar de hacer algo: <i>I stopped drinking coffee</i>. <i>Stop to drink</i> significaría detenerse para tomar café, lo contrario de lo que se quiere decir."
+    },
+    {
+      "id": "gerund-infinitive-11",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "It's no use complaining; they won't change the rules.",
+      "d": ["It isn't worth to complain; they won't change the rules.", "It's no use of complaining; they won't change the rules.", "It doesn't worth complaining; they won't change the rules."],
+      "x": "<i>It's no use</i> y <i>(not) worth</i> van seguidos de <i>-ing</i>: <i>It's no use complaining</i>, <i>It isn't worth complaining</i>. <i>Worth</i> no es verbo, por eso no se dice <i>doesn't worth</i>, y no lleva <i>to</i>."
+    },
+    {
+      "id": "gerund-infinitive-12",
+      "nv": "B2",
+      "q": "When I moved to the UK, it took me months to get used to ___ on the left.",
+      "a": "driving",
+      "d": ["drive", "drove", "have driven"],
+      "x": "En <i>be/get used to</i> (estar o acostumbrarse a) <i>to</i> es preposición y va con <i>-ing</i>: <i>get used to driving</i>. No hay que confundirlo con <i>used to drive</i>, que habla de un hábito del pasado."
+    },
+    {
+      "id": "gerund-infinitive-13",
+      "nv": "B2",
+      "q": "I clearly remember ___ the front door last night, but I forgot ___ the kitchen window, and that's how the burglar got in.",
+      "a": "locking / to close",
+      "d": ["to lock / closing", "locking / closing", "to lock / to close"],
+      "x": "<i>Remember</i> + <i>-ing</i> es recordar algo que ya hiciste (<i>I remember locking</i>) y <i>forget</i> + <i>to</i> es olvidar hacer algo (<i>I forgot to close</i>), por eso entró el ladrón. <i>Forgot closing</i> implicaría que sí la cerré."
+    },
+    {
+      "id": "gerund-infinitive-14",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'Getting up at six isn't hard for me; I've been doing it for years.'",
+      "a": "I'm used to getting up at six.",
+      "d": ["I used to get up at six.", "I'm used to get up at six.", "I get used to get up at six."],
+      "x": "<i>Be used to</i> + <i>-ing</i> significa estar acostumbrado: <i>I'm used to getting up at six</i>. <i>I used to get up at six</i> habla de un hábito pasado que ya no existe, justo lo contrario."
+    },
+    {
+      "id": "gerund-infinitive-15",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: 'As an experiment, I moved the plant to a sunnier window to see if it would grow better.'",
+      "a": "I tried moving the plant to a sunnier window.",
+      "d": ["I tried to move the plant to a sunnier window.", "I tried move the plant to a sunnier window.", "I tried for moving the plant to a sunnier window."],
+      "x": "<i>Try</i> + <i>-ing</i> es probar algo para ver qué pasa, y la acción sí se hace: <i>I tried moving the plant</i>. <i>Try</i> + <i>to</i> es esforzarse por hacer algo que quizá no se logró (<i>I tried to move it, but it was too heavy</i>)."
+    },
+    {
+      "id": "gerund-infinitive-16",
+      "nv": "C1",
+      "q": "We regret ___ you that your application has been unsuccessful.",
+      "a": "to inform",
+      "d": ["informing", "inform", "to informing"],
+      "x": "<i>Regret</i> + <i>to</i> se usa para dar una mala noticia, sobre todo en lenguaje formal: <i>We regret to inform you</i>. <i>Regret informing</i> significaría arrepentirse de haber informado."
+    },
+    {
+      "id": "gerund-infinitive-17",
+      "nv": "C1",
+      "q": "After her degree in Chemistry, she worked in a lab for a few years and then went on ___ her own company, which now employs 200 people.",
+      "a": "to set up",
+      "d": ["setting up", "set up", "for setting up"],
+      "x": "<i>Go on</i> + <i>to</i> significa pasar a hacer algo nuevo después: <i>went on to set up her own company</i>. <i>Go on</i> + <i>-ing</i> significa seguir haciendo lo mismo, lo que no encaja con fundar una empresa."
+    },
+    {
+      "id": "gerund-infinitive-18",
+      "nv": "C1",
+      "q": "Accepting the job would mean ___ to another city, so I need to think about it.",
+      "a": "moving",
+      "d": ["to move", "move", "to moving"],
+      "x": "<i>Mean</i> + <i>-ing</i> significa implicar o suponer: <i>would mean moving</i>. <i>Mean</i> + <i>to</i> significa tener la intención (<i>I meant to call you</i>), lo que no tiene sentido con <i>accepting the job</i> como sujeto."
+    }
+  ]
+}
