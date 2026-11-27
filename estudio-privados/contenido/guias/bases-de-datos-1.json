@@ -1,0 +1,1057 @@
+{
+ "slug": "bases-de-datos-1",
+ "titulo": "Bases de Datos I",
+ "area": "Análisis, Diseño y Desarrollo",
+ "meta": "Ciclo 6, bloque Bases de datos del seminario",
+ "firma": "\\pi_{\\text{nombre}}\\big(\\sigma_{\\text{nota}\\ge 61}(\\text{Estudiante}\\bowtie\\text{Asignacion})\\big)",
+ "firma_nota": "Los nombres de quienes aprobaron: se reúnen dos tablas, se eligen filas y se proyecta una columna.",
+ "lead": "Bases de Datos I lleva del minimundo a las tablas con el modelo entidad-relación, el modelo relacional y la normalización, y enseña a consultarlas con álgebra relacional y SQL. En el parcial pesan las definiciones exactas, la normalización hecha a mano y la predicción del resultado de una consulta sobre datos pequeños.",
+ "fuente": "http://umgcontenidos.50webs.com/Contenidos/Ciclos/Sexto%20Ciclo/2014-6BasesI.pdf",
+ "como": "Cada tema trae conceptos con su uso real y 12 ejercicios: resueltos paso a paso, para resolver con la respuesta oculta y preguntas de opción múltiple que te dicen al instante si acertaste.",
+ "origen": "local",
+ "aviso": "Guía local: cubre el temario habitual del curso. El programa oficial no se pudo abrir al escribirla, así que confirma los temas con el programa o con quien imparta el bloque.",
+ "temas": [
+  {
+   "titulo": "Fundamentos de bases de datos",
+   "intro": "Qué es una base de datos y un SGBD, por qué reemplazaron a los archivos, la arquitectura de tres niveles, los modelos de datos, los usuarios y los sublenguajes de SQL.",
+   "conceptos": [
+    {
+     "n": "Datos, información, base de datos y SGBD",
+     "e": [
+      "Un <b>dato</b> es un hecho en bruto, sin contexto (el número 61). La <b>información</b> es el dato ya procesado, con significado para decidir («Ana aprobó Bases de Datos I con 61 puntos»). Una <b>base de datos</b> es una colección organizada de datos relacionados entre sí, que se guarda de forma persistente y representa una parte del mundo real, llamada minimundo o universo de discurso. El <b>sistema gestor de bases de datos (SGBD)</b> es el software que permite definir, construir, manipular y compartir la base de datos, y que la protege: MySQL, PostgreSQL, Oracle, SQL Server. La base de datos más el SGBD y las aplicaciones que lo usan forman el <b>sistema de base de datos</b>.",
+      "Antes cada programa definía y manejaba sus propios archivos: eso es un <b>sistema de archivos</b>. Sus problemas clásicos son siete: redundancia e inconsistencia de datos, dificultad para acceder a los datos, aislamiento de datos (formatos distintos), problemas de integridad, de atomicidad, de acceso concurrente y de seguridad. El SGBD los resuelve porque guarda, junto con los datos, su descripción: los <b>metadatos</b>, que viven en el <b>diccionario de datos</b> o catálogo. Por eso se dice que una base de datos es autodescriptiva."
+     ],
+     "u": [
+      "Facturación electrónica ante la SAT, control académico, planillas del IGSS, inventario de una ferretería.",
+      "Muchos usuarios comparten los mismos datos sin duplicarlos ni contradecirse.",
+      "Cuando los datos se comparten, deben durar años y no pueden perderse ni quedar a medias.",
+      "Describe el minimundo, define el esquema una sola vez en el SGBD y deja que todas las aplicaciones lo usen."
+     ],
+     "tabla": "<table><tr><th>Aspecto</th><th>Sistema de archivos</th><th>SGBD</th></tr><tr><td>Definición de los datos</td><td>Dentro de cada programa</td><td>En el catálogo, separada de los programas</td></tr><tr><td>Redundancia</td><td>Sin control: el mismo dato en varios archivos</td><td>Mínima y controlada</td></tr><tr><td>Integridad</td><td>La valida cada programa, si se acuerda</td><td>Restricciones declaradas una sola vez</td></tr><tr><td>Concurrencia y fallos</td><td>Los cambios simultáneos se pisan</td><td>Transacciones, bloqueos y recuperación</td></tr><tr><td>Seguridad</td><td>Permisos por archivo completo</td><td>Permisos por usuario, tabla y operación</td></tr><tr><td>Consulta nueva</td><td>Hay que escribir otro programa</td><td>Una sentencia SQL</td></tr></table>"
+    },
+    {
+     "n": "Arquitectura ANSI/SPARC e independencia de datos",
+     "e": [
+      "La arquitectura ANSI/SPARC separa la base de datos en tres niveles de abstracción. El <b>nivel externo</b> (de vistas) muestra a cada grupo de usuarios solo la parte que le interesa. El <b>nivel conceptual</b> (lógico) describe qué datos se guardan y cómo se relacionan en toda la organización: entidades, tipos, relaciones y restricciones, sin detalles de almacenamiento. El <b>nivel interno</b> (físico) describe cómo se almacenan: archivos, índices y rutas de acceso. Hay un solo esquema conceptual, un solo esquema interno y muchos esquemas externos; el SGBD traduce entre niveles con dos <b>correspondencias</b> (<i>mappings</i>): externa/conceptual y conceptual/interna.",
+      "La <b>independencia de datos</b> es la capacidad de cambiar el esquema de un nivel sin tener que cambiar el del nivel superior. La <b>independencia lógica</b> permite cambiar el esquema conceptual (agregar una tabla o una columna) sin cambiar los esquemas externos ni los programas. La <b>independencia física</b> permite cambiar el esquema interno (un índice nuevo, otro disco) sin cambiar el esquema conceptual. La lógica es la más difícil de lograr. No confundas <b>esquema</b> (la descripción o estructura, que casi no cambia) con <b>instancia</b> o estado (los datos que hay en un momento dado, que cambian con cada inserción)."
+     ],
+     "u": [
+      "En todo SGBD relacional: vistas (externo), tablas (conceptual), índices y archivos (interno).",
+      "Permite cambiar el almacenamiento o ampliar el esquema sin reescribir las aplicaciones.",
+      "Al agregar columnas, crear índices, migrar de servidor o dar a cada usuario solo lo que debe ver.",
+      "Ubica el cambio en su nivel y pregunta qué esquema de arriba queda intacto: ese es el tipo de independencia."
+     ],
+     "tabla": "<table><tr><th>Nivel</th><th>Qué describe</th><th>Quién lo usa</th><th>Ejemplo en control académico</th></tr><tr><td>Externo</td><td>La vista de cada grupo de usuarios</td><td>Usuarios finales y programadores</td><td>La vista de notas que el portal muestra a cada estudiante</td></tr><tr><td>Conceptual</td><td>Toda la base de datos: entidades, relaciones y restricciones</td><td>DBA y diseñadores</td><td>Las tablas Estudiante, Curso y Asignacion con sus claves</td></tr><tr><td>Interno</td><td>El almacenamiento físico y las rutas de acceso</td><td>DBA y el propio SGBD</td><td>El índice de árbol B+ sobre el carné y las páginas en disco</td></tr></table>"
+    },
+    {
+     "n": "Modelos de datos, usuarios y lenguajes",
+     "e": [
+      "Un <b>modelo de datos</b> es un conjunto de conceptos para describir la estructura de una base de datos: los datos, sus relaciones y sus restricciones. Hay modelos <b>conceptuales</b> o de alto nivel (entidad-relación), <b>lógicos</b> o de implementación (jerárquico, en árbol; de red, en grafo; <b>relacional</b>, en tablas, propuesto por E. F. Codd en 1970; orientado a objetos) y <b>físicos</b> (cómo se guardan los registros). Los usuarios se distinguen por su función. El <b>administrador de la base de datos (DBA)</b> tiene el control central: define el esquema, concede permisos, hace respaldos y recuperación, y vigila el rendimiento. El <b>diseñador</b> decide qué datos guardar y con qué estructura. Los <b>programadores de aplicaciones</b> escriben los programas. Los <b>usuarios finales</b> consultan: los normales o paramétricos mediante formularios y los sofisticados con sus propias consultas.",
+      "SQL se divide en sublenguajes. El <b>DDL</b> (lenguaje de definición de datos) crea y cambia la estructura; su resultado se guarda en el diccionario de datos. El <b>DML</b> (lenguaje de manipulación de datos) consulta y modifica el contenido. El <b>DCL</b> (lenguaje de control de datos) administra los permisos. El <b>TCL</b> (lenguaje de control de transacciones) confirma o deshace los cambios. Un DML es <b>procedimental</b> si hay que indicar qué datos se quieren y cómo obtenerlos (álgebra relacional), y <b>declarativo</b> o no procedimental si solo se indica qué se quiere (SQL). Algunos autores sacan <code>SELECT</code> del DML y lo llaman DQL, lenguaje de consulta."
+     ],
+     "u": [
+      "Diseño (entidad-relación), implementación (relacional) y administración diaria de cualquier base de datos.",
+      "Cada sentencia y cada tarea tiene un responsable y un permiso distinto; confundirlos es un riesgo de seguridad.",
+      "Al repartir permisos, al leer un script y cuando el examen pide clasificar sentencias.",
+      "Pregunta qué toca la sentencia: estructura (DDL), datos (DML), permisos (DCL) o transacciones (TCL)."
+     ],
+     "tabla": "<table><tr><th>Lenguaje</th><th>Para qué sirve</th><th>Sentencias</th></tr><tr><td>DDL</td><td>Definir la estructura (el esquema)</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr><tr><td>DML</td><td>Consultar y modificar los datos (la instancia)</td><td><code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr><tr><td>DCL</td><td>Dar y quitar permisos</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr><tr><td>TCL</td><td>Controlar las transacciones</td><td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Clasifica cada sentencia como DDL, DML, DCL o TCL: <code>CREATE TABLE</code>, <code>UPDATE</code>, <code>GRANT</code>, <code>COMMIT</code>, <code>ALTER TABLE</code>, <code>SELECT</code>, <code>REVOKE</code>, <code>ROLLBACK</code>, <code>DELETE</code> y <code>DROP TABLE</code>.",
+     "pasos": [
+      "<b>Criterio.</b> Pregunta qué toca cada sentencia: la estructura, los datos, los permisos o la transacción.",
+      "<b>Estructura (DDL).</b> <code>CREATE TABLE</code>, <code>ALTER TABLE</code> y <code>DROP TABLE</code> crean, cambian y eliminan objetos del esquema.",
+      "<b>Datos (DML).</b> <code>SELECT</code>, <code>UPDATE</code> y <code>DELETE</code> leen o modifican filas; el esquema queda igual.",
+      "<b>Permisos (DCL).</b> <code>GRANT</code> concede privilegios y <code>REVOKE</code> los retira.",
+      "<b>Transacciones (TCL).</b> <code>COMMIT</code> hace permanentes los cambios y <code>ROLLBACK</code> los deshace."
+     ],
+     "r": "DDL: CREATE TABLE, ALTER TABLE, DROP TABLE. DML: SELECT, UPDATE, DELETE. DCL: GRANT, REVOKE. TCL: COMMIT, ROLLBACK.",
+     "fin": "Es la pregunta de vocabulario más repetida del curso y la base para repartir permisos."
+    },
+    {
+     "nv": "I",
+     "q": "Una distribuidora de Quetzaltenango lleva sus clientes en dos hojas de cálculo: <code>ventas.xlsx</code>, que usa el vendedor, y <code>cobros.xlsx</code>, que usa contabilidad. Un cliente cambió de dirección y de teléfono: el vendedor lo actualizó en su hoja y contabilidad no. Además, ayer dos personas abrieron <code>cobros.xlsx</code> al mismo tiempo y se perdió un pago. Identifica los problemas del sistema de archivos que aparecen y di cómo los evita un SGBD.",
+     "pasos": [
+      "<b>Redundancia.</b> Los datos del cliente están copiados en dos archivos: ocupan más espacio y obligan a actualizar dos veces.",
+      "<b>Inconsistencia.</b> Las dos copias ya no coinciden (dirección y teléfono distintos) y no se sabe cuál es la correcta.",
+      "<b>Acceso concurrente.</b> Dos usuarios modificaron el mismo archivo a la vez y un cambio pisó al otro: es una actualización perdida.",
+      "<b>Solución con SGBD.</b> Una sola tabla <code>Cliente</code> compartida elimina la copia, y cada área la consulta mediante su propia vista. El control de concurrencia (transacciones y bloqueos) impide que un cambio pise a otro."
+     ],
+     "r": "Redundancia, inconsistencia y anomalía de acceso concurrente. Con un SGBD el cliente se guarda una sola vez y las transacciones ordenan los accesos simultáneos.",
+     "fin": "Justificar con los términos exactos por qué una organización debe pasar de archivos sueltos a una base de datos."
+    },
+    {
+     "nv": "I",
+     "q": "En el control académico de una universidad, ubica cada elemento en su nivel de la arquitectura ANSI/SPARC: (a) la tabla <code>Asignacion(carne, codigo_curso, ciclo, nota)</code> con sus claves; (b) el índice de árbol B+ sobre <code>carne</code>; (c) la vista <code>mis_notas</code> que el portal muestra a cada estudiante; (d) la decisión de guardar la tabla en un disco SSD; (e) el listado de actas que ve cada catedrático, solo con sus secciones.",
+     "pasos": [
+      "<b>Nivel externo.</b> (c) y (e): son vistas parciales, cada una para un grupo de usuarios, que ocultan el resto de la base de datos.",
+      "<b>Nivel conceptual.</b> (a): describe qué datos existen, con sus claves y relaciones, para toda la universidad, sin decir cómo se almacenan.",
+      "<b>Nivel interno.</b> (b) y (d): son decisiones de almacenamiento y de rutas de acceso."
+     ],
+     "r": "Externo: (c) y (e). Conceptual: (a). Interno: (b) y (d).",
+     "fin": "Reconocer en qué nivel cae un cambio es el primer paso para saber qué independencia lo protege."
+    },
+    {
+     "nv": "A",
+     "q": "Para cada cambio indica qué esquema se modifica y si la independencia de datos (lógica o física) protege a los programas: (a) el DBA crea un índice sobre <code>Factura(fecha)</code>; (b) se agrega la columna <code>correo</code> a <code>Cliente</code>; (c) la tabla <code>Cliente</code> se divide en <code>ClienteDatos</code> y <code>ClienteDireccion</code>, y se crea la vista <code>Cliente</code>, que las reúne con las columnas originales, para los programas que solo consultan; (d) se elimina la columna <code>telefono</code>, que un reporte usa.",
+     "pasos": [
+      "<b>(a) Índice nuevo.</b> Cambia el esquema interno. El esquema conceptual y las consultas quedan igual, solo corren más rápido: <b>independencia física</b>.",
+      "<b>(b) Columna nueva.</b> Cambia el esquema conceptual. Los programas y las vistas que no usan <code>correo</code> no se tocan: <b>independencia lógica</b>. Por eso conviene que los programas nombren sus columnas en vez de usar <code>SELECT *</code>.",
+      "<b>(c) Tabla dividida.</b> Cambia el esquema conceptual, y solo se redefine la correspondencia externa/conceptual (la vista). Los programas de consulta siguen leyendo <code>Cliente</code> sin cambios: <b>independencia lógica</b>.",
+      "<b>(d) Columna eliminada.</b> Cambia el esquema conceptual y desaparece un dato que un esquema externo necesita. Ninguna independencia cubre eso: hay que modificar el reporte."
+     ],
+     "r": "(a) Esquema interno, independencia física. (b) y (c) Esquema conceptual, independencia lógica. (d) Esquema conceptual, sin protección: el reporte debe cambiar.",
+     "fin": "Explicar en un oral qué garantiza cada tipo de independencia y dónde termina esa garantía."
+    },
+    {
+     "nv": "B",
+     "q": "Una tienda de barrio anota tres cosas sueltas: «15/03/2026», «Q 450.00» y «María López». Después calcula: «María López compró Q 450.00 el 15/03/2026 y es la clienta que más compró en marzo». ¿Qué es dato y qué es información? Define ambos términos.",
+     "r": "Las tres anotaciones sueltas son <b>datos</b>: hechos en bruto, sin contexto. La frase calculada es <b>información</b>: datos procesados y relacionados, con significado, que sirven para decidir (por ejemplo, a quién ofrecer un descuento)."
+    },
+    {
+     "nv": "I",
+     "q": "Indica qué tipo de usuario de la base de datos realiza cada tarea: (a) concede a contabilidad permiso de solo lectura sobre <code>Factura</code>; (b) programa en Laravel el módulo de inscripciones; (c) registra pagos del boleto de ornato desde un formulario; (d) decide qué entidades y relaciones tendrá la base de datos de la municipalidad; (e) programa el respaldo nocturno y prueba la restauración; (f) escribe sus propias consultas SQL para analizar las ventas.",
+     "r": "(a) y (e) Administrador de la base de datos (DBA). (b) Programador de aplicaciones. (c) Usuario final normal o paramétrico. (d) Diseñador de la base de datos. (f) Usuario final sofisticado."
+    },
+    {
+     "nv": "A",
+     "q": "Una transferencia de Q 500.00 de la cuenta 101 a la cuenta 202 se hace con dos <code>UPDATE</code> sobre la tabla <code>cuenta(numero, saldo)</code>. Entre el primero y el segundo se va la luz. (a) ¿Qué problema clásico de los sistemas de archivos ocurriría sin un SGBD? (b) ¿A qué sublenguaje pertenecen las sentencias que lo evitan? (c) Escribe la secuencia completa.",
+     "r": "(a) Un problema de <b>atomicidad</b>: la operación queda a medias, con la cuenta 101 debitada y la 202 sin acreditar. (b) Al TCL. (c) <pre><code>START TRANSACTION;\nUPDATE cuenta SET saldo = saldo - 500 WHERE numero = 101;\nUPDATE cuenta SET saldo = saldo + 500 WHERE numero = 202;\nCOMMIT;</code></pre> Si algo falla antes del <code>COMMIT</code>, el SGBD deshace el primer <code>UPDATE</code> (o lo hace el programa con <code>ROLLBACK</code>): se ejecuta todo o nada."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué nivel de la arquitectura ANSI/SPARC describe cómo se almacenan los datos en disco (archivos, índices y rutas de acceso)?",
+     "ops": [
+      "El nivel interno o físico",
+      "El nivel conceptual o lógico",
+      "El nivel externo o de vistas",
+      "El nivel de aplicación o de usuario"
+     ],
+     "ok": 0,
+     "r": "El nivel interno describe el almacenamiento físico. El conceptual dice qué datos hay y cómo se relacionan, sin detalles de almacenamiento; el externo son las vistas de cada grupo de usuarios. «Nivel de aplicación» no es uno de los tres niveles."
+    },
+    {
+     "nv": "B",
+     "q": "¿A qué sublenguaje de SQL pertenece la sentencia <code>ALTER TABLE cliente ADD correo VARCHAR(80)</code>?",
+     "ops": [
+      "DML, porque modifica la tabla cliente",
+      "DCL, porque controla qué se puede guardar",
+      "TCL, porque el cambio queda confirmado",
+      "DDL, porque cambia la estructura de la tabla"
+     ],
+     "ok": 3,
+     "r": "<code>ALTER TABLE</code> cambia el esquema (agrega una columna), y todo lo que define o cambia la estructura es DDL. El DML modifica filas, no columnas; el DCL solo maneja permisos (<code>GRANT</code>, <code>REVOKE</code>) y el TCL, transacciones (<code>COMMIT</code>, <code>ROLLBACK</code>)."
+    },
+    {
+     "nv": "I",
+     "q": "A la tabla <code>Estudiante</code> se le agrega la columna <code>correo_institucional</code> y los programas que no la usan siguen funcionando sin modificarse. ¿Qué propiedad lo garantiza?",
+     "ops": [
+      "La independencia lógica de datos",
+      "La independencia física de datos",
+      "La integridad referencial",
+      "El control de concurrencia"
+     ],
+     "ok": 0,
+     "r": "Se cambió el esquema conceptual sin tocar los esquemas externos ni los programas: eso es independencia lógica. La física protege de cambios en el almacenamiento (índices, discos). La integridad referencial trata de claves foráneas y el control de concurrencia, de accesos simultáneos."
+    },
+    {
+     "nv": "I",
+     "q": "En una base de datos de ventas se inserta una factura nueva. ¿Qué cambia?",
+     "ops": [
+      "El esquema de la base de datos; la instancia queda igual",
+      "El esquema y también la instancia, porque hay una fila más",
+      "La instancia (el estado) de la base de datos; el esquema queda igual",
+      "El diccionario de datos, que guarda cada fila insertada"
+     ],
+     "ok": 2,
+     "r": "Insertar filas cambia el contenido de ese momento, es decir, la instancia o estado. El esquema (tablas, columnas, tipos y restricciones) solo cambia con sentencias DDL. El diccionario de datos guarda metadatos, la descripción de las tablas, no sus filas."
+    },
+    {
+     "nv": "A",
+     "q": "El DBA reemplaza un índice por otro de distinto tipo y mueve una tabla a otro disco. Ninguna tabla, vista ni consulta se reescribe. ¿Qué tuvo que actualizar el SGBD para que todo siguiera funcionando?",
+     "ops": [
+      "La correspondencia externa/conceptual",
+      "La correspondencia conceptual/interna",
+      "El esquema conceptual completo",
+      "Los esquemas externos de cada usuario"
+     ],
+     "ok": 1,
+     "r": "Solo cambió el esquema interno, así que basta con ajustar la correspondencia entre el nivel conceptual y el interno; por eso el esquema conceptual y los externos quedan intactos (independencia física). La correspondencia externa/conceptual se toca cuando cambia el esquema conceptual."
+    }
+   ]
+  },
+  {
+   "titulo": "Modelo entidad-relación",
+   "intro": "Cómo se describe el minimundo con entidades, atributos y relaciones antes de crear tablas: claves, cardinalidad, participación, entidades débiles y jerarquías de generalización y especialización.",
+   "conceptos": [
+    {
+     "n": "Entidades, atributos y claves",
+     "e": [
+      "El modelo entidad-relación (E-R), propuesto por Peter Chen en 1976, es un modelo conceptual: describe los datos sin pensar todavía en tablas. Una <b>entidad</b> es un objeto del mundo real, concreto o abstracto, que se distingue de los demás (la estudiante Ana Morales, el curso Bases de Datos I). Un <b>conjunto de entidades</b> o tipo de entidad agrupa las entidades que tienen los mismos atributos (Estudiante). Un <b>atributo</b> es una propiedad que describe a la entidad, y su <b>dominio</b> es el conjunto de valores que puede tomar.",
+      "Los atributos se clasifican de tres maneras. <b>Simple</b> (atómico, no se divide) o <b>compuesto</b> (se divide en partes: la dirección en calle, zona y municipio). <b>Monovaluado</b> (un valor por entidad) o <b>multivaluado</b> (varios valores a la vez: los teléfonos). <b>Almacenado</b> o <b>derivado</b> (se calcula a partir de otros: la edad a partir de la fecha de nacimiento). La <b>clave</b> es el atributo, o el conjunto mínimo de atributos, cuyo valor identifica de forma única a cada entidad."
+     ],
+     "u": [
+      "En el diseño conceptual de cualquier sistema: es lo primero que se dibuja al levantar requisitos.",
+      "Es un diagrama que el cliente entiende y que después se convierte en tablas con reglas fijas.",
+      "Antes de escribir un solo <code>CREATE TABLE</code>, y otra vez al documentar un sistema ya hecho.",
+      "Subraya los sustantivos del enunciado (entidades y atributos), clasifica cada atributo y elige la clave."
+     ],
+     "tabla": "<table><tr><th>Figura (notación de Chen)</th><th>Representa</th></tr><tr><td>Rectángulo</td><td>Conjunto de entidades</td></tr><tr><td>Rectángulo doble</td><td>Entidad débil</td></tr><tr><td>Óvalo</td><td>Atributo; con el nombre subrayado si es clave</td></tr><tr><td>Óvalo doble</td><td>Atributo multivaluado</td></tr><tr><td>Óvalo punteado</td><td>Atributo derivado</td></tr><tr><td>Óvalo del que salen otros óvalos</td><td>Atributo compuesto</td></tr><tr><td>Rombo</td><td>Relación</td></tr><tr><td>Rombo doble</td><td>Relación identificadora de una entidad débil</td></tr><tr><td>Línea doble</td><td>Participación total</td></tr><tr><td>Triángulo «ES-UN»</td><td>Generalización o especialización</td></tr></table>"
+    },
+    {
+     "n": "Relaciones, cardinalidad y participación",
+     "e": [
+      "Una <b>relación</b> (o interrelación) es una asociación entre entidades: la estudiante Ana <i>se asigna</i> el curso Bases de Datos I. El <b>grado</b> es el número de conjuntos de entidades que participan: unaria o recursiva (un empleado supervisa a otros empleados), binaria (la más común) o ternaria. Una relación puede tener atributos propios (la nota de una asignación), y cada entidad cumple en ella un <b>rol</b> (jefe y subordinado).",
+      "La <b>cardinalidad</b> (correspondencia de cardinalidades) indica con cuántas entidades del otro lado puede asociarse una entidad: <b>uno a uno (1:1)</b>, <b>uno a muchos (1:N)</b> o <b>muchos a muchos (N:M)</b>. La <b>participación</b> indica si esa asociación es obligatoria: es <b>total</b> si toda entidad del conjunto debe participar en al menos una relación (toda factura pertenece a un cliente) y <b>parcial</b> si puede haber entidades que no participan (hay clientes sin facturas). La cardinalidad fija el máximo y la participación el mínimo: en la notación (mín, máx), total es mínimo 1 y parcial es mínimo 0."
+     ],
+     "u": [
+      "En las reglas del negocio: quién compra, quién atiende, qué pertenece a qué.",
+      "La cardinalidad decide dónde irá la clave foránea o si hará falta una tabla intermedia.",
+      "Al leer cada verbo del enunciado: «tiene», «pertenece», «atiende», «se asigna».",
+      "Haz dos preguntas por relación: ¿un A con cuántos B? y ¿un B con cuántos A? Después pregunta si es obligatorio."
+     ],
+     "tabla": "<table><tr><th>Cardinalidad</th><th>Se lee</th><th>Ejemplo</th></tr><tr><td>1:1</td><td>Cada A con a lo sumo un B, y cada B con a lo sumo un A</td><td>Un empleado dirige un departamento y cada departamento tiene un solo director</td></tr><tr><td>1:N</td><td>Un A con muchos B; cada B con un solo A</td><td>Un cliente tiene muchas facturas; cada factura es de un cliente</td></tr><tr><td>N:M</td><td>Un A con muchos B y un B con muchos A</td><td>Un estudiante se asigna muchos cursos y un curso tiene muchos estudiantes</td></tr></table>"
+    },
+    {
+     "n": "Entidades débiles, generalización y especialización",
+     "e": [
+      "Una <b>entidad débil</b> no tiene atributos suficientes para formar una clave propia: se identifica gracias a una <b>entidad fuerte</b> (propietaria), a la que se une con una <b>relación identificadora</b>. Su <b>discriminador</b> o clave parcial distingue a las entidades débiles de una misma propietaria, y su clave completa es la clave de la fuerte más el discriminador. Siempre tiene participación total en la relación identificadora (dependencia de existencia): si se borra la fuerte, desaparece la débil. Ejemplo: la línea número 1 se repite en todas las facturas, así que cada detalle se identifica con (número de factura, número de línea).",
+      "La <b>especialización</b> es el proceso descendente de dividir un conjunto de entidades en subclases con atributos propios (Persona en Estudiante y Catedrático). La <b>generalización</b> es el proceso inverso, ascendente: reunir en una superclase lo que varias entidades tienen en común. Las dos se dibujan con la relación <b>ES-UN</b> y producen <b>herencia</b>: la subclase hereda los atributos y las relaciones de la superclase. Dos restricciones las describen: <b>disjunta</b> (una entidad está a lo sumo en una subclase) o <b>solapada</b> (puede estar en varias), y <b>total</b> (toda entidad de la superclase está en alguna subclase) o <b>parcial</b> (puede no estar en ninguna)."
+     ],
+     "u": [
+      "Detalles de factura, cuotas de un préstamo, dependientes de un empleado; personas que son clientes, empleados o proveedores.",
+      "Evita inventar claves sin sentido y evita repetir en varias entidades los atributos que comparten.",
+      "Cuando algo solo existe «dentro de» otra cosa, o cuando varias entidades comparten casi todos sus atributos.",
+      "Para la débil, busca la propietaria y el discriminador; para la jerarquía, separa los atributos comunes de los propios y fija las dos restricciones."
+     ],
+     "tabla": "<table><tr><th>Restricción de la jerarquía</th><th>Pregunta que responde</th><th>Valores</th></tr><tr><td>Disyunción</td><td>¿Puede una entidad estar en dos subclases a la vez?</td><td>Disjunta (no) o solapada (sí)</td></tr><tr><td>Completitud</td><td>¿Debe toda entidad estar en alguna subclase?</td><td>Total (sí) o parcial (no)</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Una clínica guarda de cada paciente: código, nombre completo (nombres y apellidos), fecha de nacimiento, edad, teléfonos (puede tener varios), dirección (calle o avenida, zona y municipio) y tipo de sangre. Clasifica cada atributo y elige la clave.",
+     "pasos": [
+      "<b>Simples y monovaluados.</b> Código, fecha de nacimiento y tipo de sangre: un solo valor que no se divide.",
+      "<b>Compuestos.</b> Nombre completo (nombres, apellidos) y dirección (calle o avenida, zona, municipio): se dividen en partes con significado propio.",
+      "<b>Multivaluado.</b> Teléfonos: un paciente puede tener varios. Se dibuja con óvalo doble.",
+      "<b>Derivado.</b> Edad: se calcula con la fecha de nacimiento y la fecha actual, así que no hace falta almacenarla. Se dibuja con óvalo punteado.",
+      "<b>Clave.</b> El código, porque es único por paciente. El nombre no sirve: puede repetirse."
+     ],
+     "r": "Clave: código. Simples: código, fecha de nacimiento y tipo de sangre. Compuestos: nombre completo y dirección. Multivaluado: teléfonos. Derivado: edad.",
+     "fin": "Cada tipo de atributo se dibuja distinto y después se convierte en tablas de forma distinta."
+    },
+    {
+     "nv": "I",
+     "q": "Reglas de una clínica municipal: cada cita es de un solo paciente y la atiende un solo médico; un paciente puede tener muchas citas y un médico atiende muchas; toda cita debe tener paciente y médico; puede haber pacientes registrados sin citas y médicos recién contratados sin citas. Identifica las entidades, las relaciones, sus cardinalidades y la participación.",
+     "pasos": [
+      "<b>Entidades.</b> Paciente, Médico y Cita, que tiene datos propios (fecha, hora y motivo).",
+      "<b>Relaciones.</b> <i>Solicita</i>, entre Paciente y Cita, y <i>Atiende</i>, entre Médico y Cita. Las dos son binarias.",
+      "<b>Cardinalidad.</b> Un paciente, muchas citas; una cita, un paciente: Paciente–Cita es 1:N. Con el mismo razonamiento, Médico–Cita es 1:N.",
+      "<b>Participación.</b> Cita participa de forma total en las dos relaciones (toda cita tiene paciente y médico). Paciente y Médico participan de forma parcial: pueden no tener citas."
+     ],
+     "r": "Paciente 1:N Cita y Médico 1:N Cita. Participación total del lado de Cita y parcial del lado de Paciente y de Médico.",
+     "fin": "Traducir reglas del negocio a cardinalidad y participación, que después deciden las claves foráneas y los <code>NOT NULL</code>."
+    },
+    {
+     "nv": "I",
+     "q": "Una cooperativa otorga préstamos. Cada préstamo tiene un número único, un monto y una fecha, y se paga en cuotas numeradas 1, 2, 3… (la numeración empieza de nuevo en cada préstamo). De cada cuota se guarda la fecha de vencimiento y el monto. ¿Qué tipo de entidad es Cuota? Da su discriminador, su clave y su relación con Préstamo.",
+     "pasos": [
+      "<b>¿Tiene clave propia?</b> No: la cuota número 1 existe en todos los préstamos, así que el número de cuota solo no identifica a una cuota.",
+      "<b>Entidad débil.</b> Cuota depende de Préstamo, que es la entidad fuerte o propietaria. La relación <i>Tiene</i> es la relación identificadora (rombo doble).",
+      "<b>Discriminador y clave.</b> El discriminador es el número de cuota. La clave completa es (número de préstamo, número de cuota).",
+      "<b>Cardinalidad y participación.</b> Préstamo 1:N Cuota. Cuota tiene participación total: no existe una cuota sin su préstamo."
+     ],
+     "r": "Cuota es una entidad débil de Préstamo. Discriminador: número de cuota. Clave: (número de préstamo, número de cuota). Relación identificadora 1:N con participación total de Cuota.",
+     "fin": "Reconocer entidades débiles evita claves mal elegidas en detalles, cuotas y renglones."
+    },
+    {
+     "nv": "A",
+     "q": "Diseña el modelo E-R. Una universidad registra personas con CUI, nombre y correo. Una persona puede ser estudiante (con carné y carrera), catedrático (con título y fecha de contratación), las dos cosas o ninguna (personal administrativo). Los cursos tienen código, nombre y créditos. Un estudiante se asigna varios cursos y cada curso tiene varios estudiantes; por cada asignación se guarda la nota. Cada curso lo imparte un solo catedrático, que puede impartir varios cursos.",
+     "pasos": [
+      "<b>Entidades y claves.</b> Persona (clave CUI) y Curso (clave código).",
+      "<b>Especialización.</b> Persona se especializa en Estudiante (carné, carrera) y Catedrático (título, fecha de contratación), que heredan CUI, nombre y correo. Es <b>solapada</b> (alguien puede ser las dos cosas) y <b>parcial</b> (alguien puede no ser ninguna).",
+      "<b>Relación Asignación.</b> Estudiante–Curso es N:M. La nota depende de la pareja (estudiante, curso), así que es atributo de la relación, no de Estudiante ni de Curso.",
+      "<b>Relación Imparte.</b> Catedrático 1:N Curso: un catedrático, muchos cursos; cada curso, un catedrático. Curso participa de forma total, porque todo curso tiene catedrático."
+     ],
+     "r": "Persona (CUI, nombre, correo) con especialización solapada y parcial en Estudiante y Catedrático; Curso (código, nombre, créditos); Asignación N:M entre Estudiante y Curso con el atributo nota; Imparte 1:N de Catedrático a Curso.",
+     "fin": "Es el problema típico de parcial: leer un enunciado y sacar entidades, jerarquía, relaciones y atributos de relación."
+    },
+    {
+     "nv": "B",
+     "q": "Indica la cardinalidad de cada relación: (a) un departamento de Guatemala y sus municipios; (b) una persona y su DPI vigente; (c) estudiantes y cursos en un semestre; (d) facturas y productos; (e) una madre y sus hijos.",
+     "r": "(a) 1:N: un departamento tiene muchos municipios y cada municipio pertenece a un solo departamento. (b) 1:1. (c) N:M. (d) N:M: una factura lleva varios productos y un producto aparece en varias facturas. (e) 1:N."
+    },
+    {
+     "nv": "I",
+     "q": "Una ferretería compra el mismo producto a varios proveedores, y cada proveedor le vende varios productos. El precio de compra de un producto cambia según el proveedor. (a) ¿Qué cardinalidad tiene la relación <i>Surte</i> entre Proveedor y Producto? (b) ¿De quién es el atributo precio de compra? (c) Si todo producto debe tener al menos un proveedor, ¿qué participación tiene Producto?",
+     "r": "(a) N:M. (b) De la relación <i>Surte</i>: depende de la pareja (proveedor, producto); en Producto solo cabría un precio. (c) Total."
+    },
+    {
+     "nv": "A",
+     "q": "Modela con E-R. En una empresa cada empleado tiene código y nombre, y puede tener un jefe, que también es empleado; un jefe supervisa a varios empleados. Además, cada empleado puede registrar dependientes para el seguro; de cada dependiente se guarda el nombre, el parentesco y la fecha de nacimiento, y dos empleados distintos pueden tener dependientes con el mismo nombre. Indica el tipo de cada relación, sus cardinalidades y qué entidad es débil.",
+     "r": "<i>Supervisa</i> es una relación <b>unaria o recursiva</b> de Empleado consigo mismo, 1:N, con los roles jefe y subordinado y participación parcial en ambos (hay empleados sin jefe y empleados que no supervisan a nadie). Dependiente es una <b>entidad débil</b> de Empleado: discriminador nombre, clave (código de empleado, nombre) y relación identificadora 1:N con participación total de Dependiente."
+    },
+    {
+     "nv": "B",
+     "q": "En la notación de Chen, ¿qué figura representa una relación entre entidades?",
+     "ops": [
+      "Un rectángulo",
+      "Un óvalo",
+      "Un rombo",
+      "Un rectángulo doble"
+     ],
+     "ok": 2,
+     "r": "El rombo representa la relación. El rectángulo es un conjunto de entidades, el óvalo es un atributo y el rectángulo doble es una entidad débil."
+    },
+    {
+     "nv": "B",
+     "q": "La edad de un paciente se calcula con su fecha de nacimiento. ¿Qué tipo de atributo es la edad?",
+     "ops": [
+      "Derivado",
+      "Compuesto",
+      "Multivaluado",
+      "Clave"
+     ],
+     "ok": 0,
+     "r": "Es derivado porque su valor se obtiene de otro atributo y no hace falta almacenarlo. Sería compuesto si se dividiera en partes (como la dirección) y multivaluado si tuviera varios valores a la vez (como los teléfonos). No identifica al paciente, así que tampoco es clave."
+    },
+    {
+     "nv": "I",
+     "q": "Toda factura debe pertenecer a un cliente, pero puede haber clientes que todavía no tienen facturas. En la relación entre Cliente y Factura, ¿cómo es la participación?",
+     "ops": [
+      "Total para Cliente y parcial para Factura",
+      "Total para Factura y parcial para Cliente",
+      "Total para Factura y también para Cliente",
+      "Parcial para Factura y también para Cliente"
+     ],
+     "ok": 1,
+     "r": "Participación total significa que toda entidad del conjunto debe participar: eso pasa con Factura, que no existe sin cliente. Cliente es parcial porque puede existir sin facturas. No confundas participación (si es obligatorio) con cardinalidad (cuántos)."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cómo se forma la clave de una entidad débil?",
+     "ops": [
+      "Solo con su discriminador o clave parcial",
+      "Solo con la clave de la entidad fuerte de la que depende",
+      "Con un código correlativo propio que se le agrega",
+      "Con la clave de la entidad fuerte más el discriminador"
+     ],
+     "ok": 3,
+     "r": "El discriminador solo distingue a las débiles de una misma propietaria, así que no basta. La clave de la fuerte sola identifica a la propietaria, no a cada débil. La combinación de las dos sí es única. Si tuviera un código propio dejaría de ser débil."
+    },
+    {
+     "nv": "A",
+     "q": "En un hospital, toda persona registrada es paciente o médico, y un médico también puede estar registrado como paciente. ¿Qué restricciones tiene la especialización de Persona en Paciente y Médico?",
+     "ops": [
+      "Total y disjunta",
+      "Total y solapada",
+      "Parcial y solapada",
+      "Parcial y disjunta"
+     ],
+     "ok": 1,
+     "r": "Es total porque toda persona está en al menos una subclase, y solapada porque una misma persona puede estar en las dos. Sería disjunta si nadie pudiera ser médico y paciente a la vez, y parcial si hubiera personas que no son ni lo uno ni lo otro."
+    }
+   ]
+  },
+  {
+   "titulo": "Modelo relacional",
+   "intro": "La teoría detrás de las tablas: relación, tupla, atributo y dominio, los tipos de clave, las reglas de integridad y las reglas para convertir un diagrama E-R en un esquema relacional.",
+   "conceptos": [
+    {
+     "n": "Relación, tupla, atributo y dominio",
+     "e": [
+      "En el modelo relacional (E. F. Codd, 1970) toda la información se guarda en <b>relaciones</b>, que se ven como tablas. Una <b>tupla</b> es una fila; un <b>atributo</b> es una columna con nombre; el <b>dominio</b> es el conjunto de valores atómicos que un atributo puede tomar. El <b>grado</b> es el número de atributos y la <b>cardinalidad</b> es el número de tuplas. El <b>esquema</b> de la relación es su nombre con su lista de atributos, <code>Curso(codigo, nombre, creditos)</code>, y la <b>instancia</b> es el conjunto de tuplas que contiene en un momento dado.",
+      "Como una relación es un <b>conjunto</b> de tuplas, tiene cuatro propiedades: no hay tuplas repetidas, las tuplas no tienen orden, los atributos tampoco (se identifican por su nombre) y cada celda guarda un solo valor atómico. Cuidado con la palabra «cardinalidad»: aquí es el número de tuplas; en el modelo E-R es el tipo de correspondencia (1:1, 1:N, N:M)."
+     ],
+     "u": [
+      "En todo SGBD relacional: MySQL, PostgreSQL, Oracle, SQL Server.",
+      "Es un modelo simple, con base matemática (teoría de conjuntos), que permite consultar sin saber cómo se almacenan los datos.",
+      "Al definir tablas y al hablar con precisión en un examen: tupla, atributo, grado, cardinalidad.",
+      "Escribe el esquema <code>R(A1, A2, …)</code>, fija el dominio de cada atributo y recuerda que la tabla es un conjunto."
+     ],
+     "tabla": "<table><tr><th>Término formal</th><th>En una tabla</th><th>En un archivo</th></tr><tr><td>Relación</td><td>Tabla</td><td>Archivo</td></tr><tr><td>Tupla</td><td>Fila</td><td>Registro</td></tr><tr><td>Atributo</td><td>Columna</td><td>Campo</td></tr><tr><td>Grado</td><td>Número de columnas</td><td>Número de campos</td></tr><tr><td>Cardinalidad</td><td>Número de filas</td><td>Número de registros</td></tr><tr><td>Dominio</td><td>Tipo de dato y valores válidos</td><td>Tipo del campo</td></tr></table>"
+    },
+    {
+     "n": "Claves e integridad",
+     "e": [
+      "Una <b>superclave</b> es un conjunto de atributos cuyo valor identifica de forma única a cada tupla. Una <b>clave candidata</b> es una superclave mínima: si le quitas cualquier atributo, deja de identificar. La <b>clave primaria</b> es la candidata que el diseñador elige; las demás son <b>claves alternas</b>. Una <b>clave foránea</b> (ajena o externa) es un conjunto de atributos de una relación que hace referencia a la clave primaria de otra relación, o de la misma. Un atributo es <b>primo</b> si forma parte de alguna clave candidata.",
+      "Las reglas de integridad mantienen correctos los datos. <b>Integridad de entidad</b>: ningún atributo de la clave primaria puede ser nulo. <b>Integridad referencial</b>: todo valor de una clave foránea debe existir en la clave a la que hace referencia, o ser nulo. <b>Integridad de dominio</b>: cada valor pertenece al dominio de su atributo. Cuando se borra o se modifica una fila referenciada, el SGBD aplica la acción declarada: <code>RESTRICT</code> (rechaza la operación), <code>CASCADE</code> (la propaga a las filas que la referencian) o <code>SET NULL</code> (deja la clave foránea en nulo)."
+     ],
+     "u": [
+      "En cada <code>PRIMARY KEY</code>, <code>UNIQUE</code> y <code>FOREIGN KEY</code> de un esquema.",
+      "Sin claves hay filas duplicadas; sin integridad referencial quedan filas huérfanas, como un detalle sin factura.",
+      "Al diseñar cada tabla y al decidir qué pasa cuando se borra una fila referenciada.",
+      "Lista las claves candidatas, elige la primaria (corta, estable y nunca nula), declara las alternas como <code>UNIQUE</code> y cada referencia como clave foránea."
+     ],
+     "tabla": "<table><tr><th>Clave</th><th>Definición</th><th>En Estudiante(carne, cui, nombre, carrera)</th></tr><tr><td>Superclave</td><td>Identifica de forma única a cada tupla; puede tener atributos de sobra</td><td>{carne}, {carne, nombre}, {cui, carrera}</td></tr><tr><td>Clave candidata</td><td>Superclave mínima: no le sobra ningún atributo</td><td>{carne} y {cui}</td></tr><tr><td>Clave primaria</td><td>La candidata que elige el diseñador</td><td>{carne}</td></tr><tr><td>Clave alterna</td><td>Candidata que no se eligió como primaria</td><td>{cui}</td></tr><tr><td>Clave foránea</td><td>Hace referencia a la clave primaria de otra relación</td><td><code>carne</code> en Asignacion apunta a Estudiante</td></tr></table>"
+    },
+    {
+     "n": "Del diagrama E-R a tablas",
+     "e": [
+      "El esquema relacional se obtiene del diagrama E-R con reglas fijas. Cada <b>entidad fuerte</b> se convierte en una tabla con sus atributos simples, y su clave pasa a ser la clave primaria. De un atributo <b>compuesto</b> solo se guardan sus componentes, un atributo <b>derivado</b> no se almacena y un atributo <b>multivaluado</b> va a una tabla aparte. Una <b>entidad débil</b> se convierte en una tabla cuya clave primaria es la clave de su propietaria (como clave foránea) más el discriminador.",
+      "Las relaciones se convierten según su cardinalidad. En <b>1:N</b>, la clave primaria del lado 1 pasa como clave foránea a la tabla del lado N. En <b>1:1</b>, la clave foránea va en una de las dos tablas, de preferencia en la que tiene participación total, y se declara única. En <b>N:M</b> se crea una tabla nueva con las claves de las dos entidades como claves foráneas; juntas forman su clave primaria, y allí van los atributos de la relación. Una <b>jerarquía</b> tiene tres opciones: una tabla para la superclase y una por subclase, solo tablas de subclases, o una sola tabla con un atributo de tipo."
+     ],
+     "u": [
+      "En el paso del diseño conceptual al diseño lógico de cualquier proyecto; en Laravel, cada regla termina en una migración.",
+      "Aplicar las reglas da tablas correctas a la primera, sin grupos repetitivos ni claves foráneas mal puestas.",
+      "Después de validar el diagrama E-R con el usuario y antes de normalizar.",
+      "Convierte primero las entidades fuertes, luego las débiles, luego las relaciones según su cardinalidad y al final los multivaluados y las jerarquías."
+     ],
+     "tabla": "<table><tr><th>Elemento del E-R</th><th>Resultado en el modelo relacional</th></tr><tr><td>Entidad fuerte</td><td>Una tabla; su clave pasa a ser la clave primaria</td></tr><tr><td>Atributo compuesto</td><td>Una columna por cada componente</td></tr><tr><td>Atributo multivaluado</td><td>Tabla nueva (clave de la entidad, valor); las dos columnas forman la clave primaria</td></tr><tr><td>Atributo derivado</td><td>No se almacena; se calcula en la consulta</td></tr><tr><td>Entidad débil</td><td>Tabla con clave primaria = clave de la propietaria + discriminador</td></tr><tr><td>Relación 1:N</td><td>Clave foránea en la tabla del lado N</td></tr><tr><td>Relación 1:1</td><td>Clave foránea única en la tabla con participación total</td></tr><tr><td>Relación N:M</td><td>Tabla nueva; clave primaria = las dos claves foráneas</td></tr><tr><td>Jerarquía ES-UN</td><td>Superclase y subclases, solo subclases o una sola tabla con atributo de tipo</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Para la relación <code>Curso</code> indica el grado, la cardinalidad, el dominio de <code>creditos</code> y qué atributos pueden ser clave candidata. <table><tr><th>codigo</th><th>nombre</th><th>creditos</th><th>ciclo</th></tr><tr><td>BD1</td><td>Bases de Datos I</td><td>5</td><td>6</td></tr><tr><td>BD2</td><td>Bases de Datos II</td><td>5</td><td>7</td></tr><tr><td>PR3</td><td>Programación III</td><td>5</td><td>5</td></tr><tr><td>SO1</td><td>Sistemas Operativos I</td><td>4</td><td>6</td></tr></table>",
+     "pasos": [
+      "<b>Grado.</b> Cuenta los atributos: codigo, nombre, creditos y ciclo. El grado es 4.",
+      "<b>Cardinalidad.</b> Cuenta las tuplas: 4.",
+      "<b>Dominio.</b> <code>creditos</code> toma enteros positivos pequeños, por ejemplo de 1 a 10.",
+      "<b>Claves candidatas.</b> <code>codigo</code> identifica a cada curso. <code>nombre</code> también, si la universidad no repite nombres de curso. <code>creditos</code> y <code>ciclo</code> tienen valores repetidos en la tabla (5 y 6), así que no pueden ser clave."
+     ],
+     "r": "Grado 4 y cardinalidad 4. Claves candidatas: {codigo} y, si los nombres no se repiten, {nombre}. Se elige <code>codigo</code> como clave primaria.",
+     "fin": "Usar el vocabulario formal y recordar que los datos pueden descartar una clave, pero solo el significado la confirma."
+    },
+    {
+     "nv": "I",
+     "q": "En <code>Estudiante(carne, cui, nombre, carrera)</code> las únicas claves candidatas son {carne} y {cui}. ¿Cuántas superclaves tiene la relación? Clasifica estos conjuntos como superclave, clave candidata o ninguna de las dos: {carne, nombre}, {nombre, carrera}, {cui} y {carne, cui}.",
+     "pasos": [
+      "<b>Definición.</b> Una superclave es cualquier conjunto de atributos que contiene una clave candidata.",
+      "<b>Con carne.</b> A {carne} se le puede agregar, o no, cada uno de los otros 3 atributos: \\(2^3=8\\) conjuntos.",
+      "<b>Con cui.</b> Otros 8 conjuntos. Pero los que tienen carne y cui a la vez se contaron dos veces: son \\(2^2=4\\).",
+      "<b>Total.</b> \\(8+8-4=12\\) superclaves, de los \\(2^4-1=15\\) conjuntos no vacíos posibles.",
+      "<b>Clasificación.</b> {carne, nombre} es superclave pero no candidata (sobra nombre). {nombre, carrera} no es superclave. {cui} es clave candidata. {carne, cui} es superclave, pero no es mínima."
+     ],
+     "r": "12 superclaves. {carne, nombre} y {carne, cui} son superclaves no mínimas, {cui} es clave candidata y {nombre, carrera} no identifica.",
+     "fin": "Distinguir superclave de clave candidata, la confusión más frecuente en los parciales."
+    },
+    {
+     "nv": "I",
+     "q": "En estas tablas, <code>empleado.depto</code> es clave foránea hacia <code>departamento.codigo</code> y no tiene acciones declaradas (el borrado se rechaza). Di si cada operación se acepta o qué regla viola: (a) insertar el empleado (5, 'Sofía', 40); (b) insertar el empleado (NULL, 'Diego', 10); (c) insertar el empleado (6, 'Elena', NULL); (d) borrar el departamento 10; (e) insertar el empleado (2, 'Rosa', 20).<br>departamento: <table><tr><th>codigo</th><th>nombre</th></tr><tr><td>10</td><td>Ventas</td></tr><tr><td>20</td><td>Bodega</td></tr><tr><td>30</td><td>Informática</td></tr></table> empleado: <table><tr><th>codigo</th><th>nombre</th><th>depto</th></tr><tr><td>1</td><td>Ana</td><td>10</td></tr><tr><td>2</td><td>Luis</td><td>20</td></tr><tr><td>3</td><td>Marta</td><td>10</td></tr><tr><td>4</td><td>Pedro</td><td>30</td></tr></table>",
+     "pasos": [
+      "<b>(a) Departamento inexistente.</b> El 40 no existe en <code>departamento</code>: viola la <b>integridad referencial</b>. Se rechaza.",
+      "<b>(b) Clave primaria nula.</b> Viola la <b>integridad de entidad</b>. Se rechaza.",
+      "<b>(c) Clave foránea nula.</b> Una clave foránea sí puede ser nula (un empleado todavía sin departamento), salvo que la columna sea <code>NOT NULL</code>. Se acepta.",
+      "<b>(d) Borrar una fila referenciada.</b> Ana y Marta hacen referencia al departamento 10; borrarlo las dejaría huérfanas. Viola la integridad referencial y se rechaza. Con <code>ON DELETE CASCADE</code> se borrarían también Ana y Marta; con <code>ON DELETE SET NULL</code> quedarían sin departamento.",
+      "<b>(e) Clave primaria repetida.</b> Ya existe un empleado con código 2: viola la unicidad de la clave primaria. Se rechaza."
+     ],
+     "r": "Solo se acepta (c). (a) y (d) violan la integridad referencial, (b) la integridad de entidad y (e) la unicidad de la clave primaria.",
+     "fin": "Predecir qué operaciones rechaza el SGBD y nombrar la regla exacta."
+    },
+    {
+     "nv": "A",
+     "q": "Convierte a tablas este diagrama E-R de una tienda e indica las claves primarias y foráneas. Entidades: Cliente (clave nit; nombre; teléfonos, multivaluado), Factura (clave numero; fecha; total, derivado de sus detalles) y Producto (clave codigo; descripcion; precio). Relaciones: un cliente tiene muchas facturas y cada factura es de un solo cliente (1:N); una factura incluye muchos productos y un producto aparece en muchas facturas (N:M <i>Detalle</i>, con el atributo cantidad).",
+     "pasos": [
+      "<b>Entidades fuertes.</b> <code>Cliente(nit, nombre)</code>, <code>Factura(numero, fecha)</code> y <code>Producto(codigo, descripcion, precio)</code>. El total es derivado: no se almacena.",
+      "<b>Atributo multivaluado.</b> Los teléfonos van a una tabla aparte, <code>TelefonoCliente(nit, telefono)</code>: la clave primaria es (nit, telefono) y <code>nit</code> es clave foránea hacia <code>Cliente</code>.",
+      "<b>Relación 1:N.</b> La clave del lado 1 pasa al lado N: <code>Factura(numero, fecha, nit)</code>, con <code>nit</code> como clave foránea hacia <code>Cliente</code>.",
+      "<b>Relación N:M.</b> Tabla nueva <code>Detalle(numero, codigo, cantidad)</code>: la clave primaria es (numero, codigo); <code>numero</code> es clave foránea hacia <code>Factura</code> y <code>codigo</code> hacia <code>Producto</code>."
+     ],
+     "r": "Cinco tablas: <code>Cliente(<b>nit</b>, nombre)</code>, <code>TelefonoCliente(<b>nit</b>, <b>telefono</b>)</code>, <code>Factura(<b>numero</b>, fecha, nit)</code>, <code>Producto(<b>codigo</b>, descripcion, precio)</code> y <code>Detalle(<b>numero</b>, <b>codigo</b>, cantidad)</code>. Las claves primarias van en negrita (a mano, subrayadas).",
+     "fin": "Es el ejercicio central del parcial: aplicar cada regla de conversión sin perder atributos ni claves."
+    },
+    {
+     "nv": "B",
+     "q": "Para la relación <code>Vehiculo</code> indica: (a) el grado; (b) la cardinalidad; (c) cómo se llama formalmente cada fila y cada columna; (d) si <code>marca</code> puede ser clave; (e) si se puede afirmar que <code>linea</code> es clave porque no se repite en esta tabla. <table><tr><th>placa</th><th>marca</th><th>linea</th><th>modelo</th></tr><tr><td>P123ABC</td><td>Toyota</td><td>Hilux</td><td>2020</td></tr><tr><td>P456DEF</td><td>Toyota</td><td>Corolla</td><td>2018</td></tr><tr><td>M789GHI</td><td>Honda</td><td>CB190</td><td>2022</td></tr><tr><td>C321JKL</td><td>Hino</td><td>Dutro</td><td>2020</td></tr><tr><td>P654MNO</td><td>Kia</td><td>Rio</td><td>2018</td></tr></table>",
+     "r": "(a) Grado 4. (b) Cardinalidad 5. (c) Cada fila es una tupla y cada columna, un atributo. (d) No: Toyota se repite. (e) No: mañana pueden registrarse dos vehículos de la misma línea. Una instancia puede descartar una clave, pero no confirmarla; la clave es <code>placa</code>, por su significado."
+    },
+    {
+     "nv": "I",
+     "q": "La entidad Empleado (clave codigo; nombre) tiene una especialización total y disjunta en Asalariado (salario mensual) y PorHora (tarifa por hora). Escribe las tres formas de convertirla a tablas y da una desventaja de cada una.",
+     "r": "<b>1. Superclase y subclases:</b> <code>Empleado(<b>codigo</b>, nombre)</code>, <code>Asalariado(<b>codigo</b>, salario_mensual)</code> y <code>PorHora(<b>codigo</b>, tarifa_hora)</code>, donde <code>codigo</code> es clave primaria y también clave foránea hacia <code>Empleado</code>; para ver los datos completos hace falta una reunión. <b>2. Solo subclases:</b> <code>Asalariado(<b>codigo</b>, nombre, salario_mensual)</code> y <code>PorHora(<b>codigo</b>, nombre, tarifa_hora)</code>; solo conviene si la especialización es total y disjunta, y listar a todos los empleados exige una unión. <b>3. Una sola tabla:</b> <code>Empleado(<b>codigo</b>, nombre, tipo, salario_mensual, tarifa_hora)</code>; deja nulos en la columna que no aplica."
+    },
+    {
+     "nv": "A",
+     "q": "Convierte a tablas. Empleado (clave codigo; nombre). Departamento (clave codigo; nombre). Cada empleado trabaja en un solo departamento y un departamento tiene muchos empleados. Cada departamento tiene un solo director, que es un empleado, y un empleado dirige a lo sumo un departamento; todo departamento tiene director. Un empleado puede supervisar a otros empleados (relación recursiva 1:N). Dependiente es una entidad débil de Empleado, con discriminador nombre y atributo parentesco.",
+     "r": "Tres tablas. <code>Departamento(<b>codigo</b>, nombre, director)</code>: <code>director</code> es clave foránea hacia <code>Empleado</code>, única y no nula (la relación 1:1 se pone del lado con participación total). <code>Empleado(<b>codigo</b>, nombre, depto, jefe)</code>: <code>depto</code> es clave foránea hacia <code>Departamento</code> (1:N) y <code>jefe</code> es clave foránea hacia el mismo <code>Empleado</code> y admite nulo (recursiva). <code>Dependiente(<b>cod_empleado</b>, <b>nombre</b>, parentesco)</code>: <code>cod_empleado</code> es clave foránea hacia <code>Empleado</code>. Ninguna relación necesita tabla propia porque no hay N:M."
+    },
+    {
+     "nv": "B",
+     "q": "En el modelo relacional, ¿cómo se llama el número de atributos (columnas) de una relación?",
+     "ops": [
+      "Grado",
+      "Cardinalidad",
+      "Dominio",
+      "Tupla"
+     ],
+     "ok": 0,
+     "r": "El grado es el número de atributos. La cardinalidad es el número de tuplas (filas), el dominio es el conjunto de valores permitidos de un atributo y una tupla es una fila."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué establece la regla de integridad de entidad?",
+     "ops": [
+      "Que toda clave foránea debe existir en la tabla referenciada",
+      "Que cada valor debe pertenecer al dominio de su atributo",
+      "Que toda tabla debe tener al menos una clave foránea",
+      "Que ningún atributo de la clave primaria puede ser nulo"
+     ],
+     "ok": 3,
+     "r": "La integridad de entidad protege la identificación de cada tupla: la clave primaria nunca es nula. Que la clave foránea exista en la tabla referenciada es la integridad referencial, y que el valor pertenezca al dominio es la integridad de dominio. Ninguna regla obliga a tener claves foráneas."
+    },
+    {
+     "nv": "I",
+     "q": "En <code>Estudiante(carne, cui, nombre)</code>, <code>carne</code> y <code>cui</code> son únicos y <code>nombre</code> puede repetirse. ¿Qué conjunto es superclave pero NO es clave candidata?",
+     "ops": [
+      "{carne, nombre}",
+      "{carne}",
+      "{cui}",
+      "{nombre}"
+     ],
+     "ok": 0,
+     "r": "{carne, nombre} identifica a cada tupla porque contiene a carne, pero no es mínima: sobra nombre. {carne} y {cui} son superclaves mínimas, es decir, claves candidatas. {nombre} no es superclave porque puede repetirse."
+    },
+    {
+     "nv": "I",
+     "q": "¿Cómo se convierte en tablas una relación N:M entre Estudiante y Curso que tiene el atributo nota?",
+     "ops": [
+      "Con una clave foránea hacia Curso dentro de la tabla Estudiante, junto a la nota",
+      "Con una clave foránea hacia Estudiante dentro de la tabla Curso, junto a la nota",
+      "Con una tabla nueva cuya clave primaria combina las claves de Estudiante y de Curso",
+      "Con una sola tabla que reúne los atributos de Estudiante, de Curso y la nota"
+     ],
+     "ok": 2,
+     "r": "Una relación N:M siempre genera una tabla propia con las dos claves como claves foráneas; juntas forman la clave primaria, y allí va la nota. Una clave foránea en Estudiante o en Curso solo permite un valor por fila, por lo que sirve para 1:N. Una sola tabla repetiría los datos del estudiante y del curso en cada asignación."
+    },
+    {
+     "nv": "A",
+     "q": "Entre Empleado y Departamento existe la relación 1:1 <i>Dirige</i>: todo departamento tiene un director, pero la mayoría de los empleados no dirige ninguno. ¿Dónde conviene poner la clave foránea?",
+     "ops": [
+      "En Empleado, con restricción de unicidad, porque es la tabla con más filas",
+      "En Departamento, con restricción de unicidad, porque su participación es total",
+      "En una tabla nueva, porque toda relación 1:1 exige una tabla intermedia",
+      "En las dos tablas a la vez, para recorrer la relación en ambos sentidos"
+     ],
+     "ok": 1,
+     "r": "En una relación 1:1 la clave foránea se pone del lado con participación total: en Departamento nunca queda nula. En Empleado quedaría nula en casi todas las filas. La tabla intermedia solo es obligatoria en N:M, y repetir la clave foránea en las dos tablas crea redundancia que puede contradecirse."
+    }
+   ]
+  },
+  {
+   "titulo": "Normalización",
+   "intro": "Por qué una mala tabla produce anomalías, cómo se razona con dependencias funcionales, clausuras y claves candidatas, cómo se lleva una tabla paso a paso a 1FN, 2FN, 3FN y FNBC, y cuándo conviene desnormalizar.",
+   "conceptos": [
+    {
+     "n": "Anomalías y dependencias funcionales",
+     "e": [
+      "Una tabla mal diseñada guarda el mismo hecho muchas veces (<b>redundancia</b>), y eso produce tres <b>anomalías</b>. De <b>inserción</b>: no se puede registrar un hecho sin inventar otro (un curso sin estudiantes no cabe en una tabla cuya clave es carné y curso). De <b>actualización</b> o modificación: un cambio debe repetirse en muchas filas y, si se omite una, los datos se contradicen. De <b>eliminación</b> o borrado: al borrar una fila se pierde, sin querer, otro hecho (al retirar la única asignación de un curso desaparece su nombre). La <b>normalización</b> descompone las tablas, guiada por las dependencias funcionales, para quitar esa redundancia sin perder información.",
+      "Una <b>dependencia funcional</b> X → Y (X determina a Y) se cumple en R si dos tuplas que coinciden en X coinciden siempre en Y; X es el <b>determinante</b>. Es <b>trivial</b> si Y ⊆ X; <b>completa</b> si Y no depende de ningún subconjunto propio de X, y <b>parcial</b> si sí depende; <b>transitiva</b> si se da a través de otro atributo no clave (X → Z y Z → Y). Las dependencias salen de las reglas del negocio, no de los datos: una instancia puede mostrar que una dependencia no se cumple, pero nunca demostrar que se cumple. De un conjunto F se deducen otras con los <b>axiomas de Armstrong</b>: reflexividad (si Y ⊆ X, entonces X → Y), aumento (si X → Y, entonces XZ → YZ) y transitividad (si X → Y y Y → Z, entonces X → Z). De ellos salen la unión, la descomposición y la pseudotransitividad."
+     ],
+     "u": [
+      "En el diseño de toda base de datos transaccional: control académico, facturación, planillas, inventarios.",
+      "Las anomalías dejan datos contradictorios que ningún programa puede corregir después.",
+      "Al revisar una tabla heredada (una hoja de cálculo convertida en tabla) o un diseño antes de implementarlo.",
+      "Escribe cada regla del negocio como una dependencia X → Y y busca los hechos que se repiten fila tras fila."
+     ],
+     "f": "X \\rightarrow Y \\iff \\forall\\, t_1,t_2 \\in r:\\; t_1[X]=t_2[X] \\Rightarrow t_1[Y]=t_2[Y]"
+    },
+    {
+     "n": "Clausura de atributos y claves candidatas",
+     "e": [
+      "La <b>clausura</b> de un conjunto de atributos X respecto de F, escrita \\(X^{+}\\), es el conjunto de todos los atributos que X determina. Se calcula así: se parte de \\(X^{+}=X\\) y, mientras exista una dependencia V → W con \\(V \\subseteq X^{+}\\), se agregan los atributos de W; cuando una pasada completa no agrega nada, se termina. Responde tres preguntas: si X → Y se deduce de F (basta que \\(Y \\subseteq X^{+}\\)), si X es <b>superclave</b> (\\(X^{+}\\) contiene todos los atributos de R) y si es <b>clave candidata</b> (es superclave y ningún subconjunto propio lo es).",
+      "Para hallar todas las claves candidatas sin probar los \\(2^{n}-1\\) subconjuntos, clasifica los atributos según dónde aparecen en F. Los que no están en ningún lado derecho tienen que estar en toda clave, porque nada los determina: forman el núcleo. Los que solo aparecen a la derecha no están en ninguna clave. Calcula la clausura del núcleo: si da R, es la única clave; si no, agrégale uno a uno los atributos que aparecen en ambos lados y quédate con los conjuntos mínimos. Un atributo es <b>primo</b> si pertenece a alguna clave candidata y <b>no primo</b> si no pertenece a ninguna; esa distinción decide la 2FN y la 3FN."
+     ],
+     "u": [
+      "En los ejercicios de normalización y al elegir la clave primaria y las restricciones <code>UNIQUE</code> de un esquema.",
+      "Sin las claves candidatas no se sabe qué atributos son primos ni si una dependencia es parcial o transitiva.",
+      "Siempre antes de decidir la forma normal de una tabla.",
+      "Clasifica los atributos, calcula la clausura del núcleo y agrega atributos de ambos lados hasta cubrir R con conjuntos mínimos."
+     ],
+     "tabla": "<table><tr><th>Dónde aparece el atributo en F</th><th>¿Está en las claves?</th><th>Con F = {A → B, B → C, CD → E}</th></tr><tr><td>Solo a la izquierda, o en ninguna dependencia</td><td>En todas las claves</td><td>A y D</td></tr><tr><td>Solo a la derecha</td><td>En ninguna clave</td><td>E</td></tr><tr><td>A la izquierda y a la derecha</td><td>Hay que probar</td><td>B y C</td></tr></table>"
+    },
+    {
+     "n": "Formas normales y desnormalización",
+     "e": [
+      "Una relación está en <b>1FN</b> si todos sus atributos son atómicos: sin atributos multivaluados ni grupos repetitivos (nada de producto1, producto2, producto3, ni listas dentro de una celda). Está en <b>2FN</b> si está en 1FN y todo atributo no primo depende de forma completa de cada clave candidata, es decir, sin dependencias parciales; solo puede fallar si hay una clave compuesta. Está en <b>3FN</b> si está en 2FN y ningún atributo no primo depende transitivamente de una clave; para comprobarla se usa esta definición: en toda dependencia no trivial X → A, X es superclave o A es primo. Está en <b>FNBC</b> (forma normal de Boyce-Codd) si en toda dependencia no trivial X → Y, X es superclave: todo determinante es clave. Cada forma incluye a la anterior. Para recordarlo: cada atributo no primo depende de la clave (1FN), de toda la clave (2FN) y de nada más que la clave (3FN).",
+      "Normalizar es <b>descomponer</b>: proyectar la tabla en otras más pequeñas. La descomposición de R en R1 y R2 es <b>sin pérdida</b> si R1 ⋈ R2 devuelve exactamente R, y eso se garantiza cuando los atributos comunes son clave de una de las dos (\\(R_1 \\cap R_2 \\rightarrow R_1\\) o \\(R_1 \\cap R_2 \\rightarrow R_2\\)). <b>Conserva las dependencias</b> si cada dependencia de F se puede verificar dentro de alguna tabla o se deduce de las que sí. A 3FN siempre se llega con las dos propiedades; a FNBC siempre sin pérdida, pero a veces se pierde una dependencia. La <b>desnormalización</b> es el camino inverso hecho a propósito: se juntan tablas o se copian columnas (el nombre del cliente o el total en la factura) para evitar reuniones costosas en consultas muy frecuentes. Se paga con redundancia, que hay que mantener consistente con triggers o procesos, y se justifica en reportes y almacenes de datos, no en el diseño inicial."
+     ],
+     "u": [
+      "En el diseño lógico de todo sistema transaccional; la meta habitual es 3FN o FNBC.",
+      "Cada forma normal quita un tipo de redundancia y, con ella, sus anomalías.",
+      "Al pasar del modelo E-R a tablas, al revisar un diseño heredado y, al revés, al optimizar reportes lentos.",
+      "Halla las claves, revisa cada dependencia contra la definición de cada forma y descompón por la dependencia que la viola."
+     ],
+     "tabla": "<table><tr><th>Forma</th><th>Condición</th><th>Qué elimina</th></tr><tr><td>1FN</td><td>Valores atómicos, sin grupos repetitivos</td><td>Listas y columnas repetidas</td></tr><tr><td>2FN</td><td>1FN y ningún atributo no primo depende de parte de una clave</td><td>Dependencias parciales</td></tr><tr><td>3FN</td><td>2FN y, en toda X → A no trivial, X es superclave o A es primo</td><td>Dependencias transitivas (un no primo que determina a otro)</td></tr><tr><td>FNBC</td><td>En toda X → Y no trivial, X es superclave</td><td>Determinantes que no son clave</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "La tabla <code>Asignacion</code> guarda las notas del ciclo; su clave primaria es {carne, cod_curso}. <table><tr><th>carne</th><th>nombre_est</th><th>cod_curso</th><th>nombre_curso</th><th>nota</th></tr><tr><td>2101</td><td>Ana López</td><td>BD1</td><td>Bases de Datos I</td><td>78</td></tr><tr><td>2101</td><td>Ana López</td><td>PR3</td><td>Programación III</td><td>65</td></tr><tr><td>2102</td><td>Luis Pérez</td><td>BD1</td><td>Bases de Datos I</td><td>54</td></tr><tr><td>2103</td><td>Marta Ruiz</td><td>BD1</td><td>Bases de Datos I</td><td>90</td></tr><tr><td>2103</td><td>Marta Ruiz</td><td>SO1</td><td>Sistemas Operativos I</td><td>71</td></tr></table> (a) ¿Qué datos se repiten? (b) Da con estos datos un ejemplo de anomalía de inserción, de actualización y de eliminación.",
+     "pasos": [
+      "<b>Redundancia.</b> «Bases de Datos I» aparece 3 veces, una por cada estudiante asignado, y los nombres de Ana y de Marta, 2 veces cada uno. El nombre del curso depende solo de cod_curso y el del estudiante solo de carne, pero se copian en cada asignación.",
+      "<b>Inserción.</b> Para registrar el curso nuevo IO1 (Investigación de Operaciones), que aún no tiene estudiantes, habría que dejar carne en NULL, pero carne es parte de la clave primaria y la integridad de entidad lo prohíbe.",
+      "<b>Actualización.</b> Si BD1 pasa a llamarse «Bases de Datos 1», hay que cambiar 3 filas. Si se cambia solo una, el mismo curso queda con dos nombres.",
+      "<b>Eliminación.</b> Luis tiene una sola asignación. Si se retira de BD1 y se borra esa fila, también se pierde que Luis existe y cómo se llama."
+     ],
+     "r": "Se repiten el nombre de cada curso (el de BD1, tres veces) y el de cada estudiante con más de un curso. Inserción: no se puede registrar un curso sin estudiantes. Actualización: renombrar BD1 exige cambiar 3 filas. Eliminación: borrar la única fila de Luis borra sus datos.",
+     "fin": "Reconocer las tres anomalías en una tabla concreta es lo primero que pide el parcial antes de normalizar."
+    },
+    {
+     "nv": "I",
+     "q": "Sea R(A, B, C, D, E) con F = {A → B, B → C, CD → E}. (a) Calcula \\(A^{+}\\), \\(D^{+}\\) y \\((AD)^{+}\\). (b) Halla todas las claves candidatas. (c) ¿En qué forma normal está R?",
+     "pasos": [
+      "<b>Clausura de A.</b> Se parte de {A}. A → B agrega B y B → C agrega C; CD → E no aplica porque falta D. \\(A^{+}=\\{A,B,C\\}\\).",
+      "<b>Clausuras de D y de AD.</b> Ningún lado izquierdo está contenido en {D} (CD → E también necesita C), así que \\(D^{+}=\\{D\\}\\). Para AD: A → B agrega B, B → C agrega C y, con C y D, CD → E agrega E. \\((AD)^{+}=\\{A,B,C,D,E\\}\\).",
+      "<b>Claves.</b> A y D no aparecen a la derecha de ninguna dependencia: están en toda clave. AD es superclave porque su clausura es todo R, y es mínima porque ni \\(A^{+}\\) ni \\(D^{+}\\) son R. Cualquier otra superclave contendría a A y a D, y no sería mínima: {A, D} es la única clave candidata.",
+      "<b>Forma normal.</b> Primos: A y D; no primos: B, C y E. B es no primo y depende de A, que es solo una parte de la clave: A → B es una dependencia parcial y R no está en 2FN."
+     ],
+     "r": "\\(A^{+}=\\{A,B,C\\}\\), \\(D^{+}=\\{D\\}\\) y \\((AD)^{+}=\\{A,B,C,D,E\\}\\). La única clave candidata es {A, D}, y R está en 1FN porque A → B es una dependencia parcial.",
+     "fin": "La clausura responde, sin adivinar, qué conjunto es clave y qué forma normal tiene una tabla."
+    },
+    {
+     "nv": "I",
+     "q": "Una ferretería de Mixco guarda sus ventas con una fila por factura; cada producto va como (código, descripción, precio, cantidad). <table><tr><th>num_factura</th><th>fecha</th><th>nit</th><th>nombre_cliente</th><th>productos</th></tr><tr><td>1001</td><td>2026-03-02</td><td>1234567-8</td><td>Carlos Ajú</td><td>P1, Martillo, 85.00, 2; P2, Clavos 1 lb, 12.50, 3</td></tr><tr><td>1002</td><td>2026-03-02</td><td>7654321-0</td><td>María Xol</td><td>P1, Martillo, 85.00, 1</td></tr><tr><td>1003</td><td>2026-03-03</td><td>1234567-8</td><td>Carlos Ajú</td><td>P3, Cinta métrica, 40.00, 1; P2, Clavos 1 lb, 12.50, 10</td></tr></table> Dependencias: num_factura → fecha, nit; nit → nombre_cliente; cod_producto → descripcion, precio; {num_factura, cod_producto} → cantidad. Normaliza paso a paso hasta 3FN.",
+     "pasos": [
+      "<b>1FN.</b> La columna productos es un grupo repetitivo. Se pone una fila por cada producto de cada factura: <code>Venta(num_factura, fecha, nit, nombre_cliente, cod_producto, descripcion, precio, cantidad)</code>, con 5 filas y clave {num_factura, cod_producto}.",
+      "<b>2FN.</b> Hay dependencias parciales: fecha y nit dependen solo de num_factura (y nombre_cliente, a través de nit), y descripcion y precio solo de cod_producto. Cada grupo sale a su tabla con la parte de la clave que lo determina: <code>Factura(<b>num_factura</b>, fecha, nit, nombre_cliente)</code>, <code>Producto(<b>cod_producto</b>, descripcion, precio)</code> y <code>Detalle(<b>num_factura</b>, <b>cod_producto</b>, cantidad)</code>.",
+      "<b>3FN.</b> En Factura, nit → nombre_cliente y nit no es clave: nombre_cliente depende transitivamente de num_factura. Se separa <code>Cliente(<b>nit</b>, nombre_cliente)</code> y Factura queda <code>(<b>num_factura</b>, fecha, nit)</code>, con nit como clave foránea.",
+      "<b>Comprobación.</b> En las cuatro tablas el único determinante es la clave: están en FNBC. Cada corte se hizo por una dependencia cuyo lado izquierdo quedó como clave de la tabla nueva, así que la descomposición es sin pérdida, y cada dependencia se verifica dentro de una tabla."
+     ],
+     "r": "<code>Cliente(<b>nit</b>, nombre_cliente)</code>, <code>Factura(<b>num_factura</b>, fecha, nit)</code>, <code>Producto(<b>cod_producto</b>, descripcion, precio)</code> y <code>Detalle(<b>num_factura</b>, <b>cod_producto</b>, cantidad)</code>, con 2, 3, 3 y 5 filas. En Detalle, las dos columnas de la clave son también claves foráneas.",
+     "fin": "Es el ejercicio más típico del parcial: llevar una tabla real de grupos repetitivos a 3FN, justificando cada corte con una dependencia."
+    },
+    {
+     "nv": "A",
+     "q": "En una academia de reforzamiento cada catedrático imparte un solo curso, un curso lo imparten varios catedráticos y cada estudiante, en cada curso, tiene un solo catedrático. La tabla es <code>Tutoria(estudiante, curso, catedratico)</code>. (a) Escribe las dependencias y halla las claves candidatas. (b) ¿En qué forma normal está? (c) Descompón en FNBC y di qué se pierde.",
+     "pasos": [
+      "<b>Dependencias.</b> Las reglas dan catedratico → curso y {estudiante, curso} → catedratico.",
+      "<b>Claves.</b> El atributo estudiante no aparece a la derecha: está en toda clave, pero solo no determina nada más. {estudiante, curso} determina catedratico, y {estudiante, catedratico} determina curso. Claves candidatas: {estudiante, curso} y {estudiante, catedratico}; los tres atributos son primos.",
+      "<b>Forma normal.</b> Sin atributos no primos no hay dependencias parciales ni transitivas que violen la 2FN o la 3FN: está en 3FN. Pero en catedratico → curso el determinante no es superclave, así que no está en FNBC.",
+      "<b>Descomposición.</b> Se separa por la dependencia que viola: <code>R1(<b>catedratico</b>, curso)</code> y <code>R2(<b>estudiante</b>, <b>catedratico</b>)</code>. Es sin pérdida porque el atributo común, catedratico, es clave de R1.",
+      "<b>Lo que se pierde.</b> La dependencia {estudiante, curso} → catedratico ya no se puede verificar en ninguna tabla. Si R1 tiene (Pérez, BD1) y (Gómez, BD1), R2 acepta (Ana, Pérez) y (Ana, Gómez) sin violar sus claves, y al reunirlas Ana queda con dos catedráticos de BD1."
+     ],
+     "r": "Claves: {estudiante, curso} y {estudiante, catedratico}. Está en 3FN, pero no en FNBC. En FNBC: (catedratico, curso) y (estudiante, catedratico), sin pérdida, pero se pierde la dependencia {estudiante, curso} → catedratico.",
+     "fin": "Es el caso clásico en que la FNBC obliga a elegir entre quitar toda la redundancia y conservar una regla del negocio; por eso muchos diseños se quedan en 3FN."
+    },
+    {
+     "nv": "B",
+     "q": "Sea R(A, B, C, D, E) con F = {AB → C, C → D, D → E}. (a) Calcula \\((AB)^{+}\\) y \\(C^{+}\\). (b) ¿Es AB clave candidata? (c) ¿En qué forma normal está R?",
+     "r": "(a) \\((AB)^{+}=\\{A,B,C,D,E\\}\\) y \\(C^{+}=\\{C,D,E\\}\\). (b) Sí: AB es superclave y es mínima, porque \\(A^{+}=\\{A\\}\\) y \\(B^{+}=\\{B\\}\\); como A y B no aparecen a la derecha, es la única clave. (c) 2FN: no hay dependencias parciales, pero C → D y D → E son transitivas (C y D no son claves), así que no llega a 3FN."
+    },
+    {
+     "nv": "I",
+     "q": "La tabla <code>Empleado(codigo, nombre, salario, cod_depto, nombre_depto)</code> cumple codigo → nombre, salario, cod_depto y cod_depto → nombre_depto. Indica la clave, la forma normal y normaliza hasta 3FN.",
+     "r": "Clave: {codigo}. Como la clave es simple, no hay dependencias parciales: está en 2FN. nombre_depto depende transitivamente de codigo (codigo → cod_depto → nombre_depto), así que no está en 3FN. Se descompone en <code>Empleado(<b>codigo</b>, nombre, salario, cod_depto)</code> y <code>Departamento(<b>cod_depto</b>, nombre_depto)</code>, con cod_depto como clave foránea. Las dos quedan en FNBC, sin pérdida y sin perder dependencias."
+    },
+    {
+     "nv": "A",
+     "q": "Sea R(A, B, C, D) con F = {AB → C, C → D, D → A}. Halla todas las claves candidatas y la forma normal más alta de R. Justifica.",
+     "r": "B no aparece a la derecha, así que está en toda clave, pero \\(B^{+}=\\{B\\}\\). \\((AB)^{+}\\), \\((BC)^{+}\\) y \\((BD)^{+}\\) dan {A, B, C, D}: las claves son {A, B}, {B, C} y {B, D}. Los cuatro atributos son primos, así que se cumple la 3FN. No está en FNBC porque en C → D y en D → A el determinante no es superclave (\\(C^{+}=\\{A,C,D\\}\\) y \\(D^{+}=\\{A,D\\}\\))."
+    },
+    {
+     "nv": "B",
+     "q": "En <code>Asignacion(carne, nombre_est, cod_curso, nombre_curso, nota)</code> el curso SO1 tiene un solo estudiante asignado. Al borrar esa fila también se pierde el nombre del curso. ¿Qué anomalía es?",
+     "ops": [
+      "Una anomalía de eliminación",
+      "Una anomalía de inserción",
+      "Una anomalía de actualización",
+      "Una violación de integridad referencial"
+     ],
+     "ok": 0,
+     "r": "Al borrar un hecho (la asignación) se pierde otro que no se quería borrar (el nombre del curso): es una anomalía de eliminación o borrado. La de inserción impide registrar un hecho sin otro y la de actualización obliga a cambiar muchas filas. No hay integridad referencial en juego: ninguna clave foránea queda apuntando a una fila que no existe."
+    },
+    {
+     "nv": "B",
+     "q": "¿Cuándo está una tabla en primera forma normal (1FN)?",
+     "ops": [
+      "Cuando ningún atributo no primo depende de una parte de la clave",
+      "Cuando todos sus atributos tienen valores atómicos, sin grupos repetitivos",
+      "Cuando ningún atributo no primo depende transitivamente de la clave",
+      "Cuando el determinante de toda dependencia es una superclave"
+     ],
+     "ok": 1,
+     "r": "La 1FN solo exige valores atómicos: una celda, un valor, y nada de columnas repetidas como producto1 y producto2. Que ningún no primo dependa de una parte de la clave es la condición de la 2FN; que ninguno dependa transitivamente, la de la 3FN, y que todo determinante sea superclave, la de la FNBC."
+    },
+    {
+     "nv": "I",
+     "q": "<code>Detalle(num_factura, cod_producto, descripcion, cantidad)</code> tiene la clave {num_factura, cod_producto} y cumple cod_producto → descripcion. ¿Cuál es su forma normal más alta?",
+     "ops": [
+      "2FN, porque descripcion depende transitivamente de la clave",
+      "3FN, porque todos los atributos dependen de la clave completa",
+      "1FN, porque descripcion depende solo de una parte de la clave",
+      "FNBC, porque {num_factura, cod_producto} es la única clave"
+     ],
+     "ok": 2,
+     "r": "El atributo descripcion es no primo y depende de cod_producto, que es parte de la clave: es una dependencia parcial, así que no llega a 2FN. No es transitiva, porque el determinante es parte de la clave y no un atributo no primo. Que haya una sola clave no basta para la FNBC: cod_producto es un determinante que no es superclave."
+    },
+    {
+     "nv": "I",
+     "q": "Un reporte de ventas que se consulta cientos de veces al día reúne cinco tablas normalizadas y es lento. El equipo copia el nombre del cliente y el total en la tabla <code>Factura</code>. ¿Qué describe mejor esa decisión?",
+     "ops": [
+      "Es normalización: elimina una dependencia transitiva de la tabla Factura",
+      "Es una descomposición sin pérdida que conserva todas las dependencias",
+      "Es un error de diseño que un sistema real nunca debe aceptar",
+      "Es desnormalización: acepta redundancia controlada a cambio de rendimiento"
+     ],
+     "ok": 3,
+     "r": "Copiar columnas a propósito para evitar reuniones es desnormalizar: vuelve a meter redundancia, y con ella el riesgo de anomalías, para ganar velocidad, así que obliga a mantener las copias sincronizadas con triggers o procesos. No es normalizar, que quita redundancia, ni descomponer, que divide tablas. Y es una práctica común y aceptada en reportes y almacenes de datos."
+    },
+    {
+     "nv": "A",
+     "q": "Sea R(A, B, C) con F = {AB → C, C → B}. ¿Qué afirmación es correcta?",
+     "ops": [
+      "Está en 3FN pero no en FNBC, porque C no es superclave y B es primo",
+      "Está en FNBC, porque las dos dependencias tienen claves a la izquierda",
+      "Está solo en 2FN, porque C → B es una dependencia transitiva",
+      "Está solo en 1FN, porque B depende de C, parte de la clave {A, C}"
+     ],
+     "ok": 0,
+     "r": "Las claves son {A, B} y {A, C}: A está en toda clave y AB y AC determinan todo. Así, A, B y C son primos. En C → B, C no es superclave (\\(C^{+}=\\{B,C\\}\\)), por eso no está en FNBC; pero B es primo y la 3FN lo permite. Las dependencias parciales y transitivas que impiden la 2FN y la 3FN solo cuentan cuando el atributo determinado es no primo."
+    }
+   ]
+  },
+  {
+   "titulo": "Álgebra relacional",
+   "intro": "Las operaciones del álgebra relacional (selección, proyección, renombrado, operaciones de conjuntos, producto cartesiano, reuniones natural, theta y externas, y división) y cómo se combinan en expresiones cuyo resultado se calcula a mano.",
+   "conceptos": [
+    {
+     "n": "Selección, proyección y renombrado",
+     "e": [
+      "El <b>álgebra relacional</b> es un lenguaje formal y procedimental: un conjunto de operaciones que reciben relaciones y devuelven una relación, así que se pueden anidar (propiedad de cierre). Es la base teórica de SQL y del optimizador de consultas, que traduce cada consulta a una expresión de álgebra y la reordena para ejecutarla más rápido. Las operaciones básicas son seis: selección, proyección, renombrado, unión, diferencia y producto cartesiano. Las demás (intersección, reuniones y división) se escriben con ellas.",
+      "La <b>selección</b> \\(\\sigma_{c}(R)\\) devuelve las tuplas de R que cumplen la condición c, escrita con comparaciones (=, ≠, &lt;, ≤, &gt;, ≥) y los conectores ∧, ∨ y ¬. Conserva el grado, y su cardinalidad es menor o igual que la de R; es conmutativa, y varias selecciones seguidas equivalen a una sola con ∧. La <b>proyección</b> \\(\\pi_{L}(R)\\) devuelve solo los atributos de la lista L y, como el resultado es un conjunto, elimina las tuplas repetidas; SQL, en cambio, las conserva si no se escribe <code>DISTINCT</code>. El <b>renombrado</b> \\(\\rho_{S(B_1,\\ldots,B_n)}(R)\\) cambia el nombre de la relación, el de sus atributos o ambos; hace falta para reunir una relación consigo misma y para dejar compatibles dos relaciones."
+     ],
+     "u": [
+      "En el optimizador de todo SGBD relacional y en los ejercicios del parcial que piden «escribe la expresión».",
+      "Separar qué filas (σ) y qué columnas (π) se piden es la mitad del trabajo de escribir cualquier consulta.",
+      "Al traducir un enunciado: «los que cumplen…» es una selección y «muestra solo…» es una proyección.",
+      "Aplica primero σ para reducir las filas y al final π para dejar solo las columnas pedidas."
+     ],
+     "tabla": "<table><tr><th>Operación</th><th>Notación</th><th>Qué devuelve</th><th>Grado del resultado</th><th>En SQL</th></tr><tr><td>Selección</td><td>\\(\\sigma_{c}(R)\\)</td><td>Las tuplas que cumplen c</td><td>El de R</td><td><code>WHERE c</code></td></tr><tr><td>Proyección</td><td>\\(\\pi_{L}(R)\\)</td><td>Los atributos de L, sin repetidos</td><td>El número de atributos de L</td><td><code>SELECT DISTINCT L</code></td></tr><tr><td>Renombrado</td><td>\\(\\rho_{S}(R)\\)</td><td>La misma relación con otro nombre</td><td>El de R</td><td><code>AS</code> (alias)</td></tr></table>"
+    },
+    {
+     "n": "Unión, intersección, diferencia y producto cartesiano",
+     "e": [
+      "La <b>unión</b> R ∪ S reúne las tuplas que están en R, en S o en ambas, sin repetir; la <b>intersección</b> R ∩ S deja las que están en las dos, y la <b>diferencia</b> R − S, las que están en R y no en S. Las tres exigen que R y S sean <b>compatibles para la unión</b>: el mismo grado y dominios compatibles atributo por atributo, en orden; el resultado toma los nombres de los atributos de R. La unión y la intersección son conmutativas y asociativas; la diferencia no es conmutativa. La intersección no es básica: \\(R \\cap S = R - (R - S)\\).",
+      "El <b>producto cartesiano</b> R × S combina cada tupla de R con cada tupla de S. No exige compatibilidad: su grado es la suma de los grados y su cardinalidad, el producto de las cardinalidades. Si R y S tienen atributos con el mismo nombre, se califican (R.codigo, S.codigo) o se renombran. Solo, casi nunca responde una pregunta, porque produce todas las parejas, tengan sentido o no; seguido de una selección que compara atributos de los dos lados se convierte en una reunión, y esa es su utilidad real."
+     ],
+     "u": [
+      "En preguntas como «asignados en BD1 o en PR3» (∪), «en los dos» (∩) y «en BD1 pero no en PR3» (−).",
+      "La diferencia es la forma de expresar «que no» y «ninguno», algo que la selección sola no puede.",
+      "Cuando la pregunta combina dos listas del mismo tipo de dato, como dos conjuntos de carnés.",
+      "Proyecta antes las dos relaciones sobre los mismos atributos para dejarlas compatibles y después opera."
+     ],
+     "f": "|R \\times S| = |R|\\cdot|S| \\qquad \\text{grado}(R \\times S)=\\text{grado}(R)+\\text{grado}(S)"
+    },
+    {
+     "n": "Reuniones y división",
+     "e": [
+      "La <b>reunión theta</b> \\(R \\bowtie_{\\theta} S = \\sigma_{\\theta}(R \\times S)\\) combina las tuplas que cumplen la condición θ. Si θ solo usa igualdades es una <b>equirreunión</b>, y el resultado conserva las dos columnas comparadas. La <b>reunión natural</b> R ⋈ S iguala todos los atributos que tienen el mismo nombre y deja una sola copia de cada uno; si no hay atributos comunes, equivale a R × S. En esas reuniones las tuplas sin pareja desaparecen. Las <b>reuniones externas</b> las conservan y rellenan con nulos lo que falta: la izquierda \\(R \\mathbin{\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}\\mkern-5.8mu\\bowtie} S\\) conserva todas las de R, la derecha \\(R \\mathbin{\\bowtie\\mkern-5.8mu\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}} S\\) todas las de S y la completa \\(R \\mathbin{\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}\\mkern-5.8mu\\bowtie\\mkern-5.8mu\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}} S\\) todas las de ambas.",
+      "La <b>división</b> R ÷ S responde preguntas con «todos». Si R tiene los atributos X ∪ Y y S tiene los atributos Y, R ÷ S devuelve los valores de X que en R aparecen combinados con todas las tuplas de S. Por ejemplo, \\(\\pi_{\\text{carne},\\text{codigo}}(\\text{Asignacion}) \\div \\pi_{\\text{codigo}}(\\text{Curso})\\) da los estudiantes asignados en todos los cursos; tener combinaciones de más no importa. Con operaciones básicas: se toman todos los valores de X, se forman las parejas que deberían existir, se restan las que existen y se descartan los valores a los que les falta alguna."
+     ],
+     "u": [
+      "En reportes como estudiantes que llevaron todos los cursos del ciclo o clientes que compraron todos los productos de una promoción.",
+      "La reunión es la operación más usada y la más costosa; el optimizador decide su orden y su algoritmo.",
+      "Natural o theta cuando solo interesan las parejas; externa cuando también se quiere ver lo que no tiene pareja; división cuando la pregunta dice «todos».",
+      "Reúne por la clave foránea, selecciona y proyecta; para «todos», arma un divisor con exactamente los valores que deben estar."
+     ],
+     "f": "R \\div S = \\pi_{X}(R) - \\pi_{X}\\big((\\pi_{X}(R)\\times S) - R\\big)"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Con la relación Estudiante: <table><tr><th>carne</th><th>nombre</th><th>carrera</th></tr><tr><td>2101</td><td>Ana</td><td>Sistemas</td></tr><tr><td>2102</td><td>Luis</td><td>Civil</td></tr><tr><td>2103</td><td>Marta</td><td>Sistemas</td></tr><tr><td>2104</td><td>Pedro</td><td>Industrial</td></tr><tr><td>2105</td><td>Sofía</td><td>Sistemas</td></tr></table> calcula el resultado, el grado y la cardinalidad de (a) \\(\\sigma_{\\text{carrera}=\\text{'Sistemas'}}(\\text{Estudiante})\\); (b) \\(\\pi_{\\text{carrera}}(\\text{Estudiante})\\); (c) \\(\\pi_{\\text{nombre}}\\big(\\sigma_{\\text{carrera}=\\text{'Sistemas'}}(\\text{Estudiante})\\big)\\).",
+     "pasos": [
+      "<b>(a) Selección.</b> Se revisa la condición carrera = 'Sistemas' fila por fila. Cumplen Ana, Marta y Sofía, y el resultado conserva los 3 atributos: grado 3, cardinalidad 3.",
+      "<b>(b) Proyección.</b> Se toma solo la columna carrera: Sistemas, Civil, Sistemas, Industrial, Sistemas. Como el resultado es un conjunto, los repetidos se eliminan: {Sistemas, Civil, Industrial}. Grado 1 y cardinalidad 3, no 5.",
+      "<b>(c) Composición.</b> Se evalúa de adentro hacia afuera: primero la selección de (a) y después la proyección sobre nombre. Grado 1, cardinalidad 3."
+     ],
+     "r": "(a) Las tuplas de Ana, Marta y Sofía: grado 3, cardinalidad 3. (b) {Sistemas, Civil, Industrial}: grado 1, cardinalidad 3. (c) {Ana, Marta, Sofía}: grado 1, cardinalidad 3.",
+     "fin": "Fija la diferencia entre elegir filas (σ) y elegir columnas (π), y que la proyección elimina los repetidos."
+    },
+    {
+     "nv": "I",
+     "q": "Con Estudiante y Asignacion: <table><tr><th>carne</th><th>nombre</th><th>carrera</th></tr><tr><td>2101</td><td>Ana</td><td>Sistemas</td></tr><tr><td>2102</td><td>Luis</td><td>Civil</td></tr><tr><td>2103</td><td>Marta</td><td>Sistemas</td></tr><tr><td>2104</td><td>Pedro</td><td>Industrial</td></tr><tr><td>2105</td><td>Sofía</td><td>Sistemas</td></tr></table> <table><tr><th>carne</th><th>codigo</th><th>nota</th></tr><tr><td>2101</td><td>BD1</td><td>78</td></tr><tr><td>2101</td><td>SO1</td><td>85</td></tr><tr><td>2101</td><td>PR3</td><td>70</td></tr><tr><td>2102</td><td>BD1</td><td>54</td></tr><tr><td>2103</td><td>BD1</td><td>90</td></tr><tr><td>2103</td><td>SO1</td><td>61</td></tr><tr><td>2104</td><td>PR3</td><td>45</td></tr></table> escribe una expresión que dé los nombres de los estudiantes que aprobaron BD1 (nota mayor o igual que 61) y calcula su resultado.",
+     "pasos": [
+      "<b>Reunión.</b> Estudiante ⋈ Asignacion iguala carne, el único atributo común, y queda con (carne, nombre, carrera, codigo, nota): 7 tuplas, una por asignación. Sofía no aparece porque no tiene asignaciones.",
+      "<b>Selección.</b> De las 7 tuplas, las de BD1 son las de Ana (78), Luis (54) y Marta (90). Con nota ≥ 61 quedan Ana y Marta.",
+      "<b>Proyección.</b> Sobre nombre queda {Ana, Marta}.",
+      "<b>Versión más eficiente.</b> La condición solo usa atributos de Asignacion, así que la selección se puede aplicar antes de reunir: la reunión procesa 2 tuplas en lugar de 7 y el resultado es el mismo. Así reordena el optimizador."
+     ],
+     "r": "\\(\\pi_{\\text{nombre}}\\big(\\sigma_{\\text{codigo}=\\text{'BD1'} \\land \\text{nota}\\ge 61}(\\text{Estudiante}\\bowtie\\text{Asignacion})\\big)\\) = {Ana, Marta}.",
+     "fin": "Es el patrón de casi toda consulta: reunir por la clave foránea, seleccionar y proyectar."
+    },
+    {
+     "nv": "I",
+     "q": "Con la relación Asignacion: <table><tr><th>carne</th><th>codigo</th><th>nota</th></tr><tr><td>2101</td><td>BD1</td><td>78</td></tr><tr><td>2101</td><td>SO1</td><td>85</td></tr><tr><td>2101</td><td>PR3</td><td>70</td></tr><tr><td>2102</td><td>BD1</td><td>54</td></tr><tr><td>2103</td><td>BD1</td><td>90</td></tr><tr><td>2103</td><td>SO1</td><td>61</td></tr><tr><td>2104</td><td>PR3</td><td>45</td></tr></table> sean \\(A=\\pi_{\\text{carne}}(\\sigma_{\\text{codigo}=\\text{'BD1'}}(\\text{Asignacion}))\\) y \\(B=\\pi_{\\text{carne}}(\\sigma_{\\text{codigo}=\\text{'PR3'}}(\\text{Asignacion}))\\). Calcula A ∪ B, A ∩ B, A − B y B − A, y di qué pregunta responde cada una.",
+     "pasos": [
+      "<b>Operandos.</b> A = {2101, 2102, 2103} son los asignados en BD1 y B = {2101, 2104}, los asignados en PR3. Las dos tienen un solo atributo, carne, con el mismo dominio: son compatibles.",
+      "<b>Unión e intersección.</b> A ∪ B = {2101, 2102, 2103, 2104}: asignados en BD1 o en PR3. A ∩ B = {2101}: asignados en los dos.",
+      "<b>Diferencias.</b> A − B = {2102, 2103}: en BD1 pero no en PR3. B − A = {2104}: en PR3 pero no en BD1. Que den distinto muestra que la diferencia no es conmutativa.",
+      "<b>Comprobación.</b> |A ∪ B| = |A| + |B| − |A ∩ B| = 3 + 2 − 1 = 4."
+     ],
+     "r": "A ∪ B = {2101, 2102, 2103, 2104}; A ∩ B = {2101}; A − B = {2102, 2103}; B − A = {2104}.",
+     "fin": "Traducir «o», «y también» y «pero no» a ∪, ∩ y −, recordando que solo se opera entre relaciones compatibles."
+    },
+    {
+     "nv": "A",
+     "q": "Con Asignacion y Curso: <table><tr><th>carne</th><th>codigo</th><th>nota</th></tr><tr><td>2101</td><td>BD1</td><td>78</td></tr><tr><td>2101</td><td>SO1</td><td>85</td></tr><tr><td>2101</td><td>PR3</td><td>70</td></tr><tr><td>2102</td><td>BD1</td><td>54</td></tr><tr><td>2103</td><td>BD1</td><td>90</td></tr><tr><td>2103</td><td>SO1</td><td>61</td></tr><tr><td>2104</td><td>PR3</td><td>45</td></tr></table> <table><tr><th>codigo</th><th>nombre</th><th>ciclo</th></tr><tr><td>BD1</td><td>Bases de Datos I</td><td>6</td></tr><tr><td>SO1</td><td>Sistemas Operativos I</td><td>6</td></tr><tr><td>PR3</td><td>Programación III</td><td>5</td></tr></table> escribe y calcula paso a paso la expresión que da los carnés de los estudiantes asignados en todos los cursos del ciclo 6.",
+     "pasos": [
+      "<b>Expresión.</b> El dividendo tiene las parejas (carne, codigo), y el divisor, exactamente los cursos que deben estar: \\(R=\\pi_{\\text{carne},\\text{codigo}}(\\text{Asignacion})\\) y \\(S=\\pi_{\\text{codigo}}(\\sigma_{\\text{ciclo}=6}(\\text{Curso}))=\\{\\text{BD1},\\text{SO1}\\}\\). Se pide \\(R \\div S\\).",
+      "<b>Candidatos.</b> \\(\\pi_{\\text{carne}}(R)=\\{2101, 2102, 2103, 2104\\}\\), y \\(\\pi_{\\text{carne}}(R)\\times S\\) tiene las 8 parejas que existirían si todos llevaran BD1 y SO1.",
+      "<b>Lo que falta.</b> \\((\\pi_{\\text{carne}}(R)\\times S)-R\\) = {(2102, SO1), (2104, BD1), (2104, SO1)}: las parejas que no existen. Su proyección sobre carne, {2102, 2104}, son los estudiantes a los que les falta algún curso.",
+      "<b>Resultado.</b> {2101, 2102, 2103, 2104} − {2102, 2104} = {2101, 2103}. El 2101 también lleva PR3, pero tener cursos de más no lo excluye."
+     ],
+     "r": "\\(\\pi_{\\text{carne},\\text{codigo}}(\\text{Asignacion}) \\div \\pi_{\\text{codigo}}(\\sigma_{\\text{ciclo}=6}(\\text{Curso}))=\\{2101, 2103\\}\\)",
+     "fin": "La división responde toda pregunta con «todos», y el parcial suele pedir calcularla con su fórmula de operaciones básicas."
+    },
+    {
+     "nv": "B",
+     "q": "R(A, B) tiene 3 tuplas y S(C, D, E) tiene 4. (a) ¿Qué grado y qué cardinalidad tiene R × S? (b) ¿Entre cuántas tuplas puede tener \\(\\sigma_{A=C}(R\\times S)\\)? (c) ¿Se puede calcular R ∪ S? ¿Por qué?",
+     "r": "(a) Grado 2 + 3 = 5 y cardinalidad 3 · 4 = 12. (b) Entre 0 y 12: la selección nunca agrega tuplas, solo descarta. (c) No: R y S no son compatibles para la unión, porque tienen distinto grado (2 y 3)."
+    },
+    {
+     "nv": "I",
+     "q": "Con estas relaciones: <table><tr><th>codigo</th><th>nombre</th><th>cod_depto</th></tr><tr><td>1</td><td>Ana</td><td>10</td></tr><tr><td>2</td><td>Luis</td><td>20</td></tr><tr><td>3</td><td>Marta</td><td>10</td></tr><tr><td>4</td><td>Pedro</td><td>NULL</td></tr></table> <table><tr><th>cod_depto</th><th>nombre_depto</th></tr><tr><td>10</td><td>Ventas</td></tr><tr><td>20</td><td>Bodega</td></tr><tr><td>30</td><td>Contabilidad</td></tr></table> calcula (a) \\(\\text{Empleado}\\bowtie\\text{Departamento}\\), (b) \\(\\text{Empleado} \\mathbin{\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}\\mkern-5.8mu\\bowtie} \\text{Departamento}\\) y (c) \\(\\text{Empleado} \\mathbin{\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}\\mkern-5.8mu\\bowtie\\mkern-5.8mu\\rule[-.02ex]{.27em}{.045em}\\llap{\\rule[1.07ex]{.27em}{.045em}}} \\text{Departamento}\\). ¿Cuántas tuplas tiene cada una y cuáles llevan nulos?",
+     "r": "(a) 3 tuplas: Ana y Marta con Ventas, y Luis con Bodega. Pedro no tiene pareja, porque un nulo no es igual a nada, y Contabilidad no tiene empleados. (b) 4 tuplas: las 3 anteriores y Pedro con nombre_depto nulo. (c) 5 tuplas: además, Contabilidad con codigo y nombre nulos. <table><tr><th>codigo</th><th>nombre</th><th>cod_depto</th><th>nombre_depto</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>Ventas</td></tr><tr><td>2</td><td>Luis</td><td>20</td><td>Bodega</td></tr><tr><td>3</td><td>Marta</td><td>10</td><td>Ventas</td></tr><tr><td>4</td><td>Pedro</td><td>NULL</td><td>NULL</td></tr><tr><td>NULL</td><td>NULL</td><td>30</td><td>Contabilidad</td></tr></table>"
+    },
+    {
+     "nv": "A",
+     "q": "En la relación Empleado, jefe es el código del jefe, que también es empleado. <table><tr><th>codigo</th><th>nombre</th><th>salario</th><th>jefe</th></tr><tr><td>1</td><td>Rosa</td><td>9000</td><td>NULL</td></tr><tr><td>2</td><td>Juan</td><td>6000</td><td>1</td></tr><tr><td>3</td><td>Elena</td><td>9500</td><td>1</td></tr><tr><td>4</td><td>Mario</td><td>5000</td><td>2</td></tr><tr><td>5</td><td>Carla</td><td>6500</td><td>2</td></tr></table> Escribe una expresión que dé los nombres de los empleados que ganan más que su jefe y calcula el resultado.",
+     "r": "\\(\\pi_{E.\\text{nombre}}\\Big(\\sigma_{E.\\text{salario}\\gt J.\\text{salario}}\\big(\\rho_{E}(\\text{Empleado})\\bowtie_{E.\\text{jefe}=J.\\text{codigo}}\\rho_{J}(\\text{Empleado})\\big)\\Big)\\). El renombrado crea dos copias de Empleado con nombres distintos: E es el empleado y J, su jefe. La reunión forma 4 parejas (Rosa no tiene jefe) y cumplen la condición Elena (9500 contra 9000 de Rosa) y Carla (6500 contra 6000 de Juan). Resultado: {Elena, Carla}."
+    },
+    {
+     "nv": "B",
+     "q": "En la relación Empleado hay dos empleados que se llaman Ana. ¿Qué devuelve \\(\\pi_{\\text{nombre}}(\\text{Empleado})\\)?",
+     "ops": [
+      "La columna nombre con Ana dos veces, una por cada empleado",
+      "La columna nombre con Ana una sola vez, porque el resultado es un conjunto",
+      "Las filas completas de los dos empleados que se llaman Ana",
+      "Un error, porque nombre no es la clave de la relación"
+     ],
+     "ok": 1,
+     "r": "La proyección elige columnas y, como su resultado es una relación, es decir, un conjunto, elimina las tuplas repetidas: Ana sale una vez. SQL sí conserva los repetidos si no se escribe <code>DISTINCT</code>. Devolver filas completas es lo que hace la selección, y proyectar sobre un atributo que no es clave es válido."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué condición deben cumplir R y S para calcular R ∪ S, R ∩ S o R − S?",
+     "ops": [
+      "Ser compatibles: mismo grado y dominios compatibles columna por columna",
+      "Tener la misma cardinalidad, es decir, el mismo número de tuplas",
+      "Tener la misma clave primaria y al menos una tupla en común",
+      "Tener al menos un atributo con el mismo nombre en las dos"
+     ],
+     "ok": 0,
+     "r": "Las operaciones de conjuntos comparan tuplas completas, así que las dos relaciones deben tener el mismo número de atributos y dominios compatibles en el mismo orden. El número de tuplas puede ser cualquiera, no hacen falta claves ni tuplas comunes (la intersección puede quedar vacía), y un atributo con el mismo nombre es lo que usa la reunión natural, no la unión."
+    },
+    {
+     "nv": "I",
+     "q": "R y S son compatibles; R tiene 5 tuplas, S tiene 3 y comparten 2. ¿Cuántas tuplas tienen R ∪ S, R ∩ S y R − S, en ese orden?",
+     "ops": [
+      "8, 2 y 3",
+      "6, 2 y 1",
+      "8, 3 y 2",
+      "6, 2 y 3"
+     ],
+     "ok": 3,
+     "r": "|R ∪ S| = 5 + 3 − 2 = 6, porque las tuplas comunes se cuentan una sola vez; |R ∩ S| = 2; |R − S| = 5 − 2 = 3. El 8 olvida quitar las repetidas de la unión y el 1 es |S − R|, no |R − S|."
+    },
+    {
+     "nv": "I",
+     "q": "Si R(A, B) y S(C, D) no tienen ningún atributo con el mismo nombre, ¿qué es R ⋈ S?",
+     "ops": [
+      "Una relación vacía, sin tuplas",
+      "La unión R ∪ S de las dos relaciones",
+      "El producto cartesiano R × S",
+      "Un error, porque falta un atributo común"
+     ],
+     "ok": 2,
+     "r": "La reunión natural exige igualdad en los atributos comunes; si no hay ninguno, no queda condición que descarte parejas y se combinan todas: es R × S, con grado 4. No es vacía ni da error, y la unión pone las tuplas de las dos en una misma lista en lugar de concatenarlas."
+    },
+    {
+     "nv": "A",
+     "q": "R(estudiante, curso) = {(Ana, BD1), (Ana, SO1), (Luis, BD1), (Marta, BD1), (Marta, SO1), (Marta, PR3)} y S(curso) = {BD1, SO1}. ¿Qué devuelve R ÷ S?",
+     "ops": [
+      "{Ana, Luis, Marta}",
+      "{Ana, Marta}",
+      "{Ana}",
+      "{Marta}"
+     ],
+     "ok": 1,
+     "r": "R ÷ S da los estudiantes que tienen todos los cursos de S: Ana (BD1 y SO1) y Marta (BD1, SO1 y además PR3; tener de más no importa). Luis solo tiene BD1. {Ana, Luis, Marta} respondería «al menos un curso de S», {Ana} confunde «todos» con «exactamente esos» y {Marta} exigiría también PR3, que no está en S."
+    }
+   ]
+  },
+  {
+   "titulo": "SQL básico",
+   "intro": "Cómo se crean tablas con restricciones y se modifican datos con INSERT, UPDATE y DELETE, cómo se consulta con SELECT, WHERE, ORDER BY, funciones de agregación, GROUP BY y HAVING, reuniones y subconsultas, y cómo se comporta NULL.",
+   "conceptos": [
+    {
+     "n": "Definición y modificación de datos",
+     "e": [
+      "<code>CREATE TABLE</code> define cada columna con su tipo (<code>INT</code>, <code>DECIMAL(p,s)</code> para dinero, <code>VARCHAR(n)</code>, <code>DATE</code>) y las <b>restricciones</b> que el SGBD hará cumplir siempre: <code>PRIMARY KEY</code> (única y no nula), <code>NOT NULL</code>, <code>UNIQUE</code> (sin repetidos, aunque admite nulos), <code>CHECK</code> (una condición, como <code>precio &gt; 0</code>; MySQL la aplica desde la versión 8.0.16), <code>DEFAULT</code> (el valor cuando no se indica) y <code>FOREIGN KEY ... REFERENCES</code>, con las acciones <code>ON DELETE</code> y <code>ON UPDATE</code> (<code>RESTRICT</code>, <code>CASCADE</code>, <code>SET NULL</code>). Se escriben junto a la columna o al final, como restricción de tabla, que es la única forma de declarar una clave compuesta; con <code>CONSTRAINT nombre</code> se les da un nombre para poder borrarlas después.",
+      "El DML modifica filas. <code>INSERT INTO t (columnas) VALUES (...)</code> agrega una o varias filas; nombrar las columnas protege de cambios en su orden y deja que las omitidas tomen su <code>DEFAULT</code> o NULL. <code>UPDATE t SET columna = expresión WHERE condición</code> cambia las filas que cumplen la condición, y la expresión puede usar el valor anterior (<code>salario = salario * 1.10</code>). <code>DELETE FROM t WHERE condición</code> borra filas. Sin <code>WHERE</code>, <code>UPDATE</code> y <code>DELETE</code> afectan a todas las filas. No confundas <code>DELETE</code> (DML: borra filas y se puede deshacer dentro de una transacción), <code>TRUNCATE</code> (DDL: vacía la tabla de golpe) y <code>DROP TABLE</code> (DDL: elimina la tabla con su estructura)."
+     ],
+     "u": [
+      "En los scripts de creación de toda base de datos, migraciones de Laravel incluidas, y en el trabajo diario con cualquier sistema.",
+      "Una restricción declarada protege los datos frente a todos los programas a la vez; una validación en el código, solo frente al programa que la tiene.",
+      "Al crear el esquema, al cargar datos y cada vez que se corrigen o depuran registros.",
+      "Convierte cada regla del negocio en una restricción y escribe siempre el WHERE antes de ejecutar un UPDATE o un DELETE."
+     ],
+     "tabla": "<table><tr><th>Restricción</th><th>Qué garantiza</th><th>Ejemplo</th></tr><tr><td><code>PRIMARY KEY</code></td><td>Identifica cada fila: única y no nula</td><td><code>codigo VARCHAR(10) PRIMARY KEY</code></td></tr><tr><td><code>NOT NULL</code></td><td>La columna siempre tiene valor</td><td><code>descripcion VARCHAR(60) NOT NULL</code></td></tr><tr><td><code>UNIQUE</code></td><td>No hay dos filas con el mismo valor</td><td><code>nit VARCHAR(12) UNIQUE</code></td></tr><tr><td><code>CHECK</code></td><td>Cada fila cumple una condición</td><td><code>CHECK (precio &gt; 0)</code></td></tr><tr><td><code>DEFAULT</code></td><td>El valor cuando el INSERT no lo da</td><td><code>existencia INT DEFAULT 0</code></td></tr><tr><td><code>FOREIGN KEY</code></td><td>El valor existe en la tabla referida</td><td><code>FOREIGN KEY (categoria) REFERENCES categoria(codigo)</code></td></tr></table>"
+    },
+    {
+     "n": "Consultas, agregación y agrupación",
+     "e": [
+      "<code>SELECT</code> se escribe en un orden y se evalúa en otro. Orden lógico: <code>FROM</code> (con sus reuniones) arma las filas, <code>WHERE</code> las filtra una por una, <code>GROUP BY</code> forma grupos, <code>HAVING</code> filtra los grupos, <code>SELECT</code> calcula las columnas, <code>DISTINCT</code> quita repetidos, <code>ORDER BY</code> ordena (<code>ASC</code> por omisión, <code>DESC</code> descendente, con varias columnas para desempatar) y <code>LIMIT</code> corta. Por eso en <code>WHERE</code> no se pueden usar funciones de agregación ni los alias del <code>SELECT</code>, y en <code>ORDER BY</code> sí. En <code>WHERE</code> se usan comparaciones, <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>BETWEEN a AND b</code> (incluye los extremos), <code>IN (lista)</code> y <code>LIKE</code> con los comodines <code>%</code> (cualquier cadena) y <code>_</code> (un carácter).",
+      "Las <b>funciones de agregación</b> resumen muchas filas en un valor: <code>COUNT(*)</code> cuenta filas; <code>COUNT(columna)</code>, los valores no nulos; <code>COUNT(DISTINCT columna)</code>, los valores distintos no nulos; <code>SUM</code>, <code>AVG</code>, <code>MIN</code> y <code>MAX</code> ignoran los nulos. Sin <code>GROUP BY</code> devuelven una sola fila para toda la tabla; con <code>GROUP BY</code>, una fila por grupo. Toda columna del <code>SELECT</code> que no esté dentro de una agregación debe estar en el <code>GROUP BY</code> (MySQL lo exige con el modo <code>ONLY_FULL_GROUP_BY</code>, activo por omisión). <code>WHERE</code> decide qué filas entran a los grupos y <code>HAVING</code>, qué grupos salen."
+     ],
+     "u": [
+      "En reportes de ventas por mes, planillas por departamento, promedios de notas por curso y todo panel con totales.",
+      "Confundir WHERE con HAVING, o COUNT(*) con COUNT(columna), da números creíbles pero falsos.",
+      "Cuando la pregunta dice «por cada…» (GROUP BY), «solo los que en total…» (HAVING) u «ordenados por…» (ORDER BY).",
+      "Sigue el orden lógico: qué filas entran, cómo se agrupan, qué grupos quedan, qué se muestra y en qué orden."
+     ],
+     "tabla": "<table><tr><th>Paso</th><th>Cláusula</th><th>Qué hace</th></tr><tr><td>1</td><td><code>FROM</code> y <code>JOIN</code></td><td>Arma las filas de trabajo</td></tr><tr><td>2</td><td><code>WHERE</code></td><td>Filtra filas, sin funciones de agregación</td></tr><tr><td>3</td><td><code>GROUP BY</code></td><td>Forma los grupos</td></tr><tr><td>4</td><td><code>HAVING</code></td><td>Filtra grupos, con funciones de agregación</td></tr><tr><td>5</td><td><code>SELECT</code> y <code>DISTINCT</code></td><td>Calcula las columnas y quita repetidos</td></tr><tr><td>6</td><td><code>ORDER BY</code> y <code>LIMIT</code></td><td>Ordena y corta el resultado</td></tr></table>"
+    },
+    {
+     "n": "Reuniones, subconsultas y NULL",
+     "e": [
+      "<code>INNER JOIN ... ON</code> (o solo <code>JOIN</code>) combina las filas que cumplen la condición, casi siempre clave foránea igual a clave primaria; las filas sin pareja desaparecen. <code>LEFT JOIN</code> conserva además todas las filas de la tabla izquierda, con NULL en las columnas de la derecha, y <code>RIGHT JOIN</code>, todas las de la derecha. MySQL no tiene <code>FULL OUTER JOIN</code>: se simula con la <code>UNION</code> de un <code>LEFT JOIN</code> y un <code>RIGHT JOIN</code>. Una <b>subconsulta</b> es un <code>SELECT</code> dentro de otro. Es escalar si devuelve un solo valor y se compara con =, &lt; o &gt; (<code>salario &gt; (SELECT AVG(salario) FROM empleado)</code>); de lista si se usa con <code>IN</code> o <code>NOT IN</code>; y con <code>EXISTS</code> se pregunta si devuelve alguna fila.",
+      "<b>NULL</b> significa valor desconocido o que no aplica; no es cero ni cadena vacía. Toda comparación con NULL, incluso <code>NULL = NULL</code>, da <b>desconocido</b> (UNKNOWN), el tercer valor de la lógica de SQL, y <code>WHERE</code> solo deja pasar las filas cuya condición es verdadera; por eso se pregunta con <code>IS NULL</code> o <code>IS NOT NULL</code>. Una operación aritmética con NULL da NULL (<code>salario + comision</code>), y <code>COALESCE(comision, 0)</code> reemplaza el nulo por un valor. Las agregaciones ignoran los nulos, salvo <code>COUNT(*)</code>, y <code>GROUP BY</code> junta todos los nulos en un solo grupo. La trampa clásica: si la subconsulta de un <code>NOT IN</code> devuelve un NULL, la consulta no devuelve ninguna fila."
+     ],
+     "u": [
+      "En todo sistema con datos opcionales: teléfono, comisión, fecha de baja, el jefe de un empleado.",
+      "Los nulos cambian conteos, promedios y filtros sin dar ningún error; son la fuente de errores más silenciosa de SQL.",
+      "Al reunir tablas con filas sin pareja, al contar o promediar columnas opcionales y al usar NOT IN.",
+      "Elige el JOIN según qué filas sin pareja quieres ver y pregunta por los nulos con IS NULL o COALESCE."
+     ],
+     "tabla": "<table><tr><th>Expresión</th><th>Resultado</th></tr><tr><td><code>NULL = NULL</code></td><td>Desconocido</td></tr><tr><td><code>5 + NULL</code></td><td>NULL</td></tr><tr><td><code>TRUE AND</code> desconocido</td><td>Desconocido</td></tr><tr><td><code>FALSE AND</code> desconocido</td><td>FALSE</td></tr><tr><td><code>TRUE OR</code> desconocido</td><td>TRUE</td></tr><tr><td><code>NOT</code> desconocido</td><td>Desconocido</td></tr></table>"
+    }
+   ],
+   "ejercicios": [
+    {
+     "nv": "B",
+     "q": "Escribe el <code>CREATE TABLE</code> de <code>producto(codigo, descripcion, precio, existencia, categoria)</code> con estas reglas: el código, de hasta 10 caracteres, identifica al producto; la descripción es obligatoria; el precio es obligatorio, con dos decimales y mayor que cero; la existencia es un entero que vale 0 si no se indica; la categoría es obligatoria y debe existir en la tabla <code>categoria(codigo, nombre)</code>.",
+     "pasos": [
+      "<b>Columnas y tipos.</b> Para codigo, <code>VARCHAR(10)</code>; para descripcion, <code>VARCHAR(60)</code>; para precio, <code>DECIMAL(10,2)</code> (dinero exacto, nunca <code>FLOAT</code>); para existencia y categoria, <code>INT</code>, el mismo tipo de <code>categoria.codigo</code>.",
+      "<b>Clave y obligatorios.</b> La columna codigo es <code>PRIMARY KEY</code>; descripcion, precio y categoria llevan <code>NOT NULL</code>.",
+      "<b>Reglas de valor.</b> <code>CHECK (precio &gt; 0)</code> rechaza los precios de cero o negativos, y <code>DEFAULT 0</code> da la existencia cuando el INSERT no la indica.",
+      "<b>Clave foránea.</b> <code>FOREIGN KEY (categoria) REFERENCES categoria(codigo)</code> impide productos de una categoría que no existe y, como no declara acción, también impide borrar una categoría que tiene productos.",
+      "<b>Prueba.</b> <code>INSERT INTO producto (codigo, descripcion, precio, categoria) VALUES ('P1', 'Martillo', 85.00, 1)</code> se acepta y deja la existencia en 0. Con precio 0, el CHECK rechaza la fila; con categoria 9, que no existe, la rechaza la clave foránea."
+     ],
+     "r": "<pre><code>CREATE TABLE producto (\n  codigo VARCHAR(10) NOT NULL PRIMARY KEY,\n  descripcion VARCHAR(60) NOT NULL,\n  precio DECIMAL(10,2) NOT NULL CHECK (precio &gt; 0),\n  existencia INT DEFAULT 0,\n  categoria INT NOT NULL,\n  FOREIGN KEY (categoria) REFERENCES categoria(codigo)\n);</code></pre>",
+     "fin": "Escribir un CREATE TABLE completo, con cada regla del enunciado convertida en restricción, es pregunta segura del parcial."
+    },
+    {
+     "nv": "I",
+     "q": "Con la tabla empleado: <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> predice el resultado de esta consulta y explica en qué orden se evalúa. <pre><code>SELECT depto, COUNT(*) AS empleados, AVG(salario) AS promedio\nFROM empleado\nWHERE salario &gt;= 4000\nGROUP BY depto\nHAVING COUNT(*) &gt;= 2\nORDER BY promedio DESC;</code></pre>",
+     "pasos": [
+      "<b>FROM y WHERE.</b> Se parte de las 7 filas y WHERE deja las de salario ≥ 4000: sale Pedro (3500) y quedan 6.",
+      "<b>GROUP BY.</b> Grupos por depto: 10 con Ana y Luis, 20 con Marta y Sofía, 30 con Elena, y un grupo NULL con Jorge, porque GROUP BY junta los nulos.",
+      "<b>HAVING.</b> Quedan los grupos con COUNT(*) ≥ 2: el 10 y el 20. Sus promedios son (6000 + 4500) / 2 = 5250 y (5000 + 6000) / 2 = 5500.",
+      "<b>SELECT y ORDER BY.</b> Se calculan las columnas y se ordena por promedio de mayor a menor: primero el 20 y después el 10."
+     ],
+     "r": "<table><tr><th>depto</th><th>empleados</th><th>promedio</th></tr><tr><td>20</td><td>2</td><td>5500.00</td></tr><tr><td>10</td><td>2</td><td>5250.00</td></tr></table> Si WHERE no hubiera quitado a Pedro, el departamento 20 tendría 3 empleados y un promedio de 4833.33.",
+     "fin": "Predecir la salida de una consulta con WHERE, GROUP BY y HAVING es la pregunta de SQL más común del parcial."
+    },
+    {
+     "nv": "I",
+     "q": "Con las tablas departamento y empleado: <table><tr><th>codigo</th><th>nombre</th></tr><tr><td>10</td><td>Ventas</td></tr><tr><td>20</td><td>Bodega</td></tr><tr><td>30</td><td>Contabilidad</td></tr><tr><td>40</td><td>Informática</td></tr></table> <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> escribe una consulta que liste todos los departamentos con su número de empleados, incluidos los que no tienen, de mayor a menor cantidad, y da el resultado.",
+     "pasos": [
+      "<b>Tipo de reunión.</b> Con INNER JOIN, Informática desaparecería por no tener empleados. Hace falta LEFT JOIN, con departamento a la izquierda.",
+      "<b>Qué contar.</b> Para Informática, el LEFT JOIN produce una fila con las columnas de empleado en NULL. <code>COUNT(*)</code> contaría esa fila y daría 1; <code>COUNT(e.codigo)</code> cuenta solo valores no nulos y da 0.",
+      "<b>Agrupar y ordenar.</b> Se agrupa por d.codigo y d.nombre, la columna que se muestra sin agregación, y se ordena por la cantidad descendente y por el nombre para desempatar.",
+      "<b>Quién no sale.</b> Jorge no aparece: no tiene departamento, y la tabla que se conserva completa es departamento, no empleado."
+     ],
+     "r": "<pre><code>SELECT d.nombre, COUNT(e.codigo) AS empleados\nFROM departamento d\nLEFT JOIN empleado e ON e.depto = d.codigo\nGROUP BY d.codigo, d.nombre\nORDER BY empleados DESC, d.nombre;</code></pre> <table><tr><th>nombre</th><th>empleados</th></tr><tr><td>Bodega</td><td>3</td></tr><tr><td>Ventas</td><td>2</td></tr><tr><td>Contabilidad</td><td>1</td></tr><tr><td>Informática</td><td>0</td></tr></table>",
+     "fin": "LEFT JOIN con COUNT(columna) es la forma de incluir los ceros en un reporte, y COUNT(*) es el error típico."
+    },
+    {
+     "nv": "A",
+     "q": "Con la tabla empleado: <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> predice el resultado de cada consulta. <pre><code>-- (a)\nSELECT COUNT(*), COUNT(comision), COUNT(DISTINCT depto) FROM empleado;\n-- (b)\nSELECT AVG(comision) FROM empleado;\n-- (c)\nSELECT nombre FROM empleado WHERE comision &lt;&gt; 300;\n-- (d)\nSELECT nombre, salario + comision AS total FROM empleado WHERE depto = 10;</code></pre>",
+     "pasos": [
+      "<b>(a) Conteos.</b> <code>COUNT(*)</code> cuenta filas: 7. <code>COUNT(comision)</code> cuenta los no nulos: Ana, Marta, Sofía y Jorge, 4 (el 0 de Sofía es un valor, no un nulo). <code>COUNT(DISTINCT depto)</code> cuenta los valores distintos no nulos: 10, 20 y 30, es decir, 3.",
+      "<b>(b) Promedio.</b> AVG ignora los nulos: (500 + 300 + 0 + 200) / 4 = 250 (los decimales que muestra dependen del SGBD). No es 1000 / 7 ≈ 142.86; para promediar entre los 7 habría que escribir <code>AVG(COALESCE(comision, 0))</code>.",
+      "<b>(c) Comparación con nulos.</b> Para Luis, Pedro y Elena, <code>comision &lt;&gt; 300</code> es desconocido, no verdadero, y WHERE descarta esas filas. Para Marta es falso. Quedan Ana, Sofía y Jorge.",
+      "<b>(d) Aritmética con nulos.</b> Ana: 6000 + 500 = 6500. Luis: 4500 + NULL = NULL. Salen las 2 filas, pero el total de Luis queda nulo; con <code>COALESCE(comision, 0)</code> daría 4500."
+     ],
+     "r": "(a) 7, 4 y 3. (b) 250. (c) Ana, Sofía y Jorge. (d) Ana con 6500 y Luis con total NULL.",
+     "fin": "Los nulos cambian conteos, promedios y filtros sin dar error; el parcial los usa para comprobar si dominas la lógica de tres valores."
+    },
+    {
+     "nv": "B",
+     "q": "Con la tabla empleado: <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> escribe las sentencias para (a) subir 10 % el salario a los empleados del departamento 20 y (b) eliminar a los empleados que no tienen departamento. (c) ¿Cuántas filas afecta cada una y qué pasaría si olvidaras el WHERE?",
+     "r": "<pre><code>UPDATE empleado SET salario = salario * 1.10 WHERE depto = 20;\nDELETE FROM empleado WHERE depto IS NULL;</code></pre> (a) afecta 3 filas (Marta, Pedro y Sofía) y (b), 1 fila (Jorge). Con <code>WHERE depto = NULL</code> no se borraría nada, porque la comparación con NULL es desconocida. (c) Sin WHERE, el UPDATE cambiaría el salario de los 7 empleados y el DELETE borraría las 7 filas: la tabla quedaría vacía, pero seguiría existiendo."
+    },
+    {
+     "nv": "I",
+     "q": "Con la tabla empleado: <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> escribe una consulta que muestre el nombre y el salario de los empleados que ganan más que el promedio de toda la empresa, de mayor a menor salario, y da el resultado.",
+     "r": "<pre><code>SELECT nombre, salario\nFROM empleado\nWHERE salario &gt; (SELECT AVG(salario) FROM empleado)\nORDER BY salario DESC, nombre;</code></pre> La subconsulta escalar calcula el promedio: 36000 / 7 ≈ 5142.86. Ganan más Elena (7000), Ana (6000) y Sofía (6000); el segundo criterio de orden desempata por nombre. No se puede escribir <code>WHERE salario &gt; AVG(salario)</code>: WHERE se evalúa fila por fila, antes de cualquier agregación."
+    },
+    {
+     "nv": "A",
+     "q": "Con las tablas departamento y empleado: <table><tr><th>codigo</th><th>nombre</th></tr><tr><td>10</td><td>Ventas</td></tr><tr><td>20</td><td>Bodega</td></tr><tr><td>30</td><td>Contabilidad</td></tr><tr><td>40</td><td>Informática</td></tr></table> <table><tr><th>codigo</th><th>nombre</th><th>depto</th><th>salario</th><th>comision</th></tr><tr><td>1</td><td>Ana</td><td>10</td><td>6000</td><td>500</td></tr><tr><td>2</td><td>Luis</td><td>10</td><td>4500</td><td>NULL</td></tr><tr><td>3</td><td>Marta</td><td>20</td><td>5000</td><td>300</td></tr><tr><td>4</td><td>Pedro</td><td>20</td><td>3500</td><td>NULL</td></tr><tr><td>5</td><td>Sofía</td><td>20</td><td>6000</td><td>0</td></tr><tr><td>6</td><td>Jorge</td><td>NULL</td><td>4000</td><td>200</td></tr><tr><td>7</td><td>Elena</td><td>30</td><td>7000</td><td>NULL</td></tr></table> escribe una consulta que muestre el nombre de los departamentos cuyo salario promedio es mayor que el promedio de toda la empresa, junto con ese promedio, y da el resultado.",
+     "r": "<pre><code>SELECT d.nombre, AVG(e.salario) AS promedio\nFROM empleado e\nJOIN departamento d ON d.codigo = e.depto\nGROUP BY d.codigo, d.nombre\nHAVING AVG(e.salario) &gt; (SELECT AVG(salario) FROM empleado)\nORDER BY promedio DESC;</code></pre> Promedios por departamento: Ventas 5250, Bodega 4833.33 y Contabilidad 7000. El promedio general, 5142.86, incluye a Jorge, porque la subconsulta lee toda la tabla aunque la reunión lo deje fuera. Resultado: <table><tr><th>nombre</th><th>promedio</th></tr><tr><td>Contabilidad</td><td>7000.00</td></tr><tr><td>Ventas</td><td>5250.00</td></tr></table> La condición va en HAVING porque compara el promedio de cada grupo; en WHERE no se permite AVG."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué cláusula filtra los grupos que forma <code>GROUP BY</code>?",
+     "ops": [
+      "HAVING, que se evalúa después de agrupar",
+      "WHERE, que se evalúa después de agrupar",
+      "ORDER BY, que elige qué grupos se muestran",
+      "DISTINCT, que elimina los grupos repetidos"
+     ],
+     "ok": 0,
+     "r": "HAVING se evalúa después de GROUP BY y puede usar funciones de agregación, como <code>HAVING COUNT(*) &gt;= 2</code>. WHERE filtra filas antes de agrupar, no después. ORDER BY solo ordena y DISTINCT quita filas repetidas del resultado; ninguno de los dos filtra grupos por una condición."
+    },
+    {
+     "nv": "B",
+     "q": "¿Qué hace <code>DELETE FROM cliente;</code>, escrita sin WHERE?",
+     "ops": [
+      "Borra la tabla completa con su estructura, igual que DROP TABLE",
+      "No hace nada, porque DELETE exige siempre una cláusula WHERE",
+      "Borra todas las filas y la tabla queda vacía, pero sigue existiendo",
+      "Borra solo la última fila que se insertó en la tabla cliente"
+     ],
+     "ok": 2,
+     "r": "Sin WHERE la condición abarca todas las filas, así que DELETE las borra todas; la tabla, sus columnas y sus restricciones siguen ahí. DROP TABLE es otra sentencia, de DDL, que sí elimina la estructura. WHERE es opcional, y las filas de una tabla no tienen un orden de inserción que DELETE use."
+    },
+    {
+     "nv": "I",
+     "q": "¿Por qué falla esta consulta? <pre><code>SELECT depto, AVG(salario) AS promedio\nFROM empleado\nWHERE promedio &gt; 5000\nGROUP BY depto;</code></pre>",
+     "ops": [
+      "Falta DISTINCT, porque depto se repite en varias filas",
+      "El alias promedio debe escribirse entre comillas dobles",
+      "WHERE se evalúa antes de agrupar: la condición debe ir en HAVING",
+      "GROUP BY debe escribirse antes de la cláusula WHERE"
+     ],
+     "ok": 2,
+     "r": "WHERE filtra filas antes de GROUP BY y de SELECT: ahí todavía no existen el promedio ni su alias, y no se permiten funciones de agregación. Se corrige con <code>HAVING AVG(salario) &gt; 5000</code> después del GROUP BY. GROUP BY ya da una fila por departamento sin DISTINCT, las comillas no cambian el orden de evaluación y WHERE va siempre antes de GROUP BY."
+    },
+    {
+     "nv": "I",
+     "q": "En la tabla empleado, tres filas tienen la comisión nula. ¿Qué devuelve la consulta <code>SELECT nombre FROM empleado WHERE comision = NULL;</code>?",
+     "ops": [
+      "Las tres filas de los empleados que no tienen comisión",
+      "Todas las filas, porque NULL coincide con cualquier valor",
+      "Un error de sintaxis, porque NULL no se puede comparar",
+      "Ninguna fila: comparar con NULL da desconocido; se usa IS NULL"
+     ],
+     "ok": 3,
+     "r": "<code>comision = NULL</code> es desconocido para todas las filas, también para las que tienen la comisión nula, y WHERE solo deja pasar lo verdadero: no sale ninguna. La forma correcta es <code>WHERE comision IS NULL</code>, que sí devuelve las tres. La sentencia es válida, así que no da error de sintaxis."
+    },
+    {
+     "nv": "A",
+     "q": "En una empresa, <code>SELECT depto FROM empleado</code> devuelve 10, 10, 20, 20, 20, NULL y 30, y la tabla departamento tiene los códigos 10, 20, 30 y 40 (Informática). ¿Qué devuelve la consulta <code>SELECT nombre FROM departamento WHERE codigo NOT IN (SELECT depto FROM empleado);</code>?",
+     "ops": [
+      "Informática, el único departamento sin empleados",
+      "Ninguna fila, por el NULL que devuelve la subconsulta",
+      "Todos los departamentos, porque NULL no coincide con ninguno",
+      "Un error, porque la subconsulta devuelve valores repetidos"
+     ],
+     "ok": 1,
+     "r": "<code>codigo NOT IN (10, 20, 30, NULL)</code> equivale a codigo ≠ 10 y codigo ≠ 20 y codigo ≠ 30 y codigo ≠ NULL. La última comparación es desconocida, así que para Informática (40) el resultado es desconocido y WHERE la descarta; para los demás es falso. Se corrige agregando <code>WHERE depto IS NOT NULL</code> a la subconsulta o usando <code>NOT EXISTS</code>, y entonces sale Informática. Los repetidos no causan error."
+    }
+   ]
+  }
+ ]
+}
