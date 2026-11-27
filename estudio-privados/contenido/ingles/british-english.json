@@ -1,0 +1,225 @@
+{
+  "id": "british-english",
+  "grupo": "britanico",
+  "titulo": "British English: spelling, vocabulary and usage",
+  "resumen": [
+    "<b>-our, -re, -ence:</b> en británico <i>colour, favourite, neighbour, centre, theatre, defence, offence</i> (en americano <i>color, center, defense</i>).",
+    "<b>Doble l:</b> el británico dobla la <i>l</i> final al añadir <i>-ing/-ed</i>: <i>travelling, travelled, cancelled</i>; en cambio <i>enrol</i> y <i>enrolment</i> llevan una sola (americano <i>enroll, enrollment</i>).",
+    "<b>Sustantivo con c, verbo con s:</b> <i>practice / practise</i>, <i>licence / license</i> (como <i>advice / advise</i>): <i>I need more practice, so I practise every day.</i> El americano usa <i>practice</i> y <i>license</i> para todo.",
+    "<b>Otras grafías:</b> <i>programme</i> (pero <i>computer program</i>), <i>cheque, grey, tyre, catalogue, analyse</i>. <i>-ise</i> es lo más común (<i>organise, realise</i>), aunque <i>-ize</i> también se acepta; <i>analyse</i> nunca lleva <i>-yze</i>.",
+    "<b>Vocabulario británico → americano:</b> <i>flat</i> → <i>apartment</i> · <i>lift</i> → <i>elevator</i> · <i>holiday</i> → <i>vacation</i> · <i>queue</i> → <i>line</i> · <i>timetable</i> → <i>schedule</i> · <i>lorry</i> → <i>truck</i> · <i>petrol</i> → <i>gas</i> · <i>pavement</i> → <i>sidewalk</i> · <i>motorway</i> → <i>freeway</i> · <i>car park</i> → <i>parking lot</i> · <i>underground</i> → <i>subway</i> · <i>return ticket</i> → <i>round-trip ticket</i> · <i>chemist's</i> → <i>drugstore</i> · <i>biscuit</i> → <i>cookie</i> · <i>crisps</i> → <i>chips</i> · <i>chips</i> → <i>fries</i> · <i>trousers</i> → <i>pants</i> · <i>jumper</i> → <i>sweater</i> · <i>trainers</i> → <i>sneakers</i> · <i>rubbish</i> → <i>trash</i> · <i>bin</i> → <i>trash can</i> · <i>post</i> → <i>mail</i> · <i>postcode</i> → <i>zip code</i> · <i>mobile</i> → <i>cell phone</i> · <i>CV</i> → <i>résumé</i> · <i>autumn</i> → <i>fall</i> · <i>bill</i> → <i>check</i> · <i>tap</i> → <i>faucet</i> · <i>torch</i> → <i>flashlight</i>.",
+    "<b>Trampas de significado:</b> <i>ground floor</i> es la planta baja y <i>first floor</i> el piso de arriba; <i>a fortnight</i> son dos semanas; <i>pants</i> es ropa interior (los pantalones son <i>trousers</i>).",
+    "<b>Usos británicos:</b> <i>Have you got a pen?</i> · <i>at the weekend</i> · <i>in hospital</i> · <i>at university</i> · <i>half past six</i> (informal <i>half six</i>) · <i>Shall I open the window?</i>",
+    "<b>Tiempos y concordancia:</b> present perfect con <i>just / already / yet</i> (<i>I've already sent it</i>; americano <i>I already sent it</i>), participio <i>got</i> (<i>It's got better</i>; americano <i>gotten</i>) y equipos o colectivos con verbo en plural (<i>England are winning</i>)."
+  ],
+  "preguntas": [
+    {
+      "id": "british-english-01",
+      "nv": "B1",
+      "q": "In British English: “___ a pen I could borrow? I've left mine at home.”",
+      "a": "Have you got",
+      "d": ["Do you got", "Are you having", "Have you get"],
+      "x": "En británico es muy habitual <i>have got</i> para hablar de posesión: <i>Have you got a pen?</i> (también se oye <i>Do you have…?</i>, la forma preferida en americano). <i>Do you got</i> mezcla las dos estructuras, y <i>have</i> de posesión no va en continuo."
+    },
+    {
+      "id": "british-english-02",
+      "nv": "B1",
+      "q": "In British English, which list gives the words for «ascensor, apartamento, gasolina, acera»?",
+      "a": "lift, flat, petrol, pavement",
+      "d": ["elevator, flat, petrol, pavement", "lift, flat, gas, pavement", "lift, flat, petrol, sidewalk"],
+      "x": "En británico se dice <i>lift</i>, <i>flat</i>, <i>petrol</i> y <i>pavement</i>. <i>Elevator</i>, <i>gas</i> y <i>sidewalk</i> son las palabras americanas (y en Estados Unidos <i>pavement</i> es el asfalto de la calzada)."
+    },
+    {
+      "id": "british-english-03",
+      "nv": "B1",
+      "q": "In British English, which pair of words is spelt the British way?",
+      "a": "colour – defence",
+      "d": ["color – defense", "colour – defense", "color – defence"],
+      "x": "En británico se escribe <i>-our</i> (<i>colour, favourite, neighbour</i>) y <i>-ence</i> en <i>defence</i> y <i>offence</i>. <i>Color</i> y <i>defense</i> son las formas americanas, así que cualquier par que lleve una de ellas no es británico."
+    },
+    {
+      "id": "british-english-04",
+      "nv": "B1",
+      "q": "In British English: “What are you doing ___?” — “I'm visiting my grandparents on Saturday.”",
+      "a": "at the weekend",
+      "d": ["on the weekend", "in the weekend", "at weekend"],
+      "x": "En británico se dice <i>at the weekend</i> (y <i>at weekends</i> para costumbres). <i>On the weekend</i> es la forma americana, y <i>in the weekend</i> o <i>at weekend</i> no se usan en el inglés estándar."
+    },
+    {
+      "id": "british-english-05",
+      "nv": "B1",
+      "q": "In British English: “We usually go on ___ in the ___, when hotels are cheaper.”",
+      "a": "holiday … autumn",
+      "d": ["vacation … fall", "holiday … fall", "vacation … autumn"],
+      "x": "En británico se dice <i>go on holiday</i>, y la estación es <i>autumn</i>. <i>Go on vacation</i> y <i>fall</i> son las formas americanas; en el Reino Unido <i>vacation</i> se usa casi solo para las vacaciones universitarias."
+    },
+    {
+      "id": "british-english-06",
+      "nv": "B1",
+      "q": "In British English: “We were ___ to Leeds when we got a flat ___.”",
+      "a": "travelling … tyre",
+      "d": ["traveling … tire", "travelling … tire", "traveling … tyre"],
+      "x": "El británico dobla la <i>l</i> final de <i>travel</i> al añadir <i>-ing</i> o <i>-ed</i> (<i>travelling, travelled</i>), y la llanta es <i>tyre</i>. <i>Traveling</i> y <i>tire</i> son las formas americanas; en británico <i>tire</i> es solo el verbo «cansar(se)»."
+    },
+    {
+      "id": "british-english-07",
+      "nv": "B1",
+      "q": "In British English, which list gives the words for «pantalones, zapatillas deportivas, farmacia»?",
+      "a": "trousers, trainers, chemist's",
+      "d": ["pants, trainers, chemist's", "trousers, sneakers, chemist's", "trousers, trainers, drugstore"],
+      "x": "En británico son <i>trousers</i>, <i>trainers</i> y <i>the chemist's</i> (también <i>pharmacy</i>). <i>Sneakers</i> y <i>drugstore</i> son americanos, y ojo: en británico <i>pants</i> es la ropa interior, no los pantalones."
+    },
+    {
+      "id": "british-english-08",
+      "nv": "B1",
+      "q": "In British English: “The concert has been ___, so the festival ___ has changed.”",
+      "a": "cancelled … programme",
+      "d": ["canceled … program", "cancelled … program", "canceled … programme"],
+      "x": "En británico se escribe <i>cancelled</i> (doble <i>l</i>) y <i>programme</i> para un programa de televisión, de un evento o de estudios. <i>Canceled</i> y <i>program</i> son las formas americanas; en británico <i>program</i> se reserva para los programas informáticos."
+    },
+    {
+      "id": "british-english-09",
+      "nv": "B1",
+      "q": "In British English, a packet of ___ is a bag of thin, crunchy slices of fried potato.",
+      "a": "crisps",
+      "d": ["chips", "fries", "biscuits"],
+      "x": "En británico, las papitas de bolsa son <i>crisps</i> y las papas fritas calientes son <i>chips</i>. En americano es al revés: <i>chips</i> son las de bolsa y <i>fries</i> las calientes; <i>biscuits</i> son galletas."
+    },
+    {
+      "id": "british-english-10",
+      "nv": "B1",
+      "q": "In British English, which sentence uses British spelling throughout?",
+      "a": "I paid for the grey sofa by cheque.",
+      "d": ["I paid for the gray sofa by check.", "I paid for the grey sofa by check.", "I paid for the gray sofa by cheque."],
+      "x": "En británico, el documento bancario es <i>cheque</i> y el color es <i>grey</i>. <i>Check</i> y <i>gray</i> son las formas americanas (en británico <i>check</i> significa «revisar» o un estampado de cuadros)."
+    },
+    {
+      "id": "british-english-11",
+      "nv": "B2",
+      "q": "In British English: “My grandfather is ___ after a fall, but he's recovering well.”",
+      "a": "in hospital",
+      "d": ["in the hospital", "at hospital", "on hospital"],
+      "x": "En británico, para un paciente se dice <i>in hospital</i>, sin artículo (como <i>at school</i> o <i>in prison</i>). <i>In the hospital</i> es la forma americana; en británico el artículo aparece solo cuando se habla del edificio (<i>the hospital where I work</i>)."
+    },
+    {
+      "id": "british-english-12",
+      "nv": "B2",
+      "q": "In British English: “Leave the ___ at junction 5 and follow the signs to the ___ next to the station.”",
+      "a": "motorway … car park",
+      "d": ["freeway … parking lot", "motorway … parking lot", "freeway … car park"],
+      "x": "La autopista en británico es <i>motorway</i> y el estacionamiento, <i>car park</i>. <i>Freeway</i> y <i>parking lot</i> son palabras americanas que no se usan en el Reino Unido."
+    },
+    {
+      "id": "british-english-13",
+      "nv": "B2",
+      "q": "In British English: “You need to ___ every day; one ___ session a week isn't enough.”",
+      "a": "practise … practice",
+      "d": ["practice … practise", "practise … practise", "practice … practice"],
+      "x": "En británico el verbo es <i>practise</i> y el sustantivo <i>practice</i> (como <i>advise / advice</i>). <i>Practice … practice</i> es la versión americana, que usa una sola forma para los dos, y las otras dos opciones invierten o repiten mal las formas."
+    },
+    {
+      "id": "british-english-14",
+      "nv": "B2",
+      "q": "In British English: “My sister is ___; she's in her second year of medicine.”",
+      "a": "at university",
+      "d": ["in college", "in university", "in a university"],
+      "x": "En británico se dice <i>at university</i>, sin artículo, para alguien que estudia en la universidad. <i>In college</i> es lo que diría un estadounidense (en el Reino Unido <i>college</i> suele ser un centro preuniversitario o técnico), e <i>in (a) university</i> es un calco de «está en la universidad»."
+    },
+    {
+      "id": "british-english-15",
+      "nv": "B2",
+      "q": "In British English, which list gives the words for «basura, bote de basura, chorro (grifo), linterna»?",
+      "a": "rubbish, bin, tap, torch",
+      "d": ["trash, bin, tap, torch", "rubbish, bin, faucet, torch", "rubbish, bin, tap, flashlight"],
+      "x": "En británico se dice <i>rubbish</i>, <i>bin</i>, <i>tap</i> y <i>torch</i>. <i>Trash</i>, <i>faucet</i> y <i>flashlight</i> son las palabras americanas (en Estados Unidos <i>torch</i> suele ser una antorcha)."
+    },
+    {
+      "id": "british-english-16",
+      "nv": "B2",
+      "q": "In British English, which version of this sentence is spelt the British way?",
+      "a": "You need a licence to sell food, and the council licenses only ten stalls a year.",
+      "d": ["You need a license to sell food, and the council licenses only ten stalls a year.", "You need a licence to sell food, and the council licences only ten stalls a year.", "You need a license to sell food, and the council licences only ten stalls a year."],
+      "x": "En británico, <i>licence</i> es el sustantivo (<i>a driving licence</i>) y <i>license</i> el verbo. La oración con <i>license</i> en los dos casos sigue la ortografía americana, que usa esa forma para todo, y las que dicen <i>the council licences</i> usan el sustantivo como verbo."
+    },
+    {
+      "id": "british-english-17",
+      "nv": "B2",
+      "q": "In British English: “Please write your ___ and your ___ number on the application form.”",
+      "a": "postcode … mobile",
+      "d": ["zip code … cell", "postcode … cell", "zip code … mobile"],
+      "x": "En británico se dice <i>postcode</i> y <i>mobile (phone)</i>: <i>your mobile number</i>. <i>Zip code</i> y <i>cell (phone)</i> son las formas americanas."
+    },
+    {
+      "id": "british-english-18",
+      "nv": "B2",
+      "q": "In British English: “Don't worry about the invoice — I ___ it.”",
+      "a": "have already sent",
+      "d": ["already sent", "have sent already", "already have send"],
+      "x": "En británico, con <i>already</i>, <i>just</i> y <i>yet</i> lo normal es el present perfect: <i>I've already sent it</i>. <i>I already sent it</i> es la forma americana habitual; <i>already</i> no se coloca entre el verbo y su objeto, y tras <i>have</i> va el participio."
+    },
+    {
+      "id": "british-english-19",
+      "nv": "B2",
+      "q": "In British English, which sentence uses British spelling in every word?",
+      "a": "We'll analyse the survey results and update the catalogue.",
+      "d": ["We'll analyze the survey results and update the catalog.", "We'll analyse the survey results and update the catalog.", "We'll analyze the survey results and update the catalogue."],
+      "x": "En británico se escribe <i>analyse</i> (como <i>paralyse</i>; aquí no se usa <i>-yze</i>) y <i>catalogue</i>. <i>Analyze</i> y <i>catalog</i> son las formas americanas."
+    },
+    {
+      "id": "british-english-20",
+      "nv": "B2",
+      "q": "In British English, choose the sentence that means the same as: “Our classroom is on the first floor.”",
+      "a": "Our classroom is one floor above the ground floor.",
+      "d": ["Our classroom is on the floor at street level.", "Our classroom is two floors above the ground floor.", "Our classroom is one floor below street level."],
+      "x": "En británico, el piso a nivel de la calle es el <i>ground floor</i>, y el <i>first floor</i> es el siguiente hacia arriba (nuestro «segundo nivel»). En americano, en cambio, <i>first floor</i> es la planta baja."
+    },
+    {
+      "id": "british-english-21",
+      "nv": "B2",
+      "q": "In British English, choose the sentence that means the same as: “I'll be back in a fortnight.”",
+      "a": "I'll be back in two weeks.",
+      "d": ["I'll be back in four weeks.", "I'll be back in a week.", "I'll be back in fourteen weeks."],
+      "x": "<i>A fortnight</i> (de <i>fourteen nights</i>) son dos semanas; es muy común en británico y casi no se usa en americano. No es un mes ni catorce semanas."
+    },
+    {
+      "id": "british-english-22",
+      "nv": "B2",
+      "q": "In British English, which sentence is correct?",
+      "a": "Your English has got much better since you started the course.",
+      "d": ["Your English has gotten much better since you started the course.", "Your English has get much better since you started the course.", "Your English got much better since you have started the course."],
+      "x": "En británico el participio de <i>get</i> es <i>got</i>: <i>has got much better</i>. <i>Has gotten</i> es la forma americana; <i>has get</i> usa la forma base, y con <i>since</i> la oración principal va en present perfect y la de <i>since</i> en pasado simple, no al revés."
+    },
+    {
+      "id": "british-english-23",
+      "nv": "C1",
+      "q": "In British English, which sentence uses British spelling throughout?",
+      "a": "Students who wish to enrol should go to the enrolment centre.",
+      "d": ["Students who wish to enroll should go to the enrollment center.", "Students who wish to enrol should go to the enrollment centre.", "Students who wish to enroll should go to the enrolment center."],
+      "x": "En británico se escribe <i>enrol</i> y <i>enrolment</i> con una sola <i>l</i> (pero <i>enrolled</i>, <i>enrolling</i>), y <i>centre</i> con <i>-re</i>. <i>Enroll</i>, <i>enrollment</i> y <i>center</i> son las formas americanas."
+    },
+    {
+      "id": "british-english-24",
+      "nv": "C1",
+      "q": "In British English, if a friend says “I've packed five pairs of pants for the trip”, what has she packed?",
+      "a": "Underwear",
+      "d": ["Trousers", "Jeans", "Shorts"],
+      "x": "En británico <i>pants</i> es ropa interior (<i>underpants</i>, <i>knickers</i>); los pantalones son <i>trousers</i>. En americano <i>pants</i> sí significa «pantalones», de ahí el malentendido clásico."
+    },
+    {
+      "id": "british-english-25",
+      "nv": "C1",
+      "q": "In British English, which verb can be spelt with either -ise or -ize?",
+      "a": "realise / realize",
+      "d": ["analyse / analyze", "advertise / advertize", "surprise / surprize"],
+      "x": "En el Reino Unido <i>-ise</i> es lo más común, pero <i>-ize</i> también se acepta en verbos como <i>realise/realize</i> u <i>organise/organize</i> (es la norma de Oxford). En cambio, en británico <i>analyse</i> solo se escribe así (<i>analyze</i> es americano), y <i>advertise</i> y <i>surprise</i> siempre llevan <i>-ise</i>."
+    },
+    {
+      "id": "british-english-26",
+      "nv": "C1",
+      "q": "In British English, a sports commentator would normally say: “Scotland ___ two goals ahead at half-time.”",
+      "a": "are",
+      "d": ["is", "has", "have"],
+      "x": "En británico, los colectivos y los nombres de equipos pueden llevar verbo en plural cuando se piensa en sus miembros, y en el deporte es lo normal: <i>Scotland are two goals ahead</i>. Un comentarista americano diría <i>is</i>; <i>has/have</i> no sirven porque <i>ahead</i> va con el verbo <i>be</i>."
+    }
+  ]
+}
