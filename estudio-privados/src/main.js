@@ -81,6 +81,10 @@ async function navegar() {
     a.classList.toggle('activo', activo);
     if (activo) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
+  // En pantallas angostas el menú se desliza de lado: que la pestaña activa quede a la vista
+  const activa = document.querySelector('.nav-top a.activo');
+  const menu = document.querySelector('.nav-top');
+  if (activa && menu.scrollWidth > menu.clientWidth) menu.scrollLeft = activa.offsetLeft - (menu.clientWidth - activa.offsetWidth) / 2;
   pintarRepaso();
   window.scrollTo(0, 0);
   try {
