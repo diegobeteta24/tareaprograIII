@@ -1,0 +1,177 @@
+{
+  "id": "false-friends-confusing-words",
+  "grupo": "vocabulario",
+  "titulo": "False friends and confusing words",
+  "resumen": [
+    "<b>Personas y estudios:</b> <i>relatives</i> = parientes (<i>parents</i> = papá y mamá), <i>degree</i> = carrera universitaria (<i>career</i> = trayectoria profesional), <i>library</i> = biblioteca (librería = <i>bookshop</i>), <i>lecture</i> = clase magistral o charla (lectura = <i>reading</i>).",
+    "<b>Verbos falsos amigos:</b> <i>attend</i> = asistir a (<i>assist</i> = ayudar), <i>intend</i> = pretender (<i>pretend</i> = fingir), <i>carry out</i> = realizar (<i>realise</i> = darse cuenta), <i>summarise</i> = resumir (<i>resume</i> = reanudar).",
+    "<b>Adjetivos y adverbios:</b> <i>actually</i> = en realidad (actualmente = <i>currently</i>), <i>eventually</i> = al final, <i>sensible</i> = sensato (sensible = <i>sensitive</i>), <i>sympathetic</i> = comprensivo (simpático = <i>friendly</i>), <i>embarrassed</i> = avergonzado (embarazada = <i>pregnant</i>), <i>large</i> = grande (largo = <i>long</i>).",
+    "<b>Sustantivos:</b> <i>carpet</i> = alfombra (carpeta = <i>folder</i>), <i>success</i> = éxito (<i>exit</i> = salida), <i>argument</i> = discusión (el argumento de una historia = <i>the plot</i>), <i>casualties</i> = víctimas (casualidad = <i>chance</i>).",
+    "<b>Say / tell, remind / remember, borrow / lend:</b> <i>tell someone something</i>, <i>say something (to someone)</i>; <i>Remind me to call her</i> (otra persona te hace recordar); <i>borrow from</i> (recibir), <i>lend to</i> (dar).",
+    "<b>Rise / raise, affect / effect, rob / steal:</b> <i>Prices rise</i>, pero <i>They raise prices</i>; <i>affect</i> es el verbo y <i>effect</i> el sustantivo (<i>have an effect on</i>); <i>rob a bank</i>, <i>steal money</i>.",
+    "<b>Lose / miss / waste, win / earn, job / work:</b> <i>lose your keys</i>, <i>miss the bus</i>, <i>waste time</i>; <i>win a prize</i>, <i>earn a salary</i>; <i>a job</i> es contable y <i>work</i> incontable.",
+    "<b>Trip / travel / journey, bring / take, fun / funny, economic / economical, advice / advise:</b> <i>a journey</i> o <i>a trip</i>, pero <i>travel</i> en general; <i>bring</i> hacia aquí, <i>take</i> hacia allá; <i>fun</i> = divertido, <i>funny</i> = gracioso; <i>an economical car</i> gasta poco; <i>advice</i> es el sustantivo y <i>advise</i> el verbo."
+  ],
+  "preguntas": [
+    {
+      "id": "false-friends-confusing-words-01",
+      "nv": "B1",
+      "q": "Everyone thinks Tom is Scottish, but he's ___ from Wales.",
+      "a": "actually",
+      "d": ["currently", "actual", "nowadays"],
+      "x": "<i>Actually</i> significa «en realidad»: corrige una idea equivocada. «Actualmente» se dice <i>currently</i> o <i>nowadays</i>, que aquí no tienen sentido porque el lugar de origen no cambia; <i>actual</i> es un adjetivo («real, verdadero»)."
+    },
+    {
+      "id": "false-friends-confusing-words-02",
+      "nv": "B1",
+      "q": "I left my ___ with all my notes on a desk in the university ___ where I was studying.",
+      "a": "folder … library",
+      "d": ["carpet … library", "folder … bookshop", "carpet … bookshop"],
+      "x": "«Carpeta» es <i>folder</i> (o <i>file</i>); <i>carpet</i> es una alfombra. «Biblioteca» es <i>library</i>, mientras que la «librería» es <i>a bookshop</i>, donde se compran libros y no se estudia."
+    },
+    {
+      "id": "false-friends-confusing-words-03",
+      "nv": "B1",
+      "q": "My sister is ___; the baby is due in March.",
+      "a": "pregnant",
+      "d": ["embarrassed", "embarrassing", "pregnancy"],
+      "x": "«Embarazada» es <i>pregnant</i>. <i>Embarrassed</i> es un falso amigo que significa «avergonzado, apenado» (<i>I was so embarrassed!</i>), y <i>pregnancy</i> es el sustantivo («embarazo»)."
+    },
+    {
+      "id": "false-friends-confusing-words-04",
+      "nv": "B1",
+      "q": "If we don't leave now, we'll ___ the beginning of the film.",
+      "a": "miss",
+      "d": ["lose", "waste", "loose"],
+      "x": "«Perderse» algo que ocurre (un tren, una clase, el inicio de una película) es <i>miss</i>. <i>Lose</i> es perder un objeto o un partido (<i>lose your keys</i>), <i>waste</i> es desperdiciar (<i>waste time</i>) y <i>loose</i> es un adjetivo («flojo, suelto»)."
+    },
+    {
+      "id": "false-friends-confusing-words-05",
+      "nv": "B1",
+      "q": "The trip to the science museum was really ___; we learnt a lot and had a great time.",
+      "a": "fun",
+      "d": ["funny", "fan", "funnily"],
+      "x": "<i>Fun</i> significa «divertido, entretenido» (algo que se disfruta); <i>funny</i> es «gracioso», algo que da risa (<i>a funny joke</i>). <i>Fan</i> es un aficionado y <i>funnily</i> es un adverbio."
+    },
+    {
+      "id": "false-friends-confusing-words-06",
+      "nv": "B2",
+      "q": "My brother has finally found a ___; he ___ about £1,800 a month.",
+      "a": "job … earns",
+      "d": ["work … wins", "job … wins", "work … earns"],
+      "x": "<i>Job</i> es un empleo concreto y es contable (<i>a job</i>); <i>work</i> es incontable, así que <i>a work</i> no se dice. Un sueldo se <i>earn</i>; <i>win</i> es ganar un premio, un sorteo o un partido."
+    },
+    {
+      "id": "false-friends-confusing-words-07",
+      "nv": "B2",
+      "q": "Be careful what you say about his essay; he's very ___ to criticism.",
+      "a": "sensitive",
+      "d": ["sensible", "sensitivity", "sensibly"],
+      "x": "<i>Sensitive</i> significa «sensible, susceptible» (<i>sensitive to criticism</i>, <i>sensitive skin</i>). <i>Sensible</i> es un falso amigo que significa «sensato» (<i>a sensible decision</i>); <i>sensitivity</i> es el sustantivo y <i>sensibly</i> el adverbio."
+    },
+    {
+      "id": "false-friends-confusing-words-08",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “My aunts, uncles and cousins went to Professor Ruiz's talk.”",
+      "a": "My relatives attended Professor Ruiz's lecture.",
+      "d": ["My parents assisted Professor Ruiz's lecture.", "My relatives assisted Professor Ruiz's reading.", "My parents attended Professor Ruiz's reading."],
+      "x": "Tíos y primos son <i>relatives</i> («parientes»); <i>parents</i> son solo el papá y la mamá. Ir a un evento es <i>attend</i> (<i>assist</i> = ayudar), y una charla o clase magistral es <i>a lecture</i>; <i>reading</i> es «lectura»."
+    },
+    {
+      "id": "false-friends-confusing-words-09",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Remind me to tell Ana about the meeting, or I won't remember.",
+      "d": ["Remember me to tell Ana about the meeting, or I won't remind.", "Remind me to say Ana about the meeting, or I won't remember.", "Remember me to say Ana about the meeting, or I won't remind."],
+      "x": "<i>Remind someone to do something</i> es «recordarle a alguien que haga algo»; <i>remember</i> es acordarse uno mismo. <i>Tell</i> lleva la persona detrás (<i>tell Ana</i>), mientras que <i>say</i> no (<i>say something to Ana</i>)."
+    },
+    {
+      "id": "false-friends-confusing-words-10",
+      "nv": "B2",
+      "q": "I ___ this novel from the library last week, so I have to return it by Friday.",
+      "a": "borrowed",
+      "d": ["lent", "rented", "lended"],
+      "x": "<i>Borrow</i> es «pedir prestado» (recibir): <i>borrow something from someone</i>. <i>Lend</i> es «prestar» (dar), con pasado <i>lent</i>, nunca <i>lended</i>; y <i>rent</i> es alquilar pagando."
+    },
+    {
+      "id": "false-friends-confusing-words-11",
+      "nv": "B2",
+      "q": "Come round to my flat on Saturday, and ___ your guitar with you!",
+      "a": "bring",
+      "d": ["take", "fetch", "carry on"],
+      "x": "<i>Bring</i> es traer algo hacia donde está (o estará) quien habla: <i>bring your guitar</i>. <i>Take</i> es llevar en dirección contraria, <i>fetch</i> es ir a buscar algo y volver con ello, y <i>carry on</i> significa «continuar»."
+    },
+    {
+      "id": "false-friends-confusing-words-12",
+      "nv": "B2",
+      "q": "The ___ by coach from London to Edinburgh was very ___; it took us almost ten hours.",
+      "a": "journey … long",
+      "d": ["travel … large", "journey … large", "travel … long"],
+      "x": "Un viaje concreto de un lugar a otro es <i>a journey</i> (o <i>a trip</i>); <i>travel</i> es incontable y se usa para viajar en general (<i>Travel broadens the mind</i>). «Largo» es <i>long</i>; <i>large</i> es un falso amigo que significa «grande»."
+    },
+    {
+      "id": "false-friends-confusing-words-13",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Two men robbed a bank and stole £50,000.",
+      "d": ["Two men stole a bank and robbed £50,000.", "Two men robbed a bank and robbed £50,000.", "Two men stole a bank and stole £50,000."],
+      "x": "Se <i>rob</i> a una persona o un lugar (<i>rob a bank, rob someone</i>) y se <i>steal</i> lo que se llevan (<i>steal money, steal a phone</i>). Las demás oraciones usan uno de los dos verbos con el complemento equivocado."
+    },
+    {
+      "id": "false-friends-confusing-words-14",
+      "nv": "B2",
+      "q": "Which sentence means «Estudio la carrera de Derecho y quiero tener éxito»?",
+      "a": "I'm doing a law degree, and I want to be successful.",
+      "d": ["I'm doing a law career, and I want to have exit.", "I'm doing a law degree, and I want to have exit.", "I'm doing a law career, and I want to be successful."],
+      "x": "La carrera universitaria es <i>a degree</i>; <i>career</i> es la trayectoria profesional (<i>a career in law</i>). «Éxito» es <i>success</i> (<i>be successful</i>), y <i>exit</i> significa «salida»."
+    },
+    {
+      "id": "false-friends-confusing-words-15",
+      "nv": "B2",
+      "q": "The government has decided to ___ the minimum wage by 5% next year.",
+      "a": "raise",
+      "d": ["rise", "arise", "rise up"],
+      "x": "<i>Raise</i> es transitivo («subir algo»): <i>raise prices, raise the wage</i>. <i>Rise</i> es intransitivo (algo sube por sí mismo: <i>Prices rise</i>) y no lleva objeto, igual que <i>arise</i> («surgir») y <i>rise up</i> («sublevarse»)."
+    },
+    {
+      "id": "false-friends-confusing-words-16",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "Prices have risen sharply, and this has affected our sales.",
+      "d": ["Prices have raised sharply, and this has effected our sales.", "Prices have risen sharply, and this has effected our sales.", "Prices have raised sharply, and this has affected our sales."],
+      "x": "<i>Rise – rose – risen</i> es intransitivo (los precios suben solos), mientras que <i>raise</i> necesita objeto. <i>Affect</i> es el verbo «afectar»; <i>effect</i> es casi siempre sustantivo (<i>have an effect on</i>) y, como verbo, significa «llevar a cabo» (<i>effect change</i>)."
+    },
+    {
+      "id": "false-friends-confusing-words-17",
+      "nv": "C1",
+      "q": "Which sentence means «Al principio el argumento de la novela me pareció confuso, pero al final lo entendí»?",
+      "a": "At first I found the plot of the novel confusing, but eventually I understood it.",
+      "d": ["At first I found the argument of the novel confusing, but eventually I understood it.", "At first I found the plot of the novel confusing, but actually I understood it.", "At first I found the argument of the novel confusing, but actually I understood it."],
+      "x": "El argumento de una historia es <i>the plot</i>; <i>argument</i> significa «discusión» o «razonamiento». <i>Eventually</i> sí significa «al final, finalmente», mientras que <i>actually</i> es «en realidad»."
+    },
+    {
+      "id": "false-friends-confusing-words-18",
+      "nv": "C1",
+      "q": "Which sentence means «Pretendo realizar la encuesta y resumir los resultados»?",
+      "a": "I intend to carry out the survey and summarise the results.",
+      "d": ["I pretend to realise the survey and resume the results.", "I intend to realise the survey and summarise the results.", "I pretend to carry out the survey and resume the results."],
+      "x": "«Pretender» (tener la intención) es <i>intend</i>; <i>pretend</i> es «fingir». «Realizar» es <i>carry out</i> o <i>do</i> (<i>realise</i> es «darse cuenta»), y «resumir» es <i>summarise</i>; <i>resume</i> significa «reanudar»."
+    },
+    {
+      "id": "false-friends-confusing-words-19",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “Nobody was injured or killed in the fire.”",
+      "a": "There were no casualties in the fire.",
+      "d": ["The fire didn't happen by casualty.", "Nobody was to blame for the fire.", "Nothing was damaged in the fire."],
+      "x": "<i>Casualties</i> son las víctimas (heridos o muertos) de un accidente, un incendio o una guerra. Es un falso amigo: «casualidad» es <i>chance</i> o <i>coincidence</i> (<i>by chance</i>), y las otras opciones hablan de culpa o de daños materiales."
+    },
+    {
+      "id": "false-friends-confusing-words-20",
+      "nv": "C1",
+      "q": "Which sentence means «Mi tutora, que es muy simpática, me aconsejó comprar un carro más económico»?",
+      "a": "My tutor, who is very friendly, advised me to buy a more economical car.",
+      "d": ["My tutor, who is very sympathetic, adviced me to buy a more economic car.", "My tutor, who is very friendly, adviced me to buy a more economical car.", "My tutor, who is very sympathetic, advised me to buy a more economic car."],
+      "x": "«Simpático» es <i>friendly</i> o <i>nice</i>; <i>sympathetic</i> significa «comprensivo». El verbo es <i>advise</i> (<i>advice</i> es el sustantivo), y lo que gasta poco es <i>economical</i>; <i>economic</i> significa «de la economía» (<i>economic growth</i>)."
+    }
+  ]
+}
