@@ -18,7 +18,7 @@
       "nv": "B1",
       "titulo": "Changes to the Main Library",
       "texto": [
-        "From Monday 6 October, the Main Library will be open from 8 am to 10 pm on weekdays, so it will close two hours later than it did last year. Weekend opening hours will not change: 10 am to 6 pm.",
+        "From Monday 5 October, the Main Library will be open from 8 am to 10 pm on weekdays, so it will close two hours later than it did last year. Weekend opening hours will not change: 10 am to 6 pm.",
         "The second floor is being redecorated and will be closed until the end of November. During this time, the silent study area will move to the ground floor, next to the café. The group study rooms on the first floor are still available, but they must now be booked online at least 24 hours in advance.",
         "We are also changing the way you borrow books. Instead of queuing at the main desk, you will use the new self-service machines near the entrance. You can borrow up to ten books at a time and renew them online twice. Fines for late returns will no longer be charged. Instead, if a book is late, you will not be able to borrow anything else until you return it.",
         "If you have any questions, please ask a member of staff at the information point. We apologise for any inconvenience while the work is being done."
@@ -30,12 +30,12 @@
           "q": "What is the main purpose of the announcement?",
           "a": "To tell library users about several changes this term",
           "d": ["To announce that the library will be closed until November", "To warn students about higher fines for late books", "To advertise the new café on the ground floor"],
-          "x": "Cada párrafo presenta un cambio: el horario (<i>From Monday 6 October…</i>), las obras (<i>The second floor is being redecorated…</i>) y los préstamos (<i>We are also changing the way you borrow books</i>). Solo cierra el segundo piso, no toda la biblioteca, y las multas desaparecen en vez de subir."
+          "x": "Cada párrafo presenta un cambio: el horario (<i>From Monday 5 October…</i>), las obras (<i>The second floor is being redecorated…</i>) y los préstamos (<i>We are also changing the way you borrow books</i>). Solo cierra el segundo piso, no toda la biblioteca, y las multas desaparecen en vez de subir."
         },
         {
           "id": "reading-t1-02",
           "nv": "B1",
-          "q": "From 6 October, what time will the library close on weekdays?",
+          "q": "From 5 October, what time will the library close on weekdays?",
           "a": "At 10 pm",
           "d": ["At 8 pm", "At 6 pm", "At 8 am"],
           "x": "El texto dice: <i>the Main Library will be open from 8 am to 10 pm on weekdays</i>. Las 8 pm era la hora de cierre del año pasado (dos horas antes) y las 6 pm es el cierre de los fines de semana."
@@ -96,7 +96,7 @@
         {
           "id": "reading-t2-03",
           "nv": "B1",
-          "q": "According to the company's survey, what has happened since the change?",
+          "q": "According to the text, what has happened since the change?",
           "a": "Fewer days have been lost to illness.",
           "d": ["Staff have felt more stressed.", "Meetings have become shorter.", "New employees have learnt faster."],
           "x": "El texto dice: <i>the number of days lost to illness has fallen by a third</i>. Los empleados se sienten menos estresados, no más; las reuniones no se mencionan, y los nuevos dicen que les cuesta más aprender."
