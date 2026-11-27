@@ -122,8 +122,8 @@
       "nv": "C1",
       "q": "The software was outdated and, ___, it had to be replaced.",
       "a": "therefore",
-      "d": ["so", "because", "as a result of"],
-      "x": "<i>Therefore</i> es un adverbio de resultado y puede ir entre comas en medio de la oración: <i>and, therefore, it had to be replaced</i>. <i>So</i> es una conjunción y no se aísla entre comas, y <i>as a result of</i> necesita un sustantivo detrás."
+      "d": ["however", "because", "as a result of"],
+      "x": "<i>Therefore</i> es un adverbio de resultado y puede ir entre comas en medio de la oración: <i>and, therefore, it had to be replaced</i>. <i>However</i> marca contraste, pero aquí la relación es de causa y efecto; <i>because</i> introduce la causa, no el resultado, y <i>as a result of</i> necesita un sustantivo detrás."
     },
     {
       "id": "connectors-15",
