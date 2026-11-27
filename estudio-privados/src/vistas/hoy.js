@@ -16,8 +16,10 @@ const SUGERENCIA = {
 };
 
 /** Enlaces de estudio de un rubro del plan: guías, cuestionario, problemas, simulacro y oral. */
-function enlacesRubro(it, cat, dia) {
+function enlacesRubro(it, cat, dia, personal = {}) {
   if (it.ruta) return `<a class="btn btn-primario" href="${esc(it.ruta)}">Abrir</a>`;
+  const nb = personal.notebooklm?.[it.bloque] || personal.notebooklm?.[it.clave];
+  const cuaderno = nb ? `<a class="btn" href="${esc(nb)}" target="_blank" rel="noopener">Cuaderno de NotebookLM</a>` : '';
   const cursos = (it.cursos || []).map((s) => ubicarCurso(cat, s)).filter((u) => u && !u.curso.pendiente);
   const guias = cursos.map((u) => `<a class="btn" href="#/curso/${esc(u.curso.slug)}">Guía: ${esc(u.curso.titulo)}</a>`).join('');
   const ambito = cursos.length ? `cursos=${cursos.map((u) => u.curso.slug).join(',')}` : it.bloque ? `area=${it.area}&bloque=${it.bloque}` : `area=${it.area}`;
@@ -28,7 +30,7 @@ function enlacesRubro(it, cat, dia) {
     : dia === 1
       ? `<a class="btn btn-primario" href="#/examen?${ambito}&preset=entrada">Cuestionario de entrada</a><a class="btn" href="#/examen?${ambito}&preset=problemas">Problemas con reloj</a>`
       : `<a class="btn btn-primario" href="#/examen?${ambito}&preset=problemas">Problemas con reloj</a><a class="btn" href="#/oral?${ambito}">Oral</a>`;
-  return `${practica}${guias || `<a class="btn" href="#/area/${esc(it.area)}">Ver el área</a>`}`;
+  return `${practica}${cuaderno}${guias || `<a class="btn" href="#/area/${esc(it.area)}">Ver el área</a>`}`;
 }
 
 const botonCrono = (sem, clave, nombre) => `<button class="btn" type="button" data-accion="crono" data-sem="${esc(sem)}" data-clave="${esc(clave)}" data-nombre="${esc(nombre)}">Cronómetro</button>`;
@@ -101,7 +103,7 @@ export default async function vistaHoy(app) {
           if (!it) continue;
           tarjetas.push(`<li class="toca"><p class="etq ui">Área · ${hm(b.min)} ${esc(b.cuando || '')}</p><h3>${esc(it.nombre)}</h3>
             <p>${esc(SUGERENCIA[dia] || '')}${it.nota ? ` ${esc(it.nota)}` : ''}</p>
-            <div class="acciones">${enlacesRubro(it, cat, dia)}${botonCrono(semana.id, it.clave, it.nombre)}</div></li>`);
+            <div class="acciones">${enlacesRubro(it, cat, dia, personal)}${botonCrono(semana.id, it.clave, it.nombre)}</div></li>`);
         } else if (b.tipo === 'ingles' && semana.inglesHoras) {
           tarjetas.push(b.modo === 'simulacro'
             ? `<li class="toca"><p class="etq ui">Inglés · ${hm(b.min)}</p><h3>Simulacro de 100 preguntas</h3><p>Con reloj. Al terminar, lo que falles pasa solo al cuaderno de errores.</p>

@@ -2,23 +2,63 @@
   "notas": {
     "lectura": "Ejemplo: gané más por actividades que por exámenes; los bloques numéricos de Ciencias son los más débiles.",
     "bloques": [
-      { "area": "ciencias", "areaNombre": "Ciencias", "nombre": "Probabilidad y estadística", "promedio": 66, "examenes": 61 },
-      { "area": "ciencias", "areaNombre": "Ciencias", "nombre": "Cálculo", "promedio": 72, "examenes": 65 },
-      { "area": "desarrollo", "areaNombre": "Análisis", "nombre": "Bases de datos", "promedio": 70, "examenes": 60 }
+      {
+        "area": "ciencias",
+        "areaNombre": "Ciencias",
+        "nombre": "Probabilidad y estadística",
+        "promedio": 66,
+        "examenes": 61
+      },
+      {
+        "area": "ciencias",
+        "areaNombre": "Ciencias",
+        "nombre": "Cálculo",
+        "promedio": 72,
+        "examenes": 65
+      },
+      {
+        "area": "desarrollo",
+        "areaNombre": "Análisis",
+        "nombre": "Bases de datos",
+        "promedio": 70,
+        "examenes": 60
+      }
     ]
   },
   "contactos": [
-    { "quien": "Facultad de Ingeniería en Sistemas", "dato": "sistemas@umg.edu.gt · PBX 2411 1800, ext. 1110 y 1242" },
-    { "quien": "Escuela de Idiomas", "dato": "esc_idiomas@umg.edu.gt · ext. 1134, 1249 y 1250" },
-    { "quien": "Secretaría General (certificación de privados)", "dato": "sgcertificaciones@umg.edu.gt" }
+    {
+      "quien": "Facultad de Ingeniería en Sistemas",
+      "dato": "sistemas@umg.edu.gt · PBX 2411 1800, ext. 1110 y 1242"
+    },
+    {
+      "quien": "Escuela de Idiomas",
+      "dato": "esc_idiomas@umg.edu.gt · ext. 1134, 1249 y 1250"
+    },
+    {
+      "quien": "Secretaría General (certificación de privados)",
+      "dato": "sgcertificaciones@umg.edu.gt"
+    }
   ],
   "tramites": {
     "S1": [
-      { "id": "yo-s1-coordinador", "texto": "Escribirle a quien coordina el seminario de la sede que me acepte.", "fecha": "2026-12-02" }
+      {
+        "id": "yo-s1-coordinador",
+        "texto": "Escribirle a quien coordina el seminario de la sede que me acepte.",
+        "fecha": "2026-12-02"
+      }
     ]
   },
   "puntosDeControl": {
-    "PC1": { "pregunta": "¿Ya fue la reunión informativa del seminario y quedé anotado?" }
+    "PC1": {
+      "pregunta": "¿Ya fue la reunión informativa del seminario y quedé anotado?"
+    }
   },
-  "ingles": { "efsetBase": 50, "efsetMeta": 61 }
+  "ingles": {
+    "efsetBase": 50,
+    "efsetMeta": 61
+  },
+  "notebooklm": {
+    "matematica": "https://notebooklm.google.com/notebook/tu-cuaderno-de-matematica",
+    "calculo": "https://notebooklm.google.com/notebook/tu-cuaderno-de-calculo"
+  }
 }

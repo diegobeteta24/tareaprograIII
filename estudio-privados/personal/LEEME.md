@@ -12,6 +12,7 @@ esta carpeta, salvo este archivo y el ejemplo, está en `.gitignore`.
 | `tramites` | Trámites propios por semana del plan (`S0` a `S9`), con `id` único, `texto` y `fecha` opcional (AAAA-MM-DD). Se suman a los del plan. |
 | `puntosDeControl` | Para cambiar el texto de un punto de control (`PC1` a `PC6`): `pregunta` o `siNo`. |
 | `ingles` | `efsetBase` (tu primer puntaje del EF SET) y `efsetMeta`. |
+| `notebooklm` | Enlace a tu cuaderno de NotebookLM por bloque (`matematica`, `calculo`, `probabilidad-y-estadistica`, `fisica`, `electronica`, `metodologia-de-la-investigacion`, `bases-de-datos`...). La vista Hoy pone un botón para abrirlo. |
 
 **Cuidado:** `npm run build` copia estos datos a `dist/data/personal.json`. Si publicas `dist/` en internet, borra antes
 `mis-datos.json` o no lo publiques.

@@ -6,7 +6,8 @@ import { cargarCatalogo, cargarCurso, ubicarCurso } from '../datos.js';
 import { leer, guardar, ultimo } from '../progreso.js';
 import { fallar, agregar, tiene, idGuia } from '../repaso.js';
 import { formulas } from '../katex.js';
-import { esc, barra, NIVEL, LETRAS, tipoDe, reducirMovimiento, aviso, sinHTML } from '../ui.js';
+import { esc, barra, NIVEL, LETRAS, tipoDe, reducirMovimiento, aviso, sinHTML, descargar } from '../ui.js';
+import { cursoAMarkdown } from '../exportar.js';
 
 const COMO = 'Cada tema trae conceptos con su uso real y 10 ejercicios: 5 resueltos paso a paso y 5 para resolver con la respuesta final oculta. Intenta cada ejercicio antes de abrir la solución y márcalo como dominado cuando lo resuelvas sin ayuda; tu avance se guarda en este navegador.';
 
@@ -94,7 +95,7 @@ export default async function vistaCurso(app, [slug, temaInicial]) {
           <button class="chip" data-grupo="nivel" data-valor="I" aria-pressed="false">Intermedio</button>
           <button class="chip" data-grupo="nivel" data-valor="A" aria-pressed="false">Avanzado</button>
         </div>
-        <p class="ui acciones"><a class="btn" href="#/examen?area=${area.id}&bloque=${bloque.id}">Examen del bloque ${esc(bloque.nombre)}</a><a class="btn" href="#/examen?cursos=${esc(slug)}&preset=problemas">Problemas con reloj</a><a class="btn" href="#/oral?cursos=${esc(slug)}">Oral de este curso</a></p>
+        <p class="ui acciones"><a class="btn" href="#/examen?area=${area.id}&bloque=${bloque.id}">Examen del bloque ${esc(bloque.nombre)}</a><a class="btn" href="#/examen?cursos=${esc(slug)}&preset=problemas">Problemas con reloj</a><a class="btn" href="#/oral?cursos=${esc(slug)}">Oral de este curso</a><button class="btn" type="button" id="exportar-md" title="Archivo Markdown con todo el curso, para subirlo como fuente a NotebookLM">Descargar para NotebookLM</button></p>
       </section>
       ${curso.temas.map((t, i) => htmlTema(t, i + 1)).join('')}
       <footer><p>Guía de repaso para el Seminario de Privados, Ingeniería en Sistemas UMG, pensum 2014. Área ${esc(area.nombre)}.</p>
@@ -174,6 +175,12 @@ export default async function vistaCurso(app, [slug, temaInicial]) {
       }
     });
   }
+
+  // Exportar la guía para NotebookLM
+  on(app.querySelector('#exportar-md'), 'click', () => {
+    descargar(`${slug}.md`, cursoAMarkdown(curso, { area: area.nombre, bloque: bloque.nombre }), 'text/markdown');
+    aviso('Guía descargada. Súbela a tu cuaderno de NotebookLM como fuente.');
+  });
 
   // Mandar un ejercicio al cuaderno de errores a mano
   function marcarRepaso(art) {
