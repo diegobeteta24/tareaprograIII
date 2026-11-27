@@ -1,0 +1,177 @@
+{
+  "id": "collocations-word-formation",
+  "grupo": "vocabulario",
+  "titulo": "Collocations and word formation",
+  "resumen": [
+    "<b>Make</b> para crear o producir algo: <i>make a decision, make a mistake, make a noise, make an effort, make progress</i>.",
+    "<b>Do</b> para tareas, trabajos y actividades: <i>do homework, do research, do the shopping, do a course, do someone a favour</i>.",
+    "<b>Take / have / give / pay / catch / keep:</b> <i>take a break, take a photo</i> · <i>have a good time</i> · <i>give advice</i> · <i>pay attention</i> · <i>catch a cold, catch a bus</i> · <i>keep a secret, keep a promise</i>.",
+    "<b>Adjetivo + sustantivo:</b> <i>heavy rain / heavy traffic</i>, <i>strong coffee / a strong accent</i>, <i>high standards / high prices</i>; nunca <i>strong rain</i> ni <i>tall prices</i>.",
+    "<b>Adverbio + adjetivo:</b> <i>highly unlikely / highly recommended</i>, <i>deeply concerned / deeply grateful</i>, <i>bitterly disappointed</i>; con verbos de opinión, <i>strongly agree</i>.",
+    "<b>Familias de palabras:</b> <i>success</i> (sustantivo), <i>succeed</i> (verbo), <i>successful</i> (adjetivo), <i>successfully</i> (adverbio). Antes de elegir, mira qué función pide el hueco.",
+    "<b>Sufijos:</b> sustantivos con <i>-tion, -ment, -ness, -ity</i> (<i>information, announcement, kindness, ability</i>); adjetivos con <i>-able, -ful, -less</i> (<i>predictable, useful, useless</i>).",
+    "<b>Prefijos negativos:</b> <i>un-</i> (<i>unpredictable</i>), <i>in-</i> (<i>incorrect</i>), <i>im-</i> ante p/m (<i>impossible</i>), <i>il-</i> ante l (<i>illegal</i>), <i>ir-</i> ante r (<i>irresponsible</i>), <i>dis-</i> (<i>dishonest</i>) y <i>mis-</i> = «mal, por error» (<i>misunderstand</i>)."
+  ],
+  "preguntas": [
+    {
+      "id": "collocations-word-formation-01",
+      "nv": "B1",
+      "q": "I can't go out tonight; I have to ___ my homework for tomorrow.",
+      "a": "do",
+      "d": ["make", "take", "write"],
+      "x": "Con tareas y trabajos se usa <i>do</i>: <i>do homework, do the housework, do an exercise</i>. <i>Make</i> es el calco de «hacer», pero se usa para crear o producir algo (<i>make a cake, make a plan</i>)."
+    },
+    {
+      "id": "collocations-word-formation-02",
+      "nv": "B1",
+      "q": "Please don't ___ so much noise; the baby has just fallen asleep.",
+      "a": "make",
+      "d": ["do", "have", "give"],
+      "x": "Se dice <i>make (a) noise</i>, igual que <i>make a mistake</i> o <i>make a phone call</i>. <i>Do noise</i> es el error típico al traducir «hacer ruido», porque <i>do</i> va con tareas y actividades."
+    },
+    {
+      "id": "collocations-word-formation-03",
+      "nv": "B1",
+      "q": "We ___ a great time at Laura's birthday party last night.",
+      "a": "had",
+      "d": ["passed", "spent", "made"],
+      "x": "«Pasarla bien» es <i>have a good/great time</i>. <i>Passed</i> es un calco del español, y <i>spend</i> va con un período concreto (<i>spend the evening, spend two hours</i>), no con <i>a great time</i>."
+    },
+    {
+      "id": "collocations-word-formation-04",
+      "nv": "B1",
+      "q": "We've been studying for three hours. Let's ___ a short break.",
+      "a": "take",
+      "d": ["do", "make", "give"],
+      "x": "«Tomar un descanso» es <i>take a break</i> (en británico también <i>have a break</i>). <i>Make a break</i> y <i>do a break</i> no tienen ese sentido, y <i>give</i> no forma esta colocación."
+    },
+    {
+      "id": "collocations-word-formation-05",
+      "nv": "B1",
+      "q": "My aunt is a very ___ businesswoman; her company now has offices in five countries.",
+      "a": "successful",
+      "d": ["success", "succeed", "successfully"],
+      "x": "Delante de un sustantivo (<i>businesswoman</i>) se necesita un adjetivo: <i>successful</i>. La familia es <i>success</i> (sustantivo), <i>succeed</i> (verbo), <i>successful</i> (adjetivo) y <i>successfully</i> (adverbio)."
+    },
+    {
+      "id": "collocations-word-formation-06",
+      "nv": "B2",
+      "q": "Put your coat on or you'll ___ a cold; it's freezing outside.",
+      "a": "catch",
+      "d": ["take", "grab", "make"],
+      "x": "Con enfermedades contagiosas se dice <i>catch a cold</i> (también <i>get a cold</i>). <i>Take</i> y <i>grab</i> son calcos de «coger» o «agarrar un resfriado», y <i>make</i> no tiene ese sentido."
+    },
+    {
+      "id": "collocations-word-formation-07",
+      "nv": "B2",
+      "q": "Please ___ attention to the instructions, because the exam rules have changed.",
+      "a": "pay",
+      "d": ["put", "lend", "make"],
+      "x": "«Prestar» o «poner atención» es <i>pay attention (to)</i>. <i>Put attention</i> y <i>lend attention</i> traducen «poner» y «prestar» palabra por palabra, y <i>make attention</i> no existe."
+    },
+    {
+      "id": "collocations-word-formation-08",
+      "nv": "B2",
+      "q": "Can you ___ a secret? I'm going to apply for a job in another city.",
+      "a": "keep",
+      "d": ["save", "guard", "hold"],
+      "x": "«Guardar un secreto» es <i>keep a secret</i> (y <i>keep a promise</i>, «cumplir una promesa»). <i>Save</i> y <i>guard</i> traducen «guardar» palabra por palabra, pero no forman esta colocación."
+    },
+    {
+      "id": "collocations-word-formation-09",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "We need to make a decision before we do any more research.",
+      "d": ["We need to do a decision before we make any more research.", "We need to make a decision before we make any more research.", "We need to do a decision before we do any more research."],
+      "x": "Se dice <i>make a decision</i> (como <i>make a choice, make progress</i>) y <i>do research</i> (como <i>do a course, do business</i>). Las otras oraciones usan el verbo equivocado en al menos una de las dos colocaciones."
+    },
+    {
+      "id": "collocations-word-formation-10",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "We had heavy rain all weekend, so we stayed in and drank strong coffee.",
+      "d": ["We had strong rain all weekend, so we stayed in and drank heavy coffee.", "We had heavy rain all weekend, so we stayed in and drank hard coffee.", "We had big rain all weekend, so we stayed in and drank strong coffee."],
+      "x": "La lluvia intensa es <i>heavy rain</i> (como <i>heavy traffic</i>) y el café cargado, <i>strong coffee</i> (como <i>strong tea</i>). <i>Strong rain</i> y <i>big rain</i> son calcos de «lluvia fuerte» o «gran lluvia», y <i>hard coffee</i> no se dice."
+    },
+    {
+      "id": "collocations-word-formation-11",
+      "nv": "B2",
+      "q": "The company has very ___ standards, so only a few applicants get through the first interview.",
+      "a": "high",
+      "d": ["tall", "big", "large"],
+      "x": "Con <i>standards</i>, <i>prices</i>, <i>levels</i> o <i>expectations</i> se usa <i>high</i>: <i>high standards</i>. <i>Tall</i> es solo para la altura física de personas, edificios o árboles, y <i>big</i> o <i>large</i> no se combinan con <i>standards</i>."
+    },
+    {
+      "id": "collocations-word-formation-12",
+      "nv": "B2",
+      "q": "We're still waiting for the official ___ of the exam results.",
+      "a": "announcement",
+      "d": ["announce", "announcation", "announcment"],
+      "x": "Tras <i>the official</i> se necesita un sustantivo, y el de <i>announce</i> se forma con <i>-ment</i> conservando la <i>e</i>: <i>announcement</i> (como <i>agreement, improvement</i>). <i>Announcation</i> aplica mal el sufijo <i>-tion</i>, y <i>announce</i> es el verbo."
+    },
+    {
+      "id": "collocations-word-formation-13",
+      "nv": "B2",
+      "q": "The instructions were completely ___; nobody could work out how to set up the printer.",
+      "a": "useless",
+      "d": ["useful", "unuseful", "disuseful"],
+      "x": "<i>-less</i> significa «sin»: <i>useless</i> (inútil), <i>careless</i>, <i>homeless</i>; <i>-ful</i> significa «con»: <i>useful</i>, que contradice el resto de la oración. El contrario de <i>useful</i> es <i>useless</i>, no <i>unuseful</i> ni <i>disuseful</i>."
+    },
+    {
+      "id": "collocations-word-formation-14",
+      "nv": "B2",
+      "q": "In most countries it's ___ to drive without a licence.",
+      "a": "illegal",
+      "d": ["unlegal", "inlegal", "dislegal"],
+      "x": "Delante de <i>l</i>, el prefijo negativo <i>in-</i> se convierte en <i>il-</i>: <i>illegal, illogical, illiterate</i>. <i>Inlegal</i> copia el «ilegal» del español con la grafía equivocada, y <i>unlegal</i> o <i>dislegal</i> no existen."
+    },
+    {
+      "id": "collocations-word-formation-15",
+      "nv": "B2",
+      "q": "Choose the sentence that means the same as: “Nobody can predict what the weather will do here.”",
+      "a": "The weather here is unpredictable.",
+      "d": ["The weather here is inpredictable.", "The weather here is unpredictible.", "The weather here is predictable."],
+      "x": "<i>Predict</i> + <i>-able</i> = <i>predictable</i>, y su contrario lleva <i>un-</i>: <i>unpredictable</i>. <i>Inpredictable</i> es un calco de «impredecible», esta palabra no termina en <i>-ible</i> y <i>predictable</i> dice lo contrario."
+    },
+    {
+      "id": "collocations-word-formation-16",
+      "nv": "C1",
+      "q": "It's ___ unlikely that the meeting will finish on time; there are fifteen items on the agenda.",
+      "a": "highly",
+      "d": ["strongly", "deeply", "heavily"],
+      "x": "<i>Highly</i> se combina con adjetivos de probabilidad o valoración: <i>highly unlikely, highly likely, highly recommended</i>. <i>Strongly</i> va con verbos de opinión (<i>strongly agree</i>), <i>deeply</i> con sentimientos y <i>heavily</i> con cantidad o intensidad (<i>heavily criticised</i>)."
+    },
+    {
+      "id": "collocations-word-formation-17",
+      "nv": "C1",
+      "q": "Many parents are ___ concerned about how much time their children spend online.",
+      "a": "deeply",
+      "d": ["heavily", "bitterly", "widely"],
+      "x": "Con sentimientos intensos se usa <i>deeply</i>: <i>deeply concerned, deeply moved, deeply grateful</i>. <i>Bitterly</i> va con <i>disappointed</i> o <i>cold</i>, <i>widely</i> con <i>known</i> o <i>used</i>, y <i>heavily</i> no se combina con <i>concerned</i>."
+    },
+    {
+      "id": "collocations-word-formation-18",
+      "nv": "C1",
+      "q": "Sorry, I ___ your email; I thought the meeting was on Thursday, not Tuesday.",
+      "a": "misread",
+      "d": ["disread", "unread", "misreaded"],
+      "x": "El prefijo <i>mis-</i> significa «mal, por error»: <i>misread, misunderstand, mispronounce</i>. <i>Read</i> es irregular (<i>read – read – read</i>), así que <i>misreaded</i> no existe; <i>unread</i> es un adjetivo (<i>unread messages</i>), y <i>dis-</i> no se combina con <i>read</i>."
+    },
+    {
+      "id": "collocations-word-formation-19",
+      "nv": "C1",
+      "q": "Leaving the lab door unlocked overnight was completely ___ of him.",
+      "a": "irresponsible",
+      "d": ["unresponsible", "inresponsible", "disresponsible"],
+      "x": "Delante de <i>r</i>, el prefijo <i>in-</i> se convierte en <i>ir-</i>: <i>irresponsible, irregular, irrelevant</i> (igual que pasa a <i>im-</i> delante de <i>p/m</i>: <i>impossible</i>). <i>Unresponsible</i> es el error más frecuente, pero el negativo de <i>responsible</i> es siempre <i>irresponsible</i>."
+    },
+    {
+      "id": "collocations-word-formation-20",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “Nobody can deny that the plan has advantages.”",
+      "a": "The advantages of the plan are undeniable.",
+      "d": ["The advantages of the plan are indeniable.", "The advantages of the plan are undeniably.", "The advantages of the plan are deniable."],
+      "x": "<i>Deny</i> + <i>-able</i> = <i>deniable</i> (la <i>y</i> pasa a <i>i</i>), y el negativo lleva <i>un-</i>: <i>undeniable</i>. <i>Indeniable</i> calca «innegable», <i>undeniably</i> es el adverbio (no puede ir tras <i>are</i>) y <i>deniable</i> dice lo contrario."
+    }
+  ]
+}
