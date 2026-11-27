@@ -55,8 +55,8 @@ y recarga (se borra al cerrar la pestaña).
 | Ruta | Qué es |
 | --- | --- |
 | `privados-umg/` | Las guías de PrivStudyPage. **No está en git**: la descarga `npm run traer-guias` (o sola, con `npm run dev`). |
-| `contenido/guias/` | Guías locales del área de Análisis, Diseño y Desarrollo, que PrivStudyPage todavía no tiene. Mismo formato. |
-| `contenido/ingles/` | Banco de preguntas de inglés. Formato en `contenido/ingles/FORMATO.md`. |
+| `contenido/guias/` | Guías locales del área de Análisis, Diseño y Desarrollo, que PrivStudyPage todavía no tiene: Bases de Datos I, Bases de Datos II y Programación III (72 ejercicios cada una). Mismo formato. |
+| `contenido/ingles/` | Banco de inglés: 389 preguntas en 21 temas (gramática, vocabulario, inglés británico y 5 textos de lectura), de B1 a C1. Formato en `contenido/ingles/FORMATO.md`. |
 | `contenido/plan/` | Plan del escenario y sesiones de fundamentos. |
 | `contenido/extras/` | Preguntas de la entrevista y oraciones del dictado. |
 | `src/fundamentos/` | Generadores de ejercicios de fundamentos. |
@@ -70,7 +70,8 @@ npm test                 # genera miles de ejercicios de fundamentos y comprueba
 Las guías locales y el banco de inglés se escribieron para esta adaptación. Los resultados de los ejercicios de las
 guías locales se comprobaron con código (SQL con SQLite, algoritmos en Python) y sus cuestionarios con el validador,
 pero no los revisó un catedrático, y los programas oficiales de esos cursos no se pudieron abrir: confirma los temas
-con quien imparta cada bloque. Las preguntas de inglés son de práctica, no del examen real.
+con quien imparta cada bloque. Cada pregunta de inglés la contestó a ciegas un revisor independiente, sin ver la clave,
+para encontrar las que admitían más de una respuesta; esas se corrigieron. Son preguntas de práctica, no del examen real.
 
 ## Créditos y licencia
 
