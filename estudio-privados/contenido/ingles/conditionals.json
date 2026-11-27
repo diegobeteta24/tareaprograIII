@@ -18,15 +18,23 @@
       "nv": "B1",
       "q": "If you mix blue and yellow, you ___ green.",
       "a": "get",
-      "d": ["got", "would get", "will have got"],
-      "x": "Para una verdad general (zero conditional) se usa presente en las dos partes: <i>If you mix..., you get...</i> <i>Would get</i> sería para una situación imaginaria con <i>if + past</i>, y <i>got</i> no concuerda con <i>mix</i>."
+      "d": [
+        "got",
+        "are getting",
+        "will have got"
+      ],
+      "x": "Para una verdad general (zero conditional) se usa presente en las dos partes: <i>If you mix..., you get...</i> <i>Got</i> no concuerda con <i>mix</i>, y <i>are getting</i> describiría algo en curso, no un resultado que siempre se cumple."
     },
     {
       "id": "conditionals-02",
       "nv": "B1",
       "q": "If it ___ tomorrow, we'll have the barbecue indoors.",
       "a": "rains",
-      "d": ["will rain", "would rain", "rained"],
+      "d": [
+        "will rain",
+        "would rain",
+        "rained"
+      ],
       "x": "En el first conditional, la parte con <i>if</i> va en presente aunque hable del futuro: <i>If it rains tomorrow...</i> <i>Will</i> va solo en la otra parte de la oración (<i>we'll have</i>)."
     },
     {
@@ -34,15 +42,23 @@
       "nv": "B1",
       "q": "If I ___ more free time, I'd learn to play the piano.",
       "a": "had",
-      "d": ["have", "would have", "will have"],
-      "x": "En el second conditional, la parte con <i>if</i> va en past simple y la otra con <i>would</i>: <i>If I had more time, I'd learn...</i> <i>Would have</i> no se usa después de <i>if</i>, y <i>have</i> no concuerda con <i>I'd</i>."
+      "d": [
+        "have had",
+        "would have",
+        "will have"
+      ],
+      "x": "En el second conditional, la parte con <i>if</i> va en past simple y la otra con <i>would</i>: <i>If I had more time, I'd learn...</i> <i>Would have</i> y <i>will have</i> no van después de <i>if</i> (el error viene de «si tendría»), y <i>have had</i> no forma ningún condicional."
     },
     {
       "id": "conditionals-04",
       "nv": "B1",
       "q": "I wouldn't sign that contract ___ you.",
       "a": "if I were",
-      "d": ["if I am", "if I would be", "if I had been"],
+      "d": [
+        "if I am",
+        "if I would be",
+        "if I had been"
+      ],
       "x": "<i>If I were you</i> es la forma fija para dar consejos con el second conditional. <i>Would</i> no va tras <i>if</i>, <i>if I am you</i> no tiene sentido porque no es una situación real y <i>if I had been</i> exigiría <i>wouldn't have signed</i>."
     },
     {
@@ -50,15 +66,23 @@
       "nv": "B2",
       "q": "If we ___ earlier, we wouldn't have missed the train.",
       "a": "had left",
-      "d": ["left", "would have left", "have left"],
-      "x": "Third conditional: <i>if + past perfect</i> para un pasado que no ocurrió y <i>would have + participio</i> para su resultado. <i>If we left</i> sería second conditional y no concuerda con <i>wouldn't have missed</i>; <i>would have left</i> no va tras <i>if</i>."
+      "d": [
+        "were leaving",
+        "would have left",
+        "have left"
+      ],
+      "x": "Third conditional: <i>if + past perfect</i> para un pasado que no ocurrió y <i>would have + participio</i> para su resultado. <i>Would have left</i> no va tras <i>if</i> (calca «si habríamos salido»), y ni <i>were leaving</i> ni <i>have left</i> sitúan la condición antes del hecho pasado."
     },
     {
       "id": "conditionals-06",
       "nv": "B2",
       "q": "I ___ you if I'd known you were in hospital.",
       "a": "would have visited",
-      "d": ["would visit", "had visited", "will have visited"],
+      "d": [
+        "would visit",
+        "had visited",
+        "will have visited"
+      ],
       "x": "Si la condición es un pasado irreal (<i>if I'd known</i>), el resultado pasado va con <i>would have + participio</i>. <i>Would visit</i> hablaría del presente, y <i>had visited</i> no puede ir en la parte del resultado."
     },
     {
@@ -66,7 +90,11 @@
       "nv": "B2",
       "q": "You won't get a place on the course ___ you apply before Friday.",
       "a": "unless",
-      "d": ["if", "in case", "as long as"],
+      "d": [
+        "if",
+        "in case",
+        "as long as"
+      ],
       "x": "<i>Unless</i> significa <i>if... not</i>: no tendrás plaza si no te inscribes antes del viernes. Con <i>if</i> o <i>as long as</i> la frase diría lo contrario (que inscribirte te deja sin plaza), y <i>in case</i> expresa precaución, no condición."
     },
     {
@@ -74,7 +102,11 @@
       "nv": "B2",
       "q": "Take an umbrella with you now ___ it rains later.",
       "a": "in case",
-      "d": ["if", "unless", "otherwise"],
+      "d": [
+        "if",
+        "unless",
+        "otherwise"
+      ],
       "x": "<i>In case</i> («por si») indica una precaución: lo llevas ahora por si llueve después. <i>If</i> significaría que solo lo llevas si llueve, lo que no encaja con <i>now</i> y <i>later</i>, y <i>otherwise</i> no introduce una condición."
     },
     {
@@ -82,7 +114,11 @@
       "nv": "B2",
       "q": "You can borrow my laptop ___ you're careful with it.",
       "a": "as long as",
-      "d": ["unless", "even if", "so that"],
+      "d": [
+        "unless",
+        "even if",
+        "so that"
+      ],
       "x": "<i>As long as</i> («siempre que») pone una condición: te lo presto solo si lo cuidas. <i>Unless</i> diría lo contrario, <i>even if</i> («aunque») anularía la condición y <i>so that</i> expresa finalidad."
     },
     {
@@ -90,7 +126,11 @@
       "nv": "B2",
       "q": "You'd better book a table, ___ we won't get in — it's always packed on Saturdays.",
       "a": "otherwise",
-      "d": ["so that", "in case", "even if"],
+      "d": [
+        "so that",
+        "in case",
+        "even if"
+      ],
       "x": "<i>Otherwise</i> («si no», «de lo contrario») introduce lo que pasará si no se hace lo anterior. <i>So that</i> diría que reservamos para no entrar, e <i>in case</i> y <i>even if</i> no tienen ese sentido."
     },
     {
@@ -98,8 +138,12 @@
       "nv": "B2",
       "q": "If I ___ that job in Madrid last year, I'd be living in Spain now.",
       "a": "had taken",
-      "d": ["took", "would take", "have taken"],
-      "x": "Es un mixed conditional: condición en el pasado (<i>last year</i>) con <i>if + past perfect</i> y resultado en el presente (<i>now</i>) con <i>would + infinitivo</i>. <i>If I took</i> hablaría del presente, no de una decisión del año pasado."
+      "d": [
+        "was taking",
+        "would take",
+        "have taken"
+      ],
+      "x": "Es un mixed conditional: condición en el pasado (<i>last year</i>) con <i>if + past perfect</i> y resultado en el presente (<i>now</i>) con <i>would + infinitivo</i>. <i>Would take</i> no va tras <i>if</i>, y <i>was taking</i> o <i>have taken</i> no expresan una decisión pasada que no se tomó."
     },
     {
       "id": "conditionals-12",
@@ -142,7 +186,11 @@
       "nv": "C1",
       "q": "I wouldn't go out with him ___ he were the last man on earth.",
       "a": "even if",
-      "d": ["even though", "as long as", "in case"],
+      "d": [
+        "even though",
+        "as long as",
+        "in case"
+      ],
       "x": "<i>Even if</i> («aunque», hipotético) introduce una condición imaginaria, por eso va con <i>were</i>. <i>Even though</i> solo se usa con hechos reales (<i>even though he is rich</i>), y <i>as long as</i> o <i>in case</i> cambian el sentido."
     },
     {
@@ -150,7 +198,11 @@
       "nv": "C1",
       "q": "If I ___ such a shy person, I would have spoken to her at the party last night.",
       "a": "weren't",
-      "d": ["wouldn't be", "am not", "haven't been"],
+      "d": [
+        "wouldn't be",
+        "am not",
+        "haven't been"
+      ],
       "x": "Es un mixed conditional: un rasgo permanente del presente (<i>if I weren't such a shy person</i>) con un resultado en el pasado (<i>I would have spoken</i>). <i>Wouldn't be</i> no va tras <i>if</i>, y <i>am not</i> o <i>haven't been</i> no expresan una condición irreal."
     },
     {
@@ -158,7 +210,11 @@
       "nv": "C1",
       "q": "___ your help, I would never have passed the exam.",
       "a": "If it hadn't been for",
-      "d": ["If it hadn't been", "Unless it had been for", "If it wouldn't have been for"],
+      "d": [
+        "If it hadn't been",
+        "Unless it had been for",
+        "If it wouldn't have been for"
+      ],
       "x": "<i>If it hadn't been for</i> + sustantivo significa «de no haber sido por» y va con <i>would have + participio</i>. Sin <i>for</i> la estructura no funciona, <i>unless</i> no se usa así y <i>would</i> no va tras <i>if</i>."
     },
     {
@@ -166,7 +222,11 @@
       "nv": "C1",
       "q": "I'd be grateful if you ___ me the invoice by Friday.",
       "a": "would send",
-      "d": ["are sending", "had sent", "have sent"],
+      "d": [
+        "are sending",
+        "had sent",
+        "have sent"
+      ],
       "x": "Tras <i>if</i> se puede usar <i>would</i> en peticiones formales y corteses: <i>I'd be grateful if you would send...</i> <i>Had sent</i> y <i>have sent</i> hablarían de algo ya hecho, y <i>are sending</i> no forma una petición con <i>I'd be grateful</i>."
     },
     {
@@ -187,11 +247,11 @@
       "q": "Which sentence is correct?",
       "a": "If she hadn't missed the flight, she'd be in Tokyo by now.",
       "d": [
-        "If she didn't miss the flight, she'd be in Tokyo by now.",
+        "If she doesn't miss the flight, she'd be in Tokyo by now.",
         "If she wouldn't have missed the flight, she'd be in Tokyo by now.",
         "If she hadn't missed the flight, she will be in Tokyo by now."
       ],
-      "x": "Mixed conditional: condición pasada irreal (<i>if she hadn't missed</i>) y resultado presente (<i>she'd be in Tokyo by now</i>). <i>If she didn't miss</i> no sitúa la condición en el pasado, <i>would</i> no va tras <i>if</i> y <i>will</i> no sirve para un resultado irreal."
+      "x": "Mixed conditional: condición pasada irreal (<i>if she hadn't missed</i>) y resultado presente (<i>she'd be in Tokyo by now</i>). <i>If she doesn't miss</i> no sitúa la condición en el pasado, <i>would</i> no va tras <i>if</i> y <i>will</i> no sirve para un resultado irreal."
     }
   ]
 }
