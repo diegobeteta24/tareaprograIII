@@ -80,10 +80,10 @@
     {
       "id": "gerund-infinitive-09",
       "nv": "B2",
-      "q": "Many employees objected to ___ at weekends.",
-      "a": "working",
-      "d": ["work", "be working", "worked"],
-      "x": "En <i>object to</i> la palabra <i>to</i> es preposición y pide <i>-ing</i>: <i>objected to working</i>. Por eso no puede ir seguida del infinitivo (<i>objected to work</i>)."
+      "q": "Many employees objected to ___ meetings at weekends.",
+      "a": "attending",
+      "d": ["attend", "be attending", "attended"],
+      "x": "En <i>object to</i> la palabra <i>to</i> es preposición y pide <i>-ing</i>: <i>objected to attending meetings</i>. Por eso no puede ir seguida del infinitivo (<i>objected to attend</i>), igual que <i>look forward to</i> o <i>be used to</i>."
     },
     {
       "id": "gerund-infinitive-10",

@@ -126,8 +126,8 @@
       "nv": "B2",
       "q": "She ___ three chapters of her thesis by the time the library closed.",
       "a": "had written",
-      "d": ["had been writing", "wrote", "has written"],
-      "x": "Con <i>by the time</i> y una cantidad terminada (<i>three chapters</i>) va past perfect simple. <i>Had been writing</i> destaca la actividad y no combina con un número de cosas acabadas, y <i>wrote</i> no expresa que ya estaban hechos antes de ese momento."
+      "d": ["had been writing", "was writing", "has written"],
+      "x": "Con <i>by the time</i> y una cantidad terminada (<i>three chapters</i>) va past perfect simple. <i>Had been writing</i> destaca la actividad y no combina con un número de cosas acabadas, y ni <i>was writing</i> ni <i>has written</i> expresan que ya estaban hechos antes de ese momento pasado."
     },
     {
       "id": "narrative-tenses-14",

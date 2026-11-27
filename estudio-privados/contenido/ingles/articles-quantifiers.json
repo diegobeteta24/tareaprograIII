@@ -80,10 +80,10 @@
     {
       "id": "articles-quantifiers-09",
       "nv": "B2",
-      "q": "There's ___ milk left – enough for your coffee, anyway.",
+      "q": "There's ___ milk left, so you can still have some in your coffee.",
       "a": "a little",
       "d": ["little", "a few", "few"],
-      "x": "<i>A little</i> («un poco») va con incontables y tiene sentido positivo: queda algo de leche. <i>Little</i> sin <i>a</i> significa «casi nada», lo que contradice <i>enough for your coffee</i>; <i>a few</i> es para contables."
+      "x": "<i>A little</i> («un poco») va con incontables y tiene sentido positivo: queda algo de leche, y por eso todavía alcanza. <i>Little</i> sin <i>a</i> significa «casi nada», lo que no encaja con <i>so you can still have some</i>; <i>a few</i> y <i>few</i> son para contables."
     },
     {
       "id": "articles-quantifiers-10",

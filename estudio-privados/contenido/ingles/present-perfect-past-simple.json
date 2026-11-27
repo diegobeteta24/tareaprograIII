@@ -138,8 +138,8 @@
       "nv": "C1",
       "q": "Prices ___ steadily since January, and analysts expect them to keep going up.",
       "a": "have been rising",
-      "d": ["rose", "are rising", "had risen"],
-      "x": "Un proceso que empezó en enero y sigue ahora va en present perfect continuous con <i>since</i>. <i>Are rising since</i> calca «suben desde enero», <i>rose</i> no se combina con <i>since</i> así y <i>had risen</i> exigiría una referencia en el pasado."
+      "d": ["are rising", "rise", "had risen"],
+      "x": "Un proceso que empezó en enero y sigue ahora va en present perfect continuous con <i>since</i>. <i>Are rising since</i> y <i>rise since</i> calcan «suben desde enero», y <i>had risen</i> exigiría una referencia en el pasado."
     },
     {
       "id": "present-perfect-past-simple-16",
