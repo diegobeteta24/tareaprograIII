@@ -24,7 +24,7 @@
     {
       "id": "futures-02",
       "nv": "B1",
-      "q": "I've already bought the eggs and the flour because ___ a cake for Sara's birthday on Saturday.",
+      "q": "I decided last week, so I've already bought the eggs and the flour: ___ a cake for Sara's birthday on Saturday.",
       "a": "I'm going to make",
       "d": ["I'll make", "I make", "I'd make"],
       "x": "Para un plan decidido antes de hablar, con pruebas de que ya se preparó (<i>I've already bought the eggs</i>), se usa <i>be going to</i>. <i>I'll make</i> sonaría a una decisión tomada en ese momento, y <i>I make</i> calca «el sábado hago un pastel»."
