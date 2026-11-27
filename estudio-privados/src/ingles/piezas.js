@@ -81,7 +81,7 @@ export function montarPreguntas(el, preguntas, { etiqueta = () => 'Inglés', tex
       resultados.push({ p, ok });
       const fb = el.querySelector('.fb');
       fb.hidden = false;
-      fb.innerHTML = `<p class="veredicto ${ok ? 'si' : 'no'}" aria-live="polite">${ok ? 'Correct.' : `Incorrect: la correcta es la ${LETRAS[correcta]}). Pasó al cuaderno de errores.`}</p><p class="finalidad"><b>Explicación:</b> ${p.x}</p>`;
+      fb.innerHTML = `<p class="veredicto ${ok ? 'si' : 'no'}" aria-live="polite">${ok ? 'Correcto.' : `Incorrecto: la correcta es la ${LETRAS[correcta]}). Pasó al cuaderno de errores.`}</p><p class="finalidad"><b>Explicación:</b> ${p.x}</p>`;
       const acc = el.querySelector('#pq-acc');
       acc.innerHTML = `<button class="btn btn-primario" type="button">${k + 1 < preguntas.length ? 'Siguiente' : 'Terminar'}</button>`;
       const s = acc.querySelector('button');

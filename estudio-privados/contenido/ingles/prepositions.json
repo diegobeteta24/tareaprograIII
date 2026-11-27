@@ -1,0 +1,160 @@
+{
+  "id": "prepositions",
+  "grupo": "gramatica",
+  "titulo": "Prepositions",
+  "resumen": [
+    "<b>in / on / at</b> (tiempo): <i>in</i> con meses, años y partes del día (<i>in the morning</i>); <i>on</i> con días y fechas (<i>on Monday</i>); <i>at</i> con horas y en <i>at night</i>.",
+    "<b>since / for / during</b>: <i>since</i> + punto de partida (<i>since I was twelve</i>), <i>for</i> + duración (<i>for three years</i>) y <i>during</i> + un periodo o evento concreto (<i>during the film</i>), nunca + número de años.",
+    "<b>by / until</b>: <i>by</i> fija un plazo para una acción puntual (<i>Send it by Friday.</i>); <i>until</i> indica que algo dura hasta ese momento (<i>The shop is open until six.</i>).",
+    "<b>Adjetivo + preposición</b>: <i>good at</i>, <i>interested in</i>, <i>afraid of</i>, <i>responsible for</i>, <i>keen on</i>, <i>similar to</i>: <i>She's keen on photography.</i>",
+    "<b>Verbo + preposición</b>: <i>depend on</i>, <i>consist of</i>, <i>apply for</i>, <i>insist on</i>, <i>succeed in</i>, <i>congratulate on</i>, <i>prevent from</i>; detrás de la preposición va <i>-ing</i>: <i>She insisted on paying.</i>",
+    "<b>Sustantivo + preposición</b>: <i>the reason for</i>, <i>a solution to</i>, <i>an increase in prices</i> (pero <i>an increase of 15%</i> cuando se da la cantidad).",
+    "<b>Expresiones fijas</b>: <i>on purpose</i> (adrede), <i>by mistake</i> (por error), <i>in charge of</i>, <i>on behalf of</i>, <i>in spite of</i> (o <i>despite</i>, sin <i>of</i>): <i>I deleted it by mistake.</i>"
+  ],
+  "preguntas": [
+    {
+      "id": "prepositions-01",
+      "nv": "B1",
+      "q": "Our flight leaves ___ night, so we'll land in Madrid early ___ the morning.",
+      "a": "at … in",
+      "d": ["in … on", "on … in", "at … on"],
+      "x": "Se dice <i>at night</i> (sin artículo) e <i>in the morning</i> para las partes del día. <i>On</i> solo va con días y fechas (<i>on Monday</i>, <i>on the morning of 5 May</i>), así que <i>on the morning</i> sin fecha no sirve."
+    },
+    {
+      "id": "prepositions-02",
+      "nv": "B1",
+      "q": "I've been learning English ___ I was twelve years old.",
+      "a": "since",
+      "d": ["for", "from", "during"],
+      "x": "Con el present perfect, <i>since</i> marca el punto de partida, que puede ser una fecha o una cláusula (<i>since I was twelve</i>). <i>From</i> también se traduce «desde», pero no introduce una cláusula así, y <i>for</i> va con duraciones (<i>for ten years</i>)."
+    },
+    {
+      "id": "prepositions-03",
+      "nv": "B1",
+      "q": "We might go to Antigua on Saturday, but it depends ___ the weather.",
+      "a": "on",
+      "d": ["of", "from", "in"],
+      "x": "El verbo es <i>depend on</i>: <i>it depends on the weather</i>. <i>Depend of</i> es un calco de «depender de» y uno de los errores más típicos del hispanohablante."
+    },
+    {
+      "id": "prepositions-04",
+      "nv": "B1",
+      "q": "My brother is really good ___ fixing laptops: he repaired mine in ten minutes.",
+      "a": "at",
+      "d": ["in", "on", "of"],
+      "x": "Para hablar de habilidades se usa <i>good at</i> + sustantivo o <i>-ing</i>: <i>good at fixing laptops</i>. <i>Good in</i> es un calco de «bueno en» y no se usa con <i>-ing</i>."
+    },
+    {
+      "id": "prepositions-05",
+      "nv": "B2",
+      "q": "Before moving to London, Lucía lived in Edinburgh ___ three years.",
+      "a": "for",
+      "d": ["during", "since", "while"],
+      "x": "<i>For</i> + duración responde a «¿cuánto tiempo?»: <i>for three years</i>. <i>During</i> no va con una cantidad de tiempo sino con un periodo o evento concreto (<i>during the summer</i>), así que <i>during three years</i> es un calco de «durante tres años»."
+    },
+    {
+      "id": "prepositions-06",
+      "nv": "B2",
+      "q": "The library stays open ___ 8 p.m., so I have to return these books ___ then.",
+      "a": "until … by",
+      "d": ["by … until", "until … until", "by … by"],
+      "x": "<i>Until</i> indica que una situación continúa hasta ese momento (<i>stays open until 8 p.m.</i>); <i>by</i> fija un plazo para una acción puntual (<i>return them by then</i> = «a más tardar entonces»). <i>Return … until then</i> calca «devolver hasta entonces»."
+    },
+    {
+      "id": "prepositions-07",
+      "nv": "B2",
+      "q": "___ the heavy traffic, we got to the airport in time for our flight.",
+      "a": "In spite of",
+      "d": ["In spite", "Despite of", "Even though"],
+      "x": "<i>In spite of</i> (o <i>despite</i>, sin <i>of</i>) va seguido de un sustantivo: <i>in spite of the heavy traffic</i>. <i>Despite of</i> e <i>in spite</i> sin <i>of</i> son errores, y <i>even though</i> necesita una cláusula (<i>even though the traffic was heavy</i>)."
+    },
+    {
+      "id": "prepositions-08",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "Lots of people are afraid of speaking in public.",
+      "d": ["Who is responsible of the new website?", "My sister is very keen in photography.", "This phone is very similar than mine."],
+      "x": "Las combinaciones fijas son <i>afraid of</i>, <i>responsible for</i>, <i>keen on</i> y <i>similar to</i>. <i>Responsible of</i> calca «responsable de» y es el error más frecuente; <i>similar than</i> mezcla la estructura de los comparativos."
+    },
+    {
+      "id": "prepositions-09",
+      "nv": "B2",
+      "q": "Carla applied ___ a student visa as soon as she got the offer from the University of Leeds.",
+      "a": "for",
+      "d": ["to", "at", "about"],
+      "x": "<i>Apply for</i> + lo que quieres conseguir (<i>a visa</i>, <i>a job</i>, <i>a grant</i>); <i>apply to</i> + la institución a la que te diriges (<i>apply to a university</i>). Por eso <i>apply to a visa</i> no funciona."
+    },
+    {
+      "id": "prepositions-10",
+      "nv": "B2",
+      "q": "Which sentence is correct?",
+      "a": "We congratulated Ana on winning the hackathon.",
+      "d": ["Our manager insisted in paying for lunch.", "The course consists on six modules.", "It depends of how much time we have."],
+      "x": "Cada verbo lleva su preposición fija: <i>congratulate someone on</i>, <i>insist on</i>, <i>consist of</i> y <i>depend on</i>. Las otras tres opciones calcan «insistir en», «consistir en» y «depender de»."
+    },
+    {
+      "id": "prepositions-11",
+      "nv": "B2",
+      "q": "Don't blame Tom. He didn't delete the file ___ purpose; he did it ___ mistake.",
+      "a": "on … by",
+      "d": ["by … on", "of … by", "on … for"],
+      "x": "Son expresiones fijas: <i>on purpose</i> = «a propósito, adrede» y <i>by mistake</i> = «por error». No se intercambian: <i>by purpose</i> y <i>on mistake</i> no existen."
+    },
+    {
+      "id": "prepositions-12",
+      "nv": "B2",
+      "q": "The heavy rain prevented the players ___ the match.",
+      "a": "from finishing",
+      "d": ["to finish", "of finishing", "for finishing"],
+      "x": "<i>Prevent</i> + persona + <i>from</i> + <i>-ing</i> = «impedir que alguien haga algo»: <i>prevented the players from finishing</i>. <i>Prevent someone to do</i> es un calco de «impedirle a alguien hacer algo»."
+    },
+    {
+      "id": "prepositions-13",
+      "nv": "B2",
+      "q": "I'm writing ___ the whole team to thank you for organising the conference.",
+      "a": "on behalf of",
+      "d": ["on behalf for", "by behalf of", "at behalf of"],
+      "x": "<i>On behalf of</i> = «en nombre de, en representación de»: <i>I'm writing on behalf of the team</i>. La expresión es fija (<i>on</i> … <i>of</i>), así que <i>on behalf for</i> o <i>by behalf of</i> son errores."
+    },
+    {
+      "id": "prepositions-14",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “Mr Ruiz manages the IT department.”",
+      "a": "Mr Ruiz is in charge of the IT department.",
+      "d": ["Mr Ruiz is in the charge of the IT department.", "Mr Ruiz is in charge for the IT department.", "Mr Ruiz is on charge of the IT department."],
+      "x": "<i>Be in charge of</i> = «estar a cargo de, dirigir». Con artículo, <i>be in the charge of someone</i> significa lo contrario (estar bajo el cuidado de alguien), y <i>in charge for</i> y <i>on charge of</i> no existen."
+    },
+    {
+      "id": "prepositions-15",
+      "nv": "C1",
+      "q": "Choose the sentence that means the same as: “The course is made up of six modules.”",
+      "a": "The course consists of six modules.",
+      "d": ["The course is consisted of six modules.", "The course consists in six modules.", "The course composes of six modules."],
+      "x": "<i>Consist of</i> = «estar formado por» y nunca va en pasiva (<i>is consisted of</i> es incorrecto). <i>Consist in</i> existe, pero significa «radicar en» (<i>Success consists in hard work</i>); con <i>compose</i> se usa la pasiva: <i>is composed of</i>."
+    },
+    {
+      "id": "prepositions-16",
+      "nv": "C1",
+      "q": "After months of trying, she finally succeeded ___ a job at a tech start-up in Toronto.",
+      "a": "in finding",
+      "d": ["to find", "on finding", "for finding"],
+      "x": "<i>Succeed in</i> + <i>-ing</i> = «lograr hacer algo»: <i>succeeded in finding</i>. Si quieres un infinitivo, el verbo es <i>manage</i> (<i>managed to find</i>); <i>succeed to</i> solo significa «suceder en un cargo» (<i>succeed to the throne</i>)."
+    },
+    {
+      "id": "prepositions-17",
+      "nv": "C1",
+      "q": "Which sentence is correct?",
+      "a": "Nobody has found a solution to the overheating problem yet.",
+      "d": ["What was the reason of the delay at the airport?", "Regular practice is the key of success.", "The storm caused serious damage of the roof."],
+      "x": "Muchos sustantivos tienen preposición fija: <i>a solution to</i>, <i>the reason for</i>, <i>the key to</i> y <i>damage to</i>. <i>The reason of</i> y <i>the key of</i> calcan «la razón de» y «la clave de»."
+    },
+    {
+      "id": "prepositions-18",
+      "nv": "C1",
+      "q": "Last year there was an increase ___ 15% ___ the number of international students.",
+      "a": "of … in",
+      "d": ["in … of", "of … of", "in … in"],
+      "x": "<i>An increase of</i> + la cantidad (<i>of 15%</i>) y <i>an increase in</i> + lo que aumenta (<i>in the number of students</i>). Lo mismo vale para <i>rise</i>, <i>fall</i> y <i>decrease</i>."
+    }
+  ]
+}

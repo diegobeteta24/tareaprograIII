@@ -12,8 +12,16 @@ import { RAIZ, CSV, AREAS, CONTENIDO, PLAN, PERSONAL, normalizar, leerCSV, leerC
 
 const SALIDA = path.join(RAIZ, 'public', 'data');
 const SALIDA_CURSOS = path.join(SALIDA, 'cursos');
-fs.rmSync(SALIDA, { recursive: true, force: true });
 fs.mkdirSync(SALIDA_CURSOS, { recursive: true });
+
+// Se escribe archivo por archivo (solo si cambió) y al final se borran los que sobran, sin borrar la
+// carpeta: así el servidor de desarrollo sigue sirviendo los datos si esto corre con la app abierta.
+const escritos = new Set();
+function escribir(ruta, contenido) {
+  escritos.add(ruta);
+  if (fs.existsSync(ruta) && fs.readFileSync(ruta, 'utf8') === contenido) return;
+  fs.writeFileSync(ruta, contenido);
+}
 
 const avisos = [];
 const filas = leerCSV(CSV);
@@ -42,12 +50,11 @@ for (const { archivo, curso, local } of leerCursos()) {
       quiz: ejercicios.filter((e) => tipoEjercicio(e) === 'quiz').length,
     },
   });
-  fs.writeFileSync(path.join(SALIDA_CURSOS, `${curso.slug}.json`), JSON.stringify({ ...curso, area: fila.area, ...(local ? { local: true } : {}) }));
+  escribir(path.join(SALIDA_CURSOS, `${curso.slug}.json`), JSON.stringify({ ...curso, area: fila.area, ...(local ? { local: true } : {}) }));
 }
 
 // Catálogo completo (50 cursos) ordenado por área, bloque y ciclo
 const catalogo = {
-  generado: new Date().toISOString(),
   areas: AREAS.map((a) => {
     const deArea = filas.filter((f) => f.area === a.nombre);
     const nombresBloque = [...a.bloques, ...new Set(deArea.map((f) => f.bloque).filter((b) => !a.bloques.includes(b)))];
@@ -81,7 +88,7 @@ const catalogo = {
 
 for (const f of filas) if (!AREAS.some((a) => a.nombre === f.area)) avisos.push(`cursos.csv: "${f.curso}" tiene un área desconocida ("${f.area}").`);
 
-fs.writeFileSync(path.join(SALIDA, 'catalogo.json'), JSON.stringify(catalogo));
+escribir(path.join(SALIDA, 'catalogo.json'), JSON.stringify(catalogo));
 
 // Plan, banco de inglés, extras y datos personales
 const leerJSON = (ruta, porDefecto) => (fs.existsSync(ruta) ? JSON.parse(fs.readFileSync(ruta, 'utf8')) : porDefecto);
@@ -92,17 +99,23 @@ for (const sem of plan?.semanas || [])
   for (const item of sem.area || [])
     for (const slug of item.cursos || [])
       if (!slugsListos.has(slug)) avisos.push(`plan.json, ${sem.id}: el curso "${slug}" todavía no tiene guía.`);
-fs.writeFileSync(path.join(SALIDA, 'plan.json'), JSON.stringify({ ...plan, fundamentos: leerJSON(path.join(CONTENIDO, 'plan', 'fundamentos.json'), null) }));
+escribir(path.join(SALIDA, 'plan.json'), JSON.stringify({ ...plan, fundamentos: leerJSON(path.join(CONTENIDO, 'plan', 'fundamentos.json'), null) }));
 
 const temasIngles = leerIngles().map((x) => x.tema);
 const preguntasIngles = temasIngles.reduce((s, t) => s + (t.preguntas?.length || 0) + (t.textos || []).reduce((n, x) => n + x.preguntas.length, 0), 0);
-fs.writeFileSync(path.join(SALIDA, 'ingles.json'), JSON.stringify({ temas: temasIngles }));
-fs.writeFileSync(path.join(SALIDA, 'extras.json'), JSON.stringify({
+escribir(path.join(SALIDA, 'ingles.json'), JSON.stringify({ temas: temasIngles }));
+escribir(path.join(SALIDA, 'extras.json'), JSON.stringify({
   entrevista: leerJSON(path.join(CONTENIDO, 'extras', 'entrevista.json'), null),
   dictado: leerJSON(path.join(CONTENIDO, 'extras', 'dictado.json'), null),
 }));
 const personal = leerJSON(PERSONAL, null);
-fs.writeFileSync(path.join(SALIDA, 'personal.json'), JSON.stringify(personal || {}));
+escribir(path.join(SALIDA, 'personal.json'), JSON.stringify(personal || {}));
+
+for (const dir of [SALIDA, SALIDA_CURSOS])
+  for (const f of fs.readdirSync(dir)) {
+    const ruta = path.join(dir, f);
+    if (f.endsWith('.json') && !escritos.has(ruta)) fs.rmSync(ruta);
+  }
 
 const listos = catalogo.areas.reduce((s, a) => s + a.listos, 0);
 const total = catalogo.areas.reduce((s, a) => s + a.total, 0);
