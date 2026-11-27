@@ -140,7 +140,7 @@ function jerarquia(nv) {
       () => { const d = ent(2, 9), q = ent(2, 9), a = ent(10, 40); return { tex: `${a} - ${d * q} \\div ${d}`, r: a - q, sol: [`Primero la división: ${m(`${d * q} \\div ${d} = ${q}`)}.`, `Después la resta: ${m(`${a} - ${q} = ${a - q}`)}.`] }; },
     ],
     2: [
-      () => { const a = ent(5, 30), b = ent(2, 6), c = ent(1, 9), d = ent(1, 9); const p = c - d; return { tex: `${a} - ${b} \\times (${c} - ${d})`, r: a - b * p, sol: [`Paréntesis: ${m(`${c} - ${d} = ${p}`)}.`, `Multiplicación: ${m(`${b} \\times ${par(p)} = ${b * p}`)}.`, `Resta: ${m(`${a} - ${par(b * p)} = ${a - b * p}`)}.`] }; },
+      () => { const a = ent(5, 30), b = ent(2, 6), c = ent(1, 9); let d; do d = ent(1, 9); while (d === c); const p = c - d; return { tex: `${a} - ${b} \\times (${c} - ${d})`, r: a - b * p, sol: [`Paréntesis: ${m(`${c} - ${d} = ${p}`)}.`, `Multiplicación: ${m(`${b} \\times ${par(p)} = ${b * p}`)}.`, `Resta: ${m(`${a} - ${par(b * p)} = ${a - b * p}`)}.`] }; },
       () => { const a = ent(2, 9), b = ent(2, 9), d = ent(2, 9), q = ent(2, 9); return { tex: `${a} \\times ${b} - ${d * q} \\div ${d}`, r: a * b - q, sol: [`Multiplicación y división, de izquierda a derecha: ${m(`${a} \\times ${b} = ${a * b}`)} y ${m(`${d * q} \\div ${d} = ${q}`)}.`, `Resta: ${m(`${a * b} - ${q} = ${a * b - q}`)}.`] }; },
       () => { const a = ent(1, 20), b = ent(2, 6), c = ent(2, 5); return { tex: `${a} + ${b}^{2} \\times ${c}`, r: a + b * b * c, sol: [`Potencia: ${m(`${b}^{2} = ${b * b}`)}.`, `Multiplicación: ${m(`${b * b} \\times ${c} = ${b * b * c}`)}.`, `Suma: ${m(`${a} + ${b * b * c} = ${a + b * b * c}`)}.`] }; },
     ],
@@ -480,7 +480,7 @@ function notables(nv) {
     return {
       q: `Desarrolla ${m(izq)}.`, campos: [campo(a * c, '', m('x^{2}')), campo(a * d + b * c, m('+'), m('x')), campo(b * d, m('+'))], r: m(poli([a * c, a * d + b * c, b * d])),
       prueba: { tipo: 'identidad', izq, der: poli([a * c, a * d + b * c, b * d]) },
-      sol: [`Cada término del primero por cada término del segundo: ${m(`${a * c}x^{2}`)}, ${m(`${a * d}x`)}, ${m(`${b * c}x`)} y ${m(`${b * d}`)}.`, `Junta los términos en ${m('x')}: ${m(`${a * d} + ${par(b * c)} = ${a * d + b * c}`)}.`],
+      sol: [`Cada término del primero por cada término del segundo: ${m(poli([a * c, 0, 0]))}, ${m(poli([a * d, 0]))}, ${m(poli([b * c, 0]))} y ${m(`${b * d}`)}.`, `Junta los términos en ${m('x')}: ${m(`${a * d} + ${par(b * c)} = ${a * d + b * c}`)}.`],
     };
   }
   const a = noCero(-4, 4);

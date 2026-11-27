@@ -28,8 +28,8 @@ Para dejarla compilada y abrirla sin el servidor de desarrollo: `npm run build` 
 | Sección | Para qué |
 | --- | --- |
 | **Hoy** | Qué toca hoy según el plan: el bloque de la semana con enlaces directos a sus guías y ejercicios, la rutina de inglés, el simulacro del domingo, trámites con casilla, el siguiente punto de control y cuántos días faltan para el seminario. Cronómetro de sesión (sigue corriendo aunque recargues) y registro de horas. |
-| **Plan** | Las semanas S0 a S9 con sus horas, trámites y avance; la ruta 2027–2028 (seminario, certificación, tesis) que se corre sola si cambias la fecha de arranque del seminario; puntos de control; plantilla semanal y sesiones registradas. |
-| **Áreas** | Las guías por área y bloque: conceptos con su uso real, ejercicios resueltos paso a paso, ejercicios para resolver y cuestionarios. |
+| **Plan** | Las semanas S0 a S9 con sus horas, trámites y avance; la ruta 2027–2028 (seminario, certificación, tesis) que se corre sola si cambias la fecha de arranque del seminario; puntos de control; plantilla semanal y sesiones registradas. Exporta todas las fechas a un calendario `.ics` para Google Calendar, con aviso el día anterior. |
+| **Áreas** | Las guías por área y bloque: conceptos con su uso real, ejercicios resueltos paso a paso, ejercicios para resolver y cuestionarios. Cada guía se descarga en Markdown para subirla como fuente a NotebookLM, y cada ejercicio se puede mandar al cuaderno de errores. |
 | **Examen** | Preguntas al azar de un área, un bloque o los cursos de la semana, con reloj. Ajustes del plan: *cuestionario de entrada* (20 min), *problemas con reloj* y *simulacro de 2 horas*. |
 | **Oral** | Un concepto o un tema al azar: tiempo para prepararlo, reloj para explicarlo en voz alta, grabación opcional y comparación con la guía. |
 | **Repaso** | Cuaderno de errores con repaso espaciado (1, 2, 4, 8 y 16 días). Se llena solo con lo que fallas en exámenes, cuestionarios, oral e inglés. |
